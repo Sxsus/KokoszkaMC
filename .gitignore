@@ -1,1 +1,13 @@
+# Ignoruj pliki tymczasowe Pythona
+__pycache__/
+*.pyc
 
+# Ignoruj wirtualne środowiska
+venv/
+env/
+
+# BARDZO WAŻNE: Ignoruj fizyczne pliki serwerów Minecraft (żeby nie zapchać GitHuba!)
+serwery_dane/
+
+# Ignoruj plik z bazą danych (hasła graczy powinny zostać tylko na Twoim komputerze)
+*.db
