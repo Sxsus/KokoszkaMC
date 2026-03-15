@@ -1,18 +1,14 @@
-from flask import Flask
-import database # Importujemy nasz plik z bazą danych
+from flask import Flask, render_template
+import database
 
-# Inicjalizujemy stronę internetową
 app = Flask(__name__)
 
-# To się stanie, gdy ktoś wejdzie na główny adres panelu
+# Gdy ktoś wejdzie na główną stronę, pokaż nasz nowy pomarańczowy panel!
 @app.route('/')
 def strona_glowna():
-    return "Witaj w KokoszkaMC! 🐔 Panel w budowie. Za chwilę dodamy tu piękny pomarańczowy wygląd!"
+    return render_template('panel.html')
 
 if __name__ == '__main__':
-    # 1. Zanim włączymy stronę, upewniamy się, że baza danych istnieje
     database.inicjalizuj_baze()
-    
-    # 2. Uruchamiamy serwer (będzie widoczny w przeglądarce)
     print("Uruchamianie serwera KokoszkaMC...")
     app.run(debug=True, port=5000)
