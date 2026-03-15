@@ -3,276 +3,533 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KokoszkaMC | Najlepszy Darmowy Hosting</title>
+    <title>KokoszkaMC Ultra v4.0 | Najlepszy Hosting na Świecie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* --- CSS: PROFESJONALNA STYLIZACJA (WESOŁY POMARAŃCZ) --- */
+        /* --- SEKCA 1: POTĘŻNY CSS (OK. 300 LINII) --- 
+           Kolorystyka: Pomarańczowy (Vibrant Orange), Biel (Soft White), Ciemne akcenty (Deep Gray)
+        */
         :root {
-            --p: #ff8c00; --p-dark: #e67e00; --p-light: #fff5e6;
-            --bg: #fffaf5; --card: #ffffff; --text: #4a3300;
-            --gray: #e0e0e0; --success: #4caf50; --danger: #f44336;
-            --shadow: 0 10px 30px rgba(255,140,0,0.1);
+            --p: #ff8c00;            /* Główny pomarańcz */
+            --p-hover: #e67e00;      /* Ciemniejszy pomarańcz */
+            --p-light: #fff4e6;      /* Bardzo jasny pomarańcz */
+            --bg: #f8f9fa;           /* Tło strony */
+            --card: #ffffff;         /* Tło kart */
+            --text: #2d3436;         /* Główny tekst */
+            --text-dim: #636e72;     /* Tekst pomocniczy */
+            --success: #00b894;      /* Zielony sukcesu */
+            --danger: #d63031;       /* Czerwony błędu */
+            --info: #0984e3;         /* Niebieski info */
+            --border: #edf2f7;       /* Kolor obramowań */
+            --shadow: 0 10px 25px rgba(255,140,0,0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * { box-sizing: border-box; transition: all 0.2s ease; }
-        body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); margin: 0; height: 100vh; display: flex; overflow: hidden; }
+        * { box-sizing: border-box; outline: none; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            margin: 0; 
+            height: 100vh; 
+            display: flex; 
+            overflow: hidden; 
+        }
 
-        /* --- AUTH SCREEN (LOGOWANIE / REJESTRACJA) --- */
-        #auth-overlay { position: fixed; inset: 0; background: var(--p); z-index: 10000; display: flex; align-items: center; justify-content: center; }
-        .auth-container { background: var(--card); padding: 40px; border-radius: 25px; width: 400px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); text-align: center; }
-        .auth-tabs { display: flex; margin-bottom: 25px; background: var(--gray); border-radius: 12px; padding: 5px; }
-        .auth-tab { flex: 1; padding: 10px; cursor: pointer; border-radius: 8px; font-weight: bold; color: #666; }
-        .auth-tab.active { background: var(--p); color: white; }
-        .auth-form input { width: 100%; padding: 15px; margin: 8px 0; border: 2px solid var(--gray); border-radius: 12px; font-size: 16px; outline: none; }
-        .auth-form input:focus { border-color: var(--p); }
-        .btn-auth { width: 100%; padding: 15px; background: var(--p); border: none; border-radius: 12px; color: white; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        /* --- NIESTANDARDOWY SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--p); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--p-hover); }
 
-        /* --- SIDEBAR --- */
-        .sidebar { width: 280px; background: var(--card); border-right: 2px solid var(--p-light); display: flex; flex-direction: column; z-index: 100; }
-        .sidebar-logo { padding: 40px 20px; text-align: center; font-size: 28px; font-weight: 900; color: var(--p); letter-spacing: -1px; }
-        .nav { flex-grow: 1; padding: 10px; }
-        .nav-item { display: flex; align-items: center; padding: 14px 20px; margin-bottom: 8px; border-radius: 15px; cursor: pointer; font-weight: 600; color: #777; gap: 12px; }
+        /* --- AUTH OVERLAY (EKRAN LOGOWANIA) --- */
+        #auth-overlay {
+            position: fixed; inset: 0; background: var(--p);
+            z-index: 9999; display: flex; align-items: center; justify-content: center;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .auth-card {
+            background: var(--card); padding: 50px; border-radius: 30px;
+            width: 450px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            text-align: center; position: relative;
+        }
+        .auth-card h1 { font-weight: 900; color: var(--p); font-size: 32px; margin: 0; }
+        .auth-card p { color: var(--text-dim); margin-bottom: 30px; }
+        .auth-tabs { display: flex; background: var(--bg); padding: 5px; border-radius: 15px; margin-bottom: 25px; }
+        .auth-tab { flex: 1; padding: 12px; cursor: pointer; border-radius: 10px; font-weight: 700; transition: var(--transition); color: var(--text-dim); }
+        .auth-tab.active { background: var(--p); color: white; box-shadow: 0 4px 15px rgba(255,140,0,0.3); }
+        
+        .form-group { text-align: left; margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; color: var(--p); }
+        .auth-input {
+            width: 100%; padding: 15px; border: 2px solid var(--border);
+            border-radius: 12px; font-family: inherit; font-size: 15px;
+            transition: var(--transition);
+        }
+        .auth-input:focus { border-color: var(--p); background: var(--p-light); }
+
+        /* --- GŁÓWNY UKŁAD --- */
+        .sidebar {
+            width: 300px; background: var(--card); border-right: 2px solid var(--border);
+            display: flex; flex-direction: column; z-index: 100;
+        }
+        .sidebar-brand { padding: 40px 20px; text-align: center; }
+        .sidebar-brand img { width: 60px; margin-bottom: 10px; }
+        .sidebar-brand h2 { color: var(--p); margin: 0; font-weight: 900; letter-spacing: -1px; }
+
+        .nav { flex-grow: 1; padding: 0 15px; overflow-y: auto; }
+        .nav-label { font-size: 11px; font-weight: 800; color: #cbd5e0; text-transform: uppercase; padding: 20px 10px 10px; }
+        .nav-item {
+            display: flex; align-items: center; padding: 14px 20px;
+            margin-bottom: 5px; border-radius: 15px; cursor: pointer;
+            font-weight: 600; color: var(--text-dim); transition: var(--transition);
+        }
         .nav-item:hover { background: var(--p-light); color: var(--p); }
-        .nav-item.active { background: var(--p); color: white; box-shadow: 0 8px 20px rgba(255,140,0,0.3); }
+        .nav-item.active { background: var(--p); color: white; box-shadow: 0 8px 20px rgba(255,140,0,0.25); }
+        .nav-icon { margin-right: 15px; font-size: 20px; }
 
-        /* --- CONTENT AREA --- */
         .main { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
-        .header { height: 80px; background: var(--card); border-bottom: 2px solid var(--p-light); display: flex; align-items: center; padding: 0 40px; justify-content: space-between; }
-        .user-pill { background: var(--p-light); padding: 8px 18px; border-radius: 20px; font-weight: bold; color: var(--p); }
-        .view { flex-grow: 1; padding: 40px; overflow-y: auto; display: none; }
-        .view.active { display: block; animation: fadeIn 0.4s ease; }
+        .top-bar {
+            height: 90px; background: var(--card); border-bottom: 2px solid var(--border);
+            display: flex; align-items: center; padding: 0 40px; justify-content: space-between;
+        }
+        .user-profile { display: flex; align-items: center; gap: 15px; }
+        .coin-badge {
+            background: linear-gradient(135deg, #ff8c00, #ffae00);
+            color: white; padding: 8px 20px; border-radius: 50px;
+            font-weight: 900; box-shadow: 0 4px 15px rgba(255,140,0,0.3);
+            cursor: pointer;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* --- CONTENT VIEWS --- */
+        .view-area { padding: 40px; overflow-y: auto; flex-grow: 1; background: var(--bg); }
+        .view { display: none; animation: fadeIn 0.4s ease-out; }
+        .view.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- CARDS & UI ELEMENTS --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .card { background: var(--card); padding: 30px; border-radius: 24px; box-shadow: var(--shadow); border: 1px solid var(--p-light); }
-        .card h3 { margin-top: 0; color: var(--p); margin-bottom: 20px; border-bottom: 2px solid var(--p-light); padding-bottom: 10px; font-size: 20px; }
+        /* --- KARTY --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .card {
+            background: var(--card); border-radius: 25px; padding: 30px;
+            box-shadow: var(--shadow); border: 1px solid var(--border);
+            position: relative; overflow: hidden;
+        }
+        .card h3 { margin: 0 0 20px; font-weight: 800; color: var(--p); display: flex; align-items: center; gap: 10px; }
+        
+        .status-header { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
+        .status-indicator {
+            width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--border);
+            display: flex; align-items: center; justify-content: center; font-size: 30px;
+            transition: var(--transition);
+        }
+        .status-indicator.online { border-color: var(--success); color: var(--success); animation: pulse 2s infinite; }
+        .status-indicator.starting { border-color: var(--info); color: var(--info); animation: rotate 2s linear infinite; }
+        
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0.4); } 70% { box-shadow: 0 0 0 20px rgba(0, 184, 148, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0); } }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        .status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .status-indicator { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; }
-        .dot { width: 14px; height: 14px; border-radius: 50%; background: #bbb; }
-        .dot.online { background: var(--success); box-shadow: 0 0 12px var(--success); }
-        .dot.starting { background: #2196f3; animation: pulse 1s infinite; }
+        /* --- PRZYCISKI --- */
+        .btn {
+            padding: 15px 30px; border: none; border-radius: 15px; font-family: inherit;
+            font-weight: 800; cursor: pointer; transition: var(--transition);
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            font-size: 14px;
+        }
+        .btn-p { background: var(--p); color: white; width: 100%; }
+        .btn-p:hover { background: var(--p-hover); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,140,0,0.3); }
+        .btn-s { background: var(--success); color: white; width: 100%; }
+        .btn-d { background: var(--danger); color: white; }
+        .btn-ghost { background: var(--gray); color: var(--text-dim); }
 
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        /* --- STATYSTYKI --- */
+        .stat-row { margin-bottom: 20px; }
+        .stat-label { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; font-weight: 700; }
+        .stat-bar { height: 12px; background: var(--border); border-radius: 10px; overflow: hidden; }
+        .stat-fill { height: 100%; background: var(--p); width: 0%; transition: width 1s ease; }
 
-        .btn { padding: 14px 28px; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 16px; width: 100%; }
-        .btn-start { background: var(--success); color: white; }
-        .btn-stop { background: var(--danger); color: white; }
-        .btn-primary { background: var(--p); color: white; }
+        /* --- KONSOLA --- */
+        .console-container {
+            background: #1e1e2e; color: #f8f8f2; border-radius: 20px;
+            padding: 25px; font-family: 'Fira Code', monospace; font-size: 13px;
+            height: 400px; overflow-y: auto; border: 8px solid #282a36;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        .console-line { margin-bottom: 5px; border-left: 3px solid transparent; padding-left: 10px; }
+        .console-line.info { border-left-color: var(--info); }
+        .console-line.success { border-left-color: var(--success); }
+        .console-line.error { border-left-color: var(--danger); }
+        .console-input-row { display: flex; gap: 15px; margin-top: 20px; }
+        .console-input {
+            flex-grow: 1; background: #282a36; border: 2px solid #44475a;
+            border-radius: 12px; padding: 15px; color: white; font-family: inherit;
+        }
 
-        /* --- FORMS & INPUTS --- */
-        label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; color: #888; }
-        input[type="text"], input[type="number"], select, textarea { width: 100%; padding: 14px; background: #fdfdfd; border: 2px solid var(--gray); border-radius: 12px; font-size: 15px; margin-bottom: 20px; }
-        input:focus { border-color: var(--p); outline: none; }
+        /* --- EDYTOR PLIKÓW --- */
+        .file-manager { display: grid; grid-template-columns: 250px 1fr; gap: 20px; height: 500px; }
+        .file-tree { background: var(--card); border-radius: 15px; border: 1px solid var(--border); padding: 15px; overflow-y: auto; }
+        .file-item {
+            padding: 10px; border-radius: 8px; cursor: pointer; transition: 0.2s;
+            display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600;
+        }
+        .file-item:hover { background: var(--p-light); color: var(--p); }
+        .file-item.active { background: var(--p); color: white; }
+        .editor-container { position: relative; }
+        .editor-textarea {
+            width: 100%; height: 100%; background: #282a36; color: #f8f8f2;
+            padding: 20px; border-radius: 15px; font-family: 'Fira Code', monospace;
+            font-size: 14px; border: none; resize: none; line-height: 1.6;
+        }
 
-        /* --- CONSOLE --- */
-        .console-box { background: #222; color: #00ff00; padding: 20px; border-radius: 15px; height: 350px; overflow-y: auto; font-family: 'Consolas', monospace; font-size: 13px; border: 4px solid #333; }
-        .console-input-row { display: flex; gap: 10px; margin-top: 15px; }
-
-        /* --- OPTIONS TOGGLES --- */
-        .opt-row { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #fafafa; border-radius: 12px; margin-bottom: 10px; }
-        .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+        /* --- PRZEŁĄCZNIKI (SWITCHES) --- */
+        .opt-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px; background: var(--card); border-radius: 20px;
+            border: 1px solid var(--border); margin-bottom: 15px; transition: var(--transition);
+        }
+        .opt-item:hover { border-color: var(--p); transform: translateX(5px); }
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; inset: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc; transition: .4s; border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px;
+            background-color: white; transition: .4s; border-radius: 50%;
+        }
         input:checked + .slider { background-color: var(--p); }
-        input:checked + .slider:before { transform: translateX(24px); }
+        input:checked + .slider:before { transform: translateX(26px); }
 
-        /* --- PROGRESS BARS --- */
-        .prog-bg { height: 12px; background: #eee; border-radius: 6px; overflow: hidden; margin-top: 10px; }
-        .prog-fill { height: 100%; background: var(--p); width: 0%; transition: 0.5s; }
+        /* --- SKLEP I MONETY --- */
+        .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .shop-item {
+            background: var(--card); border-radius: 25px; padding: 25px; text-align: center;
+            border: 2px solid var(--border); transition: var(--transition);
+        }
+        .shop-item:hover { border-color: var(--p); transform: scale(1.05); }
+        .shop-price { font-size: 24px; font-weight: 900; color: var(--p); margin: 15px 0; }
 
-        /* --- FILE MANAGER --- */
-        .file-list { list-style: none; padding: 0; }
-        .file-item { padding: 12px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; cursor: pointer; }
-        .file-item:hover { background: var(--p-light); }
+        /* --- AUDIT LOGS --- */
+        .audit-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .audit-table th { text-align: left; padding: 15px; border-bottom: 2px solid var(--border); color: var(--p); }
+        .audit-table td { padding: 15px; border-bottom: 1px solid var(--border); }
+
+        /* --- EKRAN TWORZENIA SERWERA --- */
+        #create-view { text-align: center; padding: 100px 0; }
+        .input-huge {
+            font-size: 30px; font-weight: 900; border: none; border-bottom: 5px solid var(--p);
+            background: transparent; text-align: center; color: var(--p); width: 80%;
+            margin-bottom: 20px; padding: 10px;
+        }
     </style>
 </head>
 <body>
 
     <div id="auth-overlay">
-        <div class="auth-container">
-            <div style="font-size: 40px; margin-bottom: 10px;">🐔</div>
-            <h2>KokoszkaMC</h2>
+        <div class="auth-card">
+            <div style="font-size: 50px; margin-bottom: 10px;">🐔</div>
+            <h1>KokoszkaMC Ultra</h1>
+            <p>Najpotężniejszy hosting w tej części galaktyki.</p>
+            
             <div class="auth-tabs">
-                <div id="tab-login" class="auth-tab active" onclick="ui.toggleAuth('login')">Logowanie</div>
-                <div id="tab-register" class="auth-tab" onclick="ui.toggleAuth('register')">Rejestracja</div>
+                <div id="tab-login" class="auth-tab active" onclick="app.setAuthMode('login')">Logowanie</div>
+                <div id="tab-register" class="auth-tab" onclick="app.setAuthMode('register')">Rejestracja</div>
             </div>
-            <div class="auth-form">
-                <input type="text" id="auth-user" placeholder="Nazwa użytkownika">
-                <input type="password" id="auth-pass" placeholder="Hasło">
-                <button class="btn-auth" onclick="core.authenticate()">ZACZYNAMY!</button>
+
+            <div class="form-group">
+                <label>Nazwa użytkownika</label>
+                <input type="text" id="auth-username" class="auth-input" placeholder="np. MasterKokoszka">
             </div>
+            <div class="form-group">
+                <label>Hasło dostępu</label>
+                <input type="password" id="auth-password" class="auth-input" placeholder="••••••••">
+            </div>
+            
+            <button class="btn btn-p" onclick="app.handleAuth()" style="font-size: 18px; margin-top: 10px;">WEJDŹ DO PANELU</button>
+            <div id="auth-error" style="color: var(--danger); font-size: 12px; margin-top: 15px; font-weight: bold;"></div>
         </div>
     </div>
 
     <div class="sidebar">
-        <div class="sidebar-logo">KOKOSZKA MC</div>
-        <div class="nav">
-            <div class="nav-item active" onclick="ui.view('dash', this)">🏠 Serwer</div>
-            <div class="nav-item" onclick="ui.view('software', this)">⚙️ Oprogramowanie</div>
-            <div class="nav-item" onclick="ui.view('world', this)">🌍 Świat</div>
-            <div class="nav-item" onclick="ui.view('options', this)">🛠️ Opcje</div>
-            <div class="nav-item" onclick="ui.view('files', this)">📂 Pliki</div>
-            <div class="nav-item" onclick="ui.view('players', this)">👥 Gracze</div>
-            <div class="nav-item" onclick="ui.view('console', this)">💻 Konsola</div>
-            <div class="nav-item" onclick="ui.view('backups', this)">💾 Kopie</div>
+        <div class="sidebar-brand">
+            <h2>KOKOSZKA MC</h2>
+            <div style="font-size: 10px; font-weight: 800; color: var(--p-hover); opacity: 0.6;">VERSION 4.0 STABLE</div>
         </div>
-        <div style="padding: 20px; text-align: center;"><button class="btn" style="background:#eee" onclick="location.reload()">Wyloguj</button></div>
+
+        <div class="nav">
+            <div class="nav-label">Zarządzanie</div>
+            <div class="nav-item active" onclick="ui.changeView('dash', this)"><span class="nav-icon">📊</span> Pulpit Sterowania</div>
+            <div class="nav-item" onclick="ui.changeView('software', this)"><span class="nav-icon">⚙️</span> Silnik i Wersja</div>
+            <div class="nav-item" onclick="ui.changeView('options', this)"><span class="nav-icon">🛠️</span> Opcje Serwera</div>
+            <div class="nav-item" onclick="ui.changeView('console', this)"><span class="nav-icon">💻</span> Konsola na Żywo</div>
+            
+            <div class="nav-label">Świat i Pliki</div>
+            <div class="nav-item" onclick="ui.changeView('world', this)"><span class="nav-icon">🌍</span> Świat i Seed</div>
+            <div class="nav-item" onclick="ui.changeView('files', this)"><span class="nav-icon">📂</span> Menedżer Plików</div>
+            <div class="nav-item" onclick="ui.changeView('players', this)"><span class="nav-icon">👥</span> Gracze i Administracja</div>
+            
+            <div class="nav-label">System</div>
+            <div class="nav-item" onclick="ui.changeView('shop', this)"><span class="nav-icon">💎</span> Sklep Kokoszki</div>
+            <div class="nav-item" onclick="ui.changeView('backups', this)"><span class="nav-icon">💾</span> Kopie Zapasowe</div>
+            <div class="nav-item" onclick="ui.changeView('audit', this)"><span class="nav-icon">📜</span> Dziennik Zdarzeń</div>
+            <div class="nav-item" onclick="ui.changeView('support', this)"><span class="nav-icon">🎫</span> Pomoc Techniczna</div>
+        </div>
+
+        <div style="padding: 20px; border-top: 1px solid var(--border);">
+            <button class="btn btn-ghost" style="width: 100%;" onclick="location.reload()">WYLOGUJ SIĘ</button>
+        </div>
     </div>
 
     <div class="main">
-        <div class="header">
-            <div>Panel Sterowania / <span id="bread-crumb" style="color: var(--p); font-weight: bold;">Serwer</span></div>
-            <div class="user-pill">Użytkownik: <span id="ui-username">---</span></div>
+        <div class="top-bar">
+            <div>Panel / <b id="current-view-title" style="color: var(--p);">Pulpit</b></div>
+            <div class="user-profile">
+                <div class="coin-badge" title="Zarabiaj 10 monet co minutę bycia online!">💰 <span id="user-coins">0</span> KOKOSZEK</div>
+                <div style="text-align: right;">
+                    <div style="font-weight: 800; font-size: 14px;" id="display-username">Gość</div>
+                    <div style="font-size: 11px; color: var(--success); font-weight: 700;">PRO PLAN ACTIVATED</div>
+                </div>
+            </div>
         </div>
 
         <div class="view-area">
-            
-            <div id="view-dash" class="view active">
-                <div id="create-prompt" style="display: none;">
-                    <div class="card" style="text-align: center; max-width: 500px; margin: auto;">
-                        <h3>Stwórz swój pierwszy serwer!</h3>
-                        <label>Wybierz unikalną nazwę:</label>
-                        <input type="text" id="new-srv-name" placeholder="np. moja-przygoda">
-                        <p>Adres: <b id="preview-ip" style="color: var(--p);">...kokoszka.me</b></p>
-                        <button class="btn btn-primary" onclick="core.createServer()">STWÓRZ SERWER</button>
-                    </div>
-                </div>
 
-                <div id="dash-main" style="display: none;">
-                    <div class="grid">
-                        <div class="card">
-                            <div class="status-header">
-                                <div class="status-indicator">
-                                    <div id="ui-dot" class="dot"></div>
-                                    <span id="ui-status-text">OFFLINE</span>
-                                </div>
-                                <span style="color: #999;">IP: <b id="ui-ip">...</b></span>
-                            </div>
-                            <button id="pwr-btn" class="btn btn-start" onclick="core.togglePower()">URUCHOM</button>
-                            <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 15px;">
-                                <p>Silnik: <b id="ui-engine-info">---</b></p>
-                                <p>Wersja: <b id="ui-ver-info">---</b></p>
+            <div id="view-create" class="view">
+                <div id="create-view">
+                    <div style="font-size: 80px;">🥚</div>
+                    <h1 style="font-weight: 900; margin: 0;">Czas na Twój serwer!</h1>
+                    <p>Wpisz nazwę swojej maszyny, aby zainstalować pliki.</p>
+                    <input type="text" id="new-server-name" class="input-huge" placeholder="np. kokoszkowo">
+                    <p style="font-weight: 700;">Adres: <span id="preview-ip" style="color: var(--p);">...kokoszka.me</span></p>
+                    <button class="btn btn-p" style="max-width: 400px; font-size: 20px;" onclick="core.initServer()">ZAINSTALUJ KOKOSZKĘ</button>
+                </div>
+            </div>
+
+            <div id="view-dash" class="view active">
+                <div class="grid">
+                    <div class="card">
+                        <div class="status-header">
+                            <div id="ui-indicator" class="status-indicator">🔴</div>
+                            <div>
+                                <div style="font-weight: 900; font-size: 24px; color: var(--text);" id="ui-status-text">OFFLINE</div>
+                                <div style="font-size: 14px; color: var(--text-dim);" id="ui-ip-addr">---</div>
                             </div>
                         </div>
-                        <div class="card">
-                            <h3>Zasoby Maszyny</h3>
-                            <label>Pamięć RAM: <span id="ram-txt">0/4096 MB</span></label>
-                            <div class="prog-bg"><div id="ram-bar" class="prog-fill"></div></div>
-                            <br>
-                            <label>Obciążenie CPU: <span id="cpu-txt">0%</span></label>
-                            <div class="prog-bg"><div id="cpu-bar" class="prog-fill" style="background: #2196f3;"></div></div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <button class="btn btn-s" id="btn-power" onclick="core.togglePower()">URUCHOM SERWER</button>
+                            <button class="btn btn-d" onclick="core.killProcess()">KILL</button>
                         </div>
+                        <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between;">
+                            <span>Gracze: <b id="ui-player-count">0 / 20</b></span>
+                            <span>Silnik: <b id="ui-engine-tag">---</b></span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Zasoby Maszyny</h3>
+                        <div class="stat-row">
+                            <div class="stat-label"><span>Pamięć operacyjna RAM</span><span id="txt-ram">0 / 4096 MB</span></div>
+                            <div class="stat-bar"><div id="bar-ram" class="stat-fill"></div></div>
+                        </div>
+                        <div class="stat-row">
+                            <div class="stat-label"><span>Obciążenie procesora CPU</span><span id="txt-cpu">0%</span></div>
+                            <div class="stat-bar"><div id="bar-cpu" class="stat-fill" style="background: var(--info);"></div></div>
+                        </div>
+                        <div style="font-size: 11px; color: var(--text-dim); text-align: center;">Węzeł: <b>PL-WAR-01 (Intel Xeon Gold)</b></div>
                     </div>
                 </div>
             </div>
 
             <div id="view-software" class="view">
                 <div class="card">
-                    <h3>Wybierz Silnik i Wersję</h3>
-                    <label>Typ silnika:</label>
-                    <select id="set-engine">
+                    <h3>Oprogramowanie Serwera</h3>
+                    <p>Zmiana wersji lub silnika automatycznie stworzy kopię zapasową.</p>
+                    
+                    <label style="font-weight: 700; display: block; margin: 20px 0 10px;">Typ Silnika:</label>
+                    <select id="set-engine" class="auth-input" style="background: white;">
                         <option value="Vanilla">Vanilla (Standardowy Minecraft)</option>
-                        <option value="PaperMC" selected>PaperMC (Pluginy + Wydajność)</option>
-                        <option value="Forge">Forge (Modyfikacje)</option>
-                        <option value="Fabric">Fabric (Nowoczesne Mody)</option>
+                        <option value="PaperMC" selected>PaperMC (Najlepszy pod pluginy)</option>
+                        <option value="Spigot">Spigot (Klasyczny pod pluginy)</option>
+                        <option value="Forge">Forge (Modyfikacje Java)</option>
+                        <option value="Fabric">Fabric (Nowoczesne mody)</option>
+                        <option value="Purpur">Purpur (Super-Wydajność)</option>
+                        <option value="BungeeCord">BungeeCord (Sieć serwerów)</option>
                     </select>
-                    <label>Wersja Minecraft:</label>
-                    <select id="set-version">
+
+                    <label style="font-weight: 700; display: block; margin: 20px 0 10px;">Wersja Minecraft:</label>
+                    <select id="set-version" class="auth-input" style="background: white;">
                         </select>
-                    <button class="btn btn-primary" onclick="core.saveSoftware()">Zainstaluj Oprogramowanie</button>
+
+                    <button class="btn btn-p" style="margin-top: 20px;" onclick="core.installSoftware()">ZAINSTALUJ I ZREINSTALUJ SERWER</button>
+                </div>
+            </div>
+
+            <div id="view-console" class="view">
+                <div class="card" style="background: #1e1e2e;">
+                    <div class="console-container" id="console-logs">
+                        <div class="console-line info">[System] Logowanie do KokoszkaMC Console...</div>
+                        <div class="console-line info">[System] Nawiązywanie połączenia z węzłem PL-WAR-01...</div>
+                        <div class="console-line success">[System] Połączono! Czekam na sygnał serwera.</div>
+                    </div>
+                    <div class="console-input-row">
+                        <input type="text" id="console-input" class="console-input" placeholder="Wpisz polecenie (np. /op Kokoszka)">
+                        <button class="btn btn-p" style="width: 150px;" onclick="core.sendConsoleCmd()">WYŚLIJ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-options" class="view">
+                <div class="grid">
+                    <div class="card">
+                        <h3>Opcje Gry</h3>
+                        <div class="opt-item">
+                            <div><b>Tryb Cracked (No-Premium)</b><br><small>Pozwala na wejście bez konta Mojang.</small></div>
+                            <label class="switch"><input type="checkbox" id="opt-cracked" checked><span class="slider"></span></label>
+                        </div>
+                        <div class="opt-item">
+                            <div><b>Biała Lista (Whitelist)</b><br><small>Tylko wybrani gracze mogą wejść.</small></div>
+                            <label class="switch"><input type="checkbox" id="opt-whitelist"><span class="slider"></span></label>
+                        </div>
+                        <div class="opt-item">
+                            <div><b>Bloki Poleceń (Command Blocks)</b><br><small>Wymagane do skryptów w grze.</small></div>
+                            <label class="switch"><input type="checkbox" id="opt-cmd" checked><span class="slider"></span></label>
+                        </div>
+                        <div class="opt-item">
+                            <div><b>PVP (Walka graczy)</b><br><small>Włącza/wyłącza obrażenia między graczami.</small></div>
+                            <label class="switch"><input type="checkbox" id="opt-pvp" checked><span class="slider"></span></label>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Trudność i Świat</h3>
+                        <label style="font-weight: 700;">Poziom Trudności:</label>
+                        <select class="auth-input"><option>Peaceful</option><option>Easy</option><option selected>Normal</option><option>Hard</option></select>
+                        <br><br>
+                        <label style="font-weight: 700;">Tryb Gry:</label>
+                        <select class="auth-input"><option selected>Survival</option><option>Creative</option><option>Adventure</option><option>Spectator</option></select>
+                        <br><br>
+                        <button class="btn btn-p" onclick="ui.notify('Opcje zapisane!')">ZAPISZ SERVER.PROPERTIES</button>
+                    </div>
                 </div>
             </div>
 
             <div id="view-world" class="view">
                 <div class="card">
-                    <h3>Ustawienia Świata</h3>
-                    <label>Ziarno świata (Seed):</label>
-                    <input type="text" id="set-seed" placeholder="Zostaw puste dla losowego...">
-                    <label>Typ świata:</label>
-                    <select id="set-world-type">
+                    <h3>Generator Świata</h3>
+                    <label style="font-weight: 700;">Ziarno świata (Seed):</label>
+                    <input type="text" class="auth-input" id="world-seed" placeholder="Zostaw puste dla losowego...">
+                    
+                    <label style="font-weight: 700;">Typ generatora:</label>
+                    <select class="auth-input">
                         <option>Domyślny (Default)</option>
                         <option>Płaski (Flat)</option>
                         <option>Wielkie Biomy (Large Biomes)</option>
                         <option>Wzmocniony (Amplified)</option>
+                        <option>Pojedynczy Biom</option>
                     </select>
-                    <button class="btn btn-primary" onclick="alert('Seed i typ świata zapisane. Wygeneruje się przy nowym świecie.')">Zapisz Ustawienia Świata</button>
-                </div>
-            </div>
 
-            <div id="view-options" class="view">
-                <div class="card">
-                    <h3>Opcje Serwera (server.properties)</h3>
-                    <div class="opt-row">
-                        <span>Włącz No-Premium (Cracked)</span>
-                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                    </div>
-                    <div class="opt-row">
-                        <span>Biała Lista (Whitelist)</span>
-                        <label class="switch"><input type="checkbox" id="opt-wl"><span class="slider"></span></label>
-                    </div>
-                    <div class="opt-row">
-                        <span>PVP (Walka graczy)</span>
-                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                    </div>
-                    <div class="opt-row">
-                        <span>Latanie (Flight)</span>
+                    <div class="opt-item" style="margin-top: 20px;">
+                        <div><b>Tryb Hardcore</b><br><small>Śmierć oznacza koniec gry na serwerze.</small></div>
                         <label class="switch"><input type="checkbox"><span class="slider"></span></label>
                     </div>
-                    <label>Trudność:</label>
-                    <select>
-                        <option>Easy</option>
-                        <option selected>Normal</option>
-                        <option>Hard</option>
-                        <option>Peaceful</option>
-                    </select>
+
+                    <button class="btn btn-p" onclick="ui.notify('Zmiany zostaną zastosowane po wygenerowaniu nowego świata!')">REGENERUJ ŚWIAT</button>
                 </div>
             </div>
 
             <div id="view-files" class="view">
                 <div class="card">
-                    <h3>Menedżer Plików</h3>
-                    <ul class="file-list">
-                        <li class="file-item">📁 world</li>
-                        <li class="file-item">📁 mods</li>
-                        <li class="file-item">📁 plugins</li>
-                        <li class="file-item">📄 server.properties</li>
-                        <li class="file-item">📄 whitelist.json</li>
-                        <li class="file-item">📄 banned-players.json</li>
-                    </ul>
+                    <h3>Zdalny Dostęp FTP (Web)</h3>
+                    <div class="file-manager">
+                        <div class="file-tree" id="file-list">
+                            </div>
+                        <div class="editor-container">
+                            <textarea class="editor-textarea" id="file-editor" spellcheck="false"># Wybierz plik z listy po lewej, aby go edytować...</textarea>
+                            <button class="btn btn-p" style="position: absolute; bottom: 20px; right: 20px; width: 150px;" onclick="ui.notify('Zapisano pomyślnie!')">ZAPISZ PLIK</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div id="view-players" class="view">
-                <div class="card">
-                    <h3>Operatorzy i Biała Lista</h3>
-                    <label>Dodaj nick gracza:</label>
-                    <div style="display:flex; gap:10px;">
-                        <input type="text" id="pl-nick" placeholder="Nick...">
-                        <button class="btn btn-primary" style="width:120px;" onclick="core.addPlayer()">DODAJ</button>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Operatorzy (OP)</h3>
+                        <div style="display:flex; gap: 10px; margin-bottom: 20px;">
+                            <input type="text" id="op-nick" class="auth-input" style="margin:0;" placeholder="Nick gracza...">
+                            <button class="btn btn-p" style="width: 100px;" onclick="core.addPlayer('op')">DODAJ</button>
+                        </div>
+                        <div id="op-list"></div>
                     </div>
-                    <div id="players-list" style="margin-top:20px;"></div>
-                </div>
-            </div>
-
-            <div id="view-console" class="view">
-                <div class="card">
-                    <h3>Konsola na żywo</h3>
-                    <div id="console-log" class="console-box">System gotowy. Zalogowano poprawnie.</div>
-                    <div class="console-input-row">
-                        <input type="text" id="cons-in" placeholder="Wpisz komendę bez /">
-                        <button class="btn btn-primary" style="width:120px;" onclick="core.sendCmd()">WYŚLIJ</button>
+                    <div class="card">
+                        <h3>Biała Lista</h3>
+                        <div style="display:flex; gap: 10px; margin-bottom: 20px;">
+                            <input type="text" id="wl-nick" class="auth-input" style="margin:0;" placeholder="Nick gracza...">
+                            <button class="btn btn-p" style="width: 100px;" onclick="core.addPlayer('wl')">DODAJ</button>
+                        </div>
+                        <div id="wl-list"></div>
                     </div>
                 </div>
             </div>
 
-            <div id="view-backups" class="view">
-                <div class="card" style="text-align:center;">
-                    <h3>Kopie Zapasowe</h3>
-                    <p>Serwer automatycznie zapisuje stan gry co 15 minut.</p>
-                    <button class="btn btn-primary" style="max-width:300px;">💾 Stwórz kopię na Google Drive</button>
+            <div id="view-shop" class="view">
+                <div class="card" style="background: var(--p-light); border-color: var(--p);">
+                    <h2 style="color: var(--p); margin: 0 0 10px;">Sklep u Kokoszki 🐔</h2>
+                    <p>Wymień monety zarobione za czas online na ulepszenia Twojej maszyny!</p>
+                </div>
+                <div class="shop-grid" style="margin-top: 30px;">
+                    <div class="shop-item">
+                        <div style="font-size: 40px;">💾</div>
+                        <h3>Dodatkowy RAM (1GB)</h3>
+                        <div class="shop-price">500 💰</div>
+                        <button class="btn btn-p" onclick="core.buy(500, 'RAM')">KUP ULEPSZENIE</button>
+                    </div>
+                    <div class="shop-item">
+                        <div style="font-size: 40px;">🔥</div>
+                        <h3>Moc Procesora +20%</h3>
+                        <div class="shop-price">800 💰</div>
+                        <button class="btn btn-p" onclick="core.buy(800, 'CPU')">KUP ULEPSZENIE</button>
+                    </div>
+                    <div class="shop-item">
+                        <div style="font-size: 40px;">👥</div>
+                        <h3>Sloty +20 Graczy</h3>
+                        <div class="shop-price">300 💰</div>
+                        <button class="btn btn-p" onclick="core.buy(300, 'Sloty')">KUP ULEPSZENIE</button>
+                    </div>
+                    <div class="shop-item">
+                        <div style="font-size: 40px;">🛰️</div>
+                        <h3>Własna Subdomena</h3>
+                        <div class="shop-price">2000 💰</div>
+                        <button class="btn btn-p" onclick="core.buy(2000, 'IP')">KUP ULEPSZENIE</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-audit" class="view">
+                <div class="card">
+                    <h3>Dziennik Zdarzeń (Audit Logs)</h3>
+                    <table class="audit-table">
+                        <thead>
+                            <tr><th>CZAS</th><th>DZIAŁANIE</th><th>UŻYTKOWNIK</th><th>ADRES IP</th></tr>
+                        </thead>
+                        <tbody id="audit-body">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="view-support" class="view">
+                <div class="card">
+                    <h3>Centrum Pomocy Technicznej</h3>
+                    <p>Nasz zespół Kokoszek odpowiada zazwyczaj w ciągu kilku sekund.</p>
+                    <div id="ticket-area" style="height: 300px; background: var(--bg); border-radius: 15px; padding: 20px; overflow-y: auto; margin-bottom: 20px;">
+                        <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 5px solid var(--p);">
+                            <b>🤖 System KokoszkaMC:</b> Witaj! W czym możemy Ci dzisiaj pomóc?
+                        </div>
+                    </div>
+                    <div style="display:flex; gap: 15px;">
+                        <input type="text" id="support-input" class="auth-input" style="margin:0;" placeholder="Opisz swój problem...">
+                        <button class="btn btn-p" style="width: 150px;" onclick="core.sendTicket()">WYŚLIJ</button>
+                    </div>
                 </div>
             </div>
 
@@ -280,209 +537,341 @@
     </div>
 
     <script>
-        // --- DANE KONFIGURACYJNE ---
-        const MC_VERSIONS = ["1.21", "1.20.4", "1.20.1", "1.19.4", "1.19.2", "1.18.2", "1.17.1", "1.16.5", "1.12.2", "1.8.8", "1.7.10"];
-        
-        // --- STAN APLIKACJI ---
-        let state = {
-            currentUser: null,
-            authMode: 'login',
-            isOnline: false,
-            server: null
+        /* KOKOSZKA MC ENGINE v4.0
+           Ten skrypt zarządza całą logiką aplikacji.
+        */
+
+        const MC_VERSIONS = [
+            "1.21", "1.20.4", "1.20.1", "1.19.4", "1.19.2", "1.18.2", "1.17.1", "1.16.5", 
+            "1.15.2", "1.14.4", "1.12.2", "1.10.2", "1.8.8", "1.7.10", "1.5.2", "1.2.5", "1.0"
+        ];
+
+        const FILE_TEMPLATES = {
+            "server.properties": "allow-flight=false\nmotd=Serwer KokoszkaMC Ultra\npvp=true\ngamemode=survival\ndifficulty=normal\nmax-players=20\nonline-mode=false",
+            "bukkit.yml": "settings:\n  allow-end: true\n  warn-on-overload: true\n  permissions-file: permissions.yml",
+            "spigot.yml": "messages:\n  whitelist: Jestes na bialej liscie!\n  restart: Serwer sie restartuje!",
+            "ops.json": "[]",
+            "whitelist.json": "[]"
         };
 
-        // --- RDZEŃ SYSTEMU (LOGIKA) ---
-        const core = {
-            // Autoryzacja
-            authenticate: function() {
-                const u = document.getElementById('auth-user').value;
-                const p = document.getElementById('auth-pass').value;
+        const app = {
+            authMode: 'login',
+            currentUser: null,
+            users: JSON.parse(localStorage.getItem('kmc_v4_users') || "{}"),
 
-                if(u.length < 3) return alert("Nazwa użytkownika za krótka!");
+            setAuthMode(mode) {
+                this.authMode = mode;
+                document.getElementById('tab-login').className = mode === 'login' ? 'auth-tab active' : 'auth-tab';
+                document.getElementById('tab-register').className = mode === 'register' ? 'auth-tab active' : 'auth-tab';
+                document.getElementById('auth-error').innerText = "";
+            },
 
-                let users = JSON.parse(localStorage.getItem('kmc_users') || "{}");
+            handleAuth() {
+                const u = document.getElementById('auth-username').value.trim();
+                const p = document.getElementById('auth-password').value.trim();
 
-                if(state.authMode === 'register') {
-                    if(users[u]) return alert("Użytkownik już istnieje!");
-                    users[u] = { pass: p, server: null };
-                    localStorage.setItem('kmc_users', JSON.stringify(users));
-                    alert("Zarejestrowano pomyślnie! Teraz się zaloguj.");
-                    ui.toggleAuth('login');
+                if(!u || !p) return document.getElementById('auth-error').innerText = "Wypełnij wszystkie pola!";
+
+                if(this.authMode === 'register') {
+                    if(this.users[u]) return document.getElementById('auth-error').innerText = "Ten użytkownik już istnieje!";
+                    this.users[u] = { 
+                        pass: p, 
+                        coins: 100, 
+                        server: null,
+                        audit: [{ time: new Date().toLocaleString(), action: "Rejestracja konta", ip: "127.0.0.1" }] 
+                    };
+                    localStorage.setItem('kmc_v4_users', JSON.stringify(this.users));
+                    ui.notify("Zarejestrowano pomyślnie! Zaloguj się.");
+                    this.setAuthMode('login');
                 } else {
-                    if(!users[u] || users[u].pass !== p) return alert("Błędne dane logowania!");
-                    state.currentUser = u;
-                    state.server = users[u].server;
-                    this.initApp();
+                    if(!this.users[u] || this.users[u].pass !== p) return document.getElementById('auth-error').innerText = "Błędne dane logowania!";
+                    this.currentUser = u;
+                    core.startSession();
                 }
+            }
+        };
+
+        const core = {
+            session: null,
+            online: false,
+            booting: false,
+            statsTimer: null,
+            coinTimer: null,
+
+            startSession() {
+                this.session = app.users[app.currentUser];
+                document.getElementById('auth-overlay').style.transform = 'translateY(-100%)';
+                document.getElementById('display-username').innerText = app.currentUser;
+                document.getElementById('user-coins').innerText = this.session.coins;
+                
+                if(!this.session.server) {
+                    ui.changeView('create');
+                } else {
+                    this.loadServerUI();
+                    ui.changeView('dash');
+                }
+
+                this.startCoinSystem();
+                this.loadAuditLogs();
+                this.loadFiles();
             },
 
-            initApp: function() {
-                document.getElementById('auth-overlay').style.display = 'none';
-                document.getElementById('ui-username').innerText = state.currentUser;
-                this.updateUI();
-                ui.log("Witaj, " + state.currentUser + "! System załadowany.");
-            },
+            initServer() {
+                const name = document.getElementById('new-server-name').value.trim();
+                if(name.length < 3) return alert("Nazwa za krótka!");
 
-            // Zarządzanie Serwerem
-            createServer: function() {
-                const name = document.getElementById('new-srv-name').value;
-                if(!name) return alert("Podaj nazwę!");
-
-                state.server = {
+                this.session.server = {
                     name: name,
                     ip: name.toLowerCase() + ".kokoszka.me",
                     engine: "PaperMC",
                     version: "1.20.4",
+                    ram: 4096,
                     players: [],
-                    seed: ""
+                    ops: [app.currentUser],
+                    whitelist: []
                 };
 
+                this.addAudit("Utworzenie nowego serwera: " + name);
                 this.save();
-                this.updateUI();
-                ui.log("Utworzono serwer: " + state.server.ip);
+                this.loadServerUI();
+                ui.changeView('dash');
+                ui.notify("Serwer zainstalowany!");
             },
 
-            togglePower: function() {
-                const btn = document.getElementById('pwr-btn');
-                const dot = document.getElementById('ui-dot');
+            loadServerUI() {
+                const s = this.session.server;
+                document.getElementById('ui-ip-addr').innerText = s.ip;
+                document.getElementById('ui-engine-tag').innerText = s.engine + " " + s.version;
+                document.getElementById('ui-player-count').innerText = "0 / 20";
+                this.renderPlayerLists();
+            },
+
+            togglePower() {
+                if(this.booting) return;
+                
+                const btn = document.getElementById('btn-power');
+                const ind = document.getElementById('ui-indicator');
                 const txt = document.getElementById('ui-status-text');
 
-                if(!state.isOnline) {
-                    state.isOnline = true;
-                    btn.innerText = "STOP";
-                    btn.className = "btn btn-stop";
-                    dot.className = "dot starting";
+                if(!this.online) {
+                    this.booting = true;
+                    btn.disabled = true;
+                    ind.className = "status-indicator starting";
+                    ind.innerText = "⚙️";
                     txt.innerText = "STARTOWANIE...";
-                    ui.log("Inicjalizacja środowiska Java 21...");
+                    ui.log("Inicjalizacja środowiska Java 21...", "info");
+                    ui.log("Weryfikacja plików " + this.session.server.engine + "...", "info");
 
                     setTimeout(() => {
-                        if(state.isOnline) {
-                            dot.className = "dot online";
-                            txt.innerText = "ONLINE";
-                            ui.log("<b>[SUCCESS]</b> Serwer KokoszkaMC działa!");
-                            this.runResources();
-                        }
-                    }, 3000);
+                        this.booting = false;
+                        this.online = true;
+                        btn.disabled = false;
+                        btn.innerText = "ZATRZYMAJ SERWER";
+                        btn.className = "btn btn-d";
+                        ind.className = "status-indicator online";
+                        ind.innerText = "🟢";
+                        txt.innerText = "ONLINE";
+                        ui.log("Serwer KokoszkaMC wystartował na porcie 25565!", "success");
+                        this.startResourceSim();
+                        this.addAudit("Uruchomienie serwera");
+                    }, 4000);
                 } else {
-                    state.isOnline = false;
-                    btn.innerText = "URUCHOM";
-                    btn.className = "btn btn-start";
-                    dot.className = "dot";
+                    this.online = false;
+                    btn.innerText = "URUCHOM SERWER";
+                    btn.className = "btn btn-s";
+                    ind.className = "status-indicator";
+                    ind.innerText = "🔴";
                     txt.innerText = "OFFLINE";
-                    ui.log("Zamykanie procesów serwera...");
-                    document.getElementById('ram-bar').style.width = "0%";
-                    document.getElementById('cpu-bar').style.width = "0%";
+                    ui.log("Zamykanie serwera (Zapisywanie świata)...", "info");
+                    this.stopResourceSim();
+                    this.addAudit("Zatrzymanie serwera");
                 }
             },
 
-            runResources: function() {
-                const loop = setInterval(() => {
-                    if(!state.isOnline) return clearInterval(loop);
-                    let ram = Math.floor(Math.random() * (2400 - 1800) + 1800);
-                    let cpu = Math.floor(Math.random() * 40);
-                    document.getElementById('ram-txt').innerText = ram + "/4096 MB";
-                    document.getElementById('ram-bar').style.width = (ram/4096)*100 + "%";
-                    document.getElementById('cpu-txt').innerText = cpu + "%";
-                    document.getElementById('cpu-bar').style.width = cpu + "%";
+            startResourceSim() {
+                this.statsTimer = setInterval(() => {
+                    if(!this.online) return;
+                    const ram = Math.floor(Math.random() * (2200 - 1800) + 1800);
+                    const cpu = Math.floor(Math.random() * 45);
+                    document.getElementById('txt-ram').innerText = ram + " / 4096 MB";
+                    document.getElementById('bar-ram').style.width = (ram/4096)*100 + "%";
+                    document.getElementById('txt-cpu').innerText = cpu + "%";
+                    document.getElementById('bar-cpu').style.width = cpu + "%";
                 }, 2000);
             },
 
-            saveSoftware: function() {
-                if(!state.server) return;
-                state.server.engine = document.getElementById('set-engine').value;
-                state.server.version = document.getElementById('set-version').value;
-                this.save();
-                this.updateUI();
-                alert("Oprogramowanie zainstalowane! Pamiętaj o restarcie.");
+            stopResourceSim() {
+                clearInterval(this.statsTimer);
+                document.getElementById('bar-ram').style.width = "0%";
+                document.getElementById('bar-cpu').style.width = "0%";
+                document.getElementById('txt-ram').innerText = "0 / 4096 MB";
+                document.getElementById('txt-cpu').innerText = "0%";
             },
 
-            addPlayer: function() {
-                const n = document.getElementById('pl-nick').value;
-                if(!n) return;
-                state.server.players.push(n);
-                document.getElementById('pl-nick').value = "";
-                this.renderPlayers();
-                this.save();
+            startCoinSystem() {
+                this.coinTimer = setInterval(() => {
+                    this.session.coins += 10;
+                    document.getElementById('user-coins').innerText = this.session.coins;
+                    this.save();
+                }, 60000); // 10 monet co minutę
             },
 
-            renderPlayers: function() {
-                const div = document.getElementById('players-list');
-                div.innerHTML = "";
-                state.server.players.forEach((p, i) => {
-                    div.innerHTML += `<div class="opt-row"><span>${p}</span><button onclick="core.delPlayer(${i})" style="color:red; background:none; border:none; cursor:pointer;">Usuń</button></div>`;
+            installSoftware() {
+                const e = document.getElementById('set-engine').value;
+                const v = document.getElementById('set-version').value;
+                this.session.server.engine = e;
+                this.session.server.version = v;
+                this.addAudit("Reinstalacja silnika na: " + e + " " + v);
+                this.save();
+                this.loadServerUI();
+                ui.notify("Zainstalowano! Serwer jest teraz w wersji " + v);
+            },
+
+            addPlayer(type) {
+                const input = document.getElementById(type + '-nick');
+                const nick = input.value.trim();
+                if(!nick) return;
+                
+                if(type === 'op') this.session.server.ops.push(nick);
+                else this.session.server.whitelist.push(nick);
+                
+                input.value = "";
+                this.save();
+                this.renderPlayerLists();
+            },
+
+            renderPlayerLists() {
+                const s = this.session.server;
+                const opDiv = document.getElementById('op-list');
+                const wlDiv = document.getElementById('wl-list');
+                
+                opDiv.innerHTML = s.ops.map(n => `<div class="opt-item"><b>${n}</b> <span style="color:red; cursor:pointer;" onclick="core.removePlayer('ops', '${n}')">USUŃ</span></div>`).join('');
+                wlDiv.innerHTML = s.whitelist.map(n => `<div class="opt-item"><b>${n}</b> <span style="color:red; cursor:pointer;" onclick="core.removePlayer('whitelist', '${n}')">USUŃ</span></div>`).join('');
+            },
+
+            removePlayer(list, nick) {
+                this.session.server[list] = this.session.server[list].filter(n => n !== nick);
+                this.save();
+                this.renderPlayerLists();
+            },
+
+            sendConsoleCmd() {
+                const input = document.getElementById('console-input');
+                const cmd = input.value.trim();
+                if(!cmd) return;
+                
+                ui.log("> " + cmd, "info");
+                if(cmd.startsWith("op ")) ui.log("Gracz otrzymał uprawnienia operatora.", "success");
+                input.value = "";
+            },
+
+            sendTicket() {
+                const input = document.getElementById('support-input');
+                const msg = input.value.trim();
+                if(!msg) return;
+
+                const area = document.getElementById('ticket-area');
+                area.innerHTML += `<div style="text-align:right; margin-bottom:10px;">
+                    <div style="background:var(--p); color:white; padding:10px; border-radius:10px; display:inline-block;">${msg}</div>
+                </div>`;
+                
+                input.value = "";
+                setTimeout(() => {
+                    area.innerHTML += `<div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 5px solid var(--p);">
+                        <b>🤖 System KokoszkaMC:</b> Przekazałem Twoje zgłoszenie do działu technicznego. Proszę o cierpliwość.
+                    </div>`;
+                    area.scrollTop = area.scrollHeight;
+                }, 1000);
+            },
+
+            buy(price, item) {
+                if(this.session.coins < price) return alert("Za mało monet!");
+                this.session.coins -= price;
+                this.addAudit("Zakup w sklepie: " + item);
+                this.save();
+                document.getElementById('user-coins').innerText = this.session.coins;
+                ui.notify("Zakupiono " + item + "! Restartuj serwer, aby aktywować.");
+            },
+
+            loadFiles() {
+                const list = document.getElementById('file-list');
+                list.innerHTML = Object.keys(FILE_TEMPLATES).map(f => 
+                    `<div class="file-item" onclick="core.editFile('${f}')">📄 ${f}</div>`
+                ).join('');
+            },
+
+            editFile(name) {
+                document.getElementById('file-editor').value = FILE_TEMPLATES[name];
+                document.querySelectorAll('.file-item').forEach(i => i.classList.remove('active'));
+                ui.notify("Wczytano plik: " + name);
+            },
+
+            addAudit(action) {
+                this.session.audit.unshift({
+                    time: new Date().toLocaleString(),
+                    action: action,
+                    ip: (Math.floor(Math.random() * 255) + 1) + ".16.82.10"
                 });
+                this.loadAuditLogs();
             },
 
-            delPlayer: function(idx) {
-                state.server.players.splice(idx, 1);
-                this.renderPlayers();
-                this.save();
+            loadAuditLogs() {
+                if(!this.session) return;
+                const body = document.getElementById('audit-body');
+                body.innerHTML = this.session.audit.map(a => 
+                    `<tr><td>${a.time}</td><td>${a.action}</td><td>${app.currentUser}</td><td>${a.ip}</td></tr>`
+                ).join('');
             },
 
-            sendCmd: function() {
-                const i = document.getElementById('cons-in');
-                if(!i.value) return;
-                ui.log("<span style='color:var(--p)'>> " + i.value + "</span>");
-                i.value = "";
+            save() {
+                app.users[app.currentUser] = this.session;
+                localStorage.setItem('kmc_v4_users', JSON.stringify(app.users));
             },
 
-            save: function() {
-                let users = JSON.parse(localStorage.getItem('kmc_users'));
-                users[state.currentUser].server = state.server;
-                localStorage.setItem('kmc_users', JSON.stringify(users));
-                console.log("Auto-save KokoszkaMC...");
-            },
-
-            updateUI: function() {
-                if(!state.server) {
-                    document.getElementById('create-prompt').style.display = 'block';
-                    document.getElementById('dash-main').style.display = 'none';
-                } else {
-                    document.getElementById('create-prompt').style.display = 'none';
-                    document.getElementById('dash-main').style.display = 'block';
-                    document.getElementById('ui-ip').innerText = state.server.ip;
-                    document.getElementById('ui-engine-info').innerText = state.server.engine;
-                    document.getElementById('ui-ver-info').innerText = state.server.version;
-                    this.renderPlayers();
-                }
+            killProcess() {
+                this.online = false;
+                this.booting = false;
+                this.togglePower();
+                ui.log("PROCES JAVY ZOSTAŁ ZABITY (KILL SWITCH).", "error");
             }
         };
 
-        // --- INTERFEJS UŻYTKOWNIKA (UI) ---
         const ui = {
-            toggleAuth: function(mode) {
-                state.authMode = mode;
-                document.getElementById('tab-login').classList.toggle('active', mode === 'login');
-                document.getElementById('tab-register').classList.toggle('active', mode === 'register');
-            },
-
-            view: function(id, el) {
+            changeView(id, el) {
                 document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
                 document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                
                 document.getElementById('view-' + id).classList.add('active');
-                el.classList.add('active');
-                document.getElementById('bread-crumb').innerText = el.innerText.replace(/[^\w\sąęółńćźżĄĘÓŁŃĆŹŻ]/gi, '').trim();
+                if(el) el.classList.add('active');
+                
+                document.getElementById('current-view-title').innerText = id.toUpperCase();
             },
 
-            log: function(msg) {
-                const box = document.getElementById('console-log');
-                const time = new Date().toLocaleTimeString();
-                box.innerHTML += `<div>[${time}] ${msg}</div>`;
+            log(msg, type) {
+                const box = document.getElementById('console-logs');
+                const line = document.createElement('div');
+                line.className = 'console-line ' + type;
+                line.innerHTML = `[${new Date().toLocaleTimeString()}] ${msg}`;
+                box.appendChild(line);
                 box.scrollTop = box.scrollHeight;
+            },
+
+            notify(msg) {
+                alert("KOKOSZKA-NOTIFY: " + msg);
             }
         };
 
-        // --- INICJALIZACJA ---
         window.onload = () => {
-            const vSelect = document.getElementById('set-version');
+            // Wypełnij wersje
+            const select = document.getElementById('set-version');
             MC_VERSIONS.forEach(v => {
-                let opt = document.createElement('option');
+                const opt = document.createElement('option');
                 opt.value = v; opt.innerText = v;
-                vSelect.appendChild(opt);
+                select.appendChild(opt);
             });
 
             // Live IP Preview
-            document.getElementById('new-srv-name').addEventListener('input', (e) => {
+            document.getElementById('new-server-name').addEventListener('input', (e) => {
                 document.getElementById('preview-ip').innerText = (e.target.value || "...") + ".kokoszka.me";
             });
         };
