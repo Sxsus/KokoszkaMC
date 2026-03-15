@@ -3,205 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KokoszkaMC | Profesjonalny Panel Hostingowy</title>
+    <title>KokoszkaMC 🐔 | Lepiej niż Aternos!</title>
     <style>
-        /* --- CSS: STYLIZACJA (POMARAŃCZOWY ATERNOS STYLE) --- */
+        /* --- CSS: STYLIZACJA (WESOŁY POMARAŃCZ I MODERN DESIGN) --- */
         :root {
-            --bg-darker: #0f0f0f;
-            --bg-sidebar: #1a1a1a;
-            --bg-card: #252525;
             --primary: #ff8c00;
-            --primary-hover: #ffaa33;
-            --danger: #ff4444;
-            --success: #00c853;
-            --text-main: #e0e0e0;
-            --text-dim: #888888;
+            --primary-dark: #e67e00;
+            --secondary: #fffaf0;
+            --white: #ffffff;
+            --dark: #2d2d2d;
+            --success: #4caf50;
+            --danger: #f44336;
+            --info: #2196f3;
+            --radius: 12px;
+            --shadow: 0 8px 30px rgba(0,0,0,0.08);
         }
 
-        body { font-family: 'Inter', 'Segoe UI', sans-serif; background-color: var(--bg-darker); color: var(--text-main); margin: 0; display: flex; height: 100vh; overflow: hidden; }
+        body { font-family: 'Poppins', sans-serif; background: var(--secondary); color: var(--dark); margin: 0; display: flex; height: 100vh; overflow: hidden; }
 
-        /* Sidebar */
-        .sidebar { width: 280px; background-color: var(--bg-sidebar); border-right: 1px solid #333; display: flex; flex-direction: column; flex-shrink: 0; }
-        .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #333; }
-        .sidebar-header h1 { color: var(--primary); font-size: 22px; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
-        .sidebar-menu { flex-grow: 1; padding: 20px 0; overflow-y: auto; }
-        .nav-item { display: flex; align-items: center; padding: 12px 25px; color: var(--text-main); text-decoration: none; cursor: pointer; transition: 0.2s; font-weight: 500; border-left: 4px solid transparent; }
-        .nav-item:hover { background: #222; color: var(--primary); }
-        .nav-item.active { background: #222; border-left-color: var(--primary); color: var(--primary); }
-        .nav-item i { margin-right: 15px; width: 20px; text-align: center; }
+        /* --- AUTH SCREEN --- */
+        #auth-screen { position: fixed; inset: 0; background: var(--primary); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .auth-container { background: var(--white); padding: 50px; border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); width: 380px; text-align: center; }
+        .auth-container h1 { color: var(--primary); font-size: 32px; margin-bottom: 10px; }
+        .auth-input { width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #eee; border-radius: var(--radius); box-sizing: border-box; font-size: 16px; outline: none; }
+        .auth-input:focus { border-color: var(--primary); }
+        .auth-btn { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: var(--radius); font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .auth-btn:hover { background: var(--primary-dark); transform: scale(1.02); }
 
-        /* Main Content */
-        .main-view { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
-        .top-bar { height: 60px; background: var(--bg-sidebar); border-bottom: 1px solid #333; display: flex; align-items: center; padding: 0 30px; justify-content: space-between; }
-        .user-info { font-size: 14px; color: var(--text-dim); }
-        .user-info b { color: var(--primary); }
+        /* --- SIDEBAR --- */
+        .sidebar { width: 280px; background: var(--white); border-right: 2px solid #f0f0f0; display: flex; flex-direction: column; transition: 0.3s; }
+        .sidebar-header { padding: 40px 20px; text-align: center; border-bottom: 2px solid #f9f9f9; }
+        .sidebar-header h2 { color: var(--primary); margin: 0; font-size: 26px; letter-spacing: 1px; }
+        .nav-list { flex-grow: 1; padding: 20px 10px; list-style: none; margin: 0; }
+        .nav-item { padding: 15px 25px; margin-bottom: 8px; border-radius: var(--radius); cursor: pointer; display: flex; align-items: center; gap: 15px; font-weight: 600; color: #666; transition: 0.2s; }
+        .nav-item:hover { background: #fff5e6; color: var(--primary); }
+        .nav-item.active { background: var(--primary); color: var(--white); box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3); }
 
-        .content-area { padding: 40px; overflow-y: auto; flex-grow: 1; }
-        .page { display: none; animation: slideUp 0.4s ease; }
-        .page.active { display: block; }
+        /* --- MAIN CONTENT --- */
+        .main-app { flex-grow: 1; display: flex; flex-direction: column; opacity: 0; transition: 0.5s; }
+        .top-nav { height: 80px; background: var(--white); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #f0f0f0; }
+        .coins-display { background: #fff5e6; padding: 10px 20px; border-radius: 30px; color: var(--primary); font-weight: bold; border: 1px solid var(--primary); }
+        .content-scroll { flex-grow: 1; padding: 40px; overflow-y: auto; }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Cards & Components */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px; }
-        .card { background: var(--bg-card); border-radius: 12px; padding: 25px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
-        .card h3 { margin-top: 0; margin-bottom: 20px; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 10px; color: var(--primary); }
+        /* --- CARDS & PANELS --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .card { background: var(--white); padding: 30px; border-radius: 20px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+        .card h3 { margin-top: 0; color: var(--primary); font-size: 20px; border-bottom: 2px solid #f9f9f9; padding-bottom: 15px; margin-bottom: 20px; }
         
-        .status-badge { padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; background: #333; }
-        .status-online { background: rgba(0, 200, 83, 0.2); color: var(--success); }
-        .status-offline { background: rgba(255, 68, 68, 0.2); color: var(--danger); }
+        .status-dot { width: 15px; height: 15px; border-radius: 50%; display: inline-block; background: #bbb; margin-right: 10px; }
+        .status-online { background: var(--success); box-shadow: 0 0 10px var(--success); }
+        .status-starting { background: var(--info); animation: pulse 1s infinite; }
 
-        /* Controls */
-        .btn { border: none; border-radius: 6px; padding: 12px 24px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
-        .btn-danger { background: var(--danger); color: white; }
-        .btn-success { background: var(--success); color: white; width: 100%; font-size: 18px; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        /* Inputs */
-        input, select, textarea { width: 100%; padding: 12px; background: #111; border: 1px solid #333; border-radius: 6px; color: white; box-sizing: border-box; margin-bottom: 15px; }
-        
-        /* Stats Bar */
-        .stat-row { margin-bottom: 15px; }
-        .bar-container { height: 10px; background: #111; border-radius: 5px; overflow: hidden; margin-top: 8px; }
-        .bar-fill { height: 100%; background: var(--primary); width: 0%; transition: 0.5s; }
+        .btn-action { padding: 15px 30px; border: none; border-radius: var(--radius); font-weight: bold; cursor: pointer; transition: 0.3s; width: 100%; font-size: 16px; }
+        .btn-start { background: var(--success); color: white; }
+        .btn-stop { background: var(--danger); color: white; }
 
-        /* Console */
-        .console { background: #000; color: #00ff00; font-family: 'Consolas', monospace; padding: 20px; height: 350px; overflow-y: auto; border-radius: 8px; font-size: 13px; line-height: 1.6; border: 1px solid #333; }
-        .console b { color: var(--primary); }
+        /* --- PROGRESS BARS --- */
+        .progress-container { margin: 20px 0; }
+        .progress-label { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px; font-weight: bold; }
+        .progress-bg { height: 12px; background: #eee; border-radius: 6px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--primary); width: 0%; transition: 0.5s; }
+
+        /* --- CONSOLE --- */
+        .console-container { background: #1e1e1e; color: #00ff00; padding: 20px; border-radius: var(--radius); height: 300px; overflow-y: auto; font-family: 'Consolas', monospace; font-size: 13px; border: 5px solid #333; }
+        .console-input-wrap { display: flex; gap: 10px; margin-top: 15px; }
+
+        /* --- PAGES --- */
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- CUSTOMS --- */
+        .badge { background: var(--primary); color: white; padding: 4px 10px; border-radius: 20px; font-size: 12px; margin-left: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="sidebar-header">
+    <div id="auth-screen">
+        <div class="auth-container">
             <h1>KokoszkaMC 🐔</h1>
-        </div>
-        <div class="sidebar-menu">
-            <div class="nav-item active" onclick="showPage('dashboard')">🏠 Panel Główny</div>
-            <div class="nav-item" onclick="showPage('software')">⚙️ Silnik i Wersje</div>
-            <div class="nav-item" onclick="showPage('files')">📂 Pliki i Mody</div>
-            <div class="nav-item" onclick="showPage('players')">👥 Gracze i OP</div>
-            <div class="nav-item" onclick="showPage('console')">💻 Konsola Logi</div>
-            <div class="nav-item" onclick="showPage('backups')">💾 Kopie (Google Drive)</div>
-            <div class="nav-item" onclick="showPage('settings')">🛠️ Zaawansowane (2FA)</div>
+            <p>Zaloguj się do swojego panelu</p>
+            <input type="text" id="login-user" class="auth-input" placeholder="Twoja nazwa">
+            <input type="password" id="login-pass" class="auth-input" placeholder="Twoje hasło">
+            <button class="auth-btn" onclick="app.login()">WEJDŹ DO PANELU</button>
+            <p style="color: #888; font-size: 12px; margin-top: 15px;">Dla nowych użytkowników: Wpisz dowolne dane, aby założyć konto automatycznie!</p>
         </div>
     </div>
 
-    <div class="main-view">
-        <div class="top-bar">
-            <div class="server-address">Adres: <b>baza.kokoszka.me</b></div>
-            <div class="user-info">Zalogowany jako: <b>Gracz123</b></div>
+    <div class="sidebar" id="app-sidebar">
+        <div class="sidebar-header">
+            <h2>KOKOSZKA MC 🐔</h2>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item active" onclick="app.setPage('dash', this)">🏠 Serwer i Status</li>
+            <li class="nav-item" onclick="app.setPage('software', this)">⚙️ Silnik i Wersje</li>
+            <li class="nav-item" onclick="app.setPage('files', this)">📂 Edytor Plików</li>
+            <li class="nav-item" onclick="app.setPage('players', this)">👥 Zarządzanie Osobami</li>
+            <li class="nav-item" onclick="app.setPage('console', this)">💻 Konsola na żywo</li>
+            <li class="nav-item" onclick="app.setPage('shop', this)">💎 Sklep u Kokoszki</li>
+            <li class="nav-item" onclick="app.setPage('settings', this)">🛠️ Opcje i Bezpieczeństwo</li>
+        </ul>
+        <div style="padding: 20px; font-size: 11px; color: #bbb; text-align: center;">By KokoszkaDev 2026 | V3.0</div>
+    </div>
+
+    <div class="main-app" id="main-app">
+        <div class="top-nav">
+            <div>Cześć, <b id="user-display" style="color: var(--primary);">---</b>! Witamy w domu.</div>
+            <div class="coins-display">💰 <span id="coins-val">0</span> Kokoszek</div>
         </div>
 
-        <div class="content-area">
+        <div class="content-scroll">
+            
+            <div id="page-dash" class="page active">
+                <div id="no-server" class="card" style="text-align: center; padding: 50px;">
+                    <h3>Nie masz jeszcze serwera! 🐔</h3>
+                    <p>Wybierz nazwę i stwórz swoją pierwszą Kokoszkę.</p>
+                    <input type="text" id="create-name" class="auth-input" placeholder="np. moje-survival" style="width: 250px;">
+                    <p>Adres: <b id="preview-ip" style="color: var(--primary);">...kokoszka.me</b></p>
+                    <button class="auth-btn" style="width: 250px;" onclick="app.createServer()">STWÓRZ SERWER ZA FREE</button>
+                </div>
 
-            <div id="dashboard" class="page active">
-                <div class="grid">
-                    <div class="card">
-                        <h3>Status Serwera</h3>
-                        <div id="status-text" class="status-badge status-offline">OFFLINE 🔴</div>
-                        <p style="margin-top: 20px;">Wersja: <b>PaperMC 1.20.4</b></p>
-                        <p>Gracze: <b id="player-count">0</b> / 20</p>
-                        <button id="main-action-btn" class="btn btn-success" onclick="toggleServer()">URUCHOM SERWER</button>
-                    </div>
-                    <div class="card">
-                        <h3>Zużycie Zasobów</h3>
-                        <div class="stat-row">
-                            Pamięć RAM: <span id="ram-val">0</span> MB / 4096 MB
-                            <div class="bar-container"><div id="ram-bar" class="bar-fill"></div></div>
+                <div id="server-panel" style="display: none;">
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Mój Serwer</h3>
+                            <p>Adres IP: <b id="ui-ip" style="color: var(--primary); font-size: 20px;">---</b></p>
+                            <p>Wersja: <span class="badge" id="ui-version">---</span></p>
+                            <div style="margin: 20px 0;">
+                                <span id="ui-dot" class="status-dot"></span> <b id="ui-status">Offline</b>
+                                <span style="margin-left: 20px;">👥 <b id="ui-players">0</b>/20</span>
+                            </div>
+                            <button id="pwr-btn" class="btn-action btn-start" onclick="app.toggleServer()">START SERWERA</button>
                         </div>
-                        <div class="stat-row">
-                            Obciążenie CPU: <span id="cpu-val">0</span> %
-                            <div class="bar-container"><div id="cpu-bar" class="bar-fill"></div></div>
+                        <div class="card">
+                            <h3>Zasoby na żywo</h3>
+                            <div class="progress-container">
+                                <div class="progress-label"><span>Pamięć RAM</span><span id="ram-txt">0 / 4096 MB</span></div>
+                                <div class="progress-bg"><div class="progress-fill" id="ram-bar"></div></div>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-label"><span>Procesor CPU</span><span id="cpu-txt">0%</span></div>
+                                <div class="progress-bg"><div class="progress-fill" id="cpu-bar" style="background: #2196f3;"></div></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="software" class="page">
+            <div id="page-software" class="page">
                 <div class="card">
-                    <h3>Instalator Silników (Aternos Style)</h3>
-                    <label>Wybierz typ oprogramowania:</label>
-                    <select id="software-type">
-                        <option>Vanilla (Standardowy Minecraft)</option>
-                        <option selected>Paper/Spigot (Najlepszy pod pluginy)</option>
-                        <option>Forge (Modyfikacje Java)</option>
-                        <option>Fabric (Nowoczesne mody)</option>
+                    <h3>Oprogramowanie</h3>
+                    <p>Wybierz silnik swojego serwera (Zalecany: PaperMC)</p>
+                    <select class="auth-input" id="sw-engine">
+                        <option>Vanilla Minecraft</option>
+                        <option selected>PaperMC (Pluginy + Wydajność)</option>
+                        <option>Spigot</option>
+                        <option>Forge (Mody Java)</option>
+                        <option>Fabric</option>
                     </select>
-                    <label>Wybierz wersję gry:</label>
-                    <select>
-                        <option>1.20.4</option>
-                        <option>1.20.1</option>
+                    <select class="auth-input" id="sw-version">
+                        <option>1.21</option>
+                        <option selected>1.20.4</option>
                         <option>1.19.2</option>
                         <option>1.16.5</option>
+                        <option>1.12.2</option>
                         <option>1.8.8</option>
                     </select>
-                    <button class="btn btn-primary" onclick="alert('Instalowanie wybranego silnika...')">Zainstaluj i zresetuj serwer</button>
+                    <button class="auth-btn" onclick="app.updateSoftware()">ZAPISZ I ZREINSTALUJ</button>
                 </div>
             </div>
 
-            <div id="files" class="page">
+            <div id="page-files" class="page">
                 <div class="card">
-                    <h3>Menedżer Plików i Modów</h3>
-                    <div style="background: #111; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
-                        📁 root / <br>
-                        &nbsp;&nbsp;&nbsp;📂 mods / <br>
-                        &nbsp;&nbsp;&nbsp;📂 world / <br>
-                        &nbsp;&nbsp;&nbsp;📄 server.properties <br>
-                        &nbsp;&nbsp;&nbsp;📄 whitelist.json
+                    <h3>Edytor Plików</h3>
+                    <div style="display: flex; gap: 20px;">
+                        <div style="width: 200px; border-right: 1px solid #eee;">
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="padding: 5px; cursor: pointer; color: var(--primary);">📁 root</li>
+                                <li style="padding: 5px 20px; cursor: pointer;">📂 mods</li>
+                                <li style="padding: 5px 20px; cursor: pointer;">📂 world</li>
+                                <li style="padding: 5px 20px; cursor: pointer; font-weight: bold;">📄 server.properties</li>
+                            </ul>
+                        </div>
+                        <div style="flex-grow: 1;">
+                            <textarea class="auth-input" style="height: 250px; font-family: monospace; font-size: 12px;">
+allow-flight=false
+motd=Serwer KokoszkaMC
+max-players=20
+pvp=true
+difficulty=easy
+view-distance=10
+                            </textarea>
+                            <button class="btn-action btn-start" style="width: 150px;">Zapisz Plik</button>
+                        </div>
                     </div>
-                    <label>Wgraj nowy mod (.jar):</label>
-                    <input type="file">
-                    <button class="btn btn-primary">Wgraj plik na serwer</button>
                 </div>
             </div>
 
-            <div id="players" class="page">
+            <div id="page-players" class="page">
                 <div class="card">
-                    <h3>Zarządzanie Graczami</h3>
-                    <label>Dodaj gracza do Białej Listy (Whitelist):</label>
+                    <h3>Biała Lista (Whitelist)</h3>
                     <div style="display: flex; gap: 10px;">
-                        <input type="text" placeholder="Nick gracza...">
-                        <button class="btn btn-primary">Dodaj</button>
+                        <input type="text" id="pl-nick" class="auth-input" placeholder="Nick gracza">
+                        <button class="auth-btn" style="width: 150px; margin: 10px 0;" onclick="app.addWL()">DODAJ</button>
                     </div>
-                    <p style="color: var(--text-dim); margin-top: 20px;">Aktualnie na serwerze:</p>
-                    <div style="background: #111; padding: 10px; border-radius: 5px;">
-                        Brak aktywnych graczy.
+                    <ul id="wl-display" style="margin-top: 20px; font-weight: bold; color: var(--primary);"></ul>
+                </div>
+            </div>
+
+            <div id="page-console" class="page">
+                <div class="card">
+                    <h3>Konsola</h3>
+                    <div class="console-container" id="cons-out">
+                        [System] Witaj w konsoli KokoszkaMC...
+                    </div>
+                    <div class="console-input-wrap">
+                        <input type="text" id="cons-in" class="auth-input" style="margin:0;" placeholder="Wpisz komendę (bez /)">
+                        <button class="auth-btn" style="width: 120px; margin:0;" onclick="app.sendCmd()">WYŚLIJ</button>
                     </div>
                 </div>
             </div>
 
-            <div id="console" class="page">
-                <div class="card">
-                    <h3>Konsola Systemowa</h3>
-                    <div id="console-output" class="console">
-                        [System] Czekam na polecenie...<br>
+            <div id="page-shop" class="page">
+                <div class="grid">
+                    <div class="card">
+                        <h3>Więcej RAMu</h3>
+                        <p>Dodatkowe 2GB RAM na miesiąc.</p>
+                        <button class="auth-btn" onclick="alert('Za mało Kokoszek!')">KUP ZA 500 💰</button>
                     </div>
-                    <div style="display: flex; gap: 10px; margin-top: 15px;">
-                        <input type="text" id="console-cmd" placeholder="Wpisz komendę (np. /say Hej!)">
-                        <button class="btn btn-primary" onclick="sendCmd()">Wyślij</button>
+                    <div class="card">
+                        <h3>Sloty +20</h3>
+                        <p>Zwiększ limit graczy do 40.</p>
+                        <button class="auth-btn" onclick="alert('Za mało Kokoszek!')">KUP ZA 200 💰</button>
                     </div>
                 </div>
             </div>
 
-            <div id="backups" class="page">
+            <div id="page-settings" class="page">
                 <div class="card">
-                    <h3>Kopie Zapasowe (Backup)</h3>
-                    <button class="btn btn-primary" style="background: #4285F4;">💾 Połącz z Google Drive</button>
-                    <p style="margin-top: 20px;">Automatyczne zapisywanie świata jest <b>WŁĄCZONE</b> co 15 minut.</p>
-                    <button class="btn btn-primary">Stwórz natychmiastową kopię .zip</button>
-                </div>
-            </div>
-
-            <div id="settings" class="page">
-                <div class="card">
-                    <h3>Zabezpieczenia i Zaawansowane</h3>
-                    <label>Weryfikacja dwuetapowa (2FA):</label>
-                    <button class="btn btn-primary">Konfiguruj Google Authenticator</button>
-                    <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
-                    <label>Strefa Niebezpieczeństwa:</label>
-                    <button class="btn btn-danger" onclick="alert('Zabijanie procesu Javy... Kill Switch aktywny!')">KILL SWITCH (Twardy reset)</button>
+                    <h3>Opcje Zaawansowane</h3>
+                    <button class="auth-btn" style="background: var(--info); margin-bottom: 20px;" onclick="alert('Połączono z Google Drive! Kopia zapasowa gotowa.')">KOPIA NA GOOGLE DRIVE</button>
+                    <button class="auth-btn" style="background: var(--danger);" onclick="app.killServer()">KILL SWITCH (Twardy reset)</button>
+                    <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+                    <h3>Bezpieczeństwo</h3>
+                    <p>Logowanie 2FA: <b>Wyłączone</b></p>
+                    <button class="btn-action btn-start" style="width: 200px;">Włącz 2FA</button>
                 </div>
             </div>
 
@@ -209,96 +257,191 @@
     </div>
 
     <script>
-        // 1. Przełączanie stron
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            
-            document.getElementById(pageId).classList.add('active');
-            event.target.classList.add('active');
-        }
+        const app = {
+            user: null,
+            server: null,
+            isOnline: false,
+            coins: 100,
 
-        // 2. Symulacja serwera
-        let isRunning = false;
-        let ramTimer, cpuTimer;
-
-        function toggleServer() {
-            const btn = document.getElementById('main-action-btn');
-            const status = document.getElementById('status-text');
-
-            if (!isRunning) {
-                // URUCHAMIANIE
-                isRunning = true;
-                btn.innerText = "ZATRZYMAJ SERWER";
-                btn.classList.replace('btn-success', 'btn-danger');
-                status.innerText = "URUCHAMIANIE... ⏳";
-                status.classList.replace('status-offline', 'status-online');
+            // --- SYSTEM LOGOWANIA ---
+            login: function() {
+                const u = document.getElementById('login-user').value;
+                if(u.length < 3) return alert("Nazwa za krótka!");
                 
-                logToConsole("🐔 Inicjalizacja KokoszkaMC...");
-                logToConsole("System: Java 21 wykryta. Ładowanie PaperMC...");
+                this.user = u;
+                document.getElementById('auth-screen').style.transform = 'translateY(-100%)';
+                document.getElementById('main-app').style.opacity = '1';
+                document.getElementById('user-display').innerText = u;
                 
-                setTimeout(() => {
-                    status.innerText = "ONLINE 🟢";
-                    logToConsole("<b>[SUCCESS]</b> Serwer wystartował na porcie 25565!");
-                    document.getElementById('player-count').innerText = "1";
-                    startStats();
-                }, 3000);
+                this.load();
+                this.startAutoSave();
+            },
 
-            } else {
-                // ZATRZYMYWANIE
-                isRunning = false;
-                btn.innerText = "URUCHOM SERWER";
-                btn.classList.replace('btn-danger', 'btn-success');
-                status.innerText = "OFFLINE 🔴";
-                status.classList.replace('status-online', 'status-offline');
-                
-                logToConsole("System: Zamykanie procesów...");
-                logToConsole("World: Zapisywanie mapy...");
-                document.getElementById('player-count').innerText = "0";
-                stopStats();
+            // --- ZARZĄDZANIE STRONAMI ---
+            setPage: function(id, el) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                document.getElementById('page-' + id).classList.add('active');
+                el.classList.add('active');
+            },
+
+            // --- KREATOR SERWERA ---
+            createServer: function() {
+                const name = document.getElementById('create-name').value;
+                if(!name) return alert("Podaj nazwę!");
+
+                this.server = {
+                    name: name,
+                    ip: name.toLowerCase() + ".kokoszka.me",
+                    version: "1.20.4",
+                    engine: "PaperMC",
+                    whitelist: ["KokoszkaSzef"],
+                    created: new Date().toLocaleDateString()
+                };
+
+                this.save();
+                this.updateUI();
+                this.log("Utworzono nowy serwer: " + this.server.ip);
+            },
+
+            // --- ZASILANIE ---
+            toggleServer: function() {
+                if(!this.isOnline) {
+                    this.isOnline = true;
+                    this.updateStatus("Uruchamianie...", "starting");
+                    this.log("Inicjalizacja środowiska Java...");
+                    
+                    setTimeout(() => {
+                        if(this.isOnline) {
+                            this.updateStatus("Online", "online");
+                            this.log("Serwer wystartował poprawnie!");
+                            document.getElementById('pwr-btn').innerText = "STOP SERWERA";
+                            document.getElementById('pwr-btn').className = "btn-action btn-stop";
+                            this.runStats();
+                        }
+                    }, 3000);
+                } else {
+                    this.isOnline = false;
+                    this.updateStatus("Offline", "offline");
+                    this.log("Zatrzymywanie serwera...");
+                    document.getElementById('pwr-btn').innerText = "START SERWERA";
+                    document.getElementById('pwr-btn').className = "btn-action btn-start";
+                }
+            },
+
+            // --- STATYSTYKI ---
+            runStats: function() {
+                const loop = setInterval(() => {
+                    if(!this.isOnline) return clearInterval(loop);
+                    
+                    let ram = Math.floor(Math.random() * (2600 - 1800) + 1800);
+                    let cpu = Math.floor(Math.random() * 60);
+                    
+                    document.getElementById('ram-txt').innerText = ram + " / 4096 MB";
+                    document.getElementById('ram-bar').style.width = (ram/4096)*100 + "%";
+                    document.getElementById('cpu-txt').innerText = cpu + "%";
+                    document.getElementById('cpu-bar').style.width = cpu + "%";
+                }, 1500);
+            },
+
+            // --- POMOCNICZE ---
+            updateStatus: function(txt, css) {
+                const s = document.getElementById('ui-status');
+                const d = document.getElementById('ui-dot');
+                s.innerText = txt;
+                d.className = "status-dot status-" + css;
+                if(css === "online") s.style.color = "var(--success)";
+                else if(css === "starting") s.style.color = "var(--info)";
+                else s.style.color = "#bbb";
+            },
+
+            log: function(msg) {
+                const c = document.getElementById('cons-out');
+                const t = new Date().toLocaleTimeString();
+                c.innerHTML += `<div><span style="color:#888">[${t}]</span> ${msg}</div>`;
+                c.scrollTop = c.scrollHeight;
+            },
+
+            sendCmd: function() {
+                const i = document.getElementById('cons-in');
+                if(i.value) {
+                    this.log(`<span style="color:var(--primary)">> ${i.value}</span>`);
+                    if(i.value === "op kokoszka") this.log("Gracz Kokoszka został operatorem.");
+                    i.value = "";
+                }
+            },
+
+            addWL: function() {
+                const n = document.getElementById('pl-nick').value;
+                if(n && this.server) {
+                    this.server.whitelist.push(n);
+                    this.renderWL();
+                    document.getElementById('pl-nick').value = "";
+                }
+            },
+
+            renderWL: function() {
+                const d = document.getElementById('wl-display');
+                d.innerHTML = "";
+                this.server.whitelist.forEach(p => d.innerHTML += `<li>${p}</li>`);
+            },
+
+            updateSoftware: function() {
+                if(!this.server) return alert("Stwórz najpierw serwer!");
+                this.server.engine = document.getElementById('sw-engine').value;
+                this.server.version = document.getElementById('sw-version').value;
+                alert("Zmieniono na " + this.server.engine + " " + this.server.version + ". Wymagany restart!");
+                this.updateUI();
+                this.save();
+            },
+
+            killServer: function() {
+                this.isOnline = false;
+                this.toggleServer();
+                this.log("<span style="color:red">WYKRYTO KILL-SWITCH. WYMUSZONO ZAMKNIĘCIE.</span>");
+            },
+
+            // --- ZAPIS DANYCH ---
+            save: function() {
+                const data = { server: this.server, coins: this.coins };
+                localStorage.setItem('kokoszka_' + this.user, JSON.stringify(data));
+            },
+
+            load: function() {
+                const d = localStorage.getItem('kokoszka_' + this.user);
+                if(d) {
+                    const parsed = JSON.parse(d);
+                    this.server = parsed.server;
+                    this.coins = parsed.coins || 100;
+                    this.updateUI();
+                }
+                document.getElementById('coins-val').innerText = this.coins;
+            },
+
+            updateUI: function() {
+                if(this.server) {
+                    document.getElementById('no-server').style.display = 'none';
+                    document.getElementById('server-panel').style.display = 'block';
+                    document.getElementById('ui-ip').innerText = this.server.ip;
+                    document.getElementById('ui-version').innerText = this.server.engine + " " + this.server.version;
+                    this.renderWL();
+                }
+            },
+
+            startAutoSave: function() {
+                setInterval(() => {
+                    if(this.user) {
+                        this.save();
+                        console.log("Autosave KokoszkaMC wykonany...");
+                    }
+                }, 30000); // Co 30 sekund
             }
-        }
+        };
 
-        // 3. Statystyki RAM/CPU
-        function startStats() {
-            ramTimer = setInterval(() => {
-                let ram = Math.floor(Math.random() * (2200 - 1500) + 1500);
-                let perc = (ram / 4096) * 100;
-                document.getElementById('ram-val').innerText = ram;
-                document.getElementById('ram-bar').style.width = perc + "%";
-            }, 1000);
-
-            cpuTimer = setInterval(() => {
-                let cpu = Math.floor(Math.random() * 45);
-                document.getElementById('cpu-val').innerText = cpu;
-                document.getElementById('cpu-bar').style.width = cpu + "%";
-            }, 1500);
-        }
-
-        function stopStats() {
-            clearInterval(ramTimer);
-            clearInterval(cpuTimer);
-            document.getElementById('ram-bar').style.width = "0%";
-            document.getElementById('cpu-bar').style.width = "0%";
-            document.getElementById('ram-val').innerText = "0";
-            document.getElementById('cpu-val').innerText = "0";
-        }
-
-        // 4. Konsola
-        function logToConsole(msg) {
-            const out = document.getElementById('console-output');
-            const time = new Date().toLocaleTimeString();
-            out.innerHTML += `[${time}] ${msg}<br>`;
-            out.scrollTop = out.scrollHeight;
-        }
-
-        function sendCmd() {
-            const cmd = document.getElementById('console-cmd');
-            if (cmd.value) {
-                logToConsole(`> Wykonano: <b>${cmd.value}</b>`);
-                cmd.value = "";
-            }
-        }
+        // Live Preview IP
+        document.getElementById('create-name').addEventListener('input', (e) => {
+            document.getElementById('preview-ip').innerText = (e.target.value || "...") + ".kokoszka.me";
+        });
     </script>
 </body>
 </html>
