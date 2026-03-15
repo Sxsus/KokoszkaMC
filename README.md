@@ -1,2 +1,0 @@
-# KokoszkaMC
-MC hosting
