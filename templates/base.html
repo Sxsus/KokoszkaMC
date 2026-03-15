@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>KokoszkaMC - Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>KokoszkaMC 🐔</h2>
+        <a href="#" class="menu-item">Serwer</a>
+        <a href="#" class="menu-item">Opcje</a>
+        <a href="#" class="menu-item">Silnik</a>
+        <a href="#" class="menu-item">Gracze</a>
+    </div>
+
+    <div class="content">
+        {% block zawartosc %}{% endblock %}
+    </div>
+</body>
+</html>
