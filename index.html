@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KokoszkaMC | Profesjonalny Panel Hostingowy</title>
+    <style>
+        /* --- CSS: STYLIZACJA (POMARAŃCZOWY ATERNOS STYLE) --- */
+        :root {
+            --bg-darker: #0f0f0f;
+            --bg-sidebar: #1a1a1a;
+            --bg-card: #252525;
+            --primary: #ff8c00;
+            --primary-hover: #ffaa33;
+            --danger: #ff4444;
+            --success: #00c853;
+            --text-main: #e0e0e0;
+            --text-dim: #888888;
+        }
+
+        body { font-family: 'Inter', 'Segoe UI', sans-serif; background-color: var(--bg-darker); color: var(--text-main); margin: 0; display: flex; height: 100vh; overflow: hidden; }
+
+        /* Sidebar */
+        .sidebar { width: 280px; background-color: var(--bg-sidebar); border-right: 1px solid #333; display: flex; flex-direction: column; flex-shrink: 0; }
+        .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #333; }
+        .sidebar-header h1 { color: var(--primary); font-size: 22px; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
+        .sidebar-menu { flex-grow: 1; padding: 20px 0; overflow-y: auto; }
+        .nav-item { display: flex; align-items: center; padding: 12px 25px; color: var(--text-main); text-decoration: none; cursor: pointer; transition: 0.2s; font-weight: 500; border-left: 4px solid transparent; }
+        .nav-item:hover { background: #222; color: var(--primary); }
+        .nav-item.active { background: #222; border-left-color: var(--primary); color: var(--primary); }
+        .nav-item i { margin-right: 15px; width: 20px; text-align: center; }
+
+        /* Main Content */
+        .main-view { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .top-bar { height: 60px; background: var(--bg-sidebar); border-bottom: 1px solid #333; display: flex; align-items: center; padding: 0 30px; justify-content: space-between; }
+        .user-info { font-size: 14px; color: var(--text-dim); }
+        .user-info b { color: var(--primary); }
+
+        .content-area { padding: 40px; overflow-y: auto; flex-grow: 1; }
+        .page { display: none; animation: slideUp 0.4s ease; }
+        .page.active { display: block; }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Cards & Components */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px; }
+        .card { background: var(--bg-card); border-radius: 12px; padding: 25px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+        .card h3 { margin-top: 0; margin-bottom: 20px; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 10px; color: var(--primary); }
+        
+        .status-badge { padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; background: #333; }
+        .status-online { background: rgba(0, 200, 83, 0.2); color: var(--success); }
+        .status-offline { background: rgba(255, 68, 68, 0.2); color: var(--danger); }
+
+        /* Controls */
+        .btn { border: none; border-radius: 6px; padding: 12px 24px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-success { background: var(--success); color: white; width: 100%; font-size: 18px; }
+
+        /* Inputs */
+        input, select, textarea { width: 100%; padding: 12px; background: #111; border: 1px solid #333; border-radius: 6px; color: white; box-sizing: border-box; margin-bottom: 15px; }
+        
+        /* Stats Bar */
+        .stat-row { margin-bottom: 15px; }
+        .bar-container { height: 10px; background: #111; border-radius: 5px; overflow: hidden; margin-top: 8px; }
+        .bar-fill { height: 100%; background: var(--primary); width: 0%; transition: 0.5s; }
+
+        /* Console */
+        .console { background: #000; color: #00ff00; font-family: 'Consolas', monospace; padding: 20px; height: 350px; overflow-y: auto; border-radius: 8px; font-size: 13px; line-height: 1.6; border: 1px solid #333; }
+        .console b { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>KokoszkaMC 🐔</h1>
+        </div>
+        <div class="sidebar-menu">
+            <div class="nav-item active" onclick="showPage('dashboard')">🏠 Panel Główny</div>
+            <div class="nav-item" onclick="showPage('software')">⚙️ Silnik i Wersje</div>
+            <div class="nav-item" onclick="showPage('files')">📂 Pliki i Mody</div>
+            <div class="nav-item" onclick="showPage('players')">👥 Gracze i OP</div>
+            <div class="nav-item" onclick="showPage('console')">💻 Konsola Logi</div>
+            <div class="nav-item" onclick="showPage('backups')">💾 Kopie (Google Drive)</div>
+            <div class="nav-item" onclick="showPage('settings')">🛠️ Zaawansowane (2FA)</div>
+        </div>
+    </div>
+
+    <div class="main-view">
+        <div class="top-bar">
+            <div class="server-address">Adres: <b>baza.kokoszka.me</b></div>
+            <div class="user-info">Zalogowany jako: <b>Gracz123</b></div>
+        </div>
+
+        <div class="content-area">
+
+            <div id="dashboard" class="page active">
+                <div class="grid">
+                    <div class="card">
+                        <h3>Status Serwera</h3>
+                        <div id="status-text" class="status-badge status-offline">OFFLINE 🔴</div>
+                        <p style="margin-top: 20px;">Wersja: <b>PaperMC 1.20.4</b></p>
+                        <p>Gracze: <b id="player-count">0</b> / 20</p>
+                        <button id="main-action-btn" class="btn btn-success" onclick="toggleServer()">URUCHOM SERWER</button>
+                    </div>
+                    <div class="card">
+                        <h3>Zużycie Zasobów</h3>
+                        <div class="stat-row">
+                            Pamięć RAM: <span id="ram-val">0</span> MB / 4096 MB
+                            <div class="bar-container"><div id="ram-bar" class="bar-fill"></div></div>
+                        </div>
+                        <div class="stat-row">
+                            Obciążenie CPU: <span id="cpu-val">0</span> %
+                            <div class="bar-container"><div id="cpu-bar" class="bar-fill"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="software" class="page">
+                <div class="card">
+                    <h3>Instalator Silników (Aternos Style)</h3>
+                    <label>Wybierz typ oprogramowania:</label>
+                    <select id="software-type">
+                        <option>Vanilla (Standardowy Minecraft)</option>
+                        <option selected>Paper/Spigot (Najlepszy pod pluginy)</option>
+                        <option>Forge (Modyfikacje Java)</option>
+                        <option>Fabric (Nowoczesne mody)</option>
+                    </select>
+                    <label>Wybierz wersję gry:</label>
+                    <select>
+                        <option>1.20.4</option>
+                        <option>1.20.1</option>
+                        <option>1.19.2</option>
+                        <option>1.16.5</option>
+                        <option>1.8.8</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="alert('Instalowanie wybranego silnika...')">Zainstaluj i zresetuj serwer</button>
+                </div>
+            </div>
+
+            <div id="files" class="page">
+                <div class="card">
+                    <h3>Menedżer Plików i Modów</h3>
+                    <div style="background: #111; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                        📁 root / <br>
+                        &nbsp;&nbsp;&nbsp;📂 mods / <br>
+                        &nbsp;&nbsp;&nbsp;📂 world / <br>
+                        &nbsp;&nbsp;&nbsp;📄 server.properties <br>
+                        &nbsp;&nbsp;&nbsp;📄 whitelist.json
+                    </div>
+                    <label>Wgraj nowy mod (.jar):</label>
+                    <input type="file">
+                    <button class="btn btn-primary">Wgraj plik na serwer</button>
+                </div>
+            </div>
+
+            <div id="players" class="page">
+                <div class="card">
+                    <h3>Zarządzanie Graczami</h3>
+                    <label>Dodaj gracza do Białej Listy (Whitelist):</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" placeholder="Nick gracza...">
+                        <button class="btn btn-primary">Dodaj</button>
+                    </div>
+                    <p style="color: var(--text-dim); margin-top: 20px;">Aktualnie na serwerze:</p>
+                    <div style="background: #111; padding: 10px; border-radius: 5px;">
+                        Brak aktywnych graczy.
+                    </div>
+                </div>
+            </div>
+
+            <div id="console" class="page">
+                <div class="card">
+                    <h3>Konsola Systemowa</h3>
+                    <div id="console-output" class="console">
+                        [System] Czekam na polecenie...<br>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                        <input type="text" id="console-cmd" placeholder="Wpisz komendę (np. /say Hej!)">
+                        <button class="btn btn-primary" onclick="sendCmd()">Wyślij</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="backups" class="page">
+                <div class="card">
+                    <h3>Kopie Zapasowe (Backup)</h3>
+                    <button class="btn btn-primary" style="background: #4285F4;">💾 Połącz z Google Drive</button>
+                    <p style="margin-top: 20px;">Automatyczne zapisywanie świata jest <b>WŁĄCZONE</b> co 15 minut.</p>
+                    <button class="btn btn-primary">Stwórz natychmiastową kopię .zip</button>
+                </div>
+            </div>
+
+            <div id="settings" class="page">
+                <div class="card">
+                    <h3>Zabezpieczenia i Zaawansowane</h3>
+                    <label>Weryfikacja dwuetapowa (2FA):</label>
+                    <button class="btn btn-primary">Konfiguruj Google Authenticator</button>
+                    <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
+                    <label>Strefa Niebezpieczeństwa:</label>
+                    <button class="btn btn-danger" onclick="alert('Zabijanie procesu Javy... Kill Switch aktywny!')">KILL SWITCH (Twardy reset)</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // 1. Przełączanie stron
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // 2. Symulacja serwera
+        let isRunning = false;
+        let ramTimer, cpuTimer;
+
+        function toggleServer() {
+            const btn = document.getElementById('main-action-btn');
+            const status = document.getElementById('status-text');
+
+            if (!isRunning) {
+                // URUCHAMIANIE
+                isRunning = true;
+                btn.innerText = "ZATRZYMAJ SERWER";
+                btn.classList.replace('btn-success', 'btn-danger');
+                status.innerText = "URUCHAMIANIE... ⏳";
+                status.classList.replace('status-offline', 'status-online');
+                
+                logToConsole("🐔 Inicjalizacja KokoszkaMC...");
+                logToConsole("System: Java 21 wykryta. Ładowanie PaperMC...");
+                
+                setTimeout(() => {
+                    status.innerText = "ONLINE 🟢";
+                    logToConsole("<b>[SUCCESS]</b> Serwer wystartował na porcie 25565!");
+                    document.getElementById('player-count').innerText = "1";
+                    startStats();
+                }, 3000);
+
+            } else {
+                // ZATRZYMYWANIE
+                isRunning = false;
+                btn.innerText = "URUCHOM SERWER";
+                btn.classList.replace('btn-danger', 'btn-success');
+                status.innerText = "OFFLINE 🔴";
+                status.classList.replace('status-online', 'status-offline');
+                
+                logToConsole("System: Zamykanie procesów...");
+                logToConsole("World: Zapisywanie mapy...");
+                document.getElementById('player-count').innerText = "0";
+                stopStats();
+            }
+        }
+
+        // 3. Statystyki RAM/CPU
+        function startStats() {
+            ramTimer = setInterval(() => {
+                let ram = Math.floor(Math.random() * (2200 - 1500) + 1500);
+                let perc = (ram / 4096) * 100;
+                document.getElementById('ram-val').innerText = ram;
+                document.getElementById('ram-bar').style.width = perc + "%";
+            }, 1000);
+
+            cpuTimer = setInterval(() => {
+                let cpu = Math.floor(Math.random() * 45);
+                document.getElementById('cpu-val').innerText = cpu;
+                document.getElementById('cpu-bar').style.width = cpu + "%";
+            }, 1500);
+        }
+
+        function stopStats() {
+            clearInterval(ramTimer);
+            clearInterval(cpuTimer);
+            document.getElementById('ram-bar').style.width = "0%";
+            document.getElementById('cpu-bar').style.width = "0%";
+            document.getElementById('ram-val').innerText = "0";
+            document.getElementById('cpu-val').innerText = "0";
+        }
+
+        // 4. Konsola
+        function logToConsole(msg) {
+            const out = document.getElementById('console-output');
+            const time = new Date().toLocaleTimeString();
+            out.innerHTML += `[${time}] ${msg}<br>`;
+            out.scrollTop = out.scrollHeight;
+        }
+
+        function sendCmd() {
+            const cmd = document.getElementById('console-cmd');
+            if (cmd.value) {
+                logToConsole(`> Wykonano: <b>${cmd.value}</b>`);
+                cmd.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
