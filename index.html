@@ -1857,3 +1857,709 @@
                     <div class="table-responsive">
                         <table class="system-table">
                             <thead>
+                                <tr>
+                                    <th>EKSPRESJA CRON</th>
+                                    <th>OPIS ZADANIA / POLECENIE DO WYKONANIA</th>
+                                    <th>OBECNY STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>0 4 * * *</td>
+                                    <td>Wewnętrzny Restart Maszyny (Czyszczenie i optymalizacja Pamięci RAM)</td>
+                                    <td><span style="color: var(--status-online); font-weight: 800;">AKTYWNE</span></td>
+                                </tr>
+                                <tr>
+                                    <td>*/30 * * * *</td>
+                                    <td>say Zapisywanie danych mapy... (Wykonanie komendy save-all)</td>
+                                    <td><span style="color: var(--status-online); font-weight: 800;">AKTYWNE</span></td>
+                                </tr>
+                                <tr>
+                                    <td>0 * * * *</td>
+                                    <td>say Zostaw łapkę w górę dla serwera! (Czatowy Spam)</td>
+                                    <td><span style="color: var(--text-dim); font-weight: 800;">ZAWIESZONE</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-outline" style="margin-top: 30px; padding: 18px 40px; font-size: 15px;" onclick="ui.triggerToast('Moduł dodawania nowych zadań Cron jest aktualnie poddawany konserwacji. Spróbuj później.')">+ ZAPLANUJ NOWE ZADANIE W HARMONOGRAMIE</button>
+                </div>
+            </div>
+
+            <div id="module-plugins" class="view-module">
+                <div class="card">
+                    <div class="card-title"><i>🔌</i> Instalator i Baza Wiedzy (Modyfikacje)</div>
+                    <div class="card-description">Zainstaluj najpopularniejsze i sprawdzone pluginy jednym kliknięciem myszy. Potrzebujesz więcej niestandardowych modyfikacji? Odwiedź w 100% bezpieczne, zaufane repozytoria twórców.</div>
+                    
+                    <h4 style="margin: 40px 0 25px; color: var(--text-heading); font-size: 18px; font-weight: 900; display: flex; align-items: center; gap: 10px;"><span style="color: var(--status-online);">●</span> Szybka Instalacja (One-Click) z chmury KokoszkaMC</h4>
+                    
+                    <div class="marketplace-grid" style="margin-bottom: 50px;">
+                        <div class="plugin-item">
+                            <span class="plugin-icon">🏗️</span>
+                            <h4>WorldEdit PRO</h4>
+                            <p>Najpotężniejsze narzędzie do masowej, programistycznej edycji bloków w grze.</p>
+                            <button class="btn btn-outline btn-block" onclick="ui.triggerToast('Sukces: Plugin WorldEdit został pomyślnie pobrany do folderu /plugins.')">ZAINSTALUJ (ONE-CLICK)</button>
+                        </div>
+                        <div class="plugin-item">
+                            <span class="plugin-icon">⭐</span>
+                            <h4>EssentialsX</h4>
+                            <p>Zbiór podstawowych systemów - ekonomia, teleporty i ponad 150 innych komend.</p>
+                            <button class="btn btn-outline btn-block" onclick="ui.triggerToast('Sukces: Plugin EssentialsX został pomyślnie pobrany do folderu /plugins.')">ZAINSTALUJ (ONE-CLICK)</button>
+                        </div>
+                        <div class="plugin-item">
+                            <span class="plugin-icon">🛡️</span>
+                            <h4>LuckPerms</h4>
+                            <p>Profesjonalne, zoptymalizowane zarządzanie rangami, prefixami i uprawnieniami.</p>
+                            <button class="btn btn-outline btn-block" onclick="ui.triggerToast('Sukces: Plugin LuckPerms został pomyślnie pobrany do folderu /plugins.')">ZAINSTALUJ (ONE-CLICK)</button>
+                        </div>
+                        <div class="plugin-item">
+                            <span class="plugin-icon">🛰️</span>
+                            <h4>ViaVersion</h4>
+                            <p>Pozwala na wejście graczom z nowszych wersji Minecrafta (od 1.8 do 1.21).</p>
+                            <button class="btn btn-outline btn-block" onclick="ui.triggerToast('Sukces: Plugin ViaVersion został pomyślnie pobrany do folderu /plugins.')">ZAINSTALUJ (ONE-CLICK)</button>
+                        </div>
+                    </div>
+
+                    <h4 style="margin: 40px 0 25px; color: var(--text-heading); font-size: 18px; font-weight: 900; display: flex; align-items: center; gap: 10px;"><span style="color: var(--status-info);">●</span> Oficjalne i Bezpieczne Źródła Pobierania Modyfikacji (Zewnętrzne)</h4>
+                    
+                    <div class="legit-links-container">
+                        <a href="https://modrinth.com/mods" target="_blank" class="legit-link-btn" title="Otwórz oficjalną stronę Modrinth w nowej karcie">
+                            🌐 MODRINTH (Najlepsze Mody i Nowoczesne Pluginy)
+                        </a>
+                        <a href="https://www.curseforge.com/minecraft/mc-mods" target="_blank" class="legit-link-btn" title="Otwórz oficjalną stronę CurseForge w nowej karcie">
+                            🌐 CURSEFORGE (Największa baza Modpacków na świecie)
+                        </a>
+                        <a href="https://www.spigotmc.org/resources/" target="_blank" class="legit-link-btn" title="Otwórz oficjalną stronę SpigotMC w nowej karcie">
+                            🌐 SPIGOTMC (Główna Baza Klasycznych Pluginów Serwerowych)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="module-security" class="view-module">
+                <div class="card">
+                    <div class="card-title"><i>🛡️</i> System Zapory Sieciowej i Mitygacja Ataków (Anti-DDoS)</div>
+                    <div class="card-description">Zarządzaj ustawieniami brzegowej zapory Firewall. Twój serwer jest automatycznie i stale chroniony przed atakami wolumetrycznymi na warstwy L3/L4 oraz złośliwym, precyzyjnym ruchem na warstwie aplikacji (L7).</div>
+                    
+                    <div class="shield-container">
+                        <div>
+                            <h2>Aktywna Ochrona Kokoszka-Shield™ na Poziomie Enterprise</h2>
+                            <p style="color: #cbd5e1; font-size: 14px; margin-top: 10px; max-width: 600px; line-height: 1.6;">Ruch sieciowy z portu 25565 jest stale analizowany przez sprzętowe filtry w czasie rzeczywistym. Twój serwer jest bezpieczny przed botnetami typu NullPing, BotAttack, czy powolnymi atakami wyczerpującymi połączenia.</p>
+                        </div>
+                        <div class="shield-status-indicator">
+                            <div class="shield-pulse"></div>
+                            W PEŁNI CHRONIONY
+                        </div>
+                    </div>
+
+                    <div class="settings-row">
+                        <div class="settings-info">
+                            <h4>Tryb "Under Attack" (Agresywne Filtrowanie Pakietów Javy)</h4>
+                            <p>Włącz natychmiast, jeśli Twój serwer jest obecnie obiektem celowego ataku botów (wyższy ping dla prawdziwych graczy z powodu Głębokiej Inspekcji Pakietów L7).</p>
+                        </div>
+                        <div class="switch-container">
+                            <input type="checkbox">
+                            <span class="switch-track"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-row">
+                        <div class="settings-info">
+                            <h4>Globalna Blokada ruchu z Data Center i VPN (IP Reputation)</h4>
+                            <p>Automatycznie blokuje i zrywa próby nawiązania połączenia do gry z węzłów exitowych sieci Tor oraz znanych, publicznych list sieci VPN (np. NordVPN, ExpressVPN).</p>
+                        </div>
+                        <div class="switch-container">
+                            <input type="checkbox" checked>
+                            <span class="switch-track"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="module-audit" class="view-module">
+                <div class="card">
+                    <div class="card-title"><i>📜</i> Dziennik Bezpieczeństwa Systemu (Audit Trail)</div>
+                    <div class="card-description" style="margin-bottom: 30px;">System nieprzerwanie rejestruje każdą istotną zmianę i operację dokonaną w konfiguracji Twojego panelu. Jest to kluczowe narzędzie do śledzenia ewentualnych nadużyć, szczególnie jeśli dzielisz dostęp do panelu z innymi administratorami.</div>
+                    
+                    <div class="table-responsive">
+                        <table class="system-table">
+                            <thead>
+                                <tr>
+                                    <th>Dokładna Sygnatura Czasowa (Zegar Hosta)</th>
+                                    <th>Szczegółowy Opis Akcji Systemowej</th>
+                                    <th>Konto Logiczne Operatora</th>
+                                    <th>Ostateczny Status Zdarzenia</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ui-audit-table-render">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="sys-toast" class="toast-notification">
+        <span style="font-size: 26px;">ℹ️</span>
+        <span id="toast-message-content">Testowe powiadomienie z systemu Kokoszki.</span>
+    </div>
+
+    <script>
+        /**
+         * KOKOSZKA MC - TITAN ENGINE v2.0
+         * Czysty kod zoptymalizowany pod Single Page Application (SPA).
+         * @version 2.0.0-Titan
+         * @author KokoszkaDev
+         */
+
+        // ----------------------------------------------------------------------
+        // DANE STARTOWE BAZY WIEDZY I SZABLONÓW KONFIGURACYJNYCH
+        // Symulacja danych, które normalnie byłyby pobierane z API.
+        // ----------------------------------------------------------------------
+        const SYSTEM_DATA = {
+            minecraftVersions: [
+                "1.21.1", "1.21", "1.20.6", "1.20.4", "1.20.1", "1.19.4", "1.19.2", 
+                "1.18.2", "1.17.1", "1.16.5", "1.15.2", "1.12.2", "1.8.8", "1.7.10", "BETA 1.7.3", "ALPHA 1.2.6"
+            ],
+            fileTemplates: {
+                "server.properties": "online-mode=false\npvp=true\ngamemode=survival\ndifficulty=normal\nmax-players=20\nmotd=Najlepszy Serwer KokoszkaMC\nallow-flight=false\nenable-command-block=true\nview-distance=10\nsimulation-distance=8\nspawn-protection=16\nlevel-name=world\nserver-port=25565\nnetwork-compression-threshold=256\nresource-pack=\nmax-world-size=29999984",
+                "spigot.yml": "settings:\n  save-user-cache-on-stop-only: false\n  sample-count: 12\n  bungeecord: false\n  user-cache-size: 1000\n  moved-wrongly-threshold: 0.0625\n  timeout-time: 60\n  restart-on-crash: true\n  restart-script: ./start.sh\nmessages:\n  whitelist: You are not whitelisted on this server!\n  unknown-command: Unknown command. Type \"/help\" for help.\n  server-full: The server is full!\n  outdated-client: Outdated client! Please use {0}\n  outdated-server: Outdated server! I'm still on {0}\n  restart: Server is restarting",
+                "bukkit.yml": "settings:\n  allow-end: true\n  warn-on-overload: true\n  permissions-file: permissions.yml\n  update-folder: update\n  plugin-profiling: false\n  connection-throttle: 4000\n  query-plugins: true\n  deprecated-verbose: default\n  shutdown-message: Server closed\n  minimum-api: none\nspawn-limits:\n  monsters: 70\n  animals: 10\n  water-animals: 15\n  ambient: 15\nchunk-gc:\n  period-in-ticks: 600\n  load-threshold: 0",
+                "whitelist.json": "[\n  {\n    \"uuid\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"KokoszkaDev\"\n  }\n]",
+                "ops.json": "[\n  {\n    \"uuid\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"WlascicielSerwera\",\n    \"level\": 4,\n    \"bypassesPlayerLimit\": false\n  }\n]"
+            }
+        };
+
+        // ----------------------------------------------------------------------
+        // MENEDŻER STANU APLIKACJI I BAZY DANYCH (LOCALSTORAGE)
+        // Działa jako magazyn prawdy dla całej aplikacji.
+        // ----------------------------------------------------------------------
+        const appStore = {
+            currentAuthView: 'login',
+            activeUsername: null,
+            database: JSON.parse(localStorage.getItem('kokoszka_titan_v2_db_production') || "{}"),
+
+            initializeBootstrap() {
+                console.log("%c [KOKOSZKA OS] INITIALIZATION BOOTSTRAP SEQUENCE INITIATED... ", "background: #ff8c00; color: white; font-weight: bold; font-size: 12px; padding: 4px;");
+                
+                // Generowanie dynamicznej listy rozwijanej dla wyboru wersji Minecrafta
+                const versionDropdownNode = document.getElementById('sel-engine-version');
+                SYSTEM_DATA.minecraftVersions.forEach(versionText => {
+                    let optionElem = document.createElement('option');
+                    optionElem.value = versionText; 
+                    optionElem.innerText = versionText;
+                    versionDropdownNode.appendChild(option);
+                });
+
+                // Nasłuchiwanie na pole w kreatorze serwera do podglądu generowanego IP
+                const spawnInputNode = document.getElementById('in-create-name');
+                if (spawnInputNode) {
+                    spawnInputNode.addEventListener('input', (event) => {
+                        const cleanString = event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '');
+                        document.getElementById('out-create-ip').innerText = (cleanString || "...") + ".kokoszka.me";
+                    });
+                }
+            },
+
+            persistDatabase() {
+                localStorage.setItem('kokoszka_titan_v2_db_production', JSON.stringify(this.database));
+            },
+
+            // --- LOGIKA FORMULARZY I AUTORYZACJI ---
+            navigateAuth(viewName) {
+                this.currentAuthView = viewName;
+                
+                // Czyszczenie poprzednich błędów z interfejsu
+                document.getElementById('err-login').innerText = "";
+                document.getElementById('err-reg').innerText = "";
+
+                const viewLoginWrapper = document.getElementById('view-login');
+                const viewRegisterWrapper = document.getElementById('view-register');
+
+                if (viewName === 'login') {
+                    viewRegisterWrapper.classList.add('hidden');
+                    // Opóźnienie wyliczone dla zachowania płynności wejścia animacji z CSS
+                    setTimeout(() => {
+                        viewLoginWrapper.classList.remove('hidden');
+                    }, 500);
+                } else {
+                    viewLoginWrapper.classList.add('hidden');
+                    setTimeout(() => {
+                        viewRegisterWrapper.classList.remove('hidden');
+                    }, 500);
+                }
+            },
+
+            togglePasswordView(inputElementId, iconElement) {
+                const targetInput = document.getElementById(inputElementId);
+                // Prosta zmiana typu pola z hasła na tekst jawny
+                if (targetInput.type === 'password') { 
+                    targetInput.type = 'text'; 
+                    iconElement.innerText = '🔒'; 
+                } else { 
+                    targetInput.type = 'password'; 
+                    iconElement.innerText = '👁️'; 
+                }
+            },
+
+            processRegistration() {
+                const usernameField = document.getElementById('in-reg-user').value.trim();
+                const passwordField = document.getElementById('in-reg-pass').value.trim();
+                const errorBox = document.getElementById('err-reg');
+
+                // Walidacja danych podanych przez użytkownika
+                if (usernameField.length < 3) {
+                    return errorBox.innerText = "BŁĄD: Nazwa użytkownika jest zbyt krótka (minimum 3 znaki)!";
+                }
+                if (passwordField.length < 5) {
+                    return errorBox.innerText = "BŁĄD: Podane hasło jest zbyt słabe (wymagane minimum 5 znaków)!";
+                }
+                if (this.database[usernameField]) {
+                    return errorBox.innerText = "BŁĄD: Użytkownik o takim Nicku istnieje już w głównej bazie danych!";
+                }
+
+                // Utworzenie schematu konta NoSQL w wirtualnej bazie danych LocalStorage
+                this.database[usernameField] = { 
+                    passwordHash: passwordField, // W prawdziwym systemie użylibyśmy bcrypt
+                    serverData: null,
+                    auditLogs: [
+                        { time: new Date().toLocaleString(), action: "Rejestracja i pomyślna weryfikacja profilu Konta w Systemie Ekosystemu KokoszkaMC." }
+                    ] 
+                };
+                
+                this.persistDatabase();
+                alert("SUKCES! Twoje konto zostało pomyślnie i bezbłędnie zarejestrowane. Możesz się teraz zalogować, używając swoich danych.");
+                this.navigateAuth('login');
+            },
+
+            processLogin() {
+                const usernameField = document.getElementById('in-login-user').value.trim();
+                const passwordField = document.getElementById('in-login-pass').value.trim();
+                const errorBox = document.getElementById('err-login');
+
+                const userRecord = this.database[usernameField];
+                
+                // Weryfikacja hasła względem bazy danych
+                if (!userRecord || userRecord.passwordHash !== passwordField) {
+                    return errorBox.innerText = "BŁĄD KRYTYCZNY: Zła nazwa użytkownika lub nieprawidłowe hasło dostępu!";
+                }
+                
+                this.activeUsername = usernameField;
+                engine.initiateUserSession();
+            }
+        };
+
+        // ----------------------------------------------------------------------
+        // JĄDRO SYSTEMU (SERVER ENGINE LOGIC & HARDWARE SIMULATION)
+        // Odpowiada za całą warstwę zarządzania sztucznym serwerem Javy.
+        // ----------------------------------------------------------------------
+        const engine = {
+            serverState: null,
+            isOnlineProcess: false,
+            isAwaitingBoot: false,
+            uptimeSeconds: 0,
+            
+            // Referencje do pętli asynchronicznych (ustawione na null na starcie)
+            hardwareSimulationLoop: null,
+            clockTickLoop: null,
+
+            initiateUserSession() {
+                // Efekt wizualnego przejścia do panelu operacyjnego (zniknięcie ekranu logowania w górę)
+                const currentScreenWrapper = appStore.currentAuthView === 'login' ? document.getElementById('view-login') : document.getElementById('view-register');
+                currentScreenWrapper.classList.add('booting-panel');
+                
+                const dbContext = appStore.database[appStore.activeUsername];
+                
+                // Zastrzyk dynamicznych danych użytkownika do struktury DOM
+                document.getElementById('ui-display-username').innerText = appStore.activeUsername;
+                document.getElementById('ui-display-avatar').innerText = appStore.activeUsername.charAt(0).toUpperCase();
+                
+                this.serverState = dbContext.serverData;
+                
+                // Delikatne opóźnienie wyliczone z animacji CSS, aby nie uciąć animacji w połowie
+                setTimeout(() => {
+                    this.synchronizeDashboardState();
+                    this.renderAuditHistoryTable();
+                }, 600);
+            },
+
+            deployNewServer() {
+                const rawString = document.getElementById('in-create-name').value.trim();
+                const safeString = rawString.toLowerCase().replace(/[^a-z0-9-]/g, '');
+                
+                if (safeString.length < 3) {
+                    return alert("OCHRONA SYSTEMU: Wymagane jest użycie co najmniej 3 znaków alfanumerycznych w nazwie serwera.");
+                }
+
+                // Utworzenie wirtualnej struktury maszyny z domyślnymi wartościami startowymi
+                this.serverState = {
+                    nodeName: safeString,
+                    ipAddress: safeString + ".kokoszka.me",
+                    allocatedMemory: 4, // W gigabajtach
+                    allocatedCores: 2,  // vCores
+                    engineType: "PaperMC",
+                    engineVersion: "1.20.4",
+                    operatorList: [appStore.activeUsername],
+                    whitelistList: []
+                };
+
+                // Zapisanie w bazie
+                appStore.database[appStore.activeUsername].serverData = this.serverState;
+                this.pushToAuditLog("Inicjalizacja i alokacja nowego węzła sieciowego maszyny z adresem IP: " + this.serverState.ipAddress);
+                appStore.persistDatabase();
+                
+                this.synchronizeDashboardState();
+                ui.triggerToast("Zadanie ukończone. Twoja darmowa maszyna wirtualna została pomyślnie wygenerowana i przygotowana w chmurze Kokoszki.");
+            },
+
+            synchronizeDashboardState() {
+                const spawnerLayout = document.getElementById('layout-spawn-server');
+                const dashboardLayout = document.getElementById('layout-manage-server');
+
+                // Podział logiki na dwa stany: Kreator i Właściwy Panel
+                if (!this.serverState) {
+                    // Tryb Kreatora (Użytkownik nie ma jeszcze maszyny)
+                    spawnerLayout.style.display = 'block';
+                    dashboardLayout.style.display = 'none';
+                } else {
+                    // Tryb Zarządzania (Maszyna istnieje, ładujemy dane)
+                    spawnerLayout.style.display = 'none';
+                    dashboardLayout.style.display = 'block';
+                    
+                    // Propagacja wartości do DOM (Zarządzanie - Karta Główna)
+                    document.getElementById('ui-status-ip').innerText = this.serverState.ipAddress;
+                    document.getElementById('ui-info-engine').innerText = this.serverState.engineType;
+                    document.getElementById('ui-info-version').innerText = this.serverState.engineVersion;
+                    
+                    // Propagacja wartości do DOM (Suwaki w zakładce Zasoby)
+                    document.getElementById('slider-ram').value = this.serverState.allocatedMemory;
+                    document.getElementById('slider-cpu').value = this.serverState.allocatedCores;
+                    
+                    // Wymuszenie ręcznej synchronizacji labeli suwaków po wczytaniu danych z bazy
+                    this.syncResourceSliders(); 
+                }
+            },
+
+            togglePowerState() {
+                // Blokada przed nadmiernym klikaniem podczas procesu bootowania
+                if (this.isAwaitingBoot) return; 
+                
+                const btnPowerNode = document.getElementById('ui-btn-power');
+                const statusOrbNode = document.getElementById('ui-status-orb');
+                const statusTextNode = document.getElementById('ui-status-text');
+
+                if (!this.isOnlineProcess) {
+                    // ----------------------------------------------------
+                    // SEKWENCJA STARTOWA WĘZŁA (BOOT SEQUENCE)
+                    // ----------------------------------------------------
+                    this.isAwaitingBoot = true;
+                    
+                    // Zablokowanie przycisku i zmiana wizualna
+                    btnPowerNode.disabled = true;
+                    btnPowerNode.style.opacity = "0.5";
+                    
+                    statusOrbNode.className = "status-orb-container state-booting";
+                    statusOrbNode.innerText = "⏳";
+                    statusTextNode.innerText = "STARTOWANIE WĘZŁA...";
+                    
+                    // Push do terminala operacyjnego informacji o startującym procesie
+                    ui.pushToTerminal("Wykryto autoryzowane żądanie rozruchu za pomocą przycisku z panelu webowego.", "info");
+                    ui.pushToTerminal(`Wykonywanie alokacji przydziału pamięci dla procesu JRE na hoście: żądanie ${this.serverState.allocatedMemory}GB RAM.`, "info");
+                    ui.pushToTerminal(`Rozpoczynanie czytania manifestu silnika zdefiniowanego w kontenerze docelowym: typ oprogramowania ${this.serverState.engineType}...`, "info");
+
+                    // Symulacja opóźnienia sprzętowego przy uruchamianiu Javy
+                    setTimeout(() => {
+                        if (this.isAwaitingBoot || this.isOnlineProcess) {
+                            this.isAwaitingBoot = false;
+                            this.isOnlineProcess = true;
+                            
+                            // Odblokowanie przycisku i zmiana na akcję Stop
+                            btnPowerNode.disabled = false;
+                            btnPowerNode.style.opacity = "1";
+                            btnPowerNode.innerText = "ZATRZYMAJ MASZYNĘ WĘZŁOWĄ";
+                            btnPowerNode.className = "btn btn-danger";
+                            
+                            // Aktualizacja Orba statusu
+                            statusOrbNode.className = "status-orb-container state-online";
+                            statusOrbNode.innerText = "🟢";
+                            statusTextNode.innerText = "ONLINE";
+                            
+                            ui.pushToTerminal(`Proces bazowy Java powiązany z silnikiem gry ${this.serverState.engineType} (${this.serverState.engineVersion}) uaktywnił pomyślnie nasłuchiwanie tcp/25565.`, "success");
+                            ui.pushToTerminal(`Logowanie udane. Węzeł jest obecnie gotowy do akceptowania przychodzących połączeń od graczy na zmapowanym adresie: ${this.serverState.ipAddress}:25565`, "success");
+                            
+                            this.pushToAuditLog("Standardowe włączenie oraz stabilizacja środowiska maszyny roboczej przez użytkownika (Start)");
+                            
+                            // Rozpoczęcie symulacji parametrów
+                            this.igniteHardwareSimulationMetrics();
+                        }
+                    }, 4800);
+
+                } else {
+                    // ----------------------------------------------------
+                    // SEKWENCJA BEZPIECZNEGO ZAMYKANIA (GRACEFUL SHUTDOWN)
+                    // ----------------------------------------------------
+                    this.isOnlineProcess = false;
+                    
+                    btnPowerNode.innerText = "URUCHOM ZASOBY SERWERA";
+                    btnPowerNode.className = "btn btn-success";
+                    
+                    statusOrbNode.className = "status-orb-container";
+                    statusOrbNode.innerText = "🔴";
+                    statusTextNode.innerText = "OFFLINE";
+                    
+                    ui.pushToTerminal("Wysłano żądanie zamknięcia (SIGTERM). Czekanie na zakończenie wszystkich procesów wewnętrznych serwera.", "info");
+                    ui.pushToTerminal("Opróżnianie buforów wyjściowych z wirtualnych chunków mapy z powrotem na dysk SSD. Zamykanie aktywnych gniazd serwerów MySQL...", "info");
+                    ui.pushToTerminal("Serwer zatrzymany całkowicie. Usługi połączone uśpione.", "info");
+                    
+                    this.pushToAuditLog("Zarządzane, łagodne zatrzymanie działania oraz uśpienie maszyny (Stop)");
+                    this.terminateHardwareSimulationMetrics();
+                }
+            },
+
+            igniteHardwareSimulationMetrics() {
+                // Kompleksowa symulacja zaawansowanych i nieliniowych skoków wydajnościowych wartości RAM/CPU
+                this.hardwareSimulationLoop = setInterval(() => {
+                    if (!this.isOnlineProcess) return;
+                    
+                    // Przeliczanie Gigabajtów na Megabajty dla dokładniejszej czytelności wyświetlania
+                    const maxRamAllocatedMB = this.serverState.allocatedMemory * 1024;
+                    
+                    // Użycie pamięci oscyluje losowo między 20% a 55% z lekką wariancją
+                    const currentUsedRamMB = Math.floor(Math.random() * (maxRamAllocatedMB * 0.55 - maxRamAllocatedMB * 0.20) + maxRamAllocatedMB * 0.20);
+                    
+                    // Obciążenie procesora jest nieliniowe i oscyluje między 2% a 45% zależnie od alokacji
+                    const currentCpuPercentage = Math.floor(Math.random() * 43) + 2;
+                    
+                    // Wstrzykiwanie kalkulacji sprzętowych do kodu źródłowego HTML (DOM Manipulation)
+                    document.getElementById('ui-live-ram-text').innerText = `${currentUsedRamMB} / ${maxRamAllocatedMB} MB`;
+                    document.getElementById('ui-live-ram-bar').style.width = `${(currentUsedRamMB / maxRamAllocatedMB) * 100}%`;
+                    
+                    document.getElementById('ui-live-cpu-text').innerText = `${currentCpuPercentage}%`;
+                    document.getElementById('ui-live-cpu-bar').style.width = `${currentCpuPercentage}%`;
+                }, 1850); // Interwał ustawiony na 1.85s dla naturalnego braku synchronizacji ze zwykłym zegarem
+
+                // Ustalony Zegar Czasu Rzeczywistego do mierzenia Uptime'u
+                this.clockTickLoop = setInterval(() => {
+                    this.uptimeSeconds++;
+                    let parsedHours = Math.floor(this.uptimeSeconds / 3600);
+                    let parsedMinutes = Math.floor((this.uptimeSeconds % 3600) / 60);
+                    let parsedSeconds = this.uptimeSeconds % 60;
+                    
+                    const stringFormattedTime = 
+                        (parsedHours < 10 ? '0' : '') + parsedHours + ":" + 
+                        (parsedMinutes < 10 ? '0' : '') + parsedMinutes + ":" + 
+                        (parsedSeconds < 10 ? '0' : '') + parsedSeconds;
+                        
+                    document.getElementById('ui-uptime-clock').innerText = stringFormattedTime;
+                }, 1000);
+            },
+
+            terminateHardwareSimulationMetrics() {
+                // Bezpieczne zatrzymanie asynchronicznych cykli i zresetowanie parametrów UI do punktu wyjścia
+                clearInterval(this.hardwareSimulationLoop);
+                clearInterval(this.clockTickLoop);
+                this.uptimeSeconds = 0;
+                
+                document.getElementById('ui-uptime-clock').innerText = "00:00:00";
+                document.getElementById('ui-live-ram-text').innerText = "0 / 4096 MB";
+                document.getElementById('ui-live-ram-bar').style.width = "0%";
+                document.getElementById('ui-live-cpu-text').innerText = "0%";
+                document.getElementById('ui-live-cpu-bar').style.width = "0%";
+            },
+
+            syncResourceSliders() {
+                const fetchedRamValue = parseInt(document.getElementById('slider-ram').value);
+                const fetchedCpuValue = parseInt(document.getElementById('slider-cpu').value);
+                
+                // Aktualizacja wskaźników tekstowych
+                document.getElementById('lbl-ram-val').innerText = fetchedRamValue;
+                document.getElementById('lbl-cpu-val').innerText = fetchedCpuValue;
+                
+                // System powiadomień ostrzegawczych w UI oparty na limitach fizycznych
+                document.getElementById('alert-ram-limit').style.display = (fetchedRamValue > 16 ? 'block' : 'none');
+                document.getElementById('alert-cpu-limit').style.display = (fetchedCpuValue > 4 ? 'block' : 'none');
+
+                if (this.serverState) {
+                    this.serverState.allocatedMemory = fetchedRamValue;
+                    this.serverState.allocatedCores = fetchedCpuValue;
+                    appStore.database[appStore.activeUsername].serverData = this.serverState;
+                    appStore.persistDatabase();
+                }
+            },
+
+            processSoftwareInstallation() {
+                if (!this.serverState) return;
+                
+                // Zbieranie informacji z pól Input Select
+                const selectedEngineNode = document.getElementById('sel-engine-type').value;
+                const selectedVersionNode = document.getElementById('sel-engine-version').value;
+                
+                this.serverState.engineType = selectedEngineNode;
+                this.serverState.engineVersion = selectedVersionNode;
+                
+                this.pushToAuditLog(`Globalna modyfikacja środowiska wykonywania kompilacji JRE: Migracja do kompilacji ${selectedEngineNode} v${selectedVersionNode}`);
+                appStore.persistDatabase();
+                this.synchronizeDashboardState();
+                
+                ui.triggerToast(`Operacja instalacyjna zakończona udanie! Nowe pliki .jar dla paczki ${selectedEngineNode} zostały podpięte pod węzeł roboczy na twardym dysku maszyny.`);
+            },
+
+            triggerEmergencyKill() {
+                // Brutalne przerwanie pętli zasilania i natychmiastowe zerowanie flag. Nie ma procesu "Graceful shutdown".
+                this.isOnlineProcess = false;
+                this.isAwaitingBoot = false;
+                this.togglePowerState();
+                
+                ui.pushToTerminal("⚠️ KRYTYCZNY ALERT BEZPIECZEŃSTWA OCHRONY PROCESORA: Funkcja sprzętowego KILL-SWITCH Została ręcznie aktywowana przez użytkownika na panelu webowym. Aktywny proces maszyny Javy i wirtualnego węzła zastał awaryjnie oraz brutalnie zamordowany przez jądro serwera bez zrzucenia stanu wirtualnego RAMu na blok fizyczny.", "error");
+                
+                this.pushToAuditLog("Krytyczne, awaryjne i siłowe przerwanie procesu systemowego kontenera (Hardware KILL SWITCH)");
+            },
+
+            executeTerminalCommand() {
+                const terminalInputBox = document.getElementById('terminal-cmd-input');
+                const commandRawText = terminalInputBox.value.trim();
+                
+                if (!commandRawText) return;
+                
+                ui.pushToTerminal("> [Root Web Executor Input]: " + commandRawText, "info");
+                
+                // Prosty parser komend symulujący inteligencję silnika administracyjnego (Backend AI Simulation)
+                const lowerCommand = commandRawText.toLowerCase();
+                
+                if (lowerCommand.startsWith("op ")) {
+                    ui.pushToTerminal("[Internal System RCON API]: Uprawnienia administracyjne stopnia 4. poziomu OP zostały pomyślnie, definitywnie nadane i przypisane do podanego wyżej identyfikatora.", "success");
+                } else if (lowerCommand === "help" || lowerCommand === "?") {
+                    ui.pushToTerminal("--- KOKOSZKA COMMAND HELP DIAGNOSTIC SYSTEM ---\nDostępne rozpoznawane flagi komend administracyjnych w panelu: op, deop, kill, stop, save-all, whitelist on/off, weather, time", "info");
+                } else if (lowerCommand === "stop") {
+                    ui.pushToTerminal("Wykryto sygnał zamknięcia. Przekierowanie polecenia do funkcji wyłączania serwera.", "info");
+                    this.togglePowerState();
+                } else if (lowerCommand === "save-all") {
+                    ui.pushToTerminal("Force Save Initiated: Wszystkie wirtualne chunki z przestrzeni wymiany oraz rejestr kont użytkowników połączonych na porcie nasłuchującym zostały nadpisane na partycji /world.", "success");
+                } else {
+                    ui.pushToTerminal("Unknown command. Type \"/help\" for help.", "warn");
+                }
+                
+                terminalInputBox.value = "";
+            },
+
+            loadFileIntoEditor(fileNameRequested) {
+                const editorNodeBox = document.getElementById('ftp-text-area');
+                // Mechanizm wyciągania pre-generowanego szablonu z konfiguracji startowej SYSTEM_DATA
+                const matchedFileContentString = SYSTEM_DATA.fileTemplates[fileNameRequested] || `# KokoszkaMC WebFTP Management System Protocol\n# Aktualnie wczytywany i otwarty został plik z drzewa katalogowego: ${fileNameRequested}\n\n# System File Explorer: Zawartość tekstowa otwartego pliku jest obecnie całkowicie pusta lub systemowa blokada ukryła jego binarne zasoby (Permission Denied).`;
+                
+                editorNodeBox.value = matchedFileContentString;
+                ui.triggerToast(`Plik konfiguracyjny systemu węzła o sygnaturze nazwy: ${fileNameRequested} został odkodowany i wczytany do interfejsu graficznego WebFTP.`);
+                this.pushToAuditLog(`Otwarcie bezpiecznej powłoki WebFTP do zdalnej inspekcji lub modyfikacji zawartości pliku z folderu /home: ${fileNameRequested}`);
+            },
+
+            pushToAuditLog(actionDescriptionEvent) {
+                const clockString = new Date().toLocaleString();
+                // Push nowego rekordu na sam szczyt tablicy zdarzeń w formacie LIFO
+                appStore.database[appStore.activeUsername].auditLogs.unshift({
+                    time: clockString,
+                    action: actionDescriptionEvent
+                });
+                
+                // GC Logów (Garbage Collector Systemowy): 
+                // Chronimy pamięć przeglądarkową przez przechowywaniem ekstremalnie długiego łańcucha tablicy. Skracamy z tyłu przy osiągnięciu 100 operacji.
+                if(appStore.database[appStore.activeUsername].auditLogs.length > 100) {
+                    appStore.database[appStore.activeUsername].auditLogs.pop();
+                }
+                
+                this.renderAuditHistoryTable();
+            },
+
+            renderAuditHistoryTable() {
+                const tableBodyDOM = document.getElementById('ui-audit-table-render');
+                tableBodyDOM.innerHTML = ""; // Czyść istniejącą siatkę przed narysowaniem nowej partii
+                
+                const cachedLogsArray = appStore.database[appStore.activeUsername].auditLogs;
+                
+                cachedLogsArray.forEach(logInstance => {
+                    // Budowa wielorzędowych węzłów do prezentacji w HTML
+                    tableBodyDOM.innerHTML += `
+                        <tr>
+                            <td style="color: var(--brand-primary); font-family: 'Fira Code', monospace; letter-spacing: -0.5px;">[${logInstance.time}]</td>
+                            <td style="color: var(--text-main); font-weight: 500;">${logInstance.action}</td>
+                            <td><span style="background-color: var(--bg-input); color: var(--text-muted); padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 13px; text-transform: uppercase;">${appStore.activeUsername}</span></td>
+                            <td style="color: var(--status-online); font-weight: 900; letter-spacing: 1px;"><i style="font-style: normal; margin-right: 5px;">✓</i> POTWIERDZONE SIECIOWO</td>
+                        </tr>
+                    `;
+                });
+            }
+        };
+
+        // ----------------------------------------------------------------------
+        // MENEDŻER WIZUALNY (UI RENDERER & ASYNCHRONOUS NOTIFICATIONS SYSTEM)
+        // Definicja metod odpowiadających za warstwę wzrokową i informacyjną.
+        // ----------------------------------------------------------------------
+        const ui = {
+            switchModule(viewModuleTargetId, clickedNavElement) {
+                // Pętla zdejmująca klasę aktywacyjną .active ze wszystkich powiązanych kafelków i elementów
+                document.querySelectorAll('.view-module').forEach(vNode => vNode.classList.remove('active'));
+                document.querySelectorAll('.menu-link-item').forEach(iNode => iNode.classList.remove('active'));
+                
+                // Przydzielanie klasy do nowych, pożądanych celów po kliknięciu
+                document.getElementById('module-' + viewModuleTargetId).classList.add('active');
+                clickedNavElement.classList.add('active');
+                
+                // Parsowanie nazwy dla ścieżki w lewym górnym rogu ekranu (Interaktywne Breadcrumbs)
+                // Kod ten skutecznie wycina i odseparowuje emotikony (ikony i) zostawiając sam pożądany tekst informacyjny do wyświetlenia.
+                const cleanParsedTitleText = clickedNavElement.innerText.replace(/[^\w\sąęółńćźżĄĘÓŁŃĆŹŻ\(\)\-\/\.]/gi, '').trim();
+                document.getElementById('ui-current-module-name').innerText = cleanParsedTitleText;
+            },
+
+            pushToTerminal(messageStringRaw, severityTypeClassification) {
+                const terminalLogContainer = document.getElementById('terminal-screen-log');
+                const accurateTimeStamp = new Date().toLocaleTimeString();
+                
+                // Mapowanie przypisań kluczowych klas na podstawie typu błędu, używane później w stylizacji CSS dla lepszej asertywności konsoli.
+                const typeToCssClassMap = {
+                    'info': 'log-info',
+                    'success': 'log-success',
+                    'error': 'log-error',
+                    'warn': 'log-warn',
+                    'default': ''
+                };
+                
+                const finalComputedCssClass = typeToCssClassMap[severityTypeClassification] || typeToCssClassMap['default'];
+                
+                // Formatowanie iniekcji do węzła DOM (Terminal z divów zamiast <textarea> dla indywidualnych kolorów ułatwiających czytelność root.)
+                terminalLogContainer.innerHTML += `
+                    <div style="margin-bottom: 8px; border-bottom: 1px dashed rgba(255,255,255,0.05); padding-bottom: 8px;">
+                        <span class="log-time">[${accurateTimeStamp}]</span> 
+                        <span class="${finalComputedCssClass}">${messageStringRaw}</span>
+                    </div>
+                `;
+                
+                // Ostateczne przewinięcie do samego dołu logów (Auto-scroll), aby nowe linijki były od razu w polu bezpośredniego widzenia.
+                terminalLogContainer.scrollTop = terminalLogContainer.scrollHeight;
+            },
+
+            triggerToast(toastInformationMessageText) {
+                const systemToastNotificationNode = document.getElementById('sys-toast');
+                document.getElementById('toast-message-content').innerText = toastInformationMessageText;
+                
+                // Aplikowanie klasy inicjującej sprzętową animację przyspieszenia z CSS (Transition z Cubic Bezier Curve)
+                systemToastNotificationNode.classList.add('show');
+                
+                // Zamknięcie Toasta po upływie odpowiedniej ilości milisekund.
+                setTimeout(() => {
+                    systemToastNotificationNode.classList.remove('show');
+                }, 4000);
+            }
+        };
+
+        // ----------------------------------------------------------------------
+        // GŁÓWNY PUNKT WEJŚCIA DLA KOMPILATORA JAVASCRIPT W PRZEGLĄDARCE (ENTRY)
+        // ----------------------------------------------------------------------
+        window.addEventListener('DOMContentLoaded', () => {
+            // Reagowanie natychmiastowo po odczytaniu całego potężnego drzewa wirtualnego DOM (Dzięki temu nie potrzebujemy jQuery)
+            appStore.initializeBootstrap();
+        });
+
+    </script>
+</body>
+</html>
