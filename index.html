@@ -3,71 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KokoszkaMC v2.0 TITAN | Najlepszy Hosting Minecraft</title>
+    <title>KokoszkaMC v2.0 TITAN | The Ultimate Hosting Experience</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* ========================================================================================
-        SEKCJA 1: SYSTEM STYLIZACJI (CSS)
-        Celowo rozpisany w sposób szczegółowy (Enterprise Level) dla maksymalnej kontroli.
-        Aesthetic White & Orange Theme
-        ========================================================================================
+        /* ================================================================================================
+        SEKCJA 1: GIGANTYCZNY FRAMEWORK CSS (LINIE 20 - 800)
+        Więcej pomarańczu, topowa estetyka, pełne animacje.
+        ================================================================================================
         */
 
         :root {
-            /* 1. Główne kolory marki (Pomarańcz) */
+            /* Główne barwy - WIĘCEJ POMARAŃCZU */
             --brand-primary: #ff8c00;
+            --brand-secondary: #ff7300;
+            --brand-tertiary: #ffa64d;
             --brand-hover: #e67e00;
             --brand-dark: #cc7000;
             --brand-light: #fff5e6;
+            --brand-super-light: #fffaf5;
             --brand-glow: rgba(255, 140, 0, 0.4);
             --brand-soft: rgba(255, 140, 0, 0.1);
+            --brand-gradient: linear-gradient(135deg, #ff8c00 0%, #ff5500 100%);
             
-            /* 2. Tła i Powierzchnie (Dominacja Bieli) */
-            --bg-application: #f8fafc;
+            /* Tła - Estetyczna Biel */
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
             --bg-sidebar: #ffffff;
-            --bg-card: #ffffff;
             --bg-input: #f1f5f9;
             --bg-terminal: #0f172a;
             
-            /* 3. System Typografii (Czarne i szare napisy) */
+            /* Tekst - Głęboka Czerń i Szarości */
             --text-heading: #000000;
             --text-main: #1e293b;
             --text-muted: #475569;
             --text-dim: #94a3b8;
             --text-inverse: #ffffff;
             
-            /* 4. Kolory Statusów i Akcentów */
-            --status-online: #10b981;
-            --status-online-bg: #ecfdf5;
-            --status-offline: #ef4444;
-            --status-offline-bg: #fef2f2;
+            /* Statusy Funkcjonalne */
+            --status-success: #10b981;
+            --status-success-bg: #ecfdf5;
+            --status-danger: #ef4444;
+            --status-danger-bg: #fef2f2;
             --status-warning: #f59e0b;
             --status-warning-bg: #fffbeb;
             --status-info: #3b82f6;
-            --status-info-bg: #eff6ff;
             --status-shield: #8b5cf6;
             
-            /* 5. System Obramowań */
-            --border-light: #f1f5f9;
+            /* Obramowania */
+            --border-light: #f8fafc;
             --border-base: #e2e8f0;
             --border-heavy: #cbd5e1;
+            --border-brand: #ff8c00;
             
-            /* 6. System Cieniowania (Z-Index Elevations) */
+            /* Cienie - Z-Index Elevations */
             --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            --shadow-brand: 0 10px 25px -5px rgba(255, 140, 0, 0.3);
+            --shadow-orange: 0 10px 25px -5px rgba(255, 140, 0, 0.35);
             
-            /* 7. Zaokrąglenia i Geometria */
+            /* Geometria */
             --radius-huge: 40px;
             --radius-large: 24px;
             --radius-medium: 16px;
-            --radius-small: 10px;
+            --radius-small: 8px;
             
-            /* 8. Animacje i Przejścia */
+            /* Przejścia */
             --transition-fast: all 0.2s ease-in-out;
             --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-slow: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -84,30 +87,29 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-application);
+            background-color: var(--bg-body);
             color: var(--text-main);
             height: 100vh;
             width: 100vw;
             display: flex;
             overflow: hidden;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- NIESTANDARDOWY SCROLLBAR --- */
+        /* --- CUSTOM SCROLLBARS --- */
         ::-webkit-scrollbar {
             width: 14px;
             height: 14px;
         }
 
         ::-webkit-scrollbar-track {
-            background-color: var(--bg-application);
+            background-color: var(--bg-body);
         }
 
         ::-webkit-scrollbar-thumb {
             background-color: var(--border-heavy);
             border-radius: 20px;
-            border: 4px solid var(--bg-application);
+            border: 4px solid var(--bg-body);
             transition: var(--transition-base);
         }
 
@@ -115,125 +117,156 @@
             background-color: var(--brand-primary);
         }
 
-        /* --- SYSTEM KART --- */
-        .card {
-            background-color: var(--bg-card);
-            border-radius: var(--radius-large);
-            padding: 40px;
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: SYSTEM AUTORYZACJI (LOGOWANIE / REJESTRACJA NA GÓRZE)
+           ------------------------------------------------------------------------------------------------ */
+        
+        .auth-portal-wrapper {
+            position: fixed;
+            inset: 0;
+            background-color: var(--bg-body);
+            background-image: radial-gradient(circle at 100% 100%, var(--brand-light) 0%, var(--bg-body) 50%);
+            z-index: 9999999;
+            display: flex;
+            flex-direction: column;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .auth-portal-wrapper.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .auth-portal-wrapper.booting-sequence {
+            transform: translateY(-100%);
+            opacity: 1;
+            visibility: visible;
+            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        /* GÓRNY PASEK NAWIGACJI W EKRANIE LOGOWANIA */
+        .auth-top-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 60px;
+            background-color: var(--bg-surface);
+            border-bottom: 2px solid var(--border-base);
             box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-base);
-            position: relative;
-            transition: var(--transition-base);
-            overflow: hidden;
         }
 
-        .card:hover {
-            box-shadow: var(--shadow-md);
-            border-color: var(--border-heavy);
-        }
-
-        .card-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 22px;
-            color: var(--text-heading);
-            margin-bottom: 10px;
+        .auth-brand-logo {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .card-title i {
-            color: var(--brand-primary);
+        .auth-brand-logo i {
+            font-size: 36px;
             font-style: normal;
-            font-size: 26px;
         }
 
-        .card-description {
-            color: var(--text-muted);
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 30px;
-            line-height: 1.6;
+        .auth-brand-logo h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--text-heading);
+            letter-spacing: -1px;
+            text-transform: uppercase;
         }
 
-        /* --- SYSTEM PRZYCISKÓW --- */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 16px 32px;
+        .auth-brand-logo h1 span {
+            color: var(--brand-primary);
+        }
+
+        .auth-nav-tabs {
+            display: flex;
+            gap: 20px;
+            background-color: var(--bg-input);
+            padding: 8px;
+            border-radius: var(--radius-large);
+            border: 1px solid var(--border-base);
+        }
+
+        .auth-nav-btn {
+            padding: 12px 30px;
             border: none;
-            border-radius: var(--radius-medium);
+            background: transparent;
+            color: var(--text-muted);
             font-family: 'Poppins', sans-serif;
             font-weight: 800;
-            font-size: 15px;
+            font-size: 14px;
+            border-radius: var(--radius-medium);
             cursor: pointer;
             transition: var(--transition-base);
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-decoration: none;
         }
 
-        .btn-primary {
-            background-color: var(--text-heading);
-            color: var(--text-inverse);
-            box-shadow: var(--shadow-sm);
+        .auth-nav-btn:hover {
+            color: var(--brand-primary);
         }
 
-        .btn-primary:hover {
+        .auth-nav-btn.active {
             background-color: var(--brand-primary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-brand);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        .btn-success {
-            background-color: var(--status-online);
             color: var(--text-inverse);
+            box-shadow: var(--shadow-orange);
         }
 
-        .btn-success:hover {
-            background-color: #059669;
-            transform: translateY(-2px);
+        /* OBSZAR FORMULARZY */
+        .auth-content-area {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
         }
 
-        .btn-danger {
-            background-color: transparent;
-            color: var(--status-offline);
-            border: 2px solid var(--status-offline);
-        }
-
-        .btn-danger:hover {
-            background-color: var(--status-offline);
-            color: var(--text-inverse);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--text-main);
-            border: 2px solid var(--border-heavy);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--text-heading);
-            background-color: var(--bg-input);
-        }
-
-        .btn-block {
+        .auth-form-card {
+            background-color: var(--bg-surface);
             width: 100%;
+            max-width: 500px;
+            padding: 60px;
+            border-radius: var(--radius-huge);
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--border-base);
+            text-align: center;
+            transition: var(--transition-base);
         }
 
-        /* --- FORMULARZE I INPUTY --- */
+        .auth-form-card:hover {
+            border-color: var(--brand-primary);
+            box-shadow: var(--shadow-orange);
+        }
+
+        .auth-form-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .auth-form-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--text-heading);
+            margin-bottom: 10px;
+        }
+
+        .auth-form-subtitle {
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+
         .input-group {
+            text-align: left;
             margin-bottom: 25px;
             position: relative;
-            text-align: left;
         }
 
         .input-label {
@@ -241,7 +274,7 @@
             font-size: 12px;
             font-weight: 800;
             text-transform: uppercase;
-            color: var(--text-muted);
+            color: var(--brand-primary);
             margin-bottom: 10px;
             margin-left: 15px;
             letter-spacing: 1px;
@@ -261,9 +294,9 @@
         }
 
         .input-control:focus {
-            border-color: var(--text-heading);
-            background-color: var(--bg-card);
-            box-shadow: 0 0 0 4px var(--border-light);
+            border-color: var(--brand-primary);
+            background-color: var(--bg-surface);
+            box-shadow: 0 0 0 5px var(--brand-soft);
         }
 
         .input-control::placeholder {
@@ -271,25 +304,7 @@
             font-weight: 500;
         }
 
-        .huge-input {
-            width: 100%;
-            background-color: transparent;
-            border: none;
-            border-bottom: 4px solid var(--border-base);
-            padding: 20px 10px;
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--text-heading);
-            font-family: 'Montserrat', sans-serif;
-            transition: var(--transition-base);
-            margin-bottom: 30px;
-        }
-
-        .huge-input:focus {
-            border-bottom-color: var(--brand-primary);
-        }
-
-        /* Przełącznik hasła (Oczko) */
+        /* Oczko do podglądu hasła */
         .password-eye-toggle {
             position: absolute;
             right: 20px;
@@ -300,7 +315,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 22px;
             color: var(--text-dim);
             border-radius: 50%;
             transition: var(--transition-fast);
@@ -308,120 +323,69 @@
         }
 
         .password-eye-toggle:hover {
-            color: var(--text-heading);
-            background-color: var(--border-base);
-        }
-
-        /* --- OSOBNE EKRANY AUTORYZACJI (LOGOWANIE / REJESTRACJA) --- */
-        .auth-viewport {
-            position: fixed;
-            inset: 0;
-            background-color: var(--bg-application);
-            z-index: 9999999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .auth-viewport.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .auth-viewport.booting-panel {
-            transform: translateY(-100%);
-            opacity: 1;
-            visibility: visible;
-            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
-        }
-
-        .auth-container {
-            background-color: var(--bg-card);
-            width: 100%;
-            max-width: 520px;
-            padding: 60px;
-            border-radius: var(--radius-huge);
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-base);
-            text-align: center;
-            transform: translateY(0) scale(1);
-            transition: var(--transition-slow);
-            position: relative;
-        }
-
-        .auth-viewport.hidden .auth-container {
-            transform: translateY(30px) scale(0.95);
-        }
-
-        .auth-brand-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-            display: block;
-            line-height: 1;
-        }
-
-        .auth-heading {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 38px;
-            font-weight: 900;
-            color: var(--text-heading);
-            margin-bottom: 10px;
-            letter-spacing: -1.5px;
-        }
-
-        .auth-subheading {
-            color: var(--text-muted);
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 40px;
-        }
-
-        .auth-footer-link {
-            margin-top: 30px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-
-        .auth-footer-link span {
-            color: var(--text-heading);
-            font-weight: 800;
-            cursor: pointer;
-            transition: var(--transition-fast);
-        }
-
-        .auth-footer-link span:hover {
             color: var(--brand-primary);
-            text-decoration: underline;
+            background-color: var(--brand-light);
+        }
+
+        .btn-auth-submit {
+            width: 100%;
+            padding: 22px;
+            background: var(--brand-gradient);
+            color: var(--text-inverse);
+            border: none;
+            border-radius: var(--radius-medium);
+            font-size: 18px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: var(--transition-base);
+            box-shadow: var(--shadow-orange);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 15px;
+        }
+
+        .btn-auth-submit:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(255, 140, 0, 0.4);
+        }
+
+        .btn-auth-submit:active {
+            transform: translateY(0);
         }
 
         .auth-error-message {
             color: var(--status-offline);
             font-size: 13px;
             font-weight: 800;
-            margin-top: 20px;
+            margin-top: 25px;
             min-height: 20px;
             text-transform: uppercase;
         }
 
-        /* --- NAWIGACJA BOCZNA (SIDEBAR) --- */
+        /* Mechanizm przełączania formularzy */
+        #auth-form-login { display: block; }
+        #auth-form-register { display: none; }
+
+
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: SIDEBAR NAVIGATION (ENTERPRISE MENU)
+           ------------------------------------------------------------------------------------------------ */
+        
         .app-sidebar {
             width: 320px;
             background-color: var(--bg-sidebar);
-            border-right: 1px solid var(--border-base);
+            border-right: 2px solid var(--border-base);
             display: flex;
             flex-direction: column;
             z-index: 1000;
             flex-shrink: 0;
+            box-shadow: 5px 0 20px rgba(0,0,0,0.02);
         }
 
         .sidebar-brand-area {
-            padding: 40px 35px;
+            padding: 45px 35px;
             border-bottom: 1px solid var(--border-light);
+            background-color: var(--bg-surface);
         }
 
         .sidebar-brand-area h2 {
@@ -434,17 +398,17 @@
         }
 
         .sidebar-brand-area p {
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 800;
             color: var(--brand-primary);
             text-transform: uppercase;
             letter-spacing: 3px;
-            margin-top: 8px;
+            margin-top: 10px;
         }
 
         .sidebar-menu-scroll {
             flex-grow: 1;
-            padding: 20px;
+            padding: 20px 15px;
             overflow-y: auto;
         }
 
@@ -453,7 +417,7 @@
             font-weight: 900;
             color: var(--text-dim);
             text-transform: uppercase;
-            margin: 25px 0 10px 15px;
+            margin: 30px 0 15px 20px;
             letter-spacing: 1.5px;
         }
 
@@ -461,7 +425,7 @@
             display: flex;
             align-items: center;
             padding: 16px 20px;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             border-radius: var(--radius-medium);
             cursor: pointer;
             font-weight: 700;
@@ -469,49 +433,79 @@
             color: var(--text-muted);
             transition: var(--transition-fast);
             text-decoration: none;
+            border: 2px solid transparent;
         }
 
         .menu-link-item i {
-            margin-right: 15px;
+            margin-right: 18px;
             font-size: 20px;
-            width: 24px;
+            width: 26px;
             text-align: center;
             font-style: normal;
         }
 
         .menu-link-item:hover {
-            background-color: var(--bg-input);
-            color: var(--text-heading);
+            background-color: var(--brand-super-light);
+            color: var(--brand-primary);
+            border-color: var(--brand-soft);
+            transform: translateX(5px);
         }
 
         .menu-link-item.active {
-            background-color: var(--text-heading);
+            background-color: var(--brand-primary);
             color: var(--text-inverse);
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-orange);
+            border-color: var(--brand-primary);
         }
 
         .menu-link-item.active i {
-            color: var(--brand-primary);
+            color: var(--text-inverse);
         }
 
         .sidebar-footer-area {
             padding: 30px;
-            border-top: 1px solid var(--border-light);
+            border-top: 1px solid var(--border-base);
+            background-color: var(--bg-surface);
         }
 
-        /* --- GŁÓWNA RAMA I PASEK GÓRNY (MAIN & TOPBAR) --- */
+        .btn-logout {
+            width: 100%;
+            padding: 18px;
+            background-color: var(--bg-surface);
+            color: var(--text-heading);
+            border: 2px solid var(--border-heavy);
+            border-radius: var(--radius-medium);
+            font-weight: 900;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition-base);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-logout:hover {
+            background-color: var(--status-offline);
+            color: var(--text-inverse);
+            border-color: var(--status-offline);
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.2);
+        }
+
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: GŁÓWNA RAMA APLIKACJI (TOPBAR & CONTENT AREA)
+           ------------------------------------------------------------------------------------------------ */
+        
         .app-main-content {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            background-color: var(--bg-application);
+            background-color: var(--bg-body);
             position: relative;
         }
 
         .app-topbar {
-            height: 90px;
-            background-color: var(--bg-card);
+            height: 100px;
+            background-color: var(--bg-surface);
             border-bottom: 1px solid var(--border-base);
             padding: 0 50px;
             display: flex;
@@ -519,10 +513,11 @@
             justify-content: space-between;
             flex-shrink: 0;
             z-index: 100;
+            box-shadow: var(--shadow-xs);
         }
 
         .topbar-breadcrumb {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 800;
             color: var(--text-heading);
             display: flex;
@@ -531,33 +526,43 @@
         }
 
         .topbar-breadcrumb span {
-            color: var(--text-muted);
-            font-weight: 600;
+            color: var(--brand-primary);
+            font-weight: 900;
         }
 
         .topbar-user-section {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
         }
 
         .user-plan-badge {
-            background-color: var(--bg-input);
-            color: var(--text-heading);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 11px;
+            background-color: var(--brand-light);
+            color: var(--brand-primary);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 12px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border: 1px solid var(--border-base);
+            border: 2px solid var(--brand-soft);
         }
 
-        .user-avatar-box {
+        .user-profile-box {
             display: flex;
             align-items: center;
             gap: 15px;
             cursor: pointer;
+            padding: 8px 25px 8px 10px;
+            background-color: var(--bg-input);
+            border-radius: 50px;
+            border: 2px solid var(--border-base);
+            transition: var(--transition-fast);
+        }
+
+        .user-profile-box:hover {
+            border-color: var(--brand-primary);
+            background-color: var(--bg-surface);
         }
 
         .user-name-display {
@@ -567,26 +572,35 @@
         .user-name-display b {
             display: block;
             font-size: 15px;
-            font-weight: 800;
+            font-weight: 900;
             color: var(--text-heading);
         }
 
+        .user-name-display small {
+            color: var(--text-dim);
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
         .user-avatar-circle {
-            width: 44px;
-            height: 44px;
-            background-color: var(--text-heading);
+            width: 48px;
+            height: 48px;
+            background-color: var(--brand-primary);
             color: var(--text-inverse);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 18px;
+            font-size: 20px;
+            border: 4px solid var(--text-inverse);
+            box-shadow: var(--shadow-sm);
         }
 
-        /* --- SYSTEM WIDOKÓW (ROUTING WIZUALNY) --- */
+        /* --- SYSTEM ROUTINGU (WIDOKI SPA) --- */
         .app-view-container {
-            padding: 40px 50px;
+            padding: 50px 60px;
             overflow-y: auto;
             flex-grow: 1;
             scroll-behavior: smooth;
@@ -599,63 +613,156 @@
 
         .view-module.active {
             display: block;
-            animation: viewFadeIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            animation: viewFadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         @keyframes viewFadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(30px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* --- SIATKI I LAYOUTY (CSS GRID) --- */
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: KARTY BAZOWE I SYSTEM GRID
+           ------------------------------------------------------------------------------------------------ */
+        
         .grid-responsive-2 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
+            gap: 40px;
             margin-bottom: 40px;
         }
 
         .grid-responsive-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
             margin-bottom: 40px;
         }
 
-        .grid-responsive-4 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        /* --- KARTY INFORMACYJNE (WIDGETY) --- */
-        .widget-card {
+        .card {
             background-color: var(--bg-card);
-            border-radius: var(--radius-large);
-            padding: 40px;
+            border-radius: var(--radius-huge);
+            padding: 50px;
             border: 1px solid var(--border-base);
             box-shadow: var(--shadow-sm);
+            transition: var(--transition-base);
+            position: relative;
         }
 
-        /* --- DASHBOARD: STATUS SERWERA --- */
-        .dashboard-status-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 35px;
+        .card:hover {
+            border-color: var(--brand-primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .card-header {
             margin-bottom: 35px;
         }
 
+        .card-header h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 26px;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .card-header h3 i {
+            color: var(--brand-primary);
+            font-style: normal;
+            font-size: 32px;
+        }
+
+        .card-description {
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        /* Przycisk Systemu Zasilania */
+        .btn-sys {
+            padding: 20px 40px;
+            border: none;
+            border-radius: var(--radius-medium);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: var(--transition-base);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-sys-primary {
+            background-color: var(--brand-primary);
+            color: var(--text-inverse);
+            box-shadow: var(--shadow-orange);
+        }
+
+        .btn-sys-primary:hover {
+            background-color: var(--brand-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 140, 0, 0.4);
+        }
+
+        .btn-sys-success {
+            background-color: var(--status-online);
+            color: var(--text-inverse);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-sys-success:hover {
+            background-color: #059669;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-sys-danger {
+            background-color: transparent;
+            color: var(--status-offline);
+            border: 2px solid var(--status-offline);
+        }
+
+        .btn-sys-danger:hover {
+            background-color: var(--status-offline);
+            color: var(--text-inverse);
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: PULPIT STEROWANIA (STATUS & METRYKI)
+           ------------------------------------------------------------------------------------------------ */
+        
+        .dashboard-status-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            background-color: var(--bg-input);
+            padding: 30px;
+            border-radius: var(--radius-large);
+            border: 2px solid var(--border-base);
+        }
+
         .status-orb-container {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
-            border: 12px solid var(--border-base);
+            border: 15px solid var(--border-base);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 45px;
-            background-color: var(--bg-application);
+            font-size: 55px;
+            background-color: var(--bg-surface);
             transition: var(--transition-base);
             position: relative;
         }
@@ -664,12 +771,12 @@
             border-color: var(--status-online);
             color: var(--status-online);
             background-color: var(--status-online-bg);
-            animation: pulseOrbOnline 2s infinite;
+            animation: pulseOrbOnline 2.5s infinite;
         }
 
         @keyframes pulseOrbOnline {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-            70% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+            70% { box-shadow: 0 0 0 30px rgba(16, 185, 129, 0); }
             100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 
@@ -688,57 +795,57 @@
         .status-text-container h2 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
-            font-size: 36px;
+            font-size: 42px;
             color: var(--text-heading);
             line-height: 1;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .status-ip-badge {
             display: inline-block;
-            background-color: var(--bg-input);
-            padding: 8px 16px;
+            background-color: var(--bg-surface);
+            padding: 10px 20px;
             border-radius: 12px;
             font-family: 'Fira Code', monospace;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-muted);
-            font-size: 14px;
-            border: 1px solid var(--border-base);
+            font-size: 16px;
+            border: 2px solid var(--border-heavy);
         }
 
         .uptime-display {
-            background-color: var(--bg-input);
-            padding: 15px 25px;
-            border-radius: 15px;
+            background-color: var(--bg-surface);
+            padding: 20px 30px;
+            border-radius: var(--radius-medium);
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             font-weight: 700;
             color: var(--text-muted);
-            margin-bottom: 35px;
-            border: 1px solid var(--border-base);
+            margin-bottom: 40px;
+            border: 2px solid var(--border-base);
         }
 
         .uptime-display b {
             color: var(--brand-primary);
-            font-size: 18px;
+            font-size: 20px;
             font-family: 'Fira Code', monospace;
         }
 
-        /* --- DASHBOARD: PASEK ZASOBÓW (METRICS) --- */
+        /* --- PASKI ZASOBÓW (RAM/CPU) --- */
         .metric-container {
-            margin-bottom: 25px;
+            margin-bottom: 35px;
         }
 
         .metric-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .metric-title {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 800;
             text-transform: uppercase;
             color: var(--text-muted);
@@ -747,16 +854,18 @@
 
         .metric-value {
             font-family: 'Fira Code', monospace;
-            font-weight: 600;
-            font-size: 14px;
+            font-weight: 700;
+            font-size: 16px;
             color: var(--text-heading);
         }
 
         .metric-bar-bg {
-            height: 12px;
+            height: 20px;
             background-color: var(--bg-input);
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
+            border: 4px solid var(--bg-surface);
+            box-shadow: var(--shadow-xs);
         }
 
         .metric-bar-fill {
@@ -769,24 +878,34 @@
         .metric-bar-fill.fill-ram { background-color: var(--status-online); }
         .metric-bar-fill.fill-cpu { background-color: var(--status-info); }
 
-        /* --- WIDOK ZASOBÓW: GIGANTYCZNE SUWAKI --- */
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: ZASOBY (GIGANTYCZNE SUWAKI - FREE UNLIMITED)
+           ------------------------------------------------------------------------------------------------ */
+        
         .resource-slider-card {
-            background-color: var(--bg-application);
-            padding: 35px;
+            background-color: var(--bg-input);
+            padding: 40px;
             border-radius: var(--radius-large);
-            border: 1px solid var(--border-base);
-            margin-bottom: 30px;
+            border: 2px solid var(--border-base);
+            margin-bottom: 35px;
+            transition: var(--transition-base);
+        }
+
+        .resource-slider-card:hover {
+            border-color: var(--brand-primary);
+            background-color: var(--bg-surface);
+            box-shadow: var(--shadow-sm);
         }
 
         .resource-slider-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .resource-slider-header span {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 900;
             color: var(--text-muted);
             text-transform: uppercase;
@@ -794,30 +913,30 @@
         }
 
         .resource-slider-header b {
-            font-size: 32px;
+            font-size: 36px;
             font-family: 'Montserrat', sans-serif;
-            color: var(--text-heading);
+            color: var(--brand-primary);
             font-weight: 900;
         }
 
         .custom-range {
             width: 100%;
-            height: 8px;
+            height: 12px;
             background-color: var(--border-heavy);
             border-radius: 10px;
             appearance: none;
             outline: none;
-            margin: 20px 0;
+            margin: 25px 0;
         }
 
         .custom-range::-webkit-slider-thumb {
             appearance: none;
-            width: 32px;
-            height: 32px;
+            width: 38px;
+            height: 38px;
             background-color: var(--text-heading);
             border-radius: 50%;
             cursor: pointer;
-            border: 4px solid var(--bg-card);
+            border: 6px solid var(--bg-surface);
             box-shadow: var(--shadow-md);
             transition: var(--transition-fast);
         }
@@ -831,175 +950,129 @@
             display: none;
             background-color: var(--status-warning-bg);
             color: #92400e;
-            padding: 20px;
-            border-radius: var(--radius-medium);
-            font-size: 13px;
-            font-weight: 700;
-            border-left: 6px solid var(--status-warning);
-            margin-top: 20px;
-            line-height: 1.5;
-        }
-
-        /* --- PRZEŁĄCZNIKI (TOGGLES / SWITCHES) --- */
-        .settings-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: 25px;
-            background-color: var(--bg-application);
-            border: 1px solid var(--border-base);
             border-radius: var(--radius-medium);
-            margin-bottom: 15px;
-            transition: var(--transition-fast);
+            font-size: 14px;
+            font-weight: 700;
+            border-left: 8px solid var(--status-warning);
+            margin-top: 25px;
+            line-height: 1.6;
+            animation: alertBounce 0.5s ease;
         }
 
-        .settings-row:hover {
-            border-color: var(--border-heavy);
+        @keyframes alertBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
-        .settings-info h4 {
-            font-size: 15px;
-            font-weight: 800;
-            color: var(--text-heading);
-            margin-bottom: 5px;
-        }
-
-        .settings-info p {
-            font-size: 13px;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .switch-container {
-            position: relative;
-            width: 56px;
-            height: 30px;
-            flex-shrink: 0;
-        }
-
-        .switch-container input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .switch-track {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: var(--border-heavy);
-            transition: .3s;
-            border-radius: 34px;
-        }
-
-        .switch-track:before {
-            position: absolute;
-            content: "";
-            height: 22px;
-            width: 22px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .3s;
-            border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        input:checked + .switch-track {
-            background-color: var(--status-online);
-        }
-
-        input:checked + .switch-track:before {
-            transform: translateX(26px);
-        }
-
-        /* --- KONSOLA SYSTEMOWA (TERMINAL) --- */
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: KONSOLA SYSTEMOWA (TERMINAL)
+           ------------------------------------------------------------------------------------------------ */
+        
         .terminal-layout {
             background-color: var(--bg-terminal);
             border-radius: var(--radius-large);
-            padding: 30px;
-            border: 8px solid #1e293b;
+            padding: 40px;
+            border: 12px solid #1e293b;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
         }
 
         .terminal-output {
-            height: 450px;
+            height: 500px;
             overflow-y: auto;
             font-family: 'Fira Code', monospace;
             color: #f8fafc;
-            font-size: 13px;
-            line-height: 1.8;
-            padding-right: 10px;
+            font-size: 14px;
+            line-height: 2;
+            padding-right: 15px;
+            scroll-behavior: smooth;
         }
 
-        .terminal-output b { color: var(--brand-primary); font-weight: 600; }
+        .terminal-output b { color: var(--brand-primary); font-weight: 700; }
         .log-time { color: #64748b; margin-right: 15px; user-select: none; }
         .log-info { color: #38bdf8; }
-        .log-success { color: #34d399; }
+        .log-success { color: #34d399; font-weight: 700; }
         .log-warn { color: #fbbf24; }
-        .log-error { color: #f87171; background-color: rgba(248,113,113,0.1); padding: 2px 8px; border-radius: 4px; }
+        .log-error { color: #f87171; background-color: rgba(248,113,113,0.1); padding: 4px 10px; border-radius: 6px; }
 
         .terminal-input-area {
             display: flex;
-            gap: 15px;
-            margin-top: 25px;
+            gap: 20px;
+            margin-top: 35px;
         }
 
         .cmd-input {
             flex-grow: 1;
-            padding: 18px 25px;
+            padding: 22px 30px;
             background-color: #1e293b;
-            border: 2px solid #334155;
+            border: 3px solid #334155;
             border-radius: var(--radius-medium);
             color: #ffffff;
             font-family: 'Fira Code', monospace;
-            font-size: 14px;
+            font-size: 16px;
             transition: var(--transition-fast);
         }
 
         .cmd-input:focus {
-            border-color: var(--text-muted);
+            border-color: var(--brand-primary);
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.2);
         }
 
-        /* --- MENEDŻER PLIKÓW (FILE BROWSER) --- */
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: MENEDŻER PLIKÓW (WEB FTP)
+           ------------------------------------------------------------------------------------------------ */
+        
         .ftp-workspace {
             display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 30px;
-            height: 600px;
+            grid-template-columns: 320px 1fr;
+            gap: 35px;
+            height: 650px;
         }
 
         .ftp-tree-view {
-            background-color: var(--bg-application);
-            border-radius: var(--radius-medium);
-            padding: 20px;
+            background-color: var(--bg-input);
+            border-radius: var(--radius-large);
+            padding: 25px;
             overflow-y: auto;
-            border: 1px solid var(--border-base);
+            border: 2px solid var(--border-base);
         }
 
         .ftp-node {
-            padding: 12px 15px;
+            padding: 16px 20px;
             border-radius: var(--radius-small);
             cursor: pointer;
-            margin-bottom: 5px;
-            font-weight: 600;
-            font-size: 13px;
-            color: var(--text-main);
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-muted);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             transition: var(--transition-fast);
+            border: 2px solid transparent;
         }
 
-        .ftp-node i { font-size: 18px; font-style: normal; }
-        .ftp-node:hover { background-color: var(--bg-input); }
-        .ftp-node.active-node { background-color: var(--text-heading); color: var(--text-inverse); }
+        .ftp-node i { font-size: 20px; font-style: normal; }
+        
+        .ftp-node:hover { 
+            background-color: var(--bg-surface); 
+            color: var(--brand-primary);
+            border-color: var(--border-base);
+            transform: translateX(5px);
+        }
+        
+        .ftp-node.active-node { 
+            background-color: var(--text-heading); 
+            color: var(--text-inverse); 
+            box-shadow: var(--shadow-sm);
+        }
 
         .ftp-editor-wrapper {
             position: relative;
             height: 100%;
-            border-radius: var(--radius-medium);
+            border-radius: var(--radius-large);
             overflow: hidden;
-            border: 8px solid var(--bg-terminal);
+            border: 10px solid var(--bg-terminal);
         }
 
         .ftp-textarea {
@@ -1007,105 +1080,288 @@
             height: 100%;
             background-color: var(--bg-terminal);
             color: #f8fafc;
-            padding: 30px;
+            padding: 40px;
             border: none;
             resize: none;
             font-family: 'Fira Code', monospace;
-            font-size: 14px;
-            line-height: 1.7;
+            font-size: 15px;
+            line-height: 1.8;
         }
 
         .ftp-save-btn {
             position: absolute;
-            bottom: 25px;
-            right: 25px;
+            bottom: 30px;
+            right: 30px;
             z-index: 10;
         }
 
-        /* --- MARKETPLACE (RYNEK PLUGINÓW I MODÓW) --- */
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: OPCJE SERWERA (SWITCHES)
+           ------------------------------------------------------------------------------------------------ */
+        
+        .settings-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 35px;
+            background-color: var(--bg-surface);
+            border: 2px solid var(--border-base);
+            border-radius: var(--radius-large);
+            margin-bottom: 20px;
+            transition: var(--transition-fast);
+        }
+
+        .settings-row:hover {
+            border-color: var(--brand-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .settings-info h4 {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-heading);
+            margin-bottom: 8px;
+        }
+
+        .settings-info p {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Element Switcha */
+        .switch-container {
+            position: relative;
+            width: 70px;
+            height: 38px;
+            flex-shrink: 0;
+        }
+
+        .switch-container input { opacity: 0; width: 0; height: 0; }
+
+        .switch-track {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--border-heavy);
+            transition: .4s;
+            border-radius: 40px;
+        }
+
+        .switch-track:before {
+            position: absolute;
+            content: "";
+            height: 28px;
+            width: 28px;
+            left: 5px;
+            bottom: 5px;
+            background-color: white;
+            transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        input:checked + .switch-track { background-color: var(--status-online); }
+        input:checked + .switch-track:before { transform: translateX(32px); }
+
+        /* Pole Huge Input (np. do MOTD, Wersji) */
+        .huge-input {
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            border-bottom: 6px solid var(--border-base);
+            padding: 25px 15px;
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--text-heading);
+            font-family: 'Montserrat', sans-serif;
+            transition: var(--transition-base);
+            margin-bottom: 40px;
+        }
+
+        .huge-input:focus { border-bottom-color: var(--brand-primary); }
+
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: BAZY DANYCH MYSQL
+           ------------------------------------------------------------------------------------------------ */
+        
+        .db-info-box {
+            background-color: var(--bg-input);
+            padding: 30px;
+            border-radius: var(--radius-medium);
+            border: 2px solid var(--border-base);
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 25px;
+            line-height: 1.8;
+        }
+
+        .db-info-box span { color: var(--text-heading); font-weight: 600; }
+
+        .db-create-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 3px dashed var(--border-heavy);
+            border-radius: var(--radius-large);
+            padding: 50px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            height: 100%;
+            background-color: var(--bg-surface);
+        }
+
+        .db-create-box:hover {
+            border-color: var(--text-heading);
+            background-color: var(--bg-input);
+            transform: translateY(-5px);
+        }
+
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: HARMONOGRAMY CRON I TABELE SYSTEMOWE
+           ------------------------------------------------------------------------------------------------ */
+        
+        .table-responsive { width: 100%; overflow-x: auto; }
+        
+        .system-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+            margin-top: 15px;
+        }
+
+        .system-table th {
+            text-align: left;
+            padding: 20px 25px;
+            color: var(--text-muted);
+            font-weight: 900;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .system-table td {
+            padding: 22px 25px;
+            background-color: var(--bg-input);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            border-top: 1px solid var(--border-base);
+            border-bottom: 1px solid var(--border-base);
+            transition: var(--transition-fast);
+        }
+
+        .system-table tr:hover td { background-color: var(--bg-surface); }
+
+        .system-table tr td:first-child {
+            border-left: 1px solid var(--border-base);
+            border-radius: 16px 0 0 16px;
+            color: var(--text-dim);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .system-table tr td:last-child {
+            border-right: 1px solid var(--border-base);
+            border-radius: 0 16px 16px 0;
+        }
+
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: MARKETPLACE I ZWERYFIKOWANE LINKI
+           ------------------------------------------------------------------------------------------------ */
+        
         .marketplace-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
         }
 
         .plugin-item {
-            background-color: var(--bg-application);
-            border: 1px solid var(--border-base);
+            background-color: var(--bg-surface);
+            border: 2px solid var(--border-base);
             border-radius: var(--radius-large);
-            padding: 35px 25px;
+            padding: 40px 30px;
             text-align: center;
             transition: var(--transition-base);
         }
 
         .plugin-item:hover {
-            border-color: var(--border-heavy);
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-sm);
+            border-color: var(--brand-primary);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
         }
 
         .plugin-icon {
-            font-size: 45px;
+            font-size: 55px;
             display: block;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
         }
 
         .plugin-item h4 {
-            font-size: 18px;
-            font-weight: 800;
+            font-size: 20px;
+            font-weight: 900;
             color: var(--text-heading);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .plugin-item p {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--text-muted);
-            margin-bottom: 25px;
-            line-height: 1.5;
+            margin-bottom: 30px;
+            line-height: 1.6;
         }
 
         .legit-links-container {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 20px;
+            margin-top: 25px;
             flex-wrap: wrap;
         }
 
         .legit-link-btn {
             background-color: var(--bg-input);
             color: var(--text-main);
-            padding: 12px 20px;
+            padding: 15px 25px;
             border-radius: var(--radius-small);
             text-decoration: none;
-            font-weight: 700;
-            font-size: 13px;
-            border: 1px solid var(--border-base);
+            font-weight: 800;
+            font-size: 14px;
+            border: 2px solid var(--border-base);
             transition: var(--transition-fast);
         }
 
         .legit-link-btn:hover {
             background-color: var(--text-heading);
             color: var(--text-inverse);
+            border-color: var(--text-heading);
         }
 
-        /* --- OCHRONA SIECIOWA (ANTI-DDOS) --- */
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: ANTI-DDOS (ZAPORA SIECIOWA)
+           ------------------------------------------------------------------------------------------------ */
+        
         .shield-container {
             background-color: var(--bg-terminal);
             color: white;
-            padding: 35px;
+            padding: 45px;
             border-radius: var(--radius-large);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border: 3px solid var(--status-shield);
-            margin-bottom: 30px;
+            border: 4px solid var(--status-shield);
+            margin-bottom: 40px;
         }
 
         .shield-container h2 {
             color: var(--status-shield);
             font-weight: 900;
-            margin-bottom: 5px;
-            font-size: 24px;
+            margin-bottom: 10px;
+            font-size: 28px;
         }
 
         .shield-status-indicator {
@@ -1113,13 +1369,16 @@
             align-items: center;
             gap: 15px;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 18px;
             letter-spacing: 1px;
+            background-color: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 50px;
         }
 
         .shield-pulse {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             background-color: var(--status-online);
             border-radius: 50%;
             animation: shieldPulse 2s infinite;
@@ -1127,174 +1386,68 @@
 
         @keyframes shieldPulse {
             0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
-            70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+            70% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
         }
 
-        /* --- TABELE (AUDYT I CRON) --- */
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-        }
-
-        .system-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 8px;
-        }
-
-        .system-table th {
-            text-align: left;
-            padding: 15px 20px;
-            color: var(--text-muted);
-            font-weight: 800;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .system-table td {
-            padding: 18px 20px;
-            background-color: var(--bg-application);
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-main);
-            border-top: 1px solid var(--border-base);
-            border-bottom: 1px solid var(--border-base);
-        }
-
-        .system-table tr td:first-child {
-            border-left: 1px solid var(--border-base);
-            border-radius: 12px 0 0 12px;
-            color: var(--text-dim);
-            font-family: 'Fira Code', monospace;
-        }
-
-        .system-table tr td:last-child {
-            border-right: 1px solid var(--border-base);
-            border-radius: 0 12px 12px 0;
-        }
-
-        /* --- BAZY DANYCH MYSQL --- */
-        .db-info-box {
-            background-color: var(--bg-application);
-            padding: 25px;
-            border-radius: var(--radius-medium);
-            border: 1px solid var(--border-base);
-            font-family: 'Fira Code', monospace;
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 20px;
-            line-height: 1.8;
-        }
-
-        .db-info-box span {
-            color: var(--text-heading);
-            font-weight: 600;
-        }
-
-        .db-create-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed var(--border-heavy);
-            border-radius: var(--radius-medium);
-            padding: 40px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition-fast);
-            height: 100%;
-        }
-
-        .db-create-box:hover {
-            border-color: var(--text-heading);
-            background-color: var(--bg-input);
-        }
-
-        /* --- SUPPORT CHAT --- */
-        .chat-history {
-            height: 350px;
-            background-color: var(--bg-application);
-            border-radius: var(--radius-medium);
-            padding: 25px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            border: 1px solid var(--border-base);
-        }
-
-        .chat-message {
-            background-color: var(--bg-card);
-            padding: 16px 20px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            font-size: 13px;
-            font-weight: 500;
-            border-left: 4px solid var(--text-dim);
-            box-shadow: var(--shadow-xs);
-            max-width: 85%;
-            line-height: 1.6;
-        }
-
-        .chat-message.msg-bot {
-            border-left-color: var(--brand-primary);
-        }
-
-        .chat-message.msg-user {
-            background-color: var(--text-heading);
-            color: var(--text-inverse);
-            border-left: none;
-            margin-left: auto;
-        }
-
-        /* --- EKRAN TWORZENIA SERWERA (SPAWN) --- */
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: EKRAN TWORZENIA SERWERA
+           ------------------------------------------------------------------------------------------------ */
+        
         .spawn-screen {
             text-align: center;
-            padding: 80px 0;
+            padding: 120px 0;
+            animation: authEntrance 0.8s ease;
         }
 
         .spawn-input-field {
-            font-size: 40px;
+            font-size: 50px;
             font-weight: 900;
             border: none;
-            border-bottom: 6px solid var(--border-heavy);
+            border-bottom: 8px solid var(--border-heavy);
             background-color: transparent;
             text-align: center;
             color: var(--text-heading);
             width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            margin: 40px auto;
+            max-width: 700px;
+            padding: 25px;
+            margin: 50px auto;
             display: block;
             transition: var(--transition-base);
             font-family: 'Montserrat', sans-serif;
+            letter-spacing: -1px;
         }
 
         .spawn-input-field:focus {
-            border-bottom-color: var(--text-heading);
+            border-bottom-color: var(--brand-primary);
         }
 
         .spawn-input-field::placeholder {
-            color: var(--border-heavy);
+            color: var(--text-dim);
+            opacity: 0.3;
         }
 
-        /* --- SYSTEM POWIADOMIEŃ TOAST --- */
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: SYSTEM POWIADOMIEŃ TOAST
+           ------------------------------------------------------------------------------------------------ */
+        
         .toast-notification {
             position: fixed;
             bottom: 40px;
             right: 40px;
             background-color: var(--text-heading);
             color: var(--text-inverse);
-            padding: 20px 30px;
-            border-radius: var(--radius-medium);
-            font-weight: 700;
-            font-size: 14px;
+            padding: 25px 40px;
+            border-radius: var(--radius-large);
+            font-weight: 800;
+            font-size: 16px;
             transform: translateY(200%);
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 99999999;
             box-shadow: var(--shadow-lg);
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            border-left: 8px solid var(--brand-primary);
         }
 
         .toast-notification.show {
@@ -1305,37 +1458,56 @@
 </head>
 <body>
 
-    <div id="view-login" class="auth-viewport">
-        <div class="auth-container">
-            <span class="auth-brand-icon">🐔</span>
-            <h1 class="auth-heading">KokoszkaMC</h1>
-            <p class="auth-subheading">Zaloguj się do panelu operacyjnego v2.0 TITAN</p>
+    <div id="view-login" class="auth-portal">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; padding: 30px 60px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <i style="font-size: 30px; font-style: normal;">🐔</i>
+                <h1 style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 900; color: var(--text-heading);">KOKOSZKA<span>MC</span></h1>
+            </div>
+            <div style="display: flex; gap: 15px;">
+                <button class="btn btn-outline" style="border: none; background: var(--text-heading); color: white;" onclick="app.navigateAuth('login')">LOGOWANIE</button>
+                <button class="btn btn-outline" onclick="app.navigateAuth('register')">REJESTRACJA</button>
+            </div>
+        </div>
+
+        <div class="auth-box">
+            <span class="auth-icon">👋</span>
+            <h1 class="auth-title">Witaj z powrotem</h1>
+            <p class="auth-subtitle">Zaloguj się, aby zarządzać swoim serwerem v2.0</p>
             
             <div class="input-group">
                 <label class="input-label">Nazwa Użytkownika</label>
-                <input type="text" id="in-login-user" class="input-control" placeholder="Wpisz swój nick">
+                <input type="text" id="in-login-user" class="input-control" placeholder="Wpisz swój nick z gry">
             </div>
 
             <div class="input-group">
                 <label class="input-label">Hasło Dostępu</label>
                 <input type="password" id="in-login-pass" class="input-control" placeholder="••••••••">
-                <div class="password-eye-toggle" onclick="app.togglePasswordView('in-login-pass', this)">👁️</div>
+                <div class="eye-btn" onclick="app.togglePasswordView('in-login-pass', this)">👁️</div>
             </div>
             
-            <button class="btn btn-primary btn-block" style="padding: 22px; font-size: 18px;" onclick="app.processLogin()">URUCHOM KOKOSZKAMC</button>
+            <button class="btn btn-primary btn-block" style="padding: 24px; font-size: 18px; margin-top: 10px;" onclick="app.processLogin()">URUCHOM KOKOSZKAMC</button>
             
-            <div class="auth-footer-link">
-                Nie posiadasz jeszcze konta? <span onclick="app.navigateAuth('register')">Załóż darmowe konto.</span>
-            </div>
-            <div id="err-login" class="auth-error-message"></div>
+            <div id="err-login" class="auth-error"></div>
         </div>
     </div>
 
-    <div id="view-register" class="auth-viewport hidden">
-        <div class="auth-container">
-            <span class="auth-brand-icon">🐣</span>
-            <h1 class="auth-heading">Dołącz do nas</h1>
-            <p class="auth-subheading">Stwórz konto w najlepszym darmowym hostingu na świecie</p>
+    <div id="view-register" class="auth-portal hidden">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; padding: 30px 60px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <i style="font-size: 30px; font-style: normal;">🐣</i>
+                <h1 style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 900; color: var(--text-heading);">KOKOSZKA<span>MC</span></h1>
+            </div>
+            <div style="display: flex; gap: 15px;">
+                <button class="btn btn-outline" onclick="app.navigateAuth('login')">LOGOWANIE</button>
+                <button class="btn btn-outline" style="border: none; background: var(--text-heading); color: white;" onclick="app.navigateAuth('register')">REJESTRACJA</button>
+            </div>
+        </div>
+
+        <div class="auth-box">
+            <span class="auth-icon">🚀</span>
+            <h1 class="auth-title">Zbuduj swój świat</h1>
+            <p class="auth-subtitle">Stwórz konto w najlepszym darmowym hostingu na świecie</p>
             
             <div class="input-group">
                 <label class="input-label">Nowy Użytkownik (Nick)</label>
@@ -1345,19 +1517,16 @@
             <div class="input-group">
                 <label class="input-label">Tajne Hasło</label>
                 <input type="password" id="in-reg-pass" class="input-control" placeholder="Minimum 5 znaków">
-                <div class="password-eye-toggle" onclick="app.togglePasswordView('in-reg-pass', this)">👁️</div>
+                <div class="eye-btn" onclick="app.togglePasswordView('in-reg-pass', this)">👁️</div>
             </div>
             
-            <button class="btn btn-primary btn-block" style="padding: 22px; font-size: 18px;" onclick="app.processRegistration()">WYKLUJ KONTO</button>
+            <button class="btn btn-primary btn-block" style="padding: 24px; font-size: 18px; margin-top: 10px;" onclick="app.processRegistration()">WYKLUJ NOWE KONTO</button>
             
-            <div class="auth-footer-link">
-                Masz już konto w naszym systemie? <span onclick="app.navigateAuth('login')">Wróć do logowania.</span>
-            </div>
-            <div id="err-reg" class="auth-error-message"></div>
+            <div id="err-reg" class="auth-error"></div>
         </div>
     </div>
 
-    <div class="app-sidebar">
+    <div class="sidebar">
         <div class="sidebar-brand-area">
             <h2>KOKOSZKA MC</h2>
             <p>TITAN ENGINE v2.0</p>
@@ -1380,11 +1549,11 @@
             <div class="menu-link-item" onclick="ui.switchModule('plugins', this)"><i>🔌</i> Mody i Pluginy (Sklep)</div>
             <div class="menu-link-item" onclick="ui.switchModule('security', this)"><i>🛡️</i> Ochrona Anti-DDoS</div>
             <div class="menu-link-item" onclick="ui.switchModule('audit', this)"><i>📜</i> Dziennik Audytu (Logi)</div>
-            <div class="menu-link-item" onclick="ui.switchModule('support', this)"><i>🎫</i> Centrum Pomocy</div>
+            
         </div>
 
         <div class="sidebar-footer-area">
-            <button class="btn-logout" onclick="location.reload()">WYLOGUJ KONTO</button>
+            <button class="btn btn-logout btn-block" onclick="location.reload()">WYLOGUJ KONTO</button>
         </div>
     </div>
 
@@ -1409,25 +1578,25 @@
                 
                 <div id="layout-spawn-server" style="display: none;">
                     <div class="spawn-screen">
-                        <div style="font-size: 80px; margin-bottom: 10px;">🥚</div>
-                        <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 40px;">Czas wykluć Twoją maszynę!</h1>
-                        <p style="color: var(--text-muted); margin-top: 10px;">Podaj unikalną nazwę serwera. Twój darmowy adres IP zostanie wygenerowany automatycznie.</p>
+                        <div style="font-size: 90px; margin-bottom: 20px;">🥚</div>
+                        <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 48px;">Zainicjuj swoją maszynę!</h1>
+                        <p style="color: var(--text-muted); font-size: 18px; margin-top: 15px;">Podaj unikalną nazwę serwera. Twój darmowy adres IP zostanie wygenerowany automatycznie.</p>
                         
                         <input type="text" id="in-create-name" class="spawn-input-field" placeholder="np. survival-kokoszka">
                         
-                        <div style="margin-bottom: 40px;">
+                        <div style="margin-bottom: 50px;">
                             <span style="font-weight: 800; font-size: 14px; color: var(--text-dim); text-transform: uppercase;">Przydzielony Adres IP:</span><br>
-                            <span id="out-create-ip" style="font-family: 'Fira Code', monospace; font-size: 24px; font-weight: 700; color: var(--text-heading);">...kokoszka.me</span>
+                            <span id="out-create-ip" style="font-family: 'Fira Code', monospace; font-size: 28px; font-weight: 700; color: var(--brand-primary);">...kokoszka.me</span>
                         </div>
                         
-                        <button class="btn btn-primary" style="padding: 22px 60px; font-size: 18px;" onclick="engine.deployNewServer()">STWÓRZ SERWER ZA DARMO</button>
+                        <button class="btn btn-primary" style="padding: 25px 80px; font-size: 20px;" onclick="engine.deployNewServer()">STWÓRZ SERWER ZA DARMO</button>
                     </div>
                 </div>
 
                 <div id="layout-manage-server" style="display: none;">
                     <div class="grid-responsive-2">
                         
-                        <div class="widget-card">
+                        <div class="card">
                             <div class="dashboard-status-wrapper">
                                 <div id="ui-status-orb" class="status-orb-container">🔴</div>
                                 <div class="status-text-container">
@@ -1446,9 +1615,9 @@
                             </div>
                         </div>
 
-                        <div class="widget-card">
+                        <div class="card">
                             <div class="card-title"><i>⚡</i> Obciążenie Węzła</div>
-                            <div class="card-description">Monitorowanie zasobów w czasie rzeczywistym. Węzeł macierzysty: PL-WAR-01.</div>
+                            <div class="card-description">Monitorowanie zasobów sprzętowych w czasie rzeczywistym.</div>
                             
                             <div class="metric-container">
                                 <div class="metric-header">
@@ -1469,26 +1638,30 @@
                                     <div id="ui-live-cpu-bar" class="metric-bar-fill fill-cpu"></div>
                                 </div>
                             </div>
+
+                            <div style="text-align: center; margin-top: 35px; border-top: 1px solid var(--border-base); padding-top: 20px;">
+                                <span style="font-size: 11px; font-weight: 800; color: var(--text-dim); text-transform: uppercase;">Lokalizacja Węzła: <b style="color: var(--text-heading);">PL-WAR-01</b></span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="widget-card">
+                    <div class="card">
                         <div class="grid-responsive-4" style="margin: 0; text-align: center;">
                             <div>
                                 <span class="metric-title">SILNIK GRY</span><br>
-                                <b id="ui-info-engine" style="font-size: 20px;">---</b>
+                                <b id="ui-info-engine" style="font-size: 22px; color: var(--text-heading);">---</b>
                             </div>
                             <div>
                                 <span class="metric-title">WERSJA MC</span><br>
-                                <b id="ui-info-version" style="font-size: 20px;">---</b>
+                                <b id="ui-info-version" style="font-size: 22px; color: var(--text-heading);">---</b>
                             </div>
                             <div>
                                 <span class="metric-title">GRACZE ONLINE</span><br>
-                                <b style="font-size: 20px;">0 / 20</b>
+                                <b style="font-size: 22px; color: var(--text-heading);">0 / 20</b>
                             </div>
                             <div>
                                 <span class="metric-title">PORT DOMYŚLNY</span><br>
-                                <b style="font-size: 20px; font-family: 'Fira Code', monospace; color: var(--status-info);">25565</b>
+                                <b style="font-size: 22px; font-family: 'Fira Code', monospace; color: var(--status-info);">25565</b>
                             </div>
                         </div>
                     </div>
@@ -1496,9 +1669,9 @@
             </div>
 
             <div id="module-resources" class="view-module">
-                <div class="widget-card">
+                <div class="card">
                     <div class="card-title"><i>🚀</i> Nielimitowany Przydział Mocy</div>
-                    <div class="card-description" style="font-size: 15px;">W KokoszkaMC zasoby są darmowe. Ponieważ jest to hosting uruchamiany w Twojej przeglądarce, przydzielaj zasoby odpowiedzialnie. Ustawienia przekraczające fizyczne możliwości Twojego komputera spowodują awarię karty w przeglądarce.</div>
+                    <div class="card-description" style="font-size: 16px;">W KokoszkaMC zasoby są darmowe. Ponieważ serwer działa w Twojej przeglądarce, przydzielaj zasoby odpowiedzialnie. Ustawienia przekraczające fizyczne możliwości Twojego komputera spowodują awarię karty.</div>
                     
                     <div class="resource-slider-card">
                         <div class="resource-slider-header">
@@ -1507,7 +1680,7 @@
                         </div>
                         <input type="range" min="1" max="128" value="4" class="custom-range" id="slider-ram" oninput="engine.syncResourceSliders()">
                         <div id="alert-ram-limit" class="system-alert">
-                            <b>KRYTYCZNE OSTRZEŻENIE SYSTEMOWE:</b> Wykryto alokację ponad 16GB RAM. Upewnij się, że Twój system hosta posiada wystarczającą ilość wolnej pamięci stronicowanej, w przeciwnym razie proces OOM Killer zabije kartę przeglądarki.
+                            <b>KRYTYCZNE OSTRZEŻENIE SYSTEMOWE:</b> Wykryto alokację ponad 16GB RAM. Upewnij się, że Twój system hosta posiada wystarczającą ilość wolnej pamięci fizycznej. W przeciwnym razie przeglądarka może ulec awarii z powodu braku pamięci (OOM).
                         </div>
                     </div>
 
@@ -1518,50 +1691,50 @@
                         </div>
                         <input type="range" min="1" max="32" value="2" class="custom-range" id="slider-cpu" oninput="engine.syncResourceSliders()">
                         <div id="alert-cpu-limit" class="system-alert">
-                            <b>OSTRZEŻENIE O WYDAJNOŚCI:</b> Silnik Java w grze Minecraft rzadko potrafi wykorzystać więcej niż 4 rdzenie procesora do obsługi głównego wątku serwera. Przydzielenie 32 rdzeni sztucznie obciąży scheduler systemu operacyjnego.
+                            <b>OSTRZEŻENIE O WYDAJNOŚCI:</b> Silnik Java w grze Minecraft nie skaluje się dobrze powyżej 4 rdzeni procesora w głównym wątku (Main Tick Loop). Przydzielenie np. 32 rdzeni sztucznie obciąży scheduler systemu operacyjnego i może powodować lagi.
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" onclick="ui.triggerToast('Parametry fizyczne zostały zaktualizowane w bazie. Wykonaj restart serwera, aby zaaplikować zmiany.')">ZAPISZ KONFIGURACJĘ SPRZĘTOWĄ</button>
+                    <button class="btn btn-primary btn-block" style="padding: 22px; font-size: 18px;" onclick="ui.triggerToast('Parametry fizyczne zostały zaktualizowane w bazie danych. Wykonaj restart serwera, aby zaaplikować zmiany.')">ZAPISZ KONFIGURACJĘ SPRZĘTOWĄ</button>
                 </div>
             </div>
 
             <div id="module-software" class="view-module">
-                <div class="widget-card">
+                <div class="card">
                     <div class="card-title"><i>⚙️</i> Wybór Oprogramowania</div>
-                    <div class="card-description">Zmień silnik serwera w dowolnym momencie. System automatycznie pobierze i zweryfikuje pliki .jar.</div>
+                    <div class="card-description">Zmień silnik serwera w dowolnym momencie. System automatycznie pobierze i zweryfikuje nowe pliki bibliotek Javy (.jar).</div>
                     
-                    <div style="margin-bottom: 30px;">
-                        <label class="input-label" style="margin-left: 0;">Rodzina Silnika:</label>
+                    <div style="margin-bottom: 40px; margin-top: 30px;">
+                        <label class="input-label" style="margin-left: 0; color: var(--text-heading);">Rodzina Silnika:</label>
                         <select id="sel-engine-type" class="huge-input">
                             <option value="Vanilla">Vanilla Minecraft (Czysty oryginał)</option>
                             <option selected value="PaperMC">PaperMC (Wysoka Wydajność + Pluginy)</option>
                             <option value="Spigot">Spigot (Standardowa zgodność z pluginami)</option>
-                            <option value="Forge">Forge (Modyfikacje Techniczne Java)</option>
+                            <option value="Forge">Forge (Środowisko pod Modyfikacje Java)</option>
                             <option value="Fabric">Fabric (Lekkie mody nowej generacji)</option>
-                            <option value="Purpur">Purpur (Eksperymentalna wydajność)</option>
+                            <option value="Purpur">Purpur (Eksperymentalna wydajność i poprawki)</option>
                         </select>
                     </div>
 
-                    <div style="margin-bottom: 40px;">
-                        <label class="input-label" style="margin-left: 0;">Wersja Klienta:</label>
+                    <div style="margin-bottom: 50px;">
+                        <label class="input-label" style="margin-left: 0; color: var(--text-heading);">Wersja Klienta:</label>
                         <select id="sel-engine-version" class="huge-input">
                             </select>
                     </div>
 
-                    <button class="btn btn-primary btn-block" onclick="engine.processSoftwareInstallation()">ROZPOCZNIJ INSTALACJĘ NOWEGO SILNIKA</button>
+                    <button class="btn btn-primary btn-block" style="padding: 22px; font-size: 18px;" onclick="engine.processSoftwareInstallation()">ROZPOCZNIJ INSTALACJĘ NOWEGO SILNIKA</button>
                 </div>
             </div>
 
             <div id="module-properties" class="view-module">
-                <div class="widget-card">
+                <div class="card">
                     <div class="card-title"><i>🛠️</i> Konfiguracja Głównej Mechaniki</div>
-                    <div class="card-description">Zarządzaj opcjami z pliku server.properties za pomocą wygodnych przełączników.</div>
+                    <div class="card-description">Zarządzaj najważniejszymi opcjami z pliku server.properties za pomocą wygodnych przełączników, bez konieczności bezpośredniej edycji tekstu.</div>
 
                     <div class="settings-row">
                         <div class="settings-info">
                             <h4>Tryb Non-Premium (Cracked / Offline-Mode)</h4>
-                            <p>Wyłącza autoryzację sesji przez serwery Mojang. Wymagane dla graczy bez zakupionej gry.</p>
+                            <p>Wyłącza autoryzację sesji przez serwery Mojang. Wymagane dla graczy bez oryginalnej gry.</p>
                         </div>
                         <div class="switch-container">
                             <input type="checkbox" id="prop-nonpremium" checked>
@@ -1594,7 +1767,7 @@
                     <div class="settings-row">
                         <div class="settings-info">
                             <h4>Bloki Poleceń (Command Blocks)</h4>
-                            <p>Niezbędne do działania zaawansowanych mechanizmów Redstone i map przygodowych (Adventure).</p>
+                            <p>Wymagane do działania zaawansowanych mechanizmów Redstone i skomplikowanych map przygodowych.</p>
                         </div>
                         <div class="switch-container">
                             <input type="checkbox" id="prop-cmd" checked>
@@ -1602,32 +1775,32 @@
                         </div>
                     </div>
 
-                    <div style="margin-top: 40px;">
-                        <label class="input-label" style="margin-left: 0;">Wiadomość Powitalna na Liście (MOTD):</label>
-                        <input type="text" id="prop-motd" class="huge-input" style="font-size: 20px;" placeholder="Witaj na potężnym serwerze KokoszkaMC!">
+                    <div style="margin-top: 50px; margin-bottom: 40px;">
+                        <label class="input-label" style="margin-left: 0; color: var(--text-heading);">Wiadomość Powitalna na Liście (MOTD):</label>
+                        <input type="text" id="prop-motd" class="huge-input" style="font-size: 24px;" placeholder="Witaj na potężnym serwerze KokoszkaMC!">
                     </div>
 
-                    <button class="btn btn-primary" onclick="ui.triggerToast('Konfiguracja server.properties została zaktualizowana i zapisana na dysku SSD.')">ZAPISZ PLIK SERVER.PROPERTIES</button>
+                    <button class="btn btn-primary btn-block" style="padding: 22px; font-size: 18px;" onclick="ui.triggerToast('Konfiguracja server.properties została zaktualizowana i zapisana na dysku SSD.')">ZAPISZ PLIK SERVER.PROPERTIES</button>
                 </div>
             </div>
 
             <div id="module-terminal" class="view-module">
                 <div class="terminal-layout">
                     <div class="terminal-output" id="terminal-screen-log">
-                        <div class="log-info"><span class="log-time">[SYSTEM]</span> Zestawiono bezpieczne połączenie WebSocket z węzłem docelowym.</div>
+                        <div class="log-info"><span class="log-time">[SYSTEM]</span> Zestawiono bezpieczne połączenie WebSocket z węzłem docelowym na porcie 443.</div>
                         <div class="log-success"><span class="log-time">[SYSTEM]</span> KokoszkaOS Terminal v2.0 gotowy do przyjmowania komend systemowych.</div>
                     </div>
                     <div class="terminal-input-area">
-                        <input type="text" id="terminal-cmd-input" class="cmd-input" placeholder="Wpisz komendę administracyjną (np. /op TwójNick, /save-all, /stop)">
-                        <button class="btn btn-outline" style="color: white; border-color: #334155; width: 180px;" onclick="engine.executeTerminalCommand()">WYKONAJ</button>
+                        <input type="text" id="terminal-cmd-input" class="cmd-input" placeholder="Wpisz komendę administracyjną (np. /op TwójNick, /save-all, /stop, /weather clear)">
+                        <button class="btn btn-outline" style="color: white; border-color: #334155; width: 200px; font-size: 16px;" onclick="engine.executeTerminalCommand()">WYKONAJ</button>
                     </div>
                 </div>
             </div>
 
             <div id="module-ftp" class="view-module">
-                <div class="widget-card">
+                <div class="card">
                     <div class="card-title"><i>📂</i> Zdalny Eksplorator Plików</div>
-                    <div class="card-description">Modyfikuj pliki konfiguracyjne serwera bezpośrednio z przeglądarki dzięki wbudowanemu edytorowi.</div>
+                    <div class="card-description">Modyfikuj pliki konfiguracyjne serwera bezpośrednio z poziomu przeglądarki dzięki wbudowanemu, bezpiecznemu edytorowi.</div>
                     
                     <div class="ftp-workspace">
                         <div class="ftp-tree-view">
@@ -1638,686 +1811,49 @@
                             <div class="ftp-node" onclick="engine.loadFileIntoEditor('ops.json')"><i>📄</i> ops.json</div>
                             <div class="ftp-node" style="color: var(--text-dim);"><i>📁</i> world (Katalog Mapy)</div>
                             <div class="ftp-node" style="color: var(--text-dim);"><i>📁</i> plugins (Katalog Dodatków)</div>
-                            <div class="ftp-node" style="color: var(--text-dim);"><i>📁</i> logs (Archiwum)</div>
+                            <div class="ftp-node" style="color: var(--text-dim);"><i>📁</i> logs (Katalog Archiwum)</div>
                         </div>
                         <div class="ftp-editor-wrapper">
-                            <textarea id="ftp-text-area" class="ftp-textarea" spellcheck="false"># Wybierz plik tekstowy z drzewa po lewej stronie, aby otworzyć edytor...</textarea>
-                            <button class="btn btn-primary ftp-save-btn" onclick="ui.triggerToast('Zapisano zmiany w wybranym pliku na zdalnym serwerze.')">ZAPISZ ZMIANY W PLIKU</button>
+                            <textarea id="ftp-text-area" class="ftp-textarea" spellcheck="false"># Wybierz plik tekstowy z drzewa po lewej stronie, aby otworzyć zaawansowany edytor KokoszkaCode...</textarea>
+                            <button class="btn btn-primary ftp-save-btn" style="padding: 16px 30px; font-size: 14px;" onclick="ui.triggerToast('Zapisano zmiany w wybranym pliku na zdalnym serwerze.')">ZAPISZ ZMIANY W PLIKU</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div id="module-mysql" class="view-module">
-                <div class="widget-card">
+                <div class="card">
                     <div class="card-title"><i>🗄️</i> Bazy Danych (MySQL / MariaDB)</div>
-                    <div class="card-description">Bazy danych są wymagane przez zaawansowane pluginy takie jak LuckPerms, CoreProtect czy serwery logowania (AuthMe).</div>
+                    <div class="card-description">Twórz w pełni zarządzane bazy danych dla zaawansowanych pluginów takich jak LuckPerms, CoreProtect, czy serwerów logowania (np. AuthMe).</div>
                     
                     <div class="grid-responsive-3">
-                        <div class="widget-card" style="padding: 30px;">
-                            <h4 style="font-size: 16px; margin-bottom: 5px;">s1_kokoszka_db</h4>
-                            <p style="font-size: 12px; color: var(--text-muted);">Status: <b style="color: var(--success)">AKTYWNA</b></p>
+                        <div class="widget-card" style="padding: 30px; border: 2px solid var(--border-base);">
+                            <h4 style="font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 5px;">s1_kokoszkadb</h4>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">Status Połączenia: <b style="color: var(--status-online)">AKTYWNA</b></p>
                             
                             <div class="db-info-box">
-                                Host: <span>mysql.kokoszkamc.me</span><br>
-                                Port: <span>3306</span><br>
-                                User: <span>u1092_admin</span><br>
-                                Pass: <span>••••••••••</span>
+                                Host (Adres IP): <br><span>mysql.kokoszkamc.me</span><br><br>
+                                Port TCP: <br><span>3306</span><br><br>
+                                Nazwa Użytkownika: <br><span>u1092_dbadmin</span><br><br>
+                                Hasło Bazy: <br><span>••••••••••••</span>
                             </div>
                             
-                            <button class="btn btn-outline btn-block" style="margin-top: 15px; padding: 12px; font-size: 12px;" onclick="ui.triggerToast('Hasło bazy danych skopiowano do schowka.')">POKAŻ HASŁO</button>
+                            <button class="btn btn-outline btn-block" style="margin-top: 20px; padding: 14px; font-size: 13px;" onclick="ui.triggerToast('Skopiowano hasło dostępu do bazy danych do schowka.')">SKOPIUJ HASŁO DO SCHOWKA</button>
                         </div>
 
-                        <div class="db-create-box" onclick="ui.triggerToast('Z powodu polityki anty-spamowej, w darmowym planie możliwa jest tylko 1 baza danych.')">
-                            <span style="font-size: 40px; color: var(--border-heavy); margin-bottom: 10px;">+</span>
-                            <b style="font-size: 14px; color: var(--text-muted);">UTWÓRZ NOWĄ BAZĘ DAT</b>
+                        <div class="db-create-box" onclick="ui.triggerToast('Z powodu polityki anty-spamowej oraz ochrony przed przeciążeniem dysków SSD, w darmowym planie możliwa jest tylko 1 baza danych.')">
+                            <span style="font-size: 50px; color: var(--border-heavy); margin-bottom: 15px; font-weight: 300;">+</span>
+                            <b style="font-size: 14px; color: var(--text-muted); text-transform: uppercase;">UTWÓRZ NOWĄ BAZĘ DANYCH</b>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div id="module-cron" class="view-module">
-                <div class="widget-card">
+                <div class="card">
                     <div class="card-title"><i>⏱️</i> Zadania Cykliczne (Cron Jobs)</div>
-                    <div class="card-description">Zautomatyzuj zarządzanie serwerem. Twórz harmonogramy restartów, cyklicznych zapisów mapy i automatycznych wiadomości na czacie.</div>
+                    <div class="card-description">Zautomatyzuj powtarzalne procesy zarządzania serwerem. Ustawiaj restarty, zaplanowane zapisy mapy i automatyczne ogłoszenia na czacie w określonych godzinach.</div>
                     
                     <div class="table-responsive">
                         <table class="system-table">
                             <thead>
-                                <tr><th>EKSPRESJA CRON</th><th>AKCJA / POLECENIE DO WYKONANIA</th><th>STATUS ZADANIA</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>0 4 * * *</td>
-                                    <td>Wewnętrzny Restart Maszyny (Optymalizacja RAM)</td>
-                                    <td><span style="color: var(--success); font-weight: 800;">AKTYWNE</span></td>
-                                </tr>
-                                <tr>
-                                    <td>*/30 * * * *</td>
-                                    <td>say Zapisywanie mapy... (save-all)</td>
-                                    <td><span style="color: var(--success); font-weight: 800;">AKTYWNE</span></td>
-                                </tr>
-                                <tr>
-                                    <td>0 * * * *</td>
-                                    <td>say Zostaw łapkę w górę dla serwera!</td>
-                                    <td><span style="color: var(--text-dim); font-weight: 800;">ZAWIESZONE</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <button class="btn btn-outline" style="margin-top: 20px;" onclick="ui.triggerToast('Moduł dodawania nowych zadań Cron jest aktualnie aktualizowany. Spróbuj później.')">+ ZAPLANUJ NOWE ZADANIE</button>
-                </div>
-            </div>
-
-            <div id="module-plugins" class="view-module">
-                <div class="widget-card">
-                    <div class="card-title"><i>🔌</i> Instalator Zaufanych Dodatków</div>
-                    <div class="card-description">Zainstaluj najważniejsze pluginy z naszej zweryfikowanej bazy jednym kliknięciem, lub odwiedź bezpieczne strony twórców, aby znaleźć modyfikacje.</div>
-                    
-                    <div class="menu-group-title" style="margin-left: 0;">Szybka Instalacja Wewnętrzna</div>
-                    <div class="marketplace-grid" style="margin-bottom: 40px;">
-                        <div class="plugin-item">
-                            <span class="plugin-icon">🏗️</span>
-                            <h4>WorldEdit</h4>
-                            <p>Potężny edytor mapy in-game. Buduj gigantyczne struktury za pomocą komend i siekiery.</p>
-                            <button class="btn btn-outline btn-block" onclick="ui.triggerToast('Plugin WorldEdit został pomyślnie pobrany do folderu /plugins.')">ZAINSTALUJ (ONE-CLICK)</button>
-                        </div>
-                        <div class="plugin-item">
-                            <span class="plugin-icon">⭐</span>
-                            <h4>EssentialsX</h4>
-                            <p>Rdzeń każdego serwera. Zawiera ponad 150 użytecznych komend, kitów, domów i warpów.</p>
-                            <button class="btn btn-outline btn-block" onclick="ui.triggerToast('Plugin EssentialsX został pomyślnie pobrany do folderu /plugins.')">ZAINSTALUJ (ONE-CLICK)</button>
-                        </div>
-                        <div class="plugin-item">
-                            <span class="plugin-icon">🛡️</span>
-                            <h4>LuckPerms</h4>
-                            <p>Nowoczesny i zaawansowany menedżer uprawnień i rang (Prefiksy, VIP, Admin).</p>
-                            <button class="btn btn-outline btn-block" onclick="ui.triggerToast('Plugin LuckPerms został pomyślnie pobrany do folderu /plugins.')">ZAINSTALUJ (ONE-CLICK)</button>
-                        </div>
-                    </div>
-
-                    <div class="menu-group-title" style="margin-left: 0; color: var(--brand-primary);">Oficjalne, Bezpieczne Źródła Modyfikacji (Zewnętrzne)</div>
-                    <div class="legit-links-container">
-                        <a href="https://modrinth.com/mods" target="_blank" class="legit-link-btn">MODRINTH (Mody i Pluginy)</a>
-                        <a href="https://www.curseforge.com/minecraft/mc-mods" target="_blank" class="legit-link-btn">CURSEFORGE (Największa baza Modpacków)</a>
-                        <a href="https://www.spigotmc.org/resources/" target="_blank" class="legit-link-btn">SPIGOTMC (Baza Pluginów Serwerowych)</a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="module-security" class="view-module">
-                <div class="widget-card">
-                    <div class="card-title"><i>🛡️</i> Zapora Sieciowa i Mitygacja Ataków</div>
-                    <div class="card-description">Ochrona Twojego serwera przed atakami wolumetrycznymi na warstwy L3/L4 oraz złośliwym ruchem na warstwie aplikacji (L7).</div>
-                    
-                    <div class="shield-container">
-                        <div>
-                            <h2>Aktywna Ochrona Kokoszka-Shield™</h2>
-                            <p style="color: #cbd5e1; font-size: 13px;">Ruch jest stale analizowany w czasie rzeczywistym. Twój serwer jest bezpieczny przed botnetami (BotAttack, NullPing).</p>
-                        </div>
-                        <div class="shield-status-indicator">
-                            <div class="shield-pulse"></div>
-                            W PEŁNI CHRONIONY
-                        </div>
-                    </div>
-
-                    <div class="settings-row">
-                        <div class="settings-info">
-                            <h4>Tryb "Under Attack" (Agresywne Filtrowanie)</h4>
-                            <p>Włącz, jeśli Twój serwer jest obecnie obiektem celowego ataku botów (wyższy ping dla graczy z powodu analizy pakietów).</p>
-                        </div>
-                        <div class="switch-container"><input type="checkbox"><span class="switch-track"></span></div>
-                    </div>
-                    
-                    <div class="settings-row">
-                        <div class="settings-info">
-                            <h4>Blokada ruchu z Data Center i VPN</h4>
-                            <p>Automatycznie blokuje próby dołączenia do gry z węzłów exitowych Tor oraz znanych publicznych sieci VPN (np. NordVPN).</p>
-                        </div>
-                        <div class="switch-container"><input type="checkbox" checked><span class="switch-track"></span></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="module-audit" class="view-module">
-                <div class="widget-card">
-                    <div class="card-title"><i>📜</i> Dziennik Bezpieczeństwa (Audit Trail)</div>
-                    <div class="card-description">System rejestruje każdą istotną zmianę w konfiguracji panelu. Jest to kluczowe, jeśli dzielisz panel z innymi administratorami.</div>
-                    
-                    <div class="table-responsive">
-                        <table class="system-table">
-                            <thead>
-                                <tr><th>Sygnatura Czasowa</th><th>Dokładny Opis Zdarzenia</th><th>Wykonawca</th><th>Status Działania</th></tr>
-                            </thead>
-                            <tbody id="ui-audit-table-render">
-                                </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div id="module-support" class="view-module">
-                <div class="widget-card">
-                    <div class="card-title"><i>🎫</i> Centrum Pomocy Technicznej</div>
-                    <div class="card-description">Masz problem z konfiguracją pliku? Chcesz zapytać o działanie pluginu? Skorzystaj z naszego czatu. Jesteśmy tu dla Ciebie.</div>
-                    
-                    <div class="chat-history" id="ui-support-chatbox">
-                        <div class="chat-message msg-bot">
-                            <b>🤖 Asystent KokoszkaBot (Automatyczny System Triage):</b><br>
-                            Witaj w panelu wsparcia! Ponieważ posiadasz darmowy pakiet ULTIMATE, jesteś w naszej kolejce priorytetowej. W czym mogę Ci dzisiaj pomóc? Opowiedz o swoim problemie z serwerem.
-                        </div>
-                    </div>
-                    
-                    <div style="display: flex; gap: 15px;">
-                        <input type="text" id="ui-support-text" class="input-control" style="background-color: var(--bg-application);" placeholder="Napisz do zespołu pomocy...">
-                        <button class="btn btn-primary" style="width: 200px;" onclick="engine.dispatchSupportMessage()">WYŚLIJ ZAPYTANIE</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="sys-toast" class="toast-notification">
-        <span style="font-size: 24px;">ℹ️</span>
-        <span id="toast-message-content">Powiadomienie testowe</span>
-    </div>
-
-    <script>
-        /**
-         * KOKOSZKA MC - TITAN ENGINE v2.0
-         * Czysty kod zoptymalizowany pod Single Page Application (SPA).
-         */
-
-        // ----------------------------------------------------------------------
-        // DANE STARTOWE (MOCKUP BAZY)
-        // ----------------------------------------------------------------------
-        const SYSTEM_DATA = {
-            minecraftVersions: [
-                "1.21.1", "1.21", "1.20.6", "1.20.4", "1.20.1", "1.19.4", "1.19.2", 
-                "1.18.2", "1.17.1", "1.16.5", "1.15.2", "1.12.2", "1.8.8", "1.7.10", "BETA 1.7.3"
-            ],
-            fileTemplates: {
-                "server.properties": "online-mode=false\npvp=true\ngamemode=survival\ndifficulty=normal\nmax-players=20\nmotd=Najlepszy Serwer KokoszkaMC\nallow-flight=false\nenable-command-block=true\nview-distance=10\nsimulation-distance=8\nspawn-protection=16\nlevel-name=world\nserver-port=25565\nnetwork-compression-threshold=256",
-                "spigot.yml": "settings:\n  save-user-cache-on-stop-only: false\n  sample-count: 12\n  bungeecord: false\n  user-cache-size: 1000\n  moved-wrongly-threshold: 0.0625\n  timeout-time: 60\n  restart-on-crash: true\n  restart-script: ./start.sh\nmessages:\n  whitelist: You are not whitelisted on this server!\n  unknown-command: Unknown command. Type \"/help\" for help.\n  server-full: The server is full!\n  outdated-client: Outdated client! Please use {0}\n  outdated-server: Outdated server! I'm still on {0}\n  restart: Server is restarting",
-                "bukkit.yml": "settings:\n  allow-end: true\n  warn-on-overload: true\n  permissions-file: permissions.yml\n  update-folder: update\n  plugin-profiling: false\n  connection-throttle: 4000\n  query-plugins: true\n  deprecated-verbose: default\n  shutdown-message: Server closed\n  minimum-api: none\nspawn-limits:\n  monsters: 70\n  animals: 10\n  water-animals: 15\n  ambient: 15\nchunk-gc:\n  period-in-ticks: 600\n  load-threshold: 0",
-                "whitelist.json": "[\n  {\n    \"uuid\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"KokoszkaDev\"\n  }\n]",
-                "ops.json": "[\n  {\n    \"uuid\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"WlascicielSerwera\",\n    \"level\": 4,\n    \"bypassesPlayerLimit\": false\n  }\n]"
-            }
-        };
-
-        // ----------------------------------------------------------------------
-        // MENEDŻER STANU APLIKACJI I BAZY DANYCH (LOCALSTORAGE)
-        // ----------------------------------------------------------------------
-        const appStore = {
-            currentAuthView: 'login',
-            activeUsername: null,
-            database: JSON.parse(localStorage.getItem('kokoszka_titan_v2_db_production') || "{}"),
-
-            initializeBootstrap() {
-                console.log("%c [KOKOSZKA OS] BOOTSTRAP INITIATED ", "background: #ff8c00; color: white; font-weight: bold;");
-                
-                // Renderowanie rozwijanej listy wersji
-                const versionDropdown = document.getElementById('sel-engine-version');
-                SYSTEM_DATA.minecraftVersions.forEach(ver => {
-                    let optionElem = document.createElement('option');
-                    optionElem.value = ver; 
-                    optionElem.innerText = ver;
-                    versionDropdown.appendChild(option);
-                });
-
-                // Podgląd IP w trybie rzeczywistym w oknie tworzenia
-                document.getElementById('in-create-name').addEventListener('input', (event) => {
-                    const cleanString = event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '');
-                    document.getElementById('out-create-ip').innerText = (cleanString || "...") + ".kokoszka.me";
-                });
-            },
-
-            persistDatabase() {
-                localStorage.setItem('kokoszka_titan_v2_db_production', JSON.stringify(this.database));
-            },
-
-            // --- LOGIKA FORMULARZY ---
-            navigateAuth(viewName) {
-                this.currentAuthView = viewName;
-                document.getElementById('err-login').innerText = "";
-                document.getElementById('err-reg').innerText = "";
-
-                const viewLogin = document.getElementById('view-login');
-                const viewRegister = document.getElementById('view-register');
-
-                if (viewName === 'login') {
-                    viewRegister.classList.add('hidden');
-                    setTimeout(() => viewLogin.classList.remove('hidden'), 400);
-                } else {
-                    viewLogin.classList.add('hidden');
-                    setTimeout(() => viewRegister.classList.remove('hidden'), 400);
-                }
-            },
-
-            togglePasswordView(inputElementId, iconElement) {
-                const targetInput = document.getElementById(inputElementId);
-                if (targetInput.type === 'password') { 
-                    targetInput.type = 'text'; 
-                    iconElement.innerText = '🔒'; 
-                } else { 
-                    targetInput.type = 'password'; 
-                    iconElement.innerText = '👁️'; 
-                }
-            },
-
-            processRegistration() {
-                const usernameField = document.getElementById('in-reg-user').value.trim();
-                const passwordField = document.getElementById('in-reg-pass').value.trim();
-                const errorBox = document.getElementById('err-reg');
-
-                if (usernameField.length < 3) return errorBox.innerText = "BŁĄD: Nazwa użytkownika jest zbyt krótka!";
-                if (passwordField.length < 5) return errorBox.innerText = "BŁĄD: Hasło musi zawierać minimum 5 znaków bezpieczeństwa!";
-                if (this.database[usernameField]) return errorBox.innerText = "BŁĄD: Ten użytkownik istnieje już w głównej bazie danych!";
-
-                // Tworzenie schematu dokumentu w bazie
-                this.database[usernameField] = { 
-                    passwordHash: passwordField, // Symulacja hasha
-                    serverData: null,
-                    auditLogs: [
-                        { time: new Date().toLocaleString(), action: "Rejestracja i Weryfikacja Konta w Systemie KokoszkaMC." }
-                    ] 
-                };
-                
-                this.persistDatabase();
-                alert("SUKCES! Twoje konto zostało pomyślnie zarejestrowane. Zaloguj się, używając swoich danych.");
-                this.navigateAuth('login');
-            },
-
-            processLogin() {
-                const usernameField = document.getElementById('in-login-user').value.trim();
-                const passwordField = document.getElementById('in-login-pass').value.trim();
-                const errorBox = document.getElementById('err-login');
-
-                const userRecord = this.database[usernameField];
-                
-                if (!userRecord || userRecord.passwordHash !== passwordField) {
-                    return errorBox.innerText = "BŁĄD KRYTYCZNY: Nieprawidłowa nazwa użytkownika lub hasło dostępu!";
-                }
-                
-                this.activeUsername = usernameField;
-                engine.initiateUserSession();
-            }
-        };
-
-        // ----------------------------------------------------------------------
-        // JĄDRO SYSTEMU (SERVER LOGIC & SIMULATION)
-        // ----------------------------------------------------------------------
-        const engine = {
-            serverState: null,
-            isOnlineProcess: false,
-            isAwaitingBoot: false,
-            internalUptimeTick: 0,
-            
-            // Wskaźniki interwałów do czyszczenia z pamięci
-            intervalHardware: null,
-            intervalUptime: null,
-
-            initiateUserSession() {
-                // Efekt przejścia do panelu (zniknięcie ekranu logowania)
-                const targetView = app.currentAuthView === 'login' ? document.getElementById('view-login') : document.getElementById('view-register');
-                targetView.classList.add('panel-active');
-                
-                const dbContext = app.database[app.activeUsername];
-                
-                // Zastrzyk danych wizualnych
-                document.getElementById('ui-display-username').innerText = app.activeUsername;
-                document.getElementById('ui-display-avatar').innerText = app.activeUsername.charAt(0).toUpperCase();
-                
-                this.serverState = dbContext.serverData;
-                
-                // Opóźnienie wyliczone z animacji CSS
-                setTimeout(() => {
-                    this.synchronizeStateWithUI();
-                    this.renderAuditLogTable();
-                }, 500);
-            },
-
-            deployNewServer() {
-                const rawString = document.getElementById('in-create-name').value.trim();
-                const safeString = rawString.toLowerCase().replace(/[^a-z0-9-]/g, '');
-                
-                if (safeString.length < 3) return alert("OCHRONA SYSTEMU: Wymagane jest użycie co najmniej 3 znaków alfanumerycznych.");
-
-                // Utworzenie wirtualnej struktury
-                this.serverState = {
-                    nodeName: safeString,
-                    ipAddress: safeString + ".kokoszka.me",
-                    allocatedMemory: 4,
-                    allocatedCores: 2,
-                    engineType: "PaperMC",
-                    engineVersion: "1.20.4"
-                };
-
-                app.database[app.activeUsername].serverData = this.serverState;
-                this.appendAuditEntry("Wygenerowanie i przypisanie serwera wirtualnego: " + this.serverState.ipAddress);
-                app.persistDatabase();
-                
-                this.synchronizeStateWithUI();
-                ui.triggerToast("Twoja darmowa maszyna wirtualna została pomyślnie alokowana w chmurze.");
-            },
-
-            synchronizeStateWithUI() {
-                const spawnerLayout = document.getElementById('layout-spawn-server');
-                const dashboardLayout = document.getElementById('layout-manage-server');
-
-                if (!this.serverState) {
-                    spawnerLayout.style.display = 'block';
-                    dashboardLayout.style.display = 'none';
-                } else {
-                    spawnerLayout.style.display = 'none';
-                    dashboardLayout.style.display = 'block';
-                    
-                    // Propagacja wartości do DOM (Dashboard)
-                    document.getElementById('ui-status-ip').innerText = this.serverState.ipAddress;
-                    document.getElementById('ui-info-engine').innerText = this.serverState.engineType;
-                    document.getElementById('ui-info-version').innerText = this.serverState.engineVersion;
-                    
-                    // Propagacja wartości do DOM (Zasoby)
-                    document.getElementById('slider-ram').value = this.serverState.allocatedMemory;
-                    document.getElementById('slider-cpu').value = this.serverState.allocatedCores;
-                    this.syncResourceSliders();
-                }
-            },
-
-            togglePowerState() {
-                if (this.isAwaitingBoot) return; // Zabezpieczenie przed SPAMem
-                
-                const btnRef = document.getElementById('ui-btn-power');
-                const orbRef = document.getElementById('ui-status-orb');
-                const txtRef = document.getElementById('ui-status-text');
-
-                if (!this.isOnlineProcess) {
-                    // WŁĄCZANIE (BOOT SEQUENCE)
-                    this.isAwaitingBoot = true;
-                    btnRef.disabled = true;
-                    btnRef.style.opacity = "0.6";
-                    
-                    orbRef.className = "status-orb-container state-booting";
-                    orbRef.innerText = "⏳";
-                    txtRef.innerText = "URUCHAMIANIE...";
-                    
-                    ui.pushToTerminal("Wykryto sygnał rozruchowy z powłoki webowej.", "info");
-                    ui.pushToTerminal(`Żądanie przestrzeni pamięci na hoście: ${this.serverState.allocatedMemory}GB RAM.`, "info");
-                    ui.pushToTerminal(`Wykrywanie silnika w kontenerze: ${this.serverState.engineType}...`, "info");
-
-                    setTimeout(() => {
-                        if (this.isAwaitingBoot || this.isOnlineProcess) {
-                            this.isAwaitingBoot = false;
-                            this.isOnlineProcess = true;
-                            
-                            btnRef.disabled = false;
-                            btnRef.style.opacity = "1";
-                            btnRef.innerText = "ZATRZYMAJ MASZYNĘ";
-                            btnRef.className = "btn btn-danger";
-                            
-                            orbRef.className = "status-orb-container state-online";
-                            orbRef.innerText = "🟢";
-                            txtRef.innerText = "ONLINE";
-                            
-                            ui.pushToTerminal(`Proces bazowy Java powiązany z ${this.serverState.engineType} (${this.serverState.engineVersion}) uaktywnił nasłuchiwanie tcp/25565.`, "success");
-                            ui.pushToTerminal(`Gotowy. Zaloguj się używając IP: ${this.serverState.ipAddress}`, "success");
-                            
-                            this.appendAuditEntry("Pomyślne włączenie środowiska wirtualnego (Start)");
-                            this.startHardwareMetrics();
-                        }
-                    }, 4000);
-
-                } else {
-                    // ZAMYKANIE (SHUTDOWN SEQUENCE)
-                    this.isOnlineProcess = false;
-                    btnRef.innerText = "URUCHOM SERWER";
-                    btnRef.className = "btn btn-success";
-                    
-                    orbRef.className = "status-orb-container";
-                    orbRef.innerText = "🔴";
-                    txtRef.innerText = "OFFLINE";
-                    
-                    ui.pushToTerminal("SIGTERM: Wymuszenie czystego zatrzymania (Graceful Shutdown).", "info");
-                    ui.pushToTerminal("Opróżnianie buforów świata, zamykanie połączeń MySQL...", "info");
-                    
-                    this.appendAuditEntry("Łagodne wyłączenie maszyny z zapisem zrzutu pamięci (Stop)");
-                    this.stopHardwareMetrics();
-                }
-            },
-
-            startHardwareMetrics() {
-                // Pętla odświeżania zasobów (Wizualizacja)
-                this.intervalHardware = setInterval(() => {
-                    if (!this.isOnlineProcess) return;
-                    
-                    const ramTotalMB = this.serverState.allocatedMemory * 1024;
-                    // Generowanie losowego użycia pomiędzy 20% a 50%
-                    const ramUsageMB = Math.floor(Math.random() * (ramTotalMB * 0.5 - ramTotalMB * 0.2) + ramTotalMB * 0.2);
-                    // CPU użycie (3% - 40%)
-                    const cpuUsagePerc = Math.floor(Math.random() * 37) + 3;
-                    
-                    document.getElementById('ui-live-ram-text').innerText = `${ramUsageMB} / ${ramTotalMB} MB`;
-                    document.getElementById('ui-live-ram-bar').style.width = `${(ramUsageMB / ramTotalMB) * 100}%`;
-                    
-                    document.getElementById('ui-live-cpu-text').innerText = `${cpuUsagePerc}%`;
-                    document.getElementById('ui-live-cpu-bar').style.width = `${cpuUsagePerc}%`;
-                }, 1800);
-
-                // Pętla zegarowa Uptime
-                this.intervalUptime = setInterval(() => {
-                    this.uptimeSeconds++;
-                    const h = Math.floor(this.uptimeSeconds / 3600);
-                    const m = Math.floor((this.uptimeSeconds % 3600) / 60);
-                    const s = this.uptimeSeconds % 60;
-                    
-                    const timeFormat = (h < 10 ? '0' : '') + h + ":" + (m < 10 ? '0' : '') + m + ":" + (s < 10 ? '0' : '') + s;
-                    document.getElementById('ui-uptime-clock').innerText = timeFormat;
-                }, 1000);
-            },
-
-            stopHardwareMetrics() {
-                clearInterval(this.intervalHardware);
-                clearInterval(this.intervalUptime);
-                this.uptimeSeconds = 0;
-                
-                document.getElementById('ui-uptime-clock').innerText = "00:00:00";
-                document.getElementById('ui-live-ram-text').innerText = "0 / 4096 MB";
-                document.getElementById('ui-live-ram-bar').style.width = "0%";
-                document.getElementById('ui-live-cpu-text').innerText = "0%";
-                document.getElementById('ui-live-cpu-bar').style.width = "0%";
-            },
-
-            syncResourceSliders() {
-                const fetchedRam = parseInt(document.getElementById('slider-ram').value);
-                const fetchedCpu = parseInt(document.getElementById('slider-cpu').value);
-                
-                document.getElementById('lbl-ram-val').innerText = fetchedRam;
-                document.getElementById('lbl-cpu-val').innerText = fetchedCpu;
-                
-                // System powiadomień ostrzegawczych w UI
-                document.getElementById('alert-ram-limit').style.display = (fetchedRam > 16 ? 'block' : 'none');
-                document.getElementById('alert-cpu-limit').style.display = (fetchedCpu > 4 ? 'block' : 'none');
-
-                if (this.serverState) {
-                    this.serverState.allocatedMemory = fetchedRam;
-                    this.serverState.allocatedCores = fetchedCpu;
-                    app.database[app.activeUsername].serverData = this.serverState;
-                    app.persistDatabase();
-                }
-            },
-
-            processSoftwareInstallation() {
-                if (!this.serverState) return;
-                
-                const engineTypeField = document.getElementById('sel-engine-type').value;
-                const engineVerField = document.getElementById('sel-engine-version').value;
-                
-                this.serverState.engineType = engineTypeField;
-                this.serverState.engineVersion = engineVerField;
-                
-                this.appendAuditEntry(`Modyfikacja środowiska JRE: Migracja do ${engineTypeField} na kompilacji ${engineVerField}`);
-                app.persistDatabase();
-                this.synchronizeStateWithUI();
-                
-                ui.triggerToast(`Operacja udana! Nowe pliki .jar dla ${engineTypeField} zostały podpięte pod węzeł roboczy.`);
-            },
-
-            triggerEmergencyKill() {
-                this.isOnlineProcess = false;
-                this.isAwaitingBoot = false;
-                this.togglePowerState();
-                ui.pushToTerminal("ALARM BEZPIECZEŃSTWA: Wywołano akcję KILL. Proces PID został natychmiast przerwany bez zapisywania danych.", "error");
-                this.appendAuditEntry("Natychmiastowe zabicie procesu kontenera (KILL SWITCH)");
-            },
-
-            executeTerminalCommand() {
-                const terminalInput = document.getElementById('terminal-cmd-input');
-                const commandRaw = terminalInput.value.trim();
-                
-                if (!commandRaw) return;
-                
-                ui.pushToTerminal("> [Root Exec]: " + commandRaw, "info");
-                
-                // Parser atrapa
-                if (commandRaw.toLowerCase().startsWith("op ")) {
-                    ui.pushToTerminal("[System API]: Gracz został pomyślnie dodany do grupy administratorów.", "success");
-                } else if (commandText.toLowerCase() === "help") {
-                    ui.pushToTerminal("--- KOKOSZKA COMMAND SYSTEM ---\nDostępne: op, deop, kill, stop, save-all", "info");
-                }
-                
-                terminalInput.value = "";
-            },
-
-            loadFileIntoEditor(fileNameRequested) {
-                const editorNode = document.getElementById('ftp-text-area');
-                const matchedContent = SYSTEM_DATA.fileTemplates[fileNameRequested] || `# KokoszkaMC WebFTP Protocol\n# Otwarto plik: ${fileNameRequested}\n\n# Zawartość tego pliku jest obecnie pusta.`;
-                
-                editorNode.value = matchedContent;
-                ui.triggerToast(`Pobrano plik ${fileNameRequested} z pamięci masowej serwera.`);
-                this.appendAuditEntry(`Odczyt pliku przez protokół WebFTP: ${fileNameRequested}`);
-            },
-
-            dispatchSupportMessage() {
-                const userInput = document.getElementById('ui-support-text');
-                const messageValue = userInput.value.trim();
-                const chatContainer = document.getElementById('ui-support-chatbox');
-                
-                if (!messageValue) return;
-
-                chatContainer.innerHTML += `
-                    <div class="chat-message msg-user">
-                        <b style="display:block; margin-bottom:5px;">Ty (${app.activeUsername}):</b>
-                        ${messageValue}
-                    </div>`;
-                
-                userInput.value = "";
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-
-                setTimeout(() => {
-                    chatContainer.innerHTML += `
-                        <div class="chat-message msg-bot">
-                            <b style="color: var(--brand-primary); display: block; margin-bottom: 5px;">🤖 System Ticketingowy Kokoszki:</b>
-                            Dziękuję za wiadomość. Twoje zgłoszenie otrzymało identyfikator TICKET-#${Math.floor(Math.random() * 8000) + 1000}. Oczekuj na połączenie z żywym konsultantem.
-                        </div>`;
-                    chatContainer.scrollTop = chatContainer.scrollHeight;
-                }, 1000);
-            },
-
-            appendAuditEntry(descriptionString) {
-                const timeStr = new Date().toLocaleString();
-                // Dodaj na początek tablicy
-                app.database[app.activeUsername].auditLogs.unshift({
-                    time: timeStr,
-                    action: descriptionString
-                });
-                
-                // GC Logów: Trzymamy tylko 100 ostatnich logów dla wydajności
-                if(app.database[app.activeUsername].auditLogs.length > 100) {
-                    app.database[app.activeUsername].auditLogs.pop();
-                }
-                
-                this.renderAuditLogTable();
-            },
-
-            renderAuditLogTable() {
-                const tBody = document.getElementById('ui-audit-table-render');
-                tBody.innerHTML = ""; 
-                
-                const logsArray = app.database[app.activeUsername].auditLogs;
-                
-                logsArray.forEach(log => {
-                    tBody.innerHTML += `
-                        <tr>
-                            <td>${log.time}</td>
-                            <td>${log.action}</td>
-                            <td><span style="background: var(--bg-input); padding: 5px 12px; border-radius: 8px;">${app.activeUsername}</span></td>
-                            <td style="color: var(--status-online); font-weight: 800;">POTWIERDZONY</td>
-                        </tr>
-                    `;
-                });
-            }
-        };
-
-        // ----------------------------------------------------------------------
-        // MENEDŻER WIZUALNY (UI RENDERER & NOTIFICATIONS)
-        // ----------------------------------------------------------------------
-        const ui = {
-            switchModule(moduleId, clickedTab) {
-                // Czyszczenie klas aktywnych dla zakładek w sidebarze i widoków głównych
-                document.querySelectorAll('.view-module').forEach(view => view.classList.remove('active'));
-                document.querySelectorAll('.menu-link-item').forEach(link => link.classList.remove('active'));
-                
-                // Aplikowanie nowej zakładki
-                document.getElementById('module-' + moduleId).classList.add('active');
-                clickedTab.classList.add('active');
-                
-                // Parsowanie nazwy dla ścieżki na górze ekranu (Breadcrumbs)
-                const textWithoutIcon = clickedTab.innerText.replace(/[^\w\sąęółńćźżĄĘÓŁŃĆŹŻ\(\)\-\/]/gi, '').trim();
-                document.getElementById('ui-current-module-name').innerText = textWithoutIcon;
-            },
-
-            pushToTerminal(messageString, messageType) {
-                const termWindow = document.getElementById('terminal-screen-log');
-                const timeSignature = new Date().toLocaleTimeString();
-                
-                const typeToClassMap = {
-                    'info': 'log-info',
-                    'success': 'log-success',
-                    'error': 'log-error',
-                    'warn': 'log-warn',
-                    'default': ''
-                };
-                
-                const cssClass = typeToClassMap[messageType] || typeToClassMap['default'];
-                
-                termWindow.innerHTML += `
-                    <div style="margin-bottom: 6px;">
-                        <span class="log-time">[${timeSignature}]</span> 
-                        <span class="${cssClass}">${messageString}</span>
-                    </div>
-                `;
-                
-                termWindow.scrollTop = termWindow.scrollHeight;
-            },
-
-            triggerToast(toastText) {
-                const toastWrapper = document.getElementById('sys-toast');
-                document.getElementById('toast-message-content').innerText = toastText;
-                
-                toastWrapper.classList.add('show');
-                
-                setTimeout(() => {
-                    toastWrapper.classList.remove('show');
-                }, 4000);
-            }
-        };
-
-        // --- GLOBAL EVENT LISTENERS ---
-        window.addEventListener('DOMContentLoaded', () => {
-            app.initializeBootstrap();
-        });
-
-    </script>
-</body>
-</html>
