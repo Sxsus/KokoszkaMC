@@ -3,39 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KokoszkaMC v3.0 | Najpotężniejszy Darmowy Hosting</title>
+    <title>KokoszkaMC v3.0 TITAN | Ostateczny Hosting Minecraft</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     
     <style>
         /* ========================================================================================
-           SEKCJA 1: GIGANTYCZNY FRAMEWORK CSS (AESTHETIC WHITE & ORANGE)
+           SEKCJA 1: GIGANTYCZNY FRAMEWORK CSS (LINIE 20 - 850+)
+           Czysta biel, czarna typografia, pomarańczowe akcenty. Styl Enterprise.
            ========================================================================================
         */
 
         :root {
-            /* 1. Barwy Marki KokoszkaMC */
-            --brand-primary: #ff8c00;
-            --brand-hover: #e67e00;
-            --brand-dark: #cc7000;
-            --brand-light: #fff5e6;
-            --brand-glow: rgba(255, 140, 0, 0.4);
+            /* 1. Barwy Główne - Akcenty Kokoszki */
+            --brand-primary: #ff8c00;            /* Główny pomarańcz */
+            --brand-hover: #e67e00;              /* Ciemniejszy pomarańcz na hover */
+            --brand-dark: #cc7000;               /* Bardzo ciemny pomarańcz (obramowania) */
+            --brand-light: #fff5e6;              /* Bardzo jasny pomarańcz (tła akcentowe) */
+            --brand-glow: rgba(255, 140, 0, 0.2);
+            --brand-soft: rgba(255, 140, 0, 0.05);
             
-            /* 2. Tła - Estetyczna Biel */
-            --bg-application: #f8fafc;
-            --bg-surface: #ffffff;
-            --bg-sidebar: #ffffff;
-            --bg-input: #f1f5f9;
-            --bg-terminal: #0f172a;
+            /* 2. Tła - AESTHETIC WHITE */
+            --bg-application: #f8fafc;           /* Tło aplikacji (jasnoszare) */
+            --bg-surface: #ffffff;               /* Tło kart i paneli (czysta biel) */
+            --bg-sidebar: #ffffff;               /* Tło paska bocznego */
+            --bg-input: #f1f5f9;                 /* Tło pól input (lekkie odcięcie od bieli) */
+            --bg-terminal: #0f172a;              /* Tło konsoli (ciemne) */
             
-            /* 3. Typografia - Głębia Czerni */
-            --text-heading: #000000;
-            --text-main: #1e293b;
-            --text-muted: #475569;
-            --text-dim: #94a3b8;
-            --text-inverse: #ffffff;
+            /* 3. Typografia - CZARNE NAPISY */
+            --text-heading: #000000;             /* Nagłówki - głęboka czerń */
+            --text-main: #1e293b;                /* Tekst główny - bardzo ciemny szary/czarny */
+            --text-muted: #475569;               /* Tekst poboczny */
+            --text-dim: #94a3b8;                 /* Tekst wygaszony (placeholdery) */
+            --text-inverse: #ffffff;             /* Tekst biały (na przyciskach) */
             
-            /* 4. Kolory Funkcjonalne */
+            /* 4. Kolory Funkcjonalne / Statusy */
             --status-success: #10b981;
             --status-success-bg: #ecfdf5;
             --status-danger: #ef4444;
@@ -44,30 +46,31 @@
             --status-warning-bg: #fffbeb;
             --status-info: #3b82f6;
             --status-info-bg: #eff6ff;
-            --status-shield: #8b5cf6;
+            --status-shield: #8b5cf6;            /* Kolor Anti-DDoS */
             
-            /* 5. Obramowania */
+            /* 5. System Obramowań */
             --border-light: #f8fafc;
-            --border-base: #e2e8f0;
-            --border-heavy: #cbd5e1;
+            --border-base: #e2e8f0;              /* Podstawowe ramki */
+            --border-heavy: #cbd5e1;             /* Mocniejsze ramki (hover) */
+            --border-dark: #000000;              /* Czarne obramowania akcentowe */
             
-            /* 6. System Cieniowania Z-Index */
+            /* 6. System Cieniowania (Z-Index Elevations) */
             --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            --shadow-brand: 0 10px 25px -5px rgba(255, 140, 0, 0.3);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
             
-            /* 7. Zaokrąglenia (Geometria) */
-            --radius-huge: 40px;
-            --radius-large: 24px;
-            --radius-medium: 16px;
-            --radius-small: 10px;
+            /* 7. Zaokrąglenia i Geometria */
+            --radius-huge: 32px;
+            --radius-large: 20px;
+            --radius-medium: 12px;
+            --radius-small: 8px;
             
-            /* 8. Animacje */
+            /* 8. Fizyka Przejść */
             --transition-fast: all 0.2s ease-in-out;
             --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            --transition-slow: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         /* --- GLOBALNY RESET --- */
@@ -88,34 +91,24 @@
             display: flex;
             overflow: hidden;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- SCROLLBARY --- */
-        ::-webkit-scrollbar {
-            width: 12px;
-            height: 12px;
-        }
-        ::-webkit-scrollbar-track {
-            background-color: var(--bg-application);
-        }
-        ::-webkit-scrollbar-thumb {
-            background-color: var(--border-heavy);
-            border-radius: 20px;
-            border: 3px solid var(--bg-application);
-            transition: var(--transition-base);
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: var(--brand-primary);
-        }
+        /* --- NIESTANDARDOWY SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background-color: var(--bg-application); }
+        ::-webkit-scrollbar-thumb { background-color: var(--border-heavy); border-radius: 10px; border: 2px solid var(--bg-application); transition: var(--transition-base); }
+        ::-webkit-scrollbar-thumb:hover { background-color: var(--brand-primary); }
 
         /* ========================================================================================
-           KOMPONENT 1: SYSTEM AUTORYZACJI (TWARDA BLOKADA)
+           MODUŁ: SYSTEM AUTORYZACJI (EKRAN WYBORU, LOGOWANIA I REJESTRACJI)
            ======================================================================================== */
         
-        .auth-viewport {
+        .auth-portal-wrapper {
             position: fixed;
             inset: 0;
             background-color: var(--bg-application);
+            background-image: radial-gradient(circle at 50% 0%, var(--brand-light) 0%, var(--bg-application) 70%);
             z-index: 9999999;
             display: flex;
             align-items: center;
@@ -125,60 +118,60 @@
             transition: opacity 0.5s ease, visibility 0.5s ease;
         }
 
-        .auth-viewport.hidden {
+        /* Ukrywanie ekranów */
+        .auth-portal-wrapper.hidden {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
         }
 
-        .auth-viewport.booting-panel {
+        /* Klasa animująca wejście do głównego panelu */
+        .auth-portal-wrapper.booting-sequence {
             transform: translateY(-100%);
             opacity: 1;
             visibility: visible;
             transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
         }
 
-        .auth-container {
+        /* Karta autoryzacji */
+        .auth-card {
             background-color: var(--bg-surface);
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
             padding: 60px 50px;
             border-radius: var(--radius-huge);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-xl);
             border: 1px solid var(--border-base);
             text-align: center;
+            position: relative;
             transform: translateY(0) scale(1);
             transition: var(--transition-slow);
-            position: relative;
-            overflow: hidden;
         }
 
-        .auth-container::before {
+        .auth-portal-wrapper.hidden .auth-card {
+            transform: translateY(40px) scale(0.95);
+        }
+
+        /* Minimalistyczny pomarańczowy akcent na górze karty */
+        .auth-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
+            top: 0; left: 0; width: 100%; height: 4px;
             background-color: var(--brand-primary);
         }
 
-        .auth-viewport.hidden .auth-container {
-            transform: translateY(30px) scale(0.95);
-        }
-
+        /* Nagłówki w karcie */
         .auth-brand-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
+            font-size: 55px;
+            margin-bottom: 15px;
             display: block;
-            line-height: 1;
         }
 
         .auth-heading {
             font-family: 'Montserrat', sans-serif;
-            font-size: 38px;
+            font-size: 36px;
             font-weight: 900;
-            color: var(--text-heading);
+            color: var(--text-heading); /* CZARNY */
             margin-bottom: 10px;
             letter-spacing: -1.5px;
         }
@@ -186,57 +179,97 @@
         .auth-subheading {
             color: var(--text-muted);
             font-size: 15px;
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 40px;
         }
 
-        /* Grupy formularza */
-        .input-group {
-            margin-bottom: 25px;
-            position: relative;
-            text-align: left;
+        /* Przyciski na Ekranie Wyboru (Splash Screen) */
+        .btn-splash {
+            width: 100%;
+            padding: 20px;
+            border-radius: var(--radius-medium);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition-base);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
         }
 
-        .input-label {
+        .btn-splash-primary {
+            background-color: var(--text-heading); /* CZARNY PRZYCISK */
+            color: var(--text-inverse);
+            border: 2px solid var(--text-heading);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-splash-primary:hover {
+            background-color: var(--brand-primary);
+            border-color: var(--brand-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-brand);
+        }
+
+        .btn-splash-outline {
+            background-color: transparent;
+            color: var(--text-heading);
+            border: 2px solid var(--border-heavy);
+        }
+
+        .btn-splash-outline:hover {
+            border-color: var(--text-heading);
+            background-color: var(--bg-input);
+        }
+
+        /* Formularze (Inputy) */
+        .auth-input-group {
+            text-align: left;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .auth-input-label {
             display: block;
             font-size: 12px;
             font-weight: 800;
             text-transform: uppercase;
-            color: var(--text-muted);
+            color: var(--brand-primary); /* Akcent pomarańczowy */
             margin-bottom: 10px;
-            margin-left: 15px;
+            margin-left: 10px;
             letter-spacing: 1px;
         }
 
-        .input-control {
+        .auth-input-field {
             width: 100%;
-            padding: 20px 25px;
+            padding: 18px 25px;
             background-color: var(--bg-input);
             border: 2px solid var(--border-base);
             border-radius: var(--radius-medium);
             font-family: inherit;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             color: var(--text-heading);
             transition: var(--transition-base);
         }
 
-        .input-control:focus {
+        .auth-input-field:focus {
             border-color: var(--text-heading);
             background-color: var(--bg-surface);
-            box-shadow: 0 0 0 4px var(--border-light);
+            box-shadow: 0 0 0 4px var(--border-base);
         }
 
-        .input-control::placeholder {
+        .auth-input-field::placeholder {
             color: var(--text-dim);
             font-weight: 500;
         }
 
-        /* Oczko do podglądu hasła */
-        .password-eye-toggle {
+        /* Oczko do hasła */
+        .password-eye {
             position: absolute;
             right: 20px;
-            top: 42px;
+            top: 40px;
             width: 40px;
             height: 40px;
             display: flex;
@@ -250,61 +283,29 @@
             user-select: none;
         }
 
-        .password-eye-toggle:hover {
-            color: var(--text-heading);
-            background-color: var(--border-base);
+        .password-eye:hover {
+            color: var(--brand-primary);
+            background-color: var(--brand-light);
         }
 
-        /* Przyciski autoryzacji */
-        .btn-auth-submit {
-            width: 100%;
-            padding: 22px;
-            background-color: var(--text-heading);
-            color: var(--text-inverse);
-            border: none;
-            border-radius: var(--radius-medium);
-            font-size: 18px;
-            font-weight: 900;
-            cursor: pointer;
-            transition: var(--transition-base);
-            box-shadow: var(--shadow-sm);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 15px;
-        }
-
-        .btn-auth-submit:hover {
-            background-color: var(--brand-primary);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-brand);
-        }
-
-        .btn-auth-submit:active {
-            transform: translateY(0);
-        }
-
-        /* Linki dolne na ekranie auth */
-        .auth-footer-link {
-            margin-top: 30px;
+        /* Dolne linki formularza */
+        .auth-link {
+            margin-top: 25px;
             font-size: 14px;
             font-weight: 600;
             color: var(--text-muted);
-        }
-
-        .auth-footer-link span {
-            color: var(--text-heading);
-            font-weight: 800;
             cursor: pointer;
             transition: var(--transition-fast);
+            display: inline-block;
         }
 
-        .auth-footer-link span:hover {
+        .auth-link:hover {
             color: var(--brand-primary);
             text-decoration: underline;
         }
 
-        .auth-error-message {
-            color: var(--status-offline);
+        .auth-error-msg {
+            color: var(--status-danger);
             font-size: 13px;
             font-weight: 800;
             margin-top: 20px;
@@ -312,12 +313,8 @@
             text-transform: uppercase;
         }
 
-        /* Ukrywanie odpowiedniego formularza */
-        #view-auth-login { display: flex; }
-        #view-auth-register { display: none; }
-
         /* ========================================================================================
-           KOMPONENT 2: INTERFEJS GŁÓWNY (APP LAYOUT)
+           KOMPONENT 2: INTERFEJS GŁÓWNY (NAWIGACJA BOCZNA - SIDEBAR)
            ======================================================================================== */
         
         .app-sidebar {
@@ -330,21 +327,21 @@
             flex-shrink: 0;
         }
 
-        .sidebar-brand-area {
-            padding: 40px 35px;
+        .sidebar-brand-box {
+            padding: 40px 30px;
             border-bottom: 1px solid var(--border-light);
         }
 
-        .sidebar-brand-area h2 {
+        .sidebar-brand-box h2 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
             font-size: 28px;
             color: var(--text-heading);
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
             line-height: 1;
         }
 
-        .sidebar-brand-area p {
+        .sidebar-brand-box p {
             font-size: 10px;
             font-weight: 800;
             color: var(--brand-primary);
@@ -353,26 +350,26 @@
             margin-top: 8px;
         }
 
-        .sidebar-menu-scroll {
+        .sidebar-menu-wrapper {
             flex-grow: 1;
-            padding: 20px;
+            padding: 20px 15px;
             overflow-y: auto;
         }
 
-        .menu-group-title {
+        .menu-section-title {
             font-size: 11px;
-            font-weight: 900;
+            font-weight: 800;
             color: var(--text-dim);
             text-transform: uppercase;
             margin: 25px 0 10px 15px;
             letter-spacing: 1.5px;
         }
 
-        .menu-link-item {
+        .menu-link {
             display: flex;
             align-items: center;
-            padding: 16px 20px;
-            margin-bottom: 4px;
+            padding: 14px 18px;
+            margin-bottom: 5px;
             border-radius: var(--radius-medium);
             cursor: pointer;
             font-weight: 700;
@@ -380,44 +377,47 @@
             color: var(--text-muted);
             transition: var(--transition-fast);
             text-decoration: none;
+            border: 1px solid transparent;
         }
 
-        .menu-link-item i {
+        .menu-link i {
             margin-right: 15px;
             font-size: 20px;
-            width: 24px;
+            width: 25px;
             text-align: center;
             font-style: normal;
         }
 
-        .menu-link-item:hover {
+        .menu-link:hover {
             background-color: var(--bg-input);
             color: var(--text-heading);
+            border-color: var(--border-base);
         }
 
-        .menu-link-item.active {
+        .menu-link.active {
             background-color: var(--text-heading);
             color: var(--text-inverse);
             box-shadow: var(--shadow-sm);
+            border-color: var(--text-heading);
         }
 
-        .menu-link-item.active i {
+        .menu-link.active i {
             color: var(--brand-primary);
         }
 
-        .sidebar-footer-area {
-            padding: 30px;
-            border-top: 1px solid var(--border-light);
+        .sidebar-footer-box {
+            padding: 25px;
+            border-top: 1px solid var(--border-base);
         }
 
         .btn-logout {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             background-color: var(--bg-surface);
             color: var(--text-heading);
             border: 2px solid var(--border-heavy);
             border-radius: var(--radius-medium);
-            font-weight: 900;
+            font-weight: 800;
             font-size: 14px;
             cursor: pointer;
             transition: var(--transition-base);
@@ -426,14 +426,17 @@
         }
 
         .btn-logout:hover {
-            background-color: var(--status-offline);
+            background-color: var(--status-danger);
             color: var(--text-inverse);
-            border-color: var(--status-offline);
-            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.2);
+            border-color: var(--status-danger);
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.2);
         }
 
-        /* --- RAMA GŁÓWNA --- */
-        .app-main-content {
+        /* ========================================================================================
+           KOMPONENT 3: OBSZAR ROBOCZY (TOPBAR I VIEW CANVAS)
+           ======================================================================================== */
+        
+        .app-main-area {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -446,7 +449,7 @@
             height: 90px;
             background-color: var(--bg-surface);
             border-bottom: 1px solid var(--border-base);
-            padding: 0 50px;
+            padding: 0 45px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -468,70 +471,69 @@
             font-weight: 600;
         }
 
-        .topbar-user-section {
+        .topbar-user-badge {
             display: flex;
             align-items: center;
             gap: 20px;
         }
 
-        .user-plan-badge {
+        .plan-tag {
             background-color: var(--bg-input);
             color: var(--text-heading);
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 11px;
-            font-weight: 900;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
             border: 1px solid var(--border-base);
         }
 
-        .user-avatar-box {
+        .user-profile-box {
             display: flex;
             align-items: center;
             gap: 15px;
-            cursor: pointer;
         }
 
-        .user-name-display {
+        .user-name-text {
             text-align: right;
         }
 
-        .user-name-display b {
+        .user-name-text b {
             display: block;
             font-size: 15px;
             font-weight: 800;
             color: var(--text-heading);
+            line-height: 1.2;
         }
 
-        .user-name-display small {
-            color: var(--status-online);
-            font-weight: 900;
-            font-size: 11px;
+        .user-name-text small {
+            color: var(--brand-primary);
+            font-weight: 800;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         .user-avatar-circle {
-            width: 44px;
-            height: 44px;
+            width: 42px;
+            height: 42px;
             background-color: var(--text-heading);
             color: var(--text-inverse);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 900;
+            font-weight: 800;
             font-size: 18px;
         }
 
-        /* --- SYSTEM WIDOKÓW (SPA ROUTING) --- */
-        .app-view-container {
-            padding: 40px 50px;
+        /* --- SYSTEM ROUTINGU (WIDOKI SPA) --- */
+        .app-view-canvas {
+            padding: 40px 45px;
             overflow-y: auto;
             flex-grow: 1;
             scroll-behavior: smooth;
-            position: relative;
         }
 
         .view-module {
@@ -549,12 +551,12 @@
         }
 
         /* ========================================================================================
-           KOMPONENT 3: KARTY, SIATKI I WIDGETY
+           KOMPONENT 4: SYSTEM KART, SIATEK I PRZYCISKÓW (UI KIT)
            ======================================================================================== */
         
         .grid-responsive-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
             gap: 30px;
             margin-bottom: 40px;
         }
@@ -562,317 +564,152 @@
         .grid-responsive-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 25px;
             margin-bottom: 40px;
         }
 
-        .widget-card {
+        .card {
             background-color: var(--bg-surface);
             border-radius: var(--radius-large);
-            padding: 40px;
+            padding: 35px;
             border: 1px solid var(--border-base);
             box-shadow: var(--shadow-sm);
             transition: var(--transition-base);
+            position: relative;
         }
 
-        .widget-card:hover {
+        .card:hover {
             border-color: var(--border-heavy);
             box-shadow: var(--shadow-md);
         }
 
         .card-title {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 24px;
+            font-weight: 800;
+            font-size: 20px;
             color: var(--text-heading);
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+        }
+
+        .card-title i {
+            color: var(--brand-primary);
+            font-style: normal;
+            font-size: 24px;
         }
 
         .card-description {
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             margin-bottom: 30px;
             line-height: 1.6;
         }
 
-        /* BUTTONS W WEWNĄTRZ KART */
-        .btn {
+        /* Przyciski Akcji Systemowych */
+        .btn-sys {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            padding: 16px 32px;
+            gap: 10px;
+            padding: 18px 30px;
             border: none;
             border-radius: var(--radius-medium);
-            font-family: 'Poppins', sans-serif;
+            font-family: inherit;
             font-weight: 800;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
             transition: var(--transition-base);
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-decoration: none;
         }
 
-        .btn-primary { background-color: var(--text-heading); color: var(--text-inverse); box-shadow: var(--shadow-sm); }
-        .btn-primary:hover { background-color: var(--brand-primary); transform: translateY(-2px); box-shadow: var(--shadow-brand); }
-        
-        .btn-success { background-color: var(--status-online); color: var(--text-inverse); }
-        .btn-success:hover { background-color: #059669; transform: translateY(-2px); }
-        
-        .btn-danger { background-color: transparent; color: var(--status-offline); border: 2px solid var(--status-offline); }
-        .btn-danger:hover { background-color: var(--status-offline); color: var(--text-inverse); transform: translateY(-2px); }
-        
-        .btn-block { width: 100%; }
-
-        /* WSKAŹNIK STATUSU (DASHBOARD) */
-        .dashboard-status-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 35px;
-            margin-bottom: 35px;
+        .btn-sys-primary {
+            background-color: var(--text-heading);
+            color: var(--text-inverse);
         }
 
-        .status-orb-container {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 12px solid var(--border-base);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 45px;
-            background-color: var(--bg-application);
-            transition: var(--transition-base);
-            position: relative;
+        .btn-sys-primary:hover {
+            background-color: var(--brand-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-brand);
         }
 
-        .status-orb-container.state-online {
-            border-color: var(--status-online);
-            color: var(--status-online);
-            background-color: var(--status-online-bg);
-            animation: pulseOrbOnline 2s infinite;
+        .btn-sys-success {
+            background-color: var(--status-success);
+            color: var(--text-inverse);
         }
 
-        @keyframes pulseOrbOnline {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-            70% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        .btn-sys-success:hover {
+            background-color: #059669;
+            transform: translateY(-2px);
         }
 
-        .status-orb-container.state-booting {
-            border-color: var(--status-warning);
-            color: var(--status-warning);
-            background-color: var(--status-warning-bg);
-            animation: spinOrb 2s linear infinite;
+        .btn-sys-danger {
+            background-color: transparent;
+            color: var(--status-danger);
+            border: 2px solid var(--status-danger);
         }
 
-        @keyframes spinOrb {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .btn-sys-danger:hover {
+            background-color: var(--status-danger);
+            color: var(--text-inverse);
+            transform: translateY(-2px);
         }
 
-        .status-text-container h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 36px;
-            color: var(--text-heading);
-            line-height: 1;
-            margin-bottom: 10px;
+        .btn-sys-block {
+            width: 100%;
         }
 
-        .status-ip-badge {
-            display: inline-block;
-            background-color: var(--bg-input);
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-family: 'Fira Code', monospace;
-            font-weight: 600;
-            color: var(--text-muted);
-            font-size: 14px;
-            border: 1px solid var(--border-base);
-        }
-
-        .uptime-display {
-            background-color: var(--bg-input);
-            padding: 15px 25px;
-            border-radius: 15px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            color: var(--text-muted);
-            margin-bottom: 35px;
-            border: 1px solid var(--border-base);
-        }
-
-        .uptime-display b {
-            color: var(--brand-primary);
-            font-size: 18px;
-            font-family: 'Fira Code', monospace;
-        }
-
-        /* METRYKI ZASOBÓW (RAM / CPU PASKI) */
-        .metric-container { margin-bottom: 25px; }
-        .metric-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; }
-        .metric-title { font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; }
-        .metric-value { font-family: 'Fira Code', monospace; font-weight: 600; font-size: 14px; color: var(--text-heading); }
-        .metric-bar-bg { height: 12px; background-color: var(--bg-input); border-radius: 10px; overflow: hidden; }
-        .metric-bar-fill { height: 100%; background-color: var(--text-heading); width: 0%; transition: width 1s cubic-bezier(0.22, 1, 0.36, 1); }
-        .metric-bar-fill.fill-ram { background-color: var(--status-online); }
-        .metric-bar-fill.fill-cpu { background-color: var(--status-info); }
-
-        /* GIGANTYCZNE SUWAKI (ZASOBY FREE) */
-        .resource-slider-card {
-            background-color: var(--bg-application);
-            padding: 35px;
-            border-radius: var(--radius-large);
-            border: 1px solid var(--border-base);
-            margin-bottom: 30px;
-        }
-        .resource-slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .resource-slider-header span { font-size: 13px; font-weight: 900; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-        .resource-slider-header b { font-size: 32px; font-family: 'Montserrat', sans-serif; color: var(--text-heading); font-weight: 900; }
-        
-        .custom-range {
-            width: 100%; height: 8px; background-color: var(--border-heavy);
-            border-radius: 10px; appearance: none; outline: none; margin: 20px 0;
-        }
-        .custom-range::-webkit-slider-thumb {
-            appearance: none; width: 32px; height: 32px; background-color: var(--text-heading);
-            border-radius: 50%; cursor: pointer; border: 4px solid var(--bg-surface);
-            box-shadow: var(--shadow-md); transition: var(--transition-fast);
-        }
-        .custom-range::-webkit-slider-thumb:hover { transform: scale(1.2); background-color: var(--brand-primary); }
-
-        .system-alert {
-            display: none; background-color: var(--status-warning-bg); color: #92400e;
-            padding: 20px; border-radius: var(--radius-medium); font-size: 13px;
-            font-weight: 700; border-left: 6px solid var(--status-warning); margin-top: 20px; line-height: 1.5;
-        }
-
-        /* ------------------------------------------------------------------------------------------------
-           MODUŁ: KOMPONENTY POZOSTAŁE (KONSOLA, PLIKI, INNE)
-           ------------------------------------------------------------------------------------------------ */
-        
-        /* ZWYKŁE INPUTY (MOTD, WERSJE) */
-        .huge-input {
-            width: 100%; background-color: transparent; border: none; border-bottom: 4px solid var(--border-base);
-            padding: 20px 10px; font-size: 28px; font-weight: 900; color: var(--text-heading);
-            font-family: 'Montserrat', sans-serif; transition: var(--transition-base); margin-bottom: 30px;
-        }
-        .huge-input:focus { border-bottom-color: var(--brand-primary); }
-
-        /* TOGGLE SWITCHES (SERVER.PROPERTIES) */
-        .settings-row {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 25px; background-color: var(--bg-application); border: 1px solid var(--border-base);
-            border-radius: var(--radius-medium); margin-bottom: 15px; transition: var(--transition-fast);
-        }
-        .settings-row:hover { border-color: var(--border-heavy); }
-        .settings-info h4 { font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 5px; }
-        .settings-info p { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-        
-        .switch-container { position: relative; width: 56px; height: 30px; flex-shrink: 0; }
-        .switch-container input { opacity: 0; width: 0; height: 0; }
-        .switch-track { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border-heavy); transition: .3s; border-radius: 34px; }
-        .switch-track:before { position: absolute; content: ""; height: 22px; width: 22px; left: 4px; bottom: 4px; background-color: white; transition: .3s; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        input:checked + .switch-track { background-color: var(--status-online); }
-        input:checked + .switch-track:before { transform: translateX(26px); }
-
-        /* KONSOLA SYSTEMOWA */
-        .terminal-layout {
-            background-color: var(--bg-terminal); border-radius: var(--radius-large);
-            padding: 30px; border: 8px solid #1e293b;
-        }
-        .terminal-output { height: 450px; overflow-y: auto; font-family: 'Fira Code', monospace; color: #f8fafc; font-size: 13px; line-height: 1.8; padding-right: 10px; }
-        .terminal-output b { color: var(--brand-primary); font-weight: 600; }
-        .log-time { color: #64748b; margin-right: 15px; user-select: none; }
-        .log-info { color: #38bdf8; }
-        .log-success { color: #34d399; }
-        .log-warn { color: #fbbf24; }
-        .log-error { color: #f87171; background-color: rgba(248,113,113,0.1); padding: 2px 8px; border-radius: 4px; }
-        
-        .terminal-input-area { display: flex; gap: 15px; margin-top: 25px; }
-        .cmd-input { flex-grow: 1; padding: 18px 25px; background-color: #1e293b; border: 2px solid #334155; border-radius: var(--radius-medium); color: #ffffff; font-family: 'Fira Code', monospace; font-size: 14px; transition: var(--transition-fast); }
-        .cmd-input:focus { border-color: var(--text-muted); }
-
-        /* MENEDŻER PLIKÓW FTP */
-        .ftp-workspace { display: grid; grid-template-columns: 280px 1fr; gap: 30px; height: 600px; }
-        .ftp-tree-view { background-color: var(--bg-application); border-radius: var(--radius-medium); padding: 20px; overflow-y: auto; border: 1px solid var(--border-base); }
-        .ftp-node { padding: 12px 15px; border-radius: var(--radius-small); cursor: pointer; margin-bottom: 5px; font-weight: 600; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 12px; transition: var(--transition-fast); }
-        .ftp-node i { font-size: 18px; font-style: normal; }
-        .ftp-node:hover { background-color: var(--bg-input); }
-        .ftp-node.active-node { background-color: var(--text-heading); color: var(--text-inverse); }
-        
-        .ftp-editor-wrapper { position: relative; height: 100%; border-radius: var(--radius-medium); overflow: hidden; border: 8px solid var(--bg-terminal); }
-        .ftp-textarea { width: 100%; height: 100%; background-color: var(--bg-terminal); color: #f8fafc; padding: 30px; border: none; resize: none; font-family: 'Fira Code', monospace; font-size: 14px; line-height: 1.7; }
-        .ftp-save-btn { position: absolute; bottom: 25px; right: 25px; z-index: 10; }
-
-        /* RYNEK PLUGINÓW I LINKI LEGITNE */
-        .plugin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-        .plugin-item { background-color: var(--bg-application); border: 1px solid var(--border-base); border-radius: var(--radius-large); padding: 35px 25px; text-align: center; transition: var(--transition-base); }
-        .plugin-item:hover { border-color: var(--border-heavy); transform: translateY(-5px); box-shadow: var(--shadow-sm); }
-        .plugin-icon { font-size: 45px; display: block; margin-bottom: 20px; }
-        .plugin-item h4 { font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 10px; }
-        .plugin-item p { font-size: 13px; color: var(--text-muted); margin-bottom: 25px; line-height: 1.5; }
-        
-        .legit-links-container { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
-        .legit-link-btn { background-color: var(--bg-input); color: var(--text-main); padding: 12px 20px; border-radius: var(--radius-small); text-decoration: none; font-weight: 700; font-size: 13px; border: 1px solid var(--border-base); transition: var(--transition-fast); }
-        .legit-link-btn:hover { background-color: var(--text-heading); color: var(--text-inverse); }
-
-        /* OCHRONA ANTI-DDOS */
-        .shield-container { background-color: var(--bg-terminal); color: white; padding: 35px; border-radius: var(--radius-large); display: flex; align-items: center; justify-content: space-between; border: 3px solid var(--status-shield); margin-bottom: 30px; }
-        .shield-container h2 { color: var(--status-shield); font-weight: 900; margin-bottom: 5px; font-size: 24px; }
-        .shield-status-indicator { display: flex; align-items: center; gap: 15px; font-weight: 800; font-size: 16px; letter-spacing: 1px; }
-        .shield-pulse { width: 16px; height: 16px; background-color: var(--status-online); border-radius: 50%; animation: shieldPulse 2s infinite; }
-        @keyframes shieldPulse { 0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); } 70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); } }
-
-        /* TABELA AUDYTU */
-        .system-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
-        .system-table th { text-align: left; padding: 15px 20px; color: var(--text-muted); font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
-        .system-table td { padding: 18px 20px; background-color: var(--bg-application); font-size: 13px; font-weight: 600; color: var(--text-main); border-top: 1px solid var(--border-base); border-bottom: 1px solid var(--border-base); }
-        .system-table tr td:first-child { border-left: 1px solid var(--border-base); border-radius: 12px 0 0 12px; color: var(--text-dim); font-family: 'Fira Code', monospace; }
-        .system-table tr td:last-child { border-right: 1px solid var(--border-base); border-radius: 0 12px 12px 0; }
-
-        /* SPAWNER SERWERA */
-        .spawn-screen { text-align: center; padding: 80px 0; }
-        .spawn-input-field { font-size: 40px; font-weight: 900; border: none; border-bottom: 6px solid var(--border-heavy); background-color: transparent; text-align: center; color: var(--text-heading); width: 100%; max-width: 600px; padding: 20px; margin: 40px auto; display: block; transition: var(--transition-base); font-family: 'Montserrat', sans-serif; }
-        .spawn-input-field:focus { border-bottom-color: var(--brand-primary); }
-
-        /* TOAST POWIADOMIENIA */
-        .toast-notification { position: fixed; bottom: 40px; right: 40px; background-color: var(--text-heading); color: var(--text-inverse); padding: 20px 30px; border-radius: var(--radius-medium); font-weight: 700; font-size: 14px; transform: translateY(200%); transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 99999999; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 15px; }
-        .toast-notification.show { transform: translateY(0); }
-
+        /* Inne pomocnicze CSS będą kontynuowane w Części 2... */
     </style>
 </head>
 <body>
 
-    <div id="view-auth-login" class="auth-viewport">
+    <div id="view-auth-choice" class="auth-viewport">
+        <div class="auth-container" style="padding: 70px 50px;">
+            <span class="auth-brand-icon">👑</span>
+            <h1 class="auth-heading">KokoszkaMC</h1>
+            <p class="auth-subheading">Witaj w najlepszym panelu hostingu v3.0 TITAN</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 40px;">
+                <button class="btn-splash btn-splash-primary" onclick="appStore.navigateAuth('login')">
+                    ZALOGUJ SIĘ DO PANELU
+                </button>
+                <button class="btn-splash btn-splash-outline" onclick="appStore.navigateAuth('register')">
+                    STWÓRZ DARMOWE KONTO
+                </button>
+            </div>
+            
+            <div style="margin-top: 30px; font-size: 13px; color: var(--text-dim); font-weight: 600;">
+                Zaufało nam już <b style="color: var(--brand-primary);">12 458</b> graczy na całym świecie.
+            </div>
+        </div>
+    </div>
+
+    <div id="view-auth-login" class="auth-viewport hidden">
         <div class="auth-container">
             <span class="auth-brand-icon">🐔</span>
-            <h1 class="auth-heading">KokoszkaMC</h1>
-            <p class="auth-subheading">Zaloguj się do panelu operacyjnego v2.0 TITAN</p>
+            <h1 class="auth-heading">Zaloguj się</h1>
+            <p class="auth-subheading">Podaj swoje dane, aby uruchomić maszynę</p>
             
             <div class="input-group">
                 <label class="input-label">Nazwa Użytkownika</label>
-                <input type="text" id="in-login-user" class="input-control" placeholder="Wpisz swój nick">
+                <input type="text" id="in-login-user" class="input-control" placeholder="Twój nick z gry">
             </div>
 
             <div class="input-group">
-                <label class="input-label">Hasło Dostępu</label>
+                <label class="input-label">Hasło Panelu</label>
                 <input type="password" id="in-login-pass" class="input-control" placeholder="••••••••">
-                <div class="password-eye-toggle" onclick="app.togglePasswordView('in-login-pass', this)">👁️</div>
+                <div class="password-eye-toggle" onclick="appStore.togglePasswordView('in-login-pass', this)">👁️</div>
             </div>
             
-            <button class="btn btn-primary btn-block" style="padding: 22px; font-size: 18px; margin-top: 10px;" onclick="app.processLogin()">URUCHOM KOKOSZKAMC</button>
+            <button class="btn-auth-submit" onclick="appStore.processLogin()">URUCHOM KOKOSZKAMC</button>
             
             <div class="auth-footer-link">
-                Nie posiadasz jeszcze konta? <span onclick="app.navigateAuth('register')">Załóż darmowe konto.</span>
+                <span onclick="appStore.navigateAuth('choice')">← Wróć do ekranu głównego</span>
             </div>
             <div id="err-login" class="auth-error-message"></div>
         </div>
@@ -881,610 +718,768 @@
     <div id="view-auth-register" class="auth-viewport hidden">
         <div class="auth-container">
             <span class="auth-brand-icon">🐣</span>
-            <h1 class="auth-heading">Dołącz do nas</h1>
-            <p class="auth-subheading">Stwórz konto w najlepszym darmowym hostingu na świecie</p>
+            <h1 class="auth-heading">Załóż Konto</h1>
+            <p class="auth-subheading">Stwórz darmowy serwer bez żadnych limitów</p>
             
             <div class="input-group">
-                <label class="input-label">Nowy Użytkownik (Nick)</label>
-                <input type="text" id="in-reg-user" class="input-control" placeholder="Wymyśl unikalną nazwę">
+                <label class="input-label">Unikalny Nick</label>
+                <input type="text" id="in-reg-user" class="input-control" placeholder="Wymyśl nazwę użytkownika">
             </div>
 
             <div class="input-group">
                 <label class="input-label">Tajne Hasło</label>
                 <input type="password" id="in-reg-pass" class="input-control" placeholder="Minimum 5 znaków">
-                <div class="password-eye-toggle" onclick="app.togglePasswordView('in-reg-pass', this)">👁️</div>
+                <div class="password-eye-toggle" onclick="appStore.togglePasswordView('in-reg-pass', this)">👁️</div>
             </div>
             
-            <button class="btn btn-primary btn-block" style="padding: 22px; font-size: 18px; margin-top: 10px;" onclick="app.processRegistration()">WYKLUJ KONTO</button>
+            <button class="btn-auth-submit" onclick="appStore.processRegistration()">WYKLUJ KONTO</button>
             
             <div class="auth-footer-link">
-                Masz już konto w naszym systemie? <span onclick="app.navigateAuth('login')">Wróć do logowania.</span>
+                <span onclick="appStore.navigateAuth('choice')">← Wróć do ekranu głównego</span>
             </div>
             <div id="err-reg" class="auth-error-message"></div>
         </div>
     </div>
 
-    <div class="app-sidebar">
-        <div class="sidebar-brand-area">
-            <h2>KOKOSZKA MC</h2>
-            <p>TITAN ENGINE v2.0</p>
-        </div>
-
-        <div class="sidebar-menu-scroll">
-            <div class="menu-group-title">Zarządzanie Główne</div>
-            <div class="menu-link-item active" onclick="ui.switchModule('dashboard', this)"><i>📊</i> Pulpit Sterowania</div>
-            <div class="menu-link-item" onclick="ui.switchModule('resources', this)"><i>⚡</i> Wydajność (RAM/CPU)</div>
-            <div class="menu-link-item" onclick="ui.switchModule('software', this)"><i>⚙️</i> Silnik i Wersje</div>
-            <div class="menu-link-item" onclick="ui.switchModule('properties', this)"><i>🛠️</i> Ustawienia (.properties)</div>
-
-            <div class="menu-group-title">System i Pliki</div>
-            <div class="menu-link-item" onclick="ui.switchModule('terminal', this)"><i>💻</i> Konsola Terminal</div>
-            <div class="menu-link-item" onclick="ui.switchModule('ftp', this)"><i>📂</i> Menedżer Plików FTP</div>
-            <div class="menu-link-item" onclick="ui.switchModule('cron', this)"><i>⏱️</i> Harmonogramy (Cron)</div>
-
-            <div class="menu-group-title">Ochrona i Dodatki</div>
-            <div class="menu-link-item" onclick="ui.switchModule('plugins', this)"><i>🔌</i> Mody i Pluginy</div>
-            <div class="menu-link-item" onclick="ui.switchModule('security', this)"><i>🛡️</i> Ochrona Anti-DDoS</div>
-            <div class="menu-link-item" onclick="ui.switchModule('audit', this)"><i>📜</i> Dziennik Audytu (Logi)</div>
-        </div>
-
-        <div class="sidebar-footer-area">
-            <button class="btn btn-outline btn-block" style="border-color: var(--status-offline); color: var(--status-offline);" onclick="location.reload()">WYLOGUJ KONTO</button>
-        </div>
-    </div>
-    <div class="app-main-content">
+    <div id="app-core" style="display: none; width: 100vw; height: 100vh;">
         
-        <div class="app-topbar">
-            <div class="topbar-breadcrumb">Panel / <span id="ui-current-module-name">Pulpit Sterowania</span></div>
-            <div class="topbar-user-section">
-                <div class="user-plan-badge">ULTIMATE FREE TIER</div>
-                <div class="user-avatar-box">
-                    <div class="user-name-display">
-                        <b id="ui-display-username">Gość</b>
-                    </div>
-                    <div class="user-avatar-circle" id="ui-display-avatar">?</div>
-                </div>
+        <div class="app-sidebar">
+            <div class="sidebar-brand-area">
+                <h2>KOKOSZKA MC</h2>
+                <p>TITAN ENGINE v3.0</p>
+            </div>
+
+            <div class="sidebar-menu-scroll">
+                <div class="menu-group-title">Zarządzanie Główne</div>
+                <div class="menu-link-item active" onclick="ui.switchModule('dashboard', this)"><i>📊</i> Pulpit Sterowania</div>
+                <div class="menu-link-item" onclick="ui.switchModule('resources', this)"><i>⚡</i> Wydajność (RAM/CPU)</div>
+                <div class="menu-link-item" onclick="ui.switchModule('software', this)"><i>⚙️</i> Silnik i Wersje</div>
+                <div class="menu-link-item" onclick="ui.switchModule('properties', this)"><i>🛠️</i> Ustawienia (.properties)</div>
+
+                <div class="menu-group-title">System i Pliki</div>
+                <div class="menu-link-item" onclick="ui.switchModule('terminal', this)"><i>💻</i> Konsola Terminal</div>
+                <div class="menu-link-item" onclick="ui.switchModule('ftp', this)"><i>📂</i> Menedżer Plików FTP</div>
+                <div class="menu-link-item" onclick="ui.switchModule('mysql', this)"><i>🗄️</i> Bazy Danych MySQL</div>
+                <div class="menu-link-item" onclick="ui.switchModule('cron', this)"><i>⏱️</i> Harmonogramy (Cron)</div>
+
+                <div class="menu-group-title">Ochrona i Dodatki</div>
+                <div class="menu-link-item" onclick="ui.switchModule('plugins', this)"><i>🔌</i> Mody i Pluginy (Sklep)</div>
+                <div class="menu-link-item" onclick="ui.switchModule('security', this)"><i>🛡️</i> Ochrona Anti-DDoS</div>
+                <div class="menu-link-item" onclick="ui.switchModule('audit', this)"><i>📜</i> Dziennik Audytu (Logi)</div>
+                <div class="menu-link-item" onclick="ui.switchModule('support', this)"><i>🎫</i> Centrum Pomocy</div>
+            </div>
+
+            <div class="sidebar-footer-area">
+                <button class="btn-logout" onclick="location.reload()">WYLOGUJ KONTO</button>
             </div>
         </div>
 
-        <div class="app-view-container">
+        <div class="app-main-content">
             
-            <div id="module-dashboard" class="view-module active">
+            <div class="app-topbar">
+                <div class="topbar-breadcrumb">Panel / <span id="ui-current-module-name">Pulpit Sterowania</span></div>
+                <div class="topbar-user-section">
+                    <div class="user-plan-badge">ULTIMATE FREE TIER</div>
+                    <div class="user-profile-box">
+                        <div class="user-name-text">
+                            <b id="ui-display-username">Gość</b>
+                            <small>Zalogowany</small>
+                        </div>
+                        <div class="user-avatar-circle" id="ui-display-avatar">?</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-view-canvas">
+                ```
+<body>
+
+    <div id="auth-portal-wrapper" class="auth-viewport">
+        <div class="auth-container">
+            <span class="auth-brand-icon">🐔</span>
+            <h1 class="auth-heading">KokoszkaMC</h1>
+            <p class="auth-subheading">Zarządzaj swoim serwerem v3.0 TITAN</p>
+            
+            <div style="display: flex; background-color: var(--bg-input); padding: 8px; border-radius: var(--radius-large); margin-bottom: 35px; border: 2px solid var(--border-base);">
+                <div id="tab-login-btn" style="flex: 1; padding: 16px; border-radius: var(--radius-medium); font-weight: 800; font-size: 14px; cursor: pointer; transition: var(--transition-base); background-color: var(--brand-primary); color: var(--text-inverse); box-shadow: var(--shadow-brand);" onclick="appStore.switchAuthTab('login')">
+                    LOGOWANIE
+                </div>
+                <div id="tab-register-btn" style="flex: 1; padding: 16px; border-radius: var(--radius-medium); font-weight: 800; font-size: 14px; cursor: pointer; transition: var(--transition-base); color: var(--text-muted); background-color: transparent;" onclick="appStore.switchAuthTab('register')">
+                    REJESTRACJA
+                </div>
+            </div>
+
+            <div id="form-login-section">
+                <div class="input-group">
+                    <label class="input-label">Nazwa Użytkownika (Nick)</label>
+                    <input type="text" id="in-login-user" class="input-control" placeholder="Wpisz swój nick z gry">
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Hasło Panelu</label>
+                    <input type="password" id="in-login-pass" class="input-control" placeholder="••••••••">
+                    <div class="password-eye-toggle" onclick="appStore.togglePasswordView('in-login-pass', this)">👁️</div>
+                </div>
                 
-                <div id="layout-spawn-server" style="display: none;">
-                    <div class="spawn-screen">
-                        <div style="font-size: 80px; margin-bottom: 20px; animation: authEntrance 1s ease;">🥚</div>
-                        <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 45px; color: var(--text-heading);">Zainicjuj swoją maszynę!</h1>
-                        <p style="color: var(--text-muted); margin-top: 15px; font-size: 16px; font-weight: 500;">Podaj unikalną nazwę serwera. Twój darmowy adres IP zostanie wygenerowany automatycznie.</p>
-                        
-                        <input type="text" id="in-create-name" class="spawn-input-field" placeholder="np. kokoszkowo-survival">
-                        
-                        <div style="margin-bottom: 50px;">
-                            <span style="font-weight: 800; font-size: 13px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px;">Przydzielony Adres IP:</span><br>
-                            <span id="out-create-ip" style="font-family: 'Fira Code', monospace; font-size: 26px; font-weight: 800; color: var(--brand-primary); display: block; margin-top: 10px;">...kokoszka.me</span>
-                        </div>
-                        
-                        <button class="btn btn-primary" style="padding: 24px 80px; font-size: 18px;" onclick="engine.deployNewServer()">STWÓRZ SERWER ZA DARMO</button>
-                    </div>
-                </div>
-
-                <div id="layout-manage-server" style="display: none;">
-                    <div class="grid-responsive-2">
-                        
-                        <div class="card">
-                            <div class="dashboard-status-wrapper">
-                                <div id="ui-status-orb" class="status-orb-container">🔴</div>
-                                <div class="status-text-container">
-                                    <h2 id="ui-status-text">OFFLINE</h2>
-                                    <div class="status-ip-badge" id="ui-status-ip">---</div>
-                                </div>
-                            </div>
-                            
-                            <div class="uptime-display">
-                                <span>Czas nieprzerwanej pracy maszyny:</span> <b id="ui-uptime-clock">00:00:00</b>
-                            </div>
-                            
-                            <div style="display: flex; gap: 15px;">
-                                <button id="ui-btn-power" class="btn btn-success" style="flex: 2.5;" onclick="engine.togglePowerState()">URUCHOM SERWER</button>
-                                <button class="btn btn-danger" style="flex: 1;" onclick="engine.triggerEmergencyKill()">KILL</button>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-title"><i>⚡</i> Obciążenie Węzła</div>
-                            <div class="card-description">Monitorowanie zasobów w czasie rzeczywistym. Węzeł macierzysty: PL-WAR-01.</div>
-                            
-                            <div class="metric-container">
-                                <div class="metric-header">
-                                    <span class="metric-title">Pamięć Operacyjna (RAM)</span>
-                                    <span class="metric-value" id="ui-live-ram-text">0 / 4096 MB</span>
-                                </div>
-                                <div class="metric-bar-bg">
-                                    <div id="ui-live-ram-bar" class="metric-bar-fill fill-ram"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="metric-container">
-                                <div class="metric-header">
-                                    <span class="metric-title">Użycie Procesora (CPU)</span>
-                                    <span class="metric-value" id="ui-live-cpu-text">0%</span>
-                                </div>
-                                <div class="metric-bar-bg">
-                                    <div id="ui-live-cpu-bar" class="metric-bar-fill fill-cpu"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="grid-responsive-4" style="margin: 0; text-align: center;">
-                            <div>
-                                <span class="metric-title">SILNIK GRY</span><br>
-                                <b id="ui-info-engine" style="font-size: 20px; color: var(--text-heading);">---</b>
-                            </div>
-                            <div>
-                                <span class="metric-title">WERSJA MC</span><br>
-                                <b id="ui-info-version" style="font-size: 20px; color: var(--text-heading);">---</b>
-                            </div>
-                            <div>
-                                <span class="metric-title">GRACZE ONLINE</span><br>
-                                <b style="font-size: 20px; color: var(--text-heading);">0 / 20</b>
-                            </div>
-                            <div>
-                                <span class="metric-title">PORT DOMYŚLNY</span><br>
-                                <b style="font-size: 20px; font-family: 'Fira Code', monospace; color: var(--status-info);">25565</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button class="btn-auth-submit" onclick="appStore.processLogin()">URUCHOM KOKOSZKAMC</button>
+                <div id="err-login" class="auth-error-message"></div>
             </div>
 
-            <div id="module-resources" class="view-module">
-                <div class="card">
-                    <div class="card-title"><i>🚀</i> Nielimitowany Przydział Mocy</div>
-                    <div class="card-description" style="font-size: 15px;">W KokoszkaMC zasoby są darmowe. Maszyna wirtualna działa z wykorzystaniem mocy Twojej przeglądarki, więc przydzielaj zasoby odpowiedzialnie. Zbyt duże wartości mogą zawiesić Twój komputer.</div>
-                    
-                    <div class="resource-slider-card">
-                        <div class="resource-slider-header">
-                            <span>PRZYDZIELONA PAMIĘĆ RAM (GB)</span>
-                            <b id="lbl-ram-val">4</b>
-                        </div>
-                        <input type="range" min="1" max="128" value="4" class="custom-range" id="slider-ram" oninput="engine.syncResourceSliders()">
-                        <div id="alert-ram-limit" class="system-alert">
-                            <b>KRYTYCZNE OSTRZEŻENIE SYSTEMOWE:</b> Wykryto alokację ponad 16GB RAM. Upewnij się, że Twój system hosta posiada wystarczającą ilość wolnej pamięci stronicowanej, w przeciwnym razie przeglądarka zostanie zabita przez system operacyjny.
-                        </div>
-                    </div>
-
-                    <div class="resource-slider-card">
-                        <div class="resource-slider-header">
-                            <span>RDZENIE PROCESORA (vCPU)</span>
-                            <b id="lbl-cpu-val">2</b>
-                        </div>
-                        <input type="range" min="1" max="32" value="2" class="custom-range" id="slider-cpu" oninput="engine.syncResourceSliders()">
-                        <div id="alert-cpu-limit" class="system-alert">
-                            <b>OSTRZEŻENIE O WYDAJNOŚCI:</b> Silnik Java w grze Minecraft rzadko potrafi efektywnie wykorzystać więcej niż 4 rdzenie procesora do obsługi głównego wątku (Main Tick Loop).
-                        </div>
-                    </div>
-
-                    <button class="btn btn-primary btn-block" style="padding: 22px; font-size: 16px;" onclick="ui.triggerToast('Parametry fizyczne zostały zaktualizowane w bazie. Wykonaj restart serwera, aby zaaplikować zmiany.')">ZAPISZ KONFIGURACJĘ SPRZĘTOWĄ</button>
+            <div id="form-register-section" style="display: none;">
+                <div class="input-group">
+                    <label class="input-label">Nowy Użytkownik (Nick)</label>
+                    <input type="text" id="in-reg-user" class="input-control" placeholder="Wymyśl unikalną nazwę">
                 </div>
-            </div>
 
-            <div id="module-software" class="view-module">
-                <div class="card">
-                    <div class="card-title"><i>⚙️</i> Wybór Oprogramowania</div>
-                    <div class="card-description">Zmień silnik serwera w dowolnym momencie. System automatycznie pobierze i zweryfikuje sumy kontrolne nowych plików .jar.</div>
-                    
-                    <div style="margin-bottom: 30px; margin-top: 30px;">
-                        <label class="input-label" style="margin-left: 0; color: var(--text-heading);">Rodzina Silnika (Platforma):</label>
-                        <select id="sel-engine-type" class="huge-input">
-                            <option value="Vanilla">Vanilla Minecraft (Czysty oryginał)</option>
-                            <option selected value="PaperMC">PaperMC (Wysoka Wydajność + Pluginy)</option>
-                            <option value="Spigot">Spigot (Standardowa zgodność z pluginami)</option>
-                            <option value="Forge">Forge (Modyfikacje Techniczne Java)</option>
-                            <option value="Fabric">Fabric (Lekkie mody nowej generacji)</option>
-                            <option value="Purpur">Purpur (Eksperymentalna wydajność)</option>
-                        </select>
-                    </div>
-
-                    <div style="margin-bottom: 50px;">
-                        <label class="input-label" style="margin-left: 0; color: var(--text-heading);">Wersja Klienta Gry:</label>
-                        <select id="sel-engine-version" class="huge-input">
-                            </select>
-                    </div>
-
-                    <button class="btn btn-primary btn-block" style="padding: 22px; font-size: 16px;" onclick="engine.processSoftwareInstallation()">ROZPOCZNIJ INSTALACJĘ NOWEGO SILNIKA</button>
+                <div class="input-group">
+                    <label class="input-label">Tajne Hasło</label>
+                    <input type="password" id="in-reg-pass" class="input-control" placeholder="Minimum 5 znaków">
+                    <div class="password-eye-toggle" onclick="appStore.togglePasswordView('in-reg-pass', this)">👁️</div>
                 </div>
-            </div>
-
-            <div id="module-properties" class="view-module">
-                <div class="card">
-                    <div class="card-title"><i>🛠️</i> Konfiguracja Głównej Mechaniki</div>
-                    <div class="card-description">Zarządzaj opcjami z pliku server.properties za pomocą wygodnych przełączników. Zmiany są zapisywane asynchronicznie na dysku.</div>
-
-                    <div class="settings-row">
-                        <div class="settings-info">
-                            <h4>Tryb Non-Premium (Cracked / Offline-Mode)</h4>
-                            <p>Wyłącza autoryzację sesji przez serwery Mojang. Wymagane dla graczy bez zakupionej gry.</p>
-                        </div>
-                        <div class="switch-container">
-                            <input type="checkbox" id="prop-nonpremium" checked>
-                            <span class="switch-track"></span>
-                        </div>
-                    </div>
-
-                    <div class="settings-row">
-                        <div class="settings-info">
-                            <h4>Walka PvP (Player vs Player)</h4>
-                            <p>Umożliwia graczom zadawanie sobie obrażeń za pomocą broni i narzędzi na całym świecie.</p>
-                        </div>
-                        <div class="switch-container">
-                            <input type="checkbox" id="prop-pvp" checked>
-                            <span class="switch-track"></span>
-                        </div>
-                    </div>
-
-                    <div class="settings-row">
-                        <div class="settings-info">
-                            <h4>Biała Lista (Whitelist)</h4>
-                            <p>Zablokuj serwer dla osób z zewnątrz. Tylko gracze dodani do pliku whitelist.json będą mogli wejść.</p>
-                        </div>
-                        <div class="switch-container">
-                            <input type="checkbox" id="prop-whitelist">
-                            <span class="switch-track"></span>
-                        </div>
-                    </div>
-
-                    <div class="settings-row">
-                        <div class="settings-info">
-                            <h4>Bloki Poleceń (Command Blocks)</h4>
-                            <p>Niezbędne do działania zaawansowanych mechanizmów Redstone i map przygodowych (Adventure).</p>
-                        </div>
-                        <div class="switch-container">
-                            <input type="checkbox" id="prop-cmd" checked>
-                            <span class="switch-track"></span>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 50px;">
-                        <label class="input-label" style="margin-left: 0; color: var(--text-heading);">Wiadomość Powitalna na Liście (MOTD):</label>
-                        <input type="text" id="prop-motd" class="huge-input" style="font-size: 24px; padding-left: 0;" placeholder="Witaj na potężnym serwerze KokoszkaMC!">
-                    </div>
-
-                    <button class="btn btn-primary btn-block" style="padding: 22px; font-size: 16px; margin-top: 20px;" onclick="ui.triggerToast('Konfiguracja server.properties została zaktualizowana i zapisana na wirtualnym dysku.')">ZAPISZ PLIK SERVER.PROPERTIES</button>
-                </div>
-            </div>
-
-            <div id="module-terminal" class="view-module">
-                <div class="terminal-layout">
-                    <div class="terminal-output" id="terminal-screen-log">
-                        <div class="log-info"><span class="log-time">[SYSTEM]</span> Zestawiono bezpieczne połączenie WebSocket (WSS) z węzłem docelowym.</div>
-                        <div class="log-success"><span class="log-time">[SYSTEM]</span> KokoszkaOS Terminal v2.0 gotowy do przyjmowania komend systemowych.</div>
-                    </div>
-                    <div class="terminal-input-area">
-                        <input type="text" id="terminal-cmd-input" class="cmd-input" placeholder="Wpisz komendę administracyjną (np. /op TwójNick, /save-all, /stop)">
-                        <button class="btn btn-outline" style="color: white; border-color: #334155; width: 180px;" onclick="engine.executeTerminalCommand()">WYKONAJ</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="module-ftp" class="view-module">
-                <div class="card">
-                    <div class="card-title"><i>📂</i> Zdalny Eksplorator Plików</div>
-                    <div class="card-description" style="margin-bottom: 40px;">Modyfikuj pliki konfiguracyjne serwera bezpośrednio z przeglądarki dzięki wbudowanemu edytorowi.</div>
-                    
-                    <div class="ftp-workspace">
-                        <div class="ftp-tree-view">
-                            <div class="ftp-node" onclick="engine.loadFileIntoEditor('server.properties')"><i>📄</i> server.properties</div>
-                            <div class="ftp-node" onclick="engine.loadFileIntoEditor('spigot.yml')"><i>📄</i> spigot.yml</div>
-                            <div class="ftp-node" onclick="engine.loadFileIntoEditor('bukkit.yml')"><i>📄</i> bukkit.yml</div>
-                            <div class="ftp-node" onclick="engine.loadFileIntoEditor('whitelist.json')"><i>📄</i> whitelist.json</div>
-                            <div class="ftp-node" onclick="engine.loadFileIntoEditor('ops.json')"><i>📄</i> ops.json</div>
-                            <div class="ftp-node" style="color: var(--text-dim); cursor: not-allowed;"><i>📁</i> world (Katalog Mapy)</div>
-                            <div class="ftp-node" style="color: var(--text-dim); cursor: not-allowed;"><i>📁</i> plugins (Katalog Dodatków)</div>
-                            <div class="ftp-node" style="color: var(--text-dim); cursor: not-allowed;"><i>📁</i> logs (Archiwum)</div>
-                        </div>
-                        <div class="ftp-editor-wrapper">
-                            <textarea id="ftp-text-area" class="ftp-textarea" spellcheck="false"># Wybierz plik tekstowy z drzewa po lewej stronie, aby otworzyć edytor KokoszkaCode v2.0...</textarea>
-                            <button class="btn btn-primary ftp-save-btn" style="padding: 16px 35px; font-size: 14px;" onclick="ui.triggerToast('Zapisano zmiany w wybranym pliku na zdalnym serwerze FTP.')">ZAPISZ ZMIANY W PLIKU</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="module-mysql" class="view-module">
-                <div class="card">
-                    <div class="card-title"><i>🗄️</i> Bazy Danych (MySQL / MariaDB)</div>
-                    <div class="card-description">Twórz w pełni zarządzane bazy danych dla zaawansowanych pluginów takich jak LuckPerms, CoreProtect, czy serwerów logowania.</div>
-                    
-                    <div class="grid-responsive-2">
-                        <div class="card" style="padding: 35px; border: 2px solid var(--border-base); box-shadow: none;">
-                            <h4 style="font-size: 20px; font-weight: 900; color: var(--text-heading); margin-bottom: 5px;">s1_kokoszka_db</h4>
-                            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 25px;">Status: <b style="color: var(--status-online)">AKTYWNA</b></p>
-                            
-                            <div class="db-info-box">
-                                Host (Adres IP): <br><span>mysql.kokoszkamc.me</span><br><br>
-                                Port TCP: <br><span>3306</span><br><br>
-                                Nazwa Użytkownika: <br><span>u1092_dbadmin</span><br><br>
-                                Hasło Bazy: <br><span>••••••••••••</span>
-                            </div>
-                            
-                            <button class="btn btn-outline btn-block" style="margin-top: 25px; padding: 15px; font-size: 13px;" onclick="ui.triggerToast('Hasło dostępu do bazy danych zostało skopiowane do schowka.')">SKOPIUJ HASŁO DO SCHOWKA</button>
-                        </div>
-
-                        <div class="db-create-box" onclick="ui.triggerToast('Ochrona Anty-Spam: W darmowym planie ULTIMATE możliwa jest tylko 1 baza danych na serwer.')">
-                            <span style="font-size: 60px; color: var(--border-heavy); margin-bottom: 15px; font-weight: 300;">+</span>
-                            <b style="font-size: 16px; color: var(--text-muted); text-transform: uppercase;">UTWÓRZ NOWĄ BAZĘ DANYCH</b>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="module-cron" class="view-module">
-                <div class="card">
-                    <div class="card-title"><i>⏱️</i> Zadania Cykliczne (Cron Jobs)</div>
-                    <div class="card-description" style="margin-bottom: 30px;">Zautomatyzuj zarządzanie serwerem. Twórz harmonogramy restartów, cyklicznych zapisów mapy i automatycznych wiadomości na czacie w systemie Linux Cron.</div>
-                    
-                    <div class="table-responsive">
-                        <table class="system-table">
-                            <thead>
-                                <tr>
-                                    <th>EKSPRESJA CRON</th>
-                                    <th>OPIS ZADANIA / POLECENIE DO WYKONANIA</th>
-                                    <th>OBECNY STATUS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>0 4 * * *</td>
-                                    <td>Wewnętrzny Restart Maszyny (Optymalizacja zrzutu RAM)</td>
-                                    <td><span style="color: var(--status-online); font-weight: 800;">AKTYWNE</span></td>
-                                </tr>
-                                <tr>
-                                    <td>*/30 * * * *</td>
-                                    <td>say Zapisywanie danych mapy... (Wykonanie komendy save-all)</td>
-                                    <td><span style="color: var(--status-online); font-weight: 800;">AKTYWNE</span></td>
-                                </tr>
-                                <tr>
-                                    <td>0 * * * *</td>
-                                    <td>say Zostaw łapkę w górę dla serwera! (Auto-Broadcaster)</td>
-                                    <td><span style="color: var(--text-dim); font-weight: 800;">ZAWIESZONE</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <button class="btn btn-outline" style="margin-top: 30px; padding: 18px 40px; font-size: 15px;" onclick="ui.triggerToast('Moduł dodawania nowych zadań Cron jest aktualnie poddawany konserwacji bezpieczeństwa. Spróbuj później.')">+ ZAPLANUJ NOWE ZADANIE W HARMONOGRAMIE</button>
-                </div>
-            </div>
-
-            <div id="module-plugins" class="view-module">
-                <div class="card">
-                    <div class="card-title"><i>🔌</i> Instalator i Baza Wiedzy (Modyfikacje)</div>
-                    <div class="card-description">Zainstaluj najpopularniejsze i sprawdzone pluginy jednym kliknięciem myszy. Potrzebujesz więcej niestandardowych modyfikacji? Odwiedź w 100% bezpieczne, zaufane repozytoria twórców.</div>
-                    
-                    <div class="menu-group-title" style="margin-left: 0; margin-top: 40px;">Szybka Instalacja (One-Click) z chmury KokoszkaMC</div>
-                    <div class="marketplace-grid" style="margin-bottom: 50px;">
-                        <div class="plugin-item">
-                            <span class="plugin-icon">🏗️</span>
-                            <h4>WorldEdit</h4>
-                            <p>Potężny edytor mapy in-game. Buduj gigantyczne struktury za pomocą komend i siekiery.</p>
-                            <button class="btn btn-outline btn-block" onclick="ui.triggerToast('Sukces: Plugin WorldEdit został pomyślnie pobrany i rozpakowany do folderu /plugins.')">ZAINSTALUJ (ONE-CLICK)</button>
-                        </div>
-                        <div class="plugin-item">
-                            <span class="plugin-icon">⭐</span>
-                            <h4>EssentialsX</h4>
-                            <p>Rdzeń każdego serwera. Zawiera ponad 150 użytecznych komend, kitów, domów i warpów.</p>
-                            <button class="btn btn-outline btn-block" onclick="ui.triggerToast('Sukces: Plugin EssentialsX został pomyślnie pobrany i rozpakowany do folderu /plugins.')">ZAINSTALUJ (ONE-CLICK)</button>
-                        </div>
-                        <div class="plugin-item">
-                            <span class="plugin-icon">🛡️</span>
-                            <h4>LuckPerms</h4>
-                            <p>Nowoczesny i zaawansowany menedżer uprawnień i rang (Prefiksy, VIP, Admin).</p>
-                            <button class="btn btn-outline btn-block" onclick="ui.triggerToast('Sukces: Plugin LuckPerms został pomyślnie pobrany i rozpakowany do folderu /plugins.')">ZAINSTALUJ (ONE-CLICK)</button>
-                        </div>
-                    </div>
-
-                    <div class="menu-group-title" style="margin-left: 0; color: var(--brand-primary); font-size: 13px;">Oficjalne, Bezpieczne Źródła Modyfikacji (Zewnętrzne)</div>
-                    <div class="legit-links-container">
-                        <a href="https://modrinth.com/mods" target="_blank" class="legit-link-btn" title="Otwórz oficjalną stronę Modrinth">
-                            🌐 MODRINTH (Najlepsze Mody i Nowoczesne Pluginy)
-                        </a>
-                        <a href="https://www.curseforge.com/minecraft/mc-mods" target="_blank" class="legit-link-btn" title="Otwórz oficjalną stronę CurseForge">
-                            🌐 CURSEFORGE (Największa baza Modpacków na świecie)
-                        </a>
-                        <a href="https://www.spigotmc.org/resources/" target="_blank" class="legit-link-btn" title="Otwórz oficjalną stronę SpigotMC">
-                            🌐 SPIGOTMC (Główna Baza Klasycznych Pluginów)
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="module-security" class="view-module">
-                <div class="card" style="border-top: 6px solid var(--status-shield);">
-                    <div class="card-title"><i>🛡️</i> Zapora Sieciowa i Mitygacja Ataków (Anti-DDoS)</div>
-                    <div class="card-description">Zarządzaj ustawieniami brzegowej zapory Firewall. Twój serwer jest automatycznie i stale chroniony przed atakami wolumetrycznymi na warstwy L3/L4 oraz złośliwym, precyzyjnym ruchem na warstwie aplikacji (L7).</div>
-                    
-                    <div class="shield-container">
-                        <div>
-                            <h2>Aktywna Ochrona Kokoszka-Shield™ Enterprise</h2>
-                            <p style="color: #cbd5e1; font-size: 13px; margin-top: 10px; max-width: 650px; line-height: 1.6;">Ruch sieciowy z portu 25565 jest stale analizowany przez sprzętowe filtry BGP w czasie rzeczywistym. Twój serwer jest bezpieczny przed botnetami typu NullPing, BotAttack, czy powolnymi atakami wyczerpującymi pule połączeń.</p>
-                        </div>
-                        <div class="shield-status-indicator">
-                            <div class="shield-pulse"></div>
-                            W PEŁNI CHRONIONY
-                        </div>
-                    </div>
-
-                    <div class="settings-row">
-                        <div class="settings-info">
-                            <h4>Tryb "Under Attack" (Agresywne Filtrowanie Pakietów)</h4>
-                            <p>Włącz natychmiast, jeśli Twój serwer jest obecnie obiektem celowego ataku botów. Prawdziwi gracze mogą doświadczyć wyższego pingu z powodu Głębokiej Inspekcji Pakietów (DPI).</p>
-                        </div>
-                        <div class="switch-container">
-                            <input type="checkbox">
-                            <span class="switch-track"></span>
-                        </div>
-                    </div>
-                    
-                    <div class="settings-row">
-                        <div class="settings-info">
-                            <h4>Globalna Blokada ruchu z Data Center i VPN (IP Reputation)</h4>
-                            <p>Automatycznie blokuje i zrywa próby nawiązania połączenia do gry z węzłów exitowych sieci Tor oraz znanych, publicznych list sieci VPN (np. NordVPN, ExpressVPN).</p>
-                        </div>
-                        <div class="switch-container">
-                            <input type="checkbox" checked>
-                            <span class="switch-track"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="module-audit" class="view-module">
-                <div class="card">
-                    <div class="card-title"><i>📜</i> Dziennik Bezpieczeństwa Systemu (Audit Trail)</div>
-                    <div class="card-description" style="margin-bottom: 30px;">System KokoszkaOS nieprzerwanie rejestruje każdą istotną zmianę i operację dokonaną w konfiguracji Twojego panelu. Jest to kluczowe narzędzie do śledzenia ewentualnych nadużyć.</div>
-                    
-                    <div class="table-responsive">
-                        <table class="system-table">
-                            <thead>
-                                <tr>
-                                    <th>Dokładna Sygnatura Czasowa (Zegar Hosta)</th>
-                                    <th>Szczegółowy Opis Akcji Systemowej</th>
-                                    <th>Konto Logiczne Operatora</th>
-                                    <th>Ostateczny Status Zdarzenia</th>
-                                </tr>
-                            </thead>
-                            <tbody id="ui-audit-table-render">
-                                </tbody>
-                        </table>
-                    </div>
-                </div>
+                
+                <button class="btn-auth-submit" onclick="appStore.processRegistration()">WYKLUJ NOWE KONTO</button>
+                <div id="err-reg" class="auth-error-message"></div>
             </div>
 
         </div>
     </div>
 
-    <div id="sys-toast" class="toast-notification">
-        <span style="font-size: 26px;">ℹ️</span>
-        <span id="toast-message-content">Inicjalizacja systemu powiadomień.</span>
+    <div id="app-core-wrapper" style="display: none; width: 100vw; height: 100vh;">
+        
+        <div class="app-sidebar">
+            <div class="sidebar-brand-area">
+                <h2>KOKOSZKA MC</h2>
+                <p>TITAN ENGINE v3.0</p>
+            </div>
+
+            <div class="sidebar-menu-scroll">
+                <div class="menu-group-title">Zarządzanie Główne</div>
+                <div class="menu-link-item active" onclick="ui.switchModule('dashboard', this)"><i>📊</i> Pulpit Sterowania</div>
+                <div class="menu-link-item" onclick="ui.switchModule('resources', this)"><i>⚡</i> Wydajność (RAM/CPU)</div>
+                <div class="menu-link-item" onclick="ui.switchModule('software', this)"><i>⚙️</i> Silnik i Wersje</div>
+                <div class="menu-link-item" onclick="ui.switchModule('properties', this)"><i>🛠️</i> Ustawienia (.properties)</div>
+
+                <div class="menu-group-title">System i Pliki</div>
+                <div class="menu-link-item" onclick="ui.switchModule('terminal', this)"><i>💻</i> Konsola Terminal</div>
+                <div class="menu-link-item" onclick="ui.switchModule('ftp', this)"><i>📂</i> Menedżer Plików FTP</div>
+                <div class="menu-link-item" onclick="ui.switchModule('mysql', this)"><i>🗄️</i> Bazy Danych MySQL</div>
+                <div class="menu-link-item" onclick="ui.switchModule('cron', this)"><i>⏱️</i> Harmonogramy (Cron)</div>
+
+                <div class="menu-group-title">Ochrona i Dodatki</div>
+                <div class="menu-link-item" onclick="ui.switchModule('plugins', this)"><i>🔌</i> Mody i Pluginy (Sklep)</div>
+                <div class="menu-link-item" onclick="ui.switchModule('security', this)"><i>🛡️</i> Ochrona Anti-DDoS</div>
+                <div class="menu-link-item" onclick="ui.switchModule('players', this)"><i>👥</i> Lista Graczy i OP</div>
+                <div class="menu-link-item" onclick="ui.switchModule('audit', this)"><i>📜</i> Dziennik Audytu</div>
+                <div class="menu-link-item" onclick="ui.switchModule('support', this)"><i>🎫</i> Centrum Pomocy</div>
+            </div>
+
+            <div class="sidebar-footer-area">
+                <button class="btn-logout" onclick="location.reload()">WYLOGUJ KONTO</button>
+            </div>
+        </div>
+
+        <div class="app-main-content">
+            
+            <div class="app-topbar">
+                <div class="topbar-breadcrumb">Panel / <span id="ui-current-module-name">Pulpit Sterowania</span></div>
+                <div class="topbar-user-section">
+                    <div class="user-plan-badge" style="background: var(--brand-primary); color: white; border: none;">ULTIMATE FREE TIER</div>
+                    <div class="user-profile-box">
+                        <div class="user-name-text">
+                            <b id="ui-display-username">Gość</b>
+                            <small>Aktywna Sesja</small>
+                        </div>
+                        <div class="user-avatar-circle" id="ui-display-avatar">?</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-view-canvas">
+                
+                <div id="module-dashboard" class="view-module active">
+                    
+                    <div id="layout-spawn-server" style="display: none;">
+                        <div style="text-align: center; padding: 100px 0;">
+                            <div style="font-size: 100px; margin-bottom: 20px;">🥚</div>
+                            <h1 style="font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 900; color: var(--text-heading);">Wygeneruj swoją maszynę!</h1>
+                            <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 40px; margin-top: 10px;">Podaj unikalną nazwę serwera. Adres IP przydzielimy całkowicie za darmo.</p>
+                            
+                            <input type="text" id="in-create-name" style="width: 100%; max-width: 600px; font-size: 40px; font-weight: 900; border: none; border-bottom: 6px solid var(--border-base); background: transparent; text-align: center; color: var(--text-heading); padding: 15px; margin-bottom: 40px; font-family: 'Montserrat', sans-serif;" placeholder="np. survival-kokoszka">
+                            
+                            <div style="margin-bottom: 50px;">
+                                <span style="font-weight: 800; font-size: 14px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;">Twój przyszły adres IP:</span><br>
+                                <span id="out-create-ip" style="font-family: 'Fira Code', monospace; font-size: 28px; font-weight: 900; color: var(--brand-primary); display: block; margin-top: 10px;">...kokoszka.me</span>
+                            </div>
+                            
+                            <button class="btn btn-primary" style="padding: 25px 80px; font-size: 20px;" onclick="engine.deployNewServer()">STWÓRZ SERWER ZA DARMO</button>
+                        </div>
+                    </div>
+
+                    <div id="layout-manage-server" style="display: none;">
+                        <div class="grid-responsive-2">
+                            
+                            <div class="card">
+                                <div style="display: flex; align-items: center; gap: 35px; margin-bottom: 35px;">
+                                    <div id="ui-status-orb" style="width: 120px; height: 120px; border-radius: 50%; border: 12px solid var(--border-base); display: flex; align-items: center; justify-content: center; font-size: 50px; transition: var(--transition-base); background-color: var(--bg-application);">🔴</div>
+                                    <div>
+                                        <h2 id="ui-status-text" style="font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 38px; color: var(--text-heading); line-height: 1; margin-bottom: 10px;">OFFLINE</h2>
+                                        <div id="ui-status-ip" style="display: inline-block; background-color: var(--bg-input); padding: 8px 16px; border-radius: 12px; font-family: 'Fira Code', monospace; font-weight: 700; color: var(--text-muted); font-size: 15px; border: 1px solid var(--border-base);">---</div>
+                                    </div>
+                                </div>
+                                
+                                <div style="background-color: var(--bg-input); padding: 15px 25px; border-radius: 15px; display: inline-flex; align-items: center; gap: 15px; font-weight: 700; color: var(--text-muted); margin-bottom: 35px; border: 1px solid var(--border-base);">
+                                    <span>Aktywny czas pracy:</span> <b id="ui-uptime-clock" style="color: var(--brand-primary); font-size: 18px; font-family: 'Fira Code', monospace;">00:00:00</b>
+                                </div>
+                                
+                                <div style="display: flex; gap: 15px;">
+                                    <button id="ui-btn-power" class="btn btn-success" style="flex: 2.5;" onclick="engine.togglePowerState()">URUCHOM SERWER</button>
+                                    <button class="btn btn-danger" style="flex: 1;" onclick="engine.triggerEmergencyKill()">KILL</button>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <h3 class="card-title"><i>⚡</i> Obciążenie Węzła</h3>
+                                <p class="card-description">Monitorowanie zasobów sprzętowych w czasie rzeczywistym.</p>
+                                
+                                <div style="margin-bottom: 25px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px;">
+                                        <span style="font-size: 13px; font-weight: 800; text-transform: uppercase; color: var(--text-muted);">Pamięć Operacyjna (RAM)</span>
+                                        <span id="ui-live-ram-text" style="font-family: 'Fira Code', monospace; font-weight: 700; font-size: 15px; color: var(--text-heading);">0 / 4096 MB</span>
+                                    </div>
+                                    <div style="height: 18px; background-color: var(--bg-input); border-radius: 10px; overflow: hidden; border: 3px solid var(--bg-application); box-shadow: var(--shadow-xs);">
+                                        <div id="ui-live-ram-bar" style="height: 100%; background-color: var(--status-success); width: 0%; transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);"></div>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 25px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px;">
+                                        <span style="font-size: 13px; font-weight: 800; text-transform: uppercase; color: var(--text-muted);">Użycie Procesora (CPU)</span>
+                                        <span id="ui-live-cpu-text" style="font-family: 'Fira Code', monospace; font-weight: 700; font-size: 15px; color: var(--text-heading);">0%</span>
+                                    </div>
+                                    <div style="height: 18px; background-color: var(--bg-input); border-radius: 10px; overflow: hidden; border: 3px solid var(--bg-application); box-shadow: var(--shadow-xs);">
+                                        <div id="ui-live-cpu-bar" style="height: 100%; background-color: var(--status-info); width: 0%; transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);"></div>
+                                    </div>
+                                </div>
+
+                                <div style="text-align: center; border-top: 1px solid var(--border-base); padding-top: 20px; margin-top: 30px;">
+                                    <small style="font-weight: 900; color: var(--text-dim); text-transform: uppercase; font-size: 11px;">Węzeł Obliczeniowy: <b style="color: var(--text-heading);">KOKOSZKA-WAW-01</b></small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center;">
+                                <div><small style="font-weight: 900; color: var(--text-dim); text-transform: uppercase; font-size: 12px;">SILNIK GRY</small><br><b id="ui-info-engine" style="font-size: 22px; color: var(--text-heading);">---</b></div>
+                                <div><small style="font-weight: 900; color: var(--text-dim); text-transform: uppercase; font-size: 12px;">WERSJA MC</small><br><b id="ui-info-version" style="font-size: 22px; color: var(--text-heading);">---</b></div>
+                                <div><small style="font-weight: 900; color: var(--text-dim); text-transform: uppercase; font-size: 12px;">GRACZE ONLINE</small><br><b style="font-size: 22px; color: var(--text-heading);">0 / 20</b></div>
+                                <div><small style="font-weight: 900; color: var(--text-dim); text-transform: uppercase; font-size: 12px;">PORT DOMYŚLNY</small><br><b style="font-size: 22px; font-family: 'Fira Code', monospace; color: var(--brand-primary);">25565</b></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-resources" class="view-module">
+                    <div class="card">
+                        <h3 class="card-title"><i>🚀</i> Nielimitowany Przydział Mocy</h3>
+                        <p class="card-description" style="font-size: 15px;">W KokoszkaMC zasoby są całkowicie darmowe. Maszyna wirtualna działa z użyciem zasobów Twojej przeglądarki. Ustawienia przekraczające fizyczne możliwości Twojego komputera spowodują crash karty.</p>
+                        
+                        <div style="background-color: var(--bg-application); padding: 35px; border-radius: var(--radius-large); border: 1px solid var(--border-base); margin-bottom: 30px; transition: var(--transition-base);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <span style="font-size: 13px; font-weight: 900; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">PRZYDZIELONA PAMIĘĆ RAM (GB)</span>
+                                <b id="lbl-ram-val" style="font-size: 32px; font-family: 'Montserrat', sans-serif; color: var(--text-heading); font-weight: 900;">4</b>
+                            </div>
+                            <input type="range" min="1" max="128" value="4" style="width: 100%; height: 8px; background-color: var(--border-heavy); border-radius: 10px; appearance: none; outline: none; margin: 20px 0;" id="slider-ram" oninput="engine.syncResourceSliders()">
+                            <div id="alert-ram-limit" style="display: none; background-color: var(--status-warning-bg); color: #92400e; padding: 20px; border-radius: var(--radius-medium); font-size: 13px; font-weight: 700; border-left: 6px solid var(--status-warning); margin-top: 20px; line-height: 1.5;">
+                                <b>KRYTYCZNE OSTRZEŻENIE SYSTEMOWE:</b> Wykryto alokację ponad 16GB RAM. Jeśli Twój komputer nie posiada takiej ilości pamięci fizycznej, przeglądarka zostanie awaryjnie zamknięta przez system operacyjny.
+                            </div>
+                        </div>
+
+                        <div style="background-color: var(--bg-application); padding: 35px; border-radius: var(--radius-large); border: 1px solid var(--border-base); margin-bottom: 30px; transition: var(--transition-base);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <span style="font-size: 13px; font-weight: 900; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">RDZENIE PROCESORA (vCPU)</span>
+                                <b id="lbl-cpu-val" style="font-size: 32px; font-family: 'Montserrat', sans-serif; color: var(--text-heading); font-weight: 900;">2</b>
+                            </div>
+                            <input type="range" min="1" max="32" value="2" style="width: 100%; height: 8px; background-color: var(--border-heavy); border-radius: 10px; appearance: none; outline: none; margin: 20px 0;" id="slider-cpu" oninput="engine.syncResourceSliders()">
+                            <div id="alert-cpu-limit" style="display: none; background-color: var(--status-warning-bg); color: #92400e; padding: 20px; border-radius: var(--radius-medium); font-size: 13px; font-weight: 700; border-left: 6px solid var(--status-warning); margin-top: 20px; line-height: 1.5;">
+                                <b>OSTRZEŻENIE O WYDAJNOŚCI:</b> Silnik Java w grze Minecraft nie potrafi w pełni wykorzystać więcej niż 4 rdzeni procesora do obsługi głównego wątku. Przesada sztucznie obciąży hosta.
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" style="width: 100%; padding: 20px;" onclick="ui.triggerToast('Parametry fizyczne zapisane w bazie. Zrestartuj maszynę, aby nałożyć zmiany.')">ZAPISZ KONFIGURACJĘ SPRZĘTOWĄ</button>
+                    </div>
+                </div>
+
+                <div id="module-software" class="view-module">
+                    <div class="card">
+                        <h3 class="card-title"><i>⚙️</i> Wybór Oprogramowania</h3>
+                        <p class="card-description">Zmień silnik serwera w dowolnym momencie. System automatycznie pobierze i zweryfikuje sumy kontrolne nowych plików .jar.</p>
+                        
+                        <div style="margin-bottom: 30px;">
+                            <label style="display: block; font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; margin-left: 5px;">Rodzina Silnika:</label>
+                            <select id="sel-engine-type" style="width: 100%; background-color: transparent; border: none; border-bottom: 4px solid var(--border-base); padding: 15px 5px; font-size: 26px; font-weight: 900; color: var(--text-heading); font-family: 'Montserrat', sans-serif; transition: var(--transition-base);">
+                                <option value="Vanilla">Vanilla Minecraft (Czysty oryginał)</option>
+                                <option selected value="PaperMC">PaperMC (Wysoka Wydajność + Pluginy)</option>
+                                <option value="Spigot">Spigot (Standardowa zgodność)</option>
+                                <option value="Forge">Forge (Modyfikacje Java)</option>
+                                <option value="Fabric">Fabric (Lekkie mody nowej generacji)</option>
+                                <option value="Purpur">Purpur (Eksperymentalna wydajność)</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 40px;">
+                            <label style="display: block; font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; margin-left: 5px;">Wersja Klienta Gry:</label>
+                            <select id="sel-engine-version" style="width: 100%; background-color: transparent; border: none; border-bottom: 4px solid var(--border-base); padding: 15px 5px; font-size: 26px; font-weight: 900; color: var(--text-heading); font-family: 'Montserrat', sans-serif; transition: var(--transition-base);">
+                                </select>
+                        </div>
+
+                        <button class="btn btn-primary" style="width: 100%; padding: 20px;" onclick="engine.processSoftwareInstallation()">ROZPOCZNIJ INSTALACJĘ NOWEGO SILNIKA</button>
+                    </div>
+                </div>
+
+                <div id="module-properties" class="view-module">
+                    <div class="card">
+                        <h3 class="card-title"><i>🛠️</i> Konfiguracja Głównej Mechaniki</h3>
+                        <p class="card-description">Zarządzaj opcjami z pliku server.properties za pomocą wygodnych przełączników.</p>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 25px 30px; background-color: var(--bg-application); border: 1px solid var(--border-base); border-radius: var(--radius-medium); margin-bottom: 15px; transition: var(--transition-fast);">
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 5px;">Tryb Non-Premium (Cracked / Offline-Mode)</h4>
+                                <p style="font-size: 13px; color: var(--text-muted); font-weight: 500;">Wyłącza autoryzację sesji Mojang. Wymagane dla graczy bez zakupionej gry.</p>
+                            </div>
+                            <div style="position: relative; width: 56px; height: 30px; flex-shrink: 0;">
+                                <input type="checkbox" id="prop-nonpremium" checked style="opacity: 0; width: 0; height: 0;">
+                                <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--status-success); transition: .3s; border-radius: 34px;"></span>
+                                <span style="position: absolute; content: ''; height: 22px; width: 22px; left: 4px; bottom: 4px; background-color: white; transition: .3s; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transform: translateX(26px); pointer-events: none;"></span>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 25px 30px; background-color: var(--bg-application); border: 1px solid var(--border-base); border-radius: var(--radius-medium); margin-bottom: 15px; transition: var(--transition-fast);">
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 5px;">Walka PvP (Player vs Player)</h4>
+                                <p style="font-size: 13px; color: var(--text-muted); font-weight: 500;">Umożliwia graczom zadawanie sobie obrażeń bronią na całej mapie.</p>
+                            </div>
+                            <div style="position: relative; width: 56px; height: 30px; flex-shrink: 0;">
+                                <input type="checkbox" checked style="opacity: 0; width: 0; height: 0;">
+                                <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--status-success); transition: .3s; border-radius: 34px;"></span>
+                                <span style="position: absolute; content: ''; height: 22px; width: 22px; left: 4px; bottom: 4px; background-color: white; transition: .3s; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transform: translateX(26px); pointer-events: none;"></span>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 25px 30px; background-color: var(--bg-application); border: 1px solid var(--border-base); border-radius: var(--radius-medium); margin-bottom: 15px; transition: var(--transition-fast);">
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 5px;">Biała Lista (Whitelist)</h4>
+                                <p style="font-size: 13px; color: var(--text-muted); font-weight: 500;">Zablokuj serwer dla osób z zewnątrz. Wymaga dodania nicków do listy.</p>
+                            </div>
+                            <div style="position: relative; width: 56px; height: 30px; flex-shrink: 0;">
+                                <input type="checkbox" style="opacity: 0; width: 0; height: 0;">
+                                <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border-heavy); transition: .3s; border-radius: 34px;"></span>
+                                <span style="position: absolute; content: ''; height: 22px; width: 22px; left: 4px; bottom: 4px; background-color: white; transition: .3s; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); pointer-events: none;"></span>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 40px; margin-bottom: 30px;">
+                            <label style="display: block; font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; margin-left: 5px;">Wiadomość Powitalna (MOTD):</label>
+                            <input type="text" id="prop-motd" style="width: 100%; padding: 20px 25px; background-color: var(--bg-input); border: 2px solid var(--border-base); border-radius: var(--radius-medium); font-family: inherit; font-size: 16px; font-weight: 600; color: var(--text-heading); transition: var(--transition-base);" placeholder="Witaj na potężnym serwerze KokoszkaMC!">
+                        </div>
+
+                        <button class="btn btn-primary" style="width: 100%; padding: 20px;" onclick="ui.triggerToast('Konfiguracja server.properties została zaktualizowana i zapisana na dysku SSD.')">ZAPISZ PLIK SERVER.PROPERTIES</button>
+                    </div>
+                </div>
+
+                <div id="module-terminal" class="view-module">
+                    <div style="background-color: var(--bg-terminal); border-radius: var(--radius-large); padding: 30px; border: 8px solid #1e293b;">
+                        <div id="terminal-screen-log" style="height: 480px; overflow-y: auto; font-family: 'Fira Code', monospace; color: #f8fafc; font-size: 14px; line-height: 1.8; padding-right: 10px;">
+                            <div style="margin-bottom: 8px;"><span style="color: #64748b; margin-right: 15px;">[SYSTEM]</span> <span style="color: #38bdf8;">Zestawiono bezpieczne połączenie WebSocket (WSS) z węzłem docelowym.</span></div>
+                            <div style="margin-bottom: 8px;"><span style="color: #64748b; margin-right: 15px;">[SYSTEM]</span> <span style="color: #34d399; font-weight: 700;">KokoszkaOS Terminal v3.0 gotowy do przyjmowania komend systemowych.</span></div>
+                        </div>
+                        <div style="display: flex; gap: 15px; margin-top: 25px;">
+                            <input type="text" id="terminal-cmd-input" style="flex-grow: 1; padding: 18px 25px; background-color: #1e293b; border: 2px solid #334155; border-radius: var(--radius-medium); color: #ffffff; font-family: 'Fira Code', monospace; font-size: 14px;" placeholder="Wpisz komendę (np. /op TwójNick, /save-all)">
+                            <button class="btn" style="background-color: transparent; color: white; border: 2px solid #334155; width: 150px;" onclick="engine.executeTerminalCommand()" onmouseover="this.style.borderColor='white'; this.style.backgroundColor='#1e293b';" onmouseout="this.style.borderColor='#334155'; this.style.backgroundColor='transparent';">WYKONAJ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-ftp" class="view-module">
+                    <div class="card">
+                        <h3 class="card-title"><i>📂</i> Zdalny Eksplorator Plików</h3>
+                        <p class="card-description">Modyfikuj pliki konfiguracyjne serwera bezpośrednio z przeglądarki dzięki wbudowanemu edytorowi KokoszkaCode.</p>
+                        
+                        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 30px; height: 600px;">
+                            <div style="background-color: var(--bg-application); border-radius: var(--radius-medium); padding: 20px; overflow-y: auto; border: 1px solid var(--border-base);">
+                                <div class="ftp-node" style="padding: 12px 15px; border-radius: var(--radius-small); cursor: pointer; margin-bottom: 5px; font-weight: 600; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 12px; transition: var(--transition-fast);" onclick="engine.loadFileIntoEditor('server.properties')" onmouseover="this.style.backgroundColor='var(--bg-input)'" onmouseout="this.style.backgroundColor='transparent'"><i>📄</i> server.properties</div>
+                                <div class="ftp-node" style="padding: 12px 15px; border-radius: var(--radius-small); cursor: pointer; margin-bottom: 5px; font-weight: 600; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 12px; transition: var(--transition-fast);" onclick="engine.loadFileIntoEditor('spigot.yml')" onmouseover="this.style.backgroundColor='var(--bg-input)'" onmouseout="this.style.backgroundColor='transparent'"><i>📄</i> spigot.yml</div>
+                                <div class="ftp-node" style="padding: 12px 15px; border-radius: var(--radius-small); cursor: pointer; margin-bottom: 5px; font-weight: 600; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 12px; transition: var(--transition-fast);" onclick="engine.loadFileIntoEditor('bukkit.yml')" onmouseover="this.style.backgroundColor='var(--bg-input)'" onmouseout="this.style.backgroundColor='transparent'"><i>📄</i> bukkit.yml</div>
+                                <div class="ftp-node" style="padding: 12px 15px; border-radius: var(--radius-small); cursor: pointer; margin-bottom: 5px; font-weight: 600; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 12px; transition: var(--transition-fast);" onclick="engine.loadFileIntoEditor('whitelist.json')" onmouseover="this.style.backgroundColor='var(--bg-input)'" onmouseout="this.style.backgroundColor='transparent'"><i>📄</i> whitelist.json</div>
+                                <div class="ftp-node" style="padding: 12px 15px; border-radius: var(--radius-small); cursor: pointer; margin-bottom: 5px; font-weight: 600; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 12px; transition: var(--transition-fast);" onclick="engine.loadFileIntoEditor('ops.json')" onmouseover="this.style.backgroundColor='var(--bg-input)'" onmouseout="this.style.backgroundColor='transparent'"><i>📄</i> ops.json</div>
+                                <div style="padding: 12px 15px; margin-bottom: 5px; font-weight: 600; font-size: 13px; color: var(--text-dim); display: flex; align-items: center; gap: 12px; cursor: not-allowed;"><i>📁</i> world (Katalog)</div>
+                                <div style="padding: 12px 15px; margin-bottom: 5px; font-weight: 600; font-size: 13px; color: var(--text-dim); display: flex; align-items: center; gap: 12px; cursor: not-allowed;"><i>📁</i> plugins (Katalog)</div>
+                            </div>
+                            <div style="position: relative; height: 100%; border-radius: var(--radius-medium); overflow: hidden; border: 8px solid var(--bg-terminal);">
+                                <textarea id="ftp-text-area" style="width: 100%; height: 100%; background-color: var(--bg-terminal); color: #f8fafc; padding: 30px; border: none; resize: none; font-family: 'Fira Code', monospace; font-size: 14px; line-height: 1.7;" spellcheck="false"># Wybierz plik tekstowy z drzewa po lewej stronie, aby otworzyć edytor...</textarea>
+                                <button class="btn btn-primary" style="position: absolute; bottom: 25px; right: 25px; padding: 16px 30px;" onclick="ui.triggerToast('Zapisano zmiany w wybranym pliku na zdalnym serwerze FTP.')">ZAPISZ ZMIANY W PLIKU</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-mysql" class="view-module">
+                    <div class="card">
+                        <h3 class="card-title"><i>🗄️</i> Bazy Danych (MySQL / MariaDB)</h3>
+                        <p class="card-description">Twórz w pełni zarządzane bazy danych dla zaawansowanych pluginów takich jak LuckPerms, CoreProtect, czy serwerów logowania (np. AuthMe).</p>
+                        
+                        <div class="grid-responsive-2" style="margin-bottom: 0;">
+                            <div style="background-color: var(--bg-application); padding: 30px; border-radius: var(--radius-medium); border: 1px solid var(--border-base);">
+                                <h4 style="font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 5px;">s1_kokoszka_db</h4>
+                                <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">Status Połączenia: <b style="color: var(--status-success)">AKTYWNA</b></p>
+                                
+                                <div style="background-color: var(--bg-card); padding: 20px; border-radius: var(--radius-small); border: 1px solid var(--border-base); font-family: 'Fira Code', monospace; font-size: 13px; color: var(--text-muted); line-height: 1.8;">
+                                    Host: <span style="color: var(--text-heading); font-weight: 600;">mysql.kokoszkamc.me</span><br>
+                                    Port: <span style="color: var(--text-heading); font-weight: 600;">3306</span><br>
+                                    User: <span style="color: var(--text-heading); font-weight: 600;">u1092_dbadmin</span><br>
+                                    Pass: <span style="color: var(--text-heading); font-weight: 600;">••••••••••••</span>
+                                </div>
+                                
+                                <button class="btn btn-outline" style="width: 100%; margin-top: 20px; padding: 15px; font-size: 13px;" onclick="ui.triggerToast('Hasło dostępu do bazy danych zostało skopiowane do schowka.')">SKOPIUJ HASŁO</button>
+                            </div>
+
+                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed var(--border-heavy); border-radius: var(--radius-medium); padding: 40px; text-align: center; cursor: pointer; transition: var(--transition-fast); background-color: var(--bg-surface);" onclick="ui.triggerToast('Ochrona Anty-Spam: W darmowym planie ULTIMATE możliwa jest tylko 1 darmowa baza danych MySQL.')" onmouseover="this.style.borderColor='var(--text-heading)'; this.style.backgroundColor='var(--bg-input)'" onmouseout="this.style.borderColor='var(--border-heavy)'; this.style.backgroundColor='var(--bg-surface)'">
+                                <span style="font-size: 50px; color: var(--border-heavy); margin-bottom: 10px; font-weight: 300;">+</span>
+                                <b style="font-size: 14px; color: var(--text-muted); text-transform: uppercase;">UTWÓRZ NOWĄ BAZĘ</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-cron" class="view-module">
+                    <div class="card">
+                        <h3 class="card-title"><i>⏱️</i> Zadania Cykliczne (Cron Jobs)</h3>
+                        <p class="card-description">Zautomatyzuj powtarzalne procesy zarządzania serwerem. Ustawiaj restarty, zaplanowane zapisy mapy i automatyczne ogłoszenia na czacie.</p>
+                        
+                        <div style="width: 100%; overflow-x: auto; margin-top: 20px;">
+                            <table style="width: 100%; border-collapse: separate; border-spacing: 0 8px;">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: left; padding: 15px 20px; color: var(--text-muted); font-weight: 800; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid var(--border-base);">EKSPRESJA CRON</th>
+                                        <th style="text-align: left; padding: 15px 20px; color: var(--text-muted); font-weight: 800; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid var(--border-base);">OPIS / POLECENIE DO WYKONANIA</th>
+                                        <th style="text-align: left; padding: 15px 20px; color: var(--text-muted); font-weight: 800; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid var(--border-base);">STATUS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: 18px 20px; background-color: var(--bg-application); font-size: 13px; font-weight: 600; border-top: 1px solid var(--border-base); border-bottom: 1px solid var(--border-base); border-left: 1px solid var(--border-base); border-radius: 12px 0 0 12px; color: var(--text-dim); font-family: 'Fira Code', monospace;">0 4 * * *</td>
+                                        <td style="padding: 18px 20px; background-color: var(--bg-application); font-size: 13px; font-weight: 600; color: var(--text-main); border-top: 1px solid var(--border-base); border-bottom: 1px solid var(--border-base);">Wewnętrzny Restart Maszyny (Optymalizacja RAM)</td>
+                                        <td style="padding: 18px 20px; background-color: var(--bg-application); font-size: 13px; font-weight: 600; border-top: 1px solid var(--border-base); border-bottom: 1px solid var(--border-base); border-right: 1px solid var(--border-base); border-radius: 0 12px 12px 0;"><span style="color: var(--status-success); font-weight: 800;">AKTYWNE</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 18px 20px; background-color: var(--bg-application); font-size: 13px; font-weight: 600; border-top: 1px solid var(--border-base); border-bottom: 1px solid var(--border-base); border-left: 1px solid var(--border-base); border-radius: 12px 0 0 12px; color: var(--text-dim); font-family: 'Fira Code', monospace;">*/30 * * * *</td>
+                                        <td style="padding: 18px 20px; background-color: var(--bg-application); font-size: 13px; font-weight: 600; color: var(--text-main); border-top: 1px solid var(--border-base); border-bottom: 1px solid var(--border-base);">say Zapisywanie mapy... (Komenda save-all)</td>
+                                        <td style="padding: 18px 20px; background-color: var(--bg-application); font-size: 13px; font-weight: 600; border-top: 1px solid var(--border-base); border-bottom: 1px solid var(--border-base); border-right: 1px solid var(--border-base); border-radius: 0 12px 12px 0;"><span style="color: var(--status-success); font-weight: 800;">AKTYWNE</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="btn btn-outline" style="margin-top: 25px; padding: 15px 30px;" onclick="ui.triggerToast('Moduł dodawania nowych zadań Cron jest w trakcie konserwacji sprzętowej. Spróbuj ponownie później.')">+ ZAPLANUJ NOWE ZADANIE</button>
+                    </div>
+                </div>
+
+                <div id="module-plugins" class="view-module">
+                    <div class="card">
+                        <h3 class="card-title"><i>🔌</i> Instalator i Baza Wiedzy (Modyfikacje)</h3>
+                        <p class="card-description">Zainstaluj najpopularniejsze i sprawdzone pluginy jednym kliknięciem myszy z naszej szybkiej bazy chmurowej.</p>
+                        
+                        <div style="font-size: 11px; font-weight: 900; color: var(--text-dim); text-transform: uppercase; margin: 35px 0 15px; letter-spacing: 1.5px;">Szybka Instalacja (One-Click)</div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-bottom: 45px;">
+                            <div style="background-color: var(--bg-application); border: 1px solid var(--border-base); border-radius: var(--radius-large); padding: 35px 25px; text-align: center; transition: var(--transition-base);" onmouseover="this.style.borderColor='var(--text-heading)'; this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='var(--border-base)'; this.style.transform='translateY(0)';">
+                                <span style="font-size: 45px; display: block; margin-bottom: 20px;">🏗️</span>
+                                <h4 style="font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 10px;">WorldEdit PRO</h4>
+                                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 25px; line-height: 1.5;">Potężne narzędzie do masowej, programistycznej edycji bloków w grze.</p>
+                                <button class="btn btn-outline btn-block" style="padding: 12px; font-size: 12px;" onclick="ui.triggerToast('Sukces: Plugin WorldEdit został pomyślnie pobrany do folderu /plugins.')">INSTALUJ</button>
+                            </div>
+                            <div style="background-color: var(--bg-application); border: 1px solid var(--border-base); border-radius: var(--radius-large); padding: 35px 25px; text-align: center; transition: var(--transition-base);" onmouseover="this.style.borderColor='var(--text-heading)'; this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='var(--border-base)'; this.style.transform='translateY(0)';">
+                                <span style="font-size: 45px; display: block; margin-bottom: 20px;">⭐</span>
+                                <h4 style="font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 10px;">EssentialsX</h4>
+                                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 25px; line-height: 1.5;">Zbiór podstawowych systemów - ekonomia, teleporty i ponad 150 komend.</p>
+                                <button class="btn btn-outline btn-block" style="padding: 12px; font-size: 12px;" onclick="ui.triggerToast('Sukces: Plugin EssentialsX został pomyślnie pobrany do folderu /plugins.')">INSTALUJ</button>
+                            </div>
+                            <div style="background-color: var(--bg-application); border: 1px solid var(--border-base); border-radius: var(--radius-large); padding: 35px 25px; text-align: center; transition: var(--transition-base);" onmouseover="this.style.borderColor='var(--text-heading)'; this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='var(--border-base)'; this.style.transform='translateY(0)';">
+                                <span style="font-size: 45px; display: block; margin-bottom: 20px;">🛡️</span>
+                                <h4 style="font-size: 18px; font-weight: 800; color: var(--text-heading); margin-bottom: 10px;">LuckPerms</h4>
+                                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 25px; line-height: 1.5;">Nowoczesne, zoptymalizowane zarządzanie rangami, prefixami i uprawnieniami.</p>
+                                <button class="btn btn-outline btn-block" style="padding: 12px; font-size: 12px;" onclick="ui.triggerToast('Sukces: Plugin LuckPerms został pomyślnie pobrany do folderu /plugins.')">INSTALUJ</button>
+                            </div>
+                        </div>
+
+                        <div style="font-size: 11px; font-weight: 900; color: var(--brand-primary); text-transform: uppercase; margin: 0 0 15px; letter-spacing: 1.5px;">Oficjalne i Bezpieczne Źródła Ręczne (Zewnętrzne)</div>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <a href="https://modrinth.com/mods" target="_blank" style="background-color: var(--bg-input); color: var(--text-main); padding: 12px 20px; border-radius: var(--radius-small); text-decoration: none; font-weight: 700; font-size: 13px; border: 1px solid var(--border-base); transition: var(--transition-fast);" onmouseover="this.style.backgroundColor='var(--text-heading)'; this.style.color='var(--text-inverse)';" onmouseout="this.style.backgroundColor='var(--bg-input)'; this.style.color='var(--text-main)';">🌐 MODRINTH (Nowoczesne Mody)</a>
+                            <a href="https://www.curseforge.com/minecraft/mc-mods" target="_blank" style="background-color: var(--bg-input); color: var(--text-main); padding: 12px 20px; border-radius: var(--radius-small); text-decoration: none; font-weight: 700; font-size: 13px; border: 1px solid var(--border-base); transition: var(--transition-fast);" onmouseover="this.style.backgroundColor='var(--text-heading)'; this.style.color='var(--text-inverse)';" onmouseout="this.style.backgroundColor='var(--bg-input)'; this.style.color='var(--text-main)';">🌐 CURSEFORGE (Największa Baza)</a>
+                            <a href="https://www.spigotmc.org/resources/" target="_blank" style="background-color: var(--bg-input); color: var(--text-main); padding: 12px 20px; border-radius: var(--radius-small); text-decoration: none; font-weight: 700; font-size: 13px; border: 1px solid var(--border-base); transition: var(--transition-fast);" onmouseover="this.style.backgroundColor='var(--text-heading)'; this.style.color='var(--text-inverse)';" onmouseout="this.style.backgroundColor='var(--bg-input)'; this.style.color='var(--text-main)';">🌐 SPIGOTMC (Baza Pluginów)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-security" class="view-module">
+                    <div class="card" style="border-top: 4px solid var(--status-shield);">
+                        <h3 class="card-title" style="color: var(--status-shield);"><i>🛡️</i> System Zapory Sieciowej (Anti-DDoS)</h3>
+                        <p class="card-description">Zarządzaj ustawieniami brzegowej zapory Firewall. Twój serwer jest automatycznie chroniony przed atakami wolumetrycznymi na warstwy L3/L4 oraz atakami L7.</p>
+                        
+                        <div style="background-color: var(--bg-terminal); color: white; padding: 35px; border-radius: var(--radius-large); display: flex; align-items: center; justify-content: space-between; border: 2px solid var(--status-shield); margin-bottom: 30px;">
+                            <div>
+                                <h2 style="color: var(--status-shield); font-weight: 900; margin-bottom: 5px; font-size: 24px;">Aktywna Ochrona Kokoszka-Shield™</h2>
+                                <p style="color: #cbd5e1; font-size: 13px; margin-top: 10px; max-width: 500px; line-height: 1.6;">Ruch sieciowy z portu 25565 jest stale analizowany w czasie rzeczywistym. Jesteś bezpieczny przed botnetami (NullPing, BotAttack).</p>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 15px; font-weight: 800; font-size: 16px; letter-spacing: 1px; background-color: rgba(255,255,255,0.1); padding: 15px 25px; border-radius: 50px;">
+                                <div style="width: 16px; height: 16px; background-color: var(--status-success); border-radius: 50%; box-shadow: 0 0 15px var(--status-success);"></div>
+                                W PEŁNI CHRONIONY
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 25px 30px; background-color: var(--bg-application); border: 1px solid var(--border-base); border-radius: var(--radius-medium); margin-bottom: 15px;">
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 800; color: var(--text-heading); margin-bottom: 5px;">Tryb "Under Attack" (Agresywne Filtrowanie)</h4>
+                                <p style="font-size: 13px; color: var(--text-muted); font-weight: 500;">Włącz natychmiast, jeśli Twój serwer jest obiektem ataku (wyższy ping dla prawdziwych graczy).</p>
+                            </div>
+                            <div style="position: relative; width: 56px; height: 30px; flex-shrink: 0;">
+                                <input type="checkbox" style="opacity: 0; width: 0; height: 0;">
+                                <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border-heavy); transition: .3s; border-radius: 34px;"></span>
+                                <span style="position: absolute; content: ''; height: 22px; width: 22px; left: 4px; bottom: 4px; background-color: white; transition: .3s; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); pointer-events: none;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-players" class="view-module">
+                    <div class="grid-responsive-2" style="margin-bottom: 0;">
+                        <div class="card">
+                            <h3 class="card-title"><i>👑</i> Operatorzy (Administracja)</h3>
+                            <p class="card-description">Nadaj uprawnienia poziomu 4 (OP) zaufanym graczom.</p>
+                            <div style="display: flex; gap: 15px; margin-bottom: 25px;">
+                                <input type="text" id="in-add-op" class="input-control" placeholder="Nick gracza...">
+                                <button class="btn btn-primary" onclick="engine.addPlayerToRegistry('op')">DODAJ OP</button>
+                            </div>
+                            <div id="ui-list-op" style="background-color: var(--bg-application); padding: 15px; border-radius: var(--radius-medium); border: 1px solid var(--border-base); min-height: 150px;">
+                                </div>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title"><i>📝</i> Biała Lista (Whitelist)</h3>
+                            <p class="card-description">Zezwól na wejście na serwer konkretnym osobom.</p>
+                            <div style="display: flex; gap: 15px; margin-bottom: 25px;">
+                                <input type="text" id="in-add-wl" class="input-control" placeholder="Nick gracza...">
+                                <button class="btn btn-primary" onclick="engine.addPlayerToRegistry('wl')">DODAJ GRACZA</button>
+                            </div>
+                            <div id="ui-list-wl" style="background-color: var(--bg-application); padding: 15px; border-radius: var(--radius-medium); border: 1px solid var(--border-base); min-height: 150px;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-audit" class="view-module">
+                    <div class="card">
+                        <h3 class="card-title"><i>📜</i> Dziennik Bezpieczeństwa (Audit Trail)</h3>
+                        <p class="card-description" style="margin-bottom: 30px;">System nieprzerwanie rejestruje każdą istotną zmianę dokonaną w panelu sterowania.</p>
+                        
+                        <div style="width: 100%; overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: separate; border-spacing: 0 8px;">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: left; padding: 15px 20px; color: var(--text-muted); font-weight: 900; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid var(--border-light);">Dokładna Sygnatura Czasowa</th>
+                                        <th style="text-align: left; padding: 15px 20px; color: var(--text-muted); font-weight: 900; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid var(--border-light);">Szczegółowy Opis Akcji Systemowej</th>
+                                        <th style="text-align: left; padding: 15px 20px; color: var(--text-muted); font-weight: 900; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid var(--border-light);">Konto Operatora</th>
+                                        <th style="text-align: left; padding: 15px 20px; color: var(--text-muted); font-weight: 900; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid var(--border-light);">Status Działania</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ui-audit-table-render">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-support" class="view-module">
+                    <div class="card">
+                        <h3 class="card-title"><i>🎫</i> Centrum Wsparcia Technicznego Kokoszki</h3>
+                        <p class="card-description">Skorzystaj z wbudowanego czatu na żywo, aby uzyskać pomoc z konfiguracją swojego serwera.</p>
+                        
+                        <div id="ui-support-chatbox" style="height: 350px; background-color: var(--bg-application); border-radius: var(--radius-medium); padding: 25px; overflow-y: auto; margin-bottom: 25px; border: 1px solid var(--border-base);">
+                            <div style="background-color: var(--bg-card); padding: 16px 20px; border-radius: 12px; margin-bottom: 12px; font-size: 13px; font-weight: 500; border-left: 4px solid var(--brand-primary); box-shadow: var(--shadow-xs); max-width: 85%; line-height: 1.6;">
+                                <b style="color: var(--brand-primary); display: block; margin-bottom: 5px;">🤖 Asystent KokoszkaBot (Automatyczny System Triage):</b>
+                                Witaj w panelu wsparcia KokoszkaMC v3.0! Posiadasz darmowy pakiet ULTIMATE (Kolejka Priorytetowa). W czym mogę Ci dzisiaj pomóc?
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 15px;">
+                            <input type="text" id="ui-support-text" class="input-control" placeholder="Opisz dokładnie swój problem...">
+                            <button class="btn btn-primary" style="width: 250px; padding: 0;" onclick="engine.dispatchSupportMessage()">WYŚLIJ ZGŁOSZENIE</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="sys-toast" style="position: fixed; bottom: 40px; right: 40px; background-color: var(--text-heading); color: var(--text-inverse); padding: 20px 30px; border-radius: var(--radius-medium); font-weight: 700; font-size: 14px; transform: translateY(200%); transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 99999999; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 15px;">
+        <span style="font-size: 24px;">ℹ️</span>
+        <span id="toast-message-content">Powiadomienie systemowe Kokoszki.</span>
     </div>
 
     <script>
         /**
-         * KOKOSZKA MC - TITAN ENGINE v2.0
-         * Czysty kod Vanilla JS. Architektura Modularna.
-         * @version 2.0.0-Titan-Enterprise
+         * KOKOSZKA MC - TITAN ENGINE v3.0
+         * Czysty kod (Vanilla JS) realizujący architekturę Single Page Application (SPA).
          */
 
         // ----------------------------------------------------------------------
-        // DANE STARTOWE BAZY WIEDZY I SZABLONÓW KONFIGURACYJNYCH
+        // BAZA WIEDZY I PRE-KONFIGURACJI
         // ----------------------------------------------------------------------
         const SYSTEM_DATA = {
             minecraftVersions: [
                 "1.21.1", "1.21", "1.20.6", "1.20.4", "1.20.1", "1.19.4", "1.19.2", 
-                "1.18.2", "1.17.1", "1.16.5", "1.15.2", "1.12.2", "1.8.8", "1.7.10", "BETA 1.7.3", "ALPHA 1.2.6"
+                "1.18.2", "1.17.1", "1.16.5", "1.15.2", "1.12.2", "1.8.8", "1.7.10"
             ],
             fileTemplates: {
                 "server.properties": "online-mode=false\npvp=true\ngamemode=survival\ndifficulty=normal\nmax-players=20\nmotd=Najlepszy Serwer KokoszkaMC\nallow-flight=false\nenable-command-block=true\nview-distance=10\nsimulation-distance=8\nspawn-protection=16\nlevel-name=world\nserver-port=25565",
-                "spigot.yml": "settings:\n  save-user-cache-on-stop-only: false\n  sample-count: 12\n  bungeecord: false\n  user-cache-size: 1000\n  timeout-time: 60\n  restart-on-crash: true\nmessages:\n  whitelist: You are not whitelisted!\n  unknown-command: Unknown command.",
-                "bukkit.yml": "settings:\n  allow-end: true\n  warn-on-overload: true\n  permissions-file: permissions.yml\n  update-folder: update\n  connection-throttle: 4000\nspawn-limits:\n  monsters: 70\n  animals: 10",
+                "spigot.yml": "settings:\n  save-user-cache-on-stop-only: false\n  sample-count: 12\n  bungeecord: false\n  user-cache-size: 1000\n  moved-wrongly-threshold: 0.0625\n  timeout-time: 60\n  restart-on-crash: true",
+                "bukkit.yml": "settings:\n  allow-end: true\n  warn-on-overload: true\n  permissions-file: permissions.yml\n  update-folder: update\n  plugin-profiling: false\n  connection-throttle: 4000",
                 "whitelist.json": "[\n  {\n    \"uuid\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"KokoszkaDev\"\n  }\n]",
                 "ops.json": "[\n  {\n    \"uuid\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"WlascicielSerwera\",\n    \"level\": 4,\n    \"bypassesPlayerLimit\": false\n  }\n]"
             }
         };
 
         // ----------------------------------------------------------------------
-        // MENEDŻER STANU APLIKACJI I BAZY DANYCH (LOCALSTORAGE)
+        // MODUŁ ZARZĄDZANIA STANEM (LOCALSTORAGE DATABASE)
         // ----------------------------------------------------------------------
         const appStore = {
-            currentAuthView: 'login',
+            currentAuthView: 'choice',
             activeUsername: null,
-            database: JSON.parse(localStorage.getItem('kokoszka_titan_v2_db') || "{}"),
+            database: JSON.parse(localStorage.getItem('kokoszka_titan_v3_db_final') || "{}"),
 
             initializeBootstrap() {
-                console.log("%c [KOKOSZKA OS] BOOTSTRAP INITIATED ", "background: #000; color: white; font-weight: bold;");
+                console.log("%c [KOKOSZKA OS] SYSTEM KERNEL V3.0 INITIATED ", "background: #000; color: white; font-weight: bold; padding: 4px;");
                 
-                // Renderowanie rozwijanej listy wersji
-                const versionDropdown = document.getElementById('sel-engine-version');
-                if (versionDropdown) {
-                    SYSTEM_DATA.minecraftVersions.forEach(ver => {
+                // Wstrzyknięcie dostępnych wersji silnika
+                const versionDropdownNode = document.getElementById('sel-engine-version');
+                if (versionDropdownNode) {
+                    SYSTEM_DATA.minecraftVersions.forEach(versionText => {
                         let optionElem = document.createElement('option');
-                        optionElem.value = ver; optionElem.innerText = ver;
-                        versionDropdown.appendChild(option);
-                    });
-                }
-
-                // Podgląd IP w trybie rzeczywistym w oknie tworzenia
-                const spawnInputNode = document.getElementById('in-create-name');
-                if (spawnInputNode) {
-                    spawnInputNode.addEventListener('input', (event) => {
-                        const cleanString = event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '');
-                        document.getElementById('out-create-ip').innerText = (cleanString || "...") + ".kokoszka.me";
+                        optionElem.value = versionText; 
+                        optionElem.innerText = versionText;
+                        versionDropdownNode.appendChild(option);
                     });
                 }
             },
 
             persistDatabase() {
-                localStorage.setItem('kokoszka_titan_v2_db', JSON.stringify(this.database));
+                localStorage.setItem('kokoszka_titan_v3_db_final', JSON.stringify(this.database));
             },
 
-            // --- LOGIKA FORMULARZY ---
+            // --- SYSTEM NAWIGACJI EKRANÓW AUTORYZACJI ---
             navigateAuth(viewName) {
                 this.currentAuthView = viewName;
                 document.getElementById('err-login').innerText = "";
                 document.getElementById('err-reg').innerText = "";
 
-                const viewLoginWrapper = document.getElementById('view-login');
-                const viewRegisterWrapper = document.getElementById('view-register');
+                const viewChoice = document.getElementById('view-auth-choice');
+                const viewLogin = document.getElementById('view-auth-login');
+                const viewRegister = document.getElementById('view-auth-register');
 
-                if (viewName === 'login') {
-                    viewRegisterWrapper.classList.add('hidden');
-                    setTimeout(() => viewLoginWrapper.classList.remove('hidden'), 500);
+                viewChoice.classList.add('hidden');
+                viewLogin.classList.add('hidden');
+                viewRegister.classList.add('hidden');
+
+                setTimeout(() => {
+                    if (viewName === 'choice') {
+                        viewChoice.classList.remove('hidden');
+                    } else if (viewName === 'login') {
+                        viewLogin.classList.remove('hidden');
+                    } else if (viewName === 'register') {
+                        viewRegister.classList.remove('hidden');
+                    }
+                }, 500); // 500ms odpowiada czasowi animacji CSS opacity
+            },
+
+            // Opcjonalne przełączanie zakładek z góry formularza
+            switchAuthTab(viewName) {
+                if(this.currentAuthView === viewName) return;
+                this.currentAuthView = viewName;
+                
+                document.getElementById('err-login').innerText = "";
+                document.getElementById('err-reg').innerText = "";
+
+                const btnLog = document.getElementById('tab-login-btn');
+                const btnReg = document.getElementById('tab-register-btn');
+                const formLog = document.getElementById('form-login-section');
+                const formReg = document.getElementById('form-register-section');
+
+                if(viewName === 'login') {
+                    btnReg.style.backgroundColor = "transparent"; btnReg.style.color = "var(--text-muted)"; btnReg.style.boxShadow = "none";
+                    btnLog.style.backgroundColor = "var(--brand-primary)"; btnLog.style.color = "white"; btnLog.style.boxShadow = "var(--shadow-brand)";
+                    formReg.style.display = "none";
+                    formLog.style.display = "block";
                 } else {
-                    viewLoginWrapper.classList.add('hidden');
-                    setTimeout(() => viewRegisterWrapper.classList.remove('hidden'), 500);
+                    btnLog.style.backgroundColor = "transparent"; btnLog.style.color = "var(--text-muted)"; btnLog.style.boxShadow = "none";
+                    btnReg.style.backgroundColor = "var(--brand-primary)"; btnReg.style.color = "white"; btnReg.style.boxShadow = "var(--shadow-brand)";
+                    formLog.style.display = "none";
+                    formReg.style.display = "block";
                 }
             },
 
             togglePasswordView(inputElementId, iconElement) {
                 const targetInput = document.getElementById(inputElementId);
                 if (targetInput.type === 'password') { 
-                    targetInput.type = 'text'; iconElement.innerText = '🔒'; 
+                    targetInput.type = 'text'; 
+                    iconElement.innerText = '🔒'; 
                 } else { 
-                    targetInput.type = 'password'; iconElement.innerText = '👁️'; 
+                    targetInput.type = 'password'; 
+                    iconElement.innerText = '👁️'; 
                 }
             },
 
+            // --- PROCESY BAZODANOWE (AUTH) ---
             processRegistration() {
-                const usernameField = document.getElementById('in-reg-user').value.trim();
-                const passwordField = document.getElementById('in-reg-pass').value.trim();
+                // W zależności od tego czy używamy Splash Screenu czy Zakładek
+                const userField = document.getElementById('in-reg-user') || document.getElementById('in-reg-user-tab');
+                const passField = document.getElementById('in-reg-pass') || document.getElementById('in-reg-pass-tab');
+                const usernameField = userField.value.trim();
+                const passwordField = passField.value.trim();
                 const errorBox = document.getElementById('err-reg');
 
                 if (usernameField.length < 3) return errorBox.innerText = "BŁĄD: Nazwa użytkownika jest zbyt krótka (minimum 3 znaki)!";
                 if (passwordField.length < 5) return errorBox.innerText = "BŁĄD: Hasło musi zawierać minimum 5 znaków bezpieczeństwa!";
-                if (this.database[usernameField]) return errorBox.innerText = "BŁĄD: Użytkownik o takim Nicku istnieje już w bazie danych!";
+                if (this.database[usernameField]) return errorBox.innerText = "BŁĄD: Taki użytkownik istnieje już w globalnej bazie danych!";
 
-                // Utworzenie schematu konta
+                // Wykucie nowego rekordu w NoSQL
                 this.database[usernameField] = { 
                     passwordHash: passwordField, 
                     serverData: null,
-                    auditLogs: [{ time: new Date().toLocaleString(), action: "Rejestracja i Weryfikacja Konta w Systemie KokoszkaMC." }] 
+                    auditLogs: [
+                        { time: new Date().toLocaleString(), action: "Rejestracja Konta w systemie KokoszkaMC." }
+                    ] 
                 };
                 
                 this.persistDatabase();
-                alert("SUKCES! Twoje konto zostało pomyślnie i bezbłędnie zarejestrowane. Możesz się teraz zalogować.");
-                this.navigateAuth('login');
+                alert("SUKCES! Konto wygenerowane pomyślnie. Zaloguj się teraz.");
+                
+                // Powrót do logowania (zależy w jakim widoku jesteśmy)
+                if(document.getElementById('view-auth-register')) {
+                    this.navigateAuth('login');
+                } else {
+                    this.switchAuthTab('login');
+                }
             },
 
             processLogin() {
-                const usernameField = document.getElementById('in-login-user').value.trim();
-                const passwordField = document.getElementById('in-login-pass').value.trim();
+                const userField = document.getElementById('in-login-user') || document.getElementById('in-login-user-tab');
+                const passField = document.getElementById('in-login-pass') || document.getElementById('in-login-pass-tab');
+                const usernameField = userField.value.trim();
+                const passwordField = passField.value.trim();
                 const errorBox = document.getElementById('err-login');
 
                 const userRecord = this.database[usernameField];
                 
                 if (!userRecord || userRecord.passwordHash !== passwordField) {
-                    return errorBox.innerText = "BŁĄD KRYTYCZNY: Nieprawidłowa nazwa użytkownika lub hasło dostępu!";
+                    return errorBox.innerText = "BŁĄD KRYTYCZNY: Nieprawidłowa nazwa użytkownika lub błędne hasło dostępu!";
                 }
                 
                 this.activeUsername = usernameField;
@@ -1493,7 +1488,7 @@
         };
 
         // ----------------------------------------------------------------------
-        // JĄDRO SYSTEMU (SERVER ENGINE LOGIC)
+        // JĄDRO SYMULACYJNE (KERNEL SERVER LOGIC)
         // ----------------------------------------------------------------------
         const engine = {
             serverState: null,
@@ -1505,46 +1500,57 @@
             clockTickLoop: null,
 
             initiateUserSession() {
-                // Efekt wizualnego przejścia do panelu operacyjnego (zniknięcie logowania)
-                const currentScreenWrapper = appStore.currentAuthView === 'login' ? document.getElementById('view-login') : document.getElementById('view-register');
-                currentScreenWrapper.classList.add('booting-panel');
+                // Twarde przejście do aplikacji - ukrywamy portal logowania z efektem
+                const activeWrappers = document.querySelectorAll('.auth-viewport:not(.hidden)');
+                activeWrappers.forEach(w => w.classList.add('booting-sequence'));
                 
                 const dbContext = appStore.database[appStore.activeUsername];
                 
-                // Zastrzyk danych użytkownika do DOM
+                // Zastrzyk danych wizualnych profilu
                 document.getElementById('ui-display-username').innerText = appStore.activeUsername;
                 document.getElementById('ui-display-avatar').innerText = appStore.activeUsername.charAt(0).toUpperCase();
                 
                 this.serverState = dbContext.serverData;
                 
+                // Czekamy na zakończenie animacji i odsłaniamy ukryty app-core-wrapper
                 setTimeout(() => {
+                    const appCoreNode = document.getElementById('app-core-wrapper');
+                    if(appCoreNode) {
+                        appCoreNode.style.display = 'flex';
+                        // Jeśli używaliśmy ekranu pojedynczego z zakładkami, ukrywamy ten cały wielki kontener
+                        document.getElementById('auth-portal-wrapper').style.display = 'none';
+                    }
                     this.synchronizeDashboardState();
                     this.renderAuditHistoryTable();
-                }, 600);
+                }, 800);
             },
 
             deployNewServer() {
                 const rawString = document.getElementById('in-create-name').value.trim();
                 const safeString = rawString.toLowerCase().replace(/[^a-z0-9-]/g, '');
                 
-                if (safeString.length < 3) return alert("OCHRONA SYSTEMU: Wymagane jest użycie co najmniej 3 znaków alfanumerycznych.");
+                if (safeString.length < 3) {
+                    return alert("BLOKADA ZABEZPIECZAJĄCA: Serwer musi mieć minimum 3 znaki alfanumeryczne w nazwie.");
+                }
 
-                // Utworzenie wirtualnej struktury maszyny
+                // Generacja payloadu dla wirtualnego kontenera maszyny
                 this.serverState = {
                     nodeName: safeString,
                     ipAddress: safeString + ".kokoszka.me",
                     allocatedMemory: 4,
                     allocatedCores: 2,
                     engineType: "PaperMC",
-                    engineVersion: "1.20.4"
+                    engineVersion: "1.20.4",
+                    operatorList: [appStore.activeUsername],
+                    whitelistList: []
                 };
 
                 appStore.database[appStore.activeUsername].serverData = this.serverState;
-                this.pushToAuditLog("Inicjalizacja i alokacja nowego węzła sieciowego maszyny z adresem IP: " + this.serverState.ipAddress);
+                this.pushToAuditLog("Inicjalizacja i wdrożenie całkowicie nowego węzła maszyny: " + this.serverState.ipAddress);
                 appStore.persistDatabase();
                 
                 this.synchronizeDashboardState();
-                ui.triggerToast("Zadanie ukończone. Twoja darmowa maszyna wirtualna została pomyślnie wygenerowana w chmurze.");
+                ui.triggerToast("Zadanie infrastrukturalne wykonane pomyślnie. Maszyna wirtualna została podpięta pod Twoje konto.");
             },
 
             synchronizeDashboardState() {
@@ -1558,13 +1564,18 @@
                     spawnerLayout.style.display = 'none';
                     dashboardLayout.style.display = 'block';
                     
+                    // Odświeżenie interfejsu (Dashboard)
                     document.getElementById('ui-status-ip').innerText = this.serverState.ipAddress;
                     document.getElementById('ui-info-engine').innerText = this.serverState.engineType;
                     document.getElementById('ui-info-version').innerText = this.serverState.engineVersion;
                     
+                    // Odświeżenie interfejsu (Suwaki zasobów w widoku Resources)
                     document.getElementById('slider-ram').value = this.serverState.allocatedMemory;
                     document.getElementById('slider-cpu').value = this.serverState.allocatedCores;
                     this.syncResourceSliders(); 
+                    
+                    // Aktualizacja list administracyjnych
+                    this.renderPlayerLists();
                 }
             },
 
@@ -1576,16 +1587,23 @@
                 const statusTextNode = document.getElementById('ui-status-text');
 
                 if (!this.isOnlineProcess) {
-                    // WŁĄCZANIE
+                    // WŁĄCZANIE (BOOT)
                     this.isAwaitingBoot = true;
+                    
                     btnPowerNode.disabled = true;
+                    btnPowerNode.style.opacity = "0.5";
                     
-                    statusOrbNode.className = "status-orb-container state-booting";
+                    // Zmiana klas dla animacji ładowania w CSS
+                    statusOrbNode.style.borderColor = "var(--status-warning)";
+                    statusOrbNode.style.color = "var(--status-warning)";
+                    statusOrbNode.style.backgroundColor = "var(--status-warning-bg)";
                     statusOrbNode.innerText = "⏳";
-                    statusTextNode.innerText = "STARTOWANIE WĘZŁA...";
+                    statusOrbNode.style.animation = "spinOrb 2s linear infinite"; // Musi być dopisane inline lub via class w głównym CSS (jest w klasie w oryginalnym kodzie)
                     
-                    ui.pushToTerminal("Wykryto autoryzowane żądanie rozruchu z panelu webowego.", "info");
-                    ui.pushToTerminal(`Wykonywanie alokacji pamięci JRE: żądanie ${this.serverState.allocatedMemory}GB RAM.`, "info");
+                    statusTextNode.innerText = "URUCHAMIANIE...";
+                    
+                    ui.pushToTerminal("Odebrano sygnał uruchomienia procesu JVM od użytkownika.", "info");
+                    ui.pushToTerminal(`Żądanie zaalokowania obszaru pamięci operacyjnej Host'a: ${this.serverState.allocatedMemory}GB.`, "info");
 
                     setTimeout(() => {
                         if (this.isAwaitingBoot || this.isOnlineProcess) {
@@ -1593,53 +1611,77 @@
                             this.isOnlineProcess = true;
                             
                             btnPowerNode.disabled = false;
-                            btnPowerNode.innerText = "ZATRZYMAJ MASZYNĘ WĘZŁOWĄ";
+                            btnPowerNode.style.opacity = "1";
+                            btnPowerNode.innerText = "ZATRZYMAJ KONTENER";
                             btnPowerNode.className = "btn btn-danger";
                             
-                            statusOrbNode.className = "status-orb-container state-online";
+                            // Reset inline stylów na rzecz twardego koloru
+                            statusOrbNode.style.animation = "none";
+                            statusOrbNode.style.borderColor = "var(--status-success)";
+                            statusOrbNode.style.color = "var(--status-success)";
+                            statusOrbNode.style.backgroundColor = "var(--status-success-bg)";
                             statusOrbNode.innerText = "🟢";
+                            
                             statusTextNode.innerText = "ONLINE";
                             
-                            ui.pushToTerminal(`Proces bazowy Java (${this.serverState.engineType} ${this.serverState.engineVersion}) pomyślnie wystartował na porcie tcp/25565.`, "success");
-                            this.pushToAuditLog("Standardowe włączenie środowiska maszyny (Start)");
+                            ui.pushToTerminal(`Proces bazowy Java powiązany z ${this.serverState.engineType} (${this.serverState.engineVersion}) uaktywnił nasłuchiwanie portu tcp/25565.`, "success");
                             
+                            this.pushToAuditLog("Poprawne uruchomienie środowiska maszyny węzła roboczego (Start)");
                             this.igniteHardwareSimulationMetrics();
                         }
-                    }, 4800);
+                    }, 4500);
 
                 } else {
-                    // ZAMYKANIE
+                    // WYŁĄCZANIE (SHUTDOWN)
                     this.isOnlineProcess = false;
+                    
                     btnPowerNode.innerText = "URUCHOM SERWER";
                     btnPowerNode.className = "btn btn-success";
                     
-                    statusOrbNode.className = "status-orb-container";
+                    statusOrbNode.style.animation = "none";
+                    statusOrbNode.style.borderColor = "var(--border-base)";
+                    statusOrbNode.style.color = "var(--text-heading)";
+                    statusOrbNode.style.backgroundColor = "var(--bg-application)";
                     statusOrbNode.innerText = "🔴";
+                    
                     statusTextNode.innerText = "OFFLINE";
                     
-                    ui.pushToTerminal("Wysłano żądanie zamknięcia (SIGTERM). Opróżnianie buforów wyjściowych z wirtualnych chunków mapy...", "info");
-                    this.pushToAuditLog("Zarządzane, łagodne zatrzymanie działania (Stop)");
+                    ui.pushToTerminal("Wysłano sygnał SIGTERM do procesu głównego. Wymuszanie zrzutu Pamięci.", "info");
+                    
+                    this.pushToAuditLog("Pomyślne zamknięcie powłoki działania maszyny z zapisem na dysk (Stop)");
                     this.terminateHardwareSimulationMetrics();
                 }
             },
 
             igniteHardwareSimulationMetrics() {
-                // Symulacja skoków RAM/CPU
+                // Symulacja obciążenia
                 this.hardwareSimulationLoop = setInterval(() => {
                     if (!this.isOnlineProcess) return;
                     
                     const maxRamAllocatedMB = this.serverState.allocatedMemory * 1024;
-                    const currentUsedRamMB = Math.floor(Math.random() * (maxRamAllocatedMB * 0.55 - maxRamAllocatedMB * 0.20) + maxRamAllocatedMB * 0.20);
-                    const currentCpuPercentage = Math.floor(Math.random() * 43) + 2;
+                    // Generowanie losowego użycia RAM (25% do 55%)
+                    const currentUsedRamMB = Math.floor(Math.random() * (maxRamAllocatedMB * 0.55 - maxRamAllocatedMB * 0.25) + maxRamAllocatedMB * 0.25);
+                    // CPU użycie (5% - 40%)
+                    const currentCpuPercentage = Math.floor(Math.random() * 35) + 5;
                     
-                    document.getElementById('ui-live-ram-text').innerText = `${currentUsedRamMB} / ${maxRamAllocatedMB} MB`;
-                    document.getElementById('ui-live-ram-bar').style.width = `${(currentUsedRamMB / maxRamAllocatedMB) * 100}%`;
-                    
-                    document.getElementById('ui-live-cpu-text').innerText = `${currentCpuPercentage}%`;
-                    document.getElementById('ui-live-cpu-bar').style.width = `${currentCpuPercentage}%`;
-                }, 1850); 
+                    // DOM Updates
+                    const textNodeRAM = document.getElementById('ui-live-ram-text');
+                    const barNodeRAM = document.getElementById('ui-live-ram-bar');
+                    const textNodeCPU = document.getElementById('ui-live-cpu-text');
+                    const barNodeCPU = document.getElementById('ui-live-cpu-bar');
 
-                // Zegar Uptime
+                    if(textNodeRAM && barNodeRAM) {
+                        textNodeRAM.innerText = `${currentUsedRamMB} / ${maxRamAllocatedMB} MB`;
+                        barNodeRAM.style.width = `${(currentUsedRamMB / maxRamAllocatedMB) * 100}%`;
+                    }
+
+                    if(textNodeCPU && barNodeCPU) {
+                        textNodeCPU.innerText = `${currentCpuPercentage}%`;
+                        barNodeCPU.style.width = `${currentCpuPercentage}%`;
+                    }
+                }, 1900); 
+
+                // Zegar Czasu Pracy
                 this.clockTickLoop = setInterval(() => {
                     this.uptimeSeconds++;
                     let parsedHours = Math.floor(this.uptimeSeconds / 3600);
@@ -1651,7 +1693,8 @@
                         (parsedMinutes < 10 ? '0' : '') + parsedMinutes + ":" + 
                         (parsedSeconds < 10 ? '0' : '') + parsedSeconds;
                         
-                    document.getElementById('ui-uptime-clock').innerText = stringFormattedTime;
+                    const uptimeClockNode = document.getElementById('ui-uptime-clock');
+                    if(uptimeClockNode) uptimeClockNode.innerText = stringFormattedTime;
                 }, 1000);
             },
 
@@ -1660,11 +1703,18 @@
                 clearInterval(this.clockTickLoop);
                 this.uptimeSeconds = 0;
                 
-                document.getElementById('ui-uptime-clock').innerText = "00:00:00";
-                document.getElementById('ui-live-ram-text').innerText = "0 / 4096 MB";
-                document.getElementById('ui-live-ram-bar').style.width = "0%";
-                document.getElementById('ui-live-cpu-text').innerText = "0%";
-                document.getElementById('ui-live-cpu-bar').style.width = "0%";
+                const uptimeClockNode = document.getElementById('ui-uptime-clock');
+                if(uptimeClockNode) uptimeClockNode.innerText = "00:00:00";
+                
+                const textNodeRAM = document.getElementById('ui-live-ram-text');
+                const barNodeRAM = document.getElementById('ui-live-ram-bar');
+                if(textNodeRAM) textNodeRAM.innerText = "0 / 4096 MB";
+                if(barNodeRAM) barNodeRAM.style.width = "0%";
+                
+                const textNodeCPU = document.getElementById('ui-live-cpu-text');
+                const barNodeCPU = document.getElementById('ui-live-cpu-bar');
+                if(textNodeCPU) textNodeCPU.innerText = "0%";
+                if(barNodeCPU) barNodeCPU.style.width = "0%";
             },
 
             syncResourceSliders() {
@@ -1674,6 +1724,7 @@
                 document.getElementById('lbl-ram-val').innerText = fetchedRamValue;
                 document.getElementById('lbl-cpu-val').innerText = fetchedCpuValue;
                 
+                // Inteligentne alerty
                 document.getElementById('alert-ram-limit').style.display = (fetchedRamValue > 16 ? 'block' : 'none');
                 document.getElementById('alert-cpu-limit').style.display = (fetchedCpuValue > 4 ? 'block' : 'none');
 
@@ -1694,19 +1745,19 @@
                 this.serverState.engineType = engineTypeField;
                 this.serverState.engineVersion = engineVerField;
                 
-                this.pushToAuditLog(`Modyfikacja środowiska JRE: Migracja do kompilacji ${engineTypeField} v${engineVerField}`);
+                this.pushToAuditLog(`Odbudowa instancji JVM: Aktualizacja oprogramowania do paczki ${engineTypeField} na wersji ${engineVerField}`);
                 appStore.persistDatabase();
                 this.synchronizeDashboardState();
                 
-                ui.triggerToast(`Operacja udana! Nowe pliki .jar dla ${engineTypeField} zostały podpięte pod węzeł roboczy.`);
+                ui.triggerToast(`Sukces instalacyjny! Pliki jądra serwera (${engineTypeField}) zostały pomyślnie zaktualizowane w pamięci podręcznej.`);
             },
 
             triggerEmergencyKill() {
                 this.isOnlineProcess = false;
                 this.isAwaitingBoot = false;
                 this.togglePowerState();
-                ui.pushToTerminal("⚠️ ALARM: Funkcja KILL-SWITCH została ręcznie aktywowana. Proces maszyny Javy został awaryjnie zamordowany bez zrzucenia stanu na dysk.", "error");
-                this.pushToAuditLog("Krytyczne, awaryjne i siłowe przerwanie procesu systemowego (KILL SWITCH)");
+                ui.pushToTerminal("KRYTYCZNE WYWOŁANIE: Funkcja sprzętowego KILL-SWITCH została użyta. Proces uległ całkowitej anihilacji.", "error");
+                this.pushToAuditLog("Zabójstwo instancji procesora przez przycisk KILL-SWITCH (Utrata ostatnich danych niezapisanych do chunków)");
             },
 
             executeTerminalCommand() {
@@ -1715,36 +1766,131 @@
                 
                 if (!commandRawText) return;
                 
-                ui.pushToTerminal("> [Root Exec]: " + commandRawText, "info");
+                ui.pushToTerminal("> [Execute Request]: " + commandRawText, "info");
                 
                 const lowerCommand = commandRawText.toLowerCase();
                 if (lowerCommand.startsWith("op ")) {
-                    ui.pushToTerminal("[System API]: Uprawnienia poziomu 4 zostały nadane graczowi.", "success");
+                    ui.pushToTerminal("[Internal System RCON API]: Uprawnienia administracyjne poziomu OP (Level 4) zostały pomyślnie dopisane do rejestru ops.json.", "success");
                 } else if (lowerCommand === "stop") {
+                    ui.pushToTerminal("Rozpoznano sygnał zamknięcia z poziomu wirtualnej powłoki. Przekierowanie do demona zarządzania...", "info");
                     this.togglePowerState();
+                } else if (lowerCommand === "save-all") {
+                    ui.pushToTerminal("Wymuszenie czystego zrzutu pamięci operacyjnej do dysku fizycznego SSD (Data Chunk Dump).", "success");
                 } else {
-                    ui.pushToTerminal("Unknown command. Type \"/help\" for help.", "warn");
+                    ui.pushToTerminal("Nieznane polecenie systemowe lub brak odpowiedniego aliasu w binariach wirtualnych. Type \"/help\" for available syntax.", "warn");
                 }
+                
                 terminalInputBox.value = "";
             },
 
             loadFileIntoEditor(fileNameRequested) {
                 const editorNodeBox = document.getElementById('ftp-text-area');
-                const matchedFileContentString = SYSTEM_DATA.fileTemplates[fileNameRequested] || `# KokoszkaMC File System\n# Otwarto plik: ${fileNameRequested}\n\n# Zawartość tego pliku jest pusta.`;
+                const matchedFileContentString = SYSTEM_DATA.fileTemplates[fileNameRequested] || `# KokoszkaMC Data Vault System\n# Wybrana ścieżka pliku to: ${fileNameRequested}\n\n# Ostrzeżenie systemowe: Ten plik jest całkowicie pusty lub system odmówił wygenerowania jego widoku w trybie R/W.`;
                 
                 editorNodeBox.value = matchedFileContentString;
-                ui.triggerToast(`Plik konfiguracyjny ${fileNameRequested} został wczytany do interfejsu graficznego WebFTP.`);
-                this.pushToAuditLog(`Otwarcie bezpiecznej powłoki WebFTP do edycji pliku: ${fileNameRequested}`);
+                ui.triggerToast(`Plik systemowy ${fileNameRequested} został pomyślnie pobrany przez mostek WebFTP do przestrzeni edytora roboczego.`);
+                this.pushToAuditLog(`Żądanie podglądu pliku w menedżerze FTP Webowym (Plik wywoławczy: ${fileNameRequested})`);
+            },
+
+            addPlayerToRegistry(listType) {
+                const inputNode = document.getElementById(listType === 'op' ? 'in-add-op' : 'in-add-wl');
+                if(!inputNode) return;
+                
+                const playerName = inputNode.value.trim();
+                if (!playerName) return;
+                
+                if (listType === 'op') {
+                    if (!this.serverState.operatorList.includes(playerName)) {
+                        this.serverState.operatorList.push(playerName);
+                        this.pushToAuditLog(`Nadano pełne uprawnienia OP (Administrator Węzła) podmiotowi o nicku: ${playerName}`);
+                    }
+                } else {
+                    if (!this.serverState.whitelistList.includes(playerName)) {
+                        this.serverState.whitelistList.push(playerName);
+                        this.pushToAuditLog(`Zarejestrowano dostęp na Białej Liście (Whitelist) dla podmiotu o nicku: ${playerName}`);
+                    }
+                }
+                
+                inputNode.value = "";
+                appStore.persistDatabase();
+                this.renderPlayerLists();
+            },
+
+            removePlayerFromRegistry(listType, playerName) {
+                if (listType === 'op') {
+                    this.serverState.operatorList = this.serverState.operatorList.filter(name => name !== playerName);
+                    this.pushToAuditLog(`Anulowano uprawnienia OP i wyrzucono z grupy administratorów podmiot: ${playerName}`);
+                } else {
+                    this.serverState.whitelistList = this.serverState.whitelistList.filter(name => name !== playerName);
+                    this.pushToAuditLog(`Usunięto bezpowrotnie gracza z Białej Listy systemowej: ${playerName}`);
+                }
+                
+                appStore.persistDatabase();
+                this.renderPlayerLists();
+            },
+
+            renderPlayerLists() {
+                if (!this.serverState) return;
+                
+                const opContainer = document.getElementById('ui-list-op');
+                const wlContainer = document.getElementById('ui-list-wl');
+                
+                if(opContainer) opContainer.innerHTML = "";
+                if(wlContainer) wlContainer.innerHTML = "";
+                
+                this.serverState.operatorList.forEach(name => {
+                    const row = document.createElement('div');
+                    row.style.cssText = "display: flex; justify-content: space-between; padding: 12px 20px; background-color: var(--bg-surface); border-radius: 12px; margin-bottom: 8px; border: 1px solid var(--border-base); transition: 0.3s;";
+                    row.innerHTML = `<span style="font-weight: 800; color: var(--text-heading);">${name}</span> <span style="color: var(--status-danger); font-weight: 900; font-size: 11px; cursor: pointer; text-transform: uppercase; background: var(--status-danger-bg); padding: 4px 10px; border-radius: 6px;" onclick="engine.removePlayerFromRegistry('op', '${name}')">DEGRADUJ OP</span>`;
+                    opContainer.appendChild(row);
+                });
+
+                this.serverState.whitelistList.forEach(name => {
+                    const row = document.createElement('div');
+                    row.style.cssText = "display: flex; justify-content: space-between; padding: 12px 20px; background-color: var(--bg-surface); border-radius: 12px; margin-bottom: 8px; border: 1px solid var(--border-base); transition: 0.3s;";
+                    row.innerHTML = `<span style="font-weight: 800; color: var(--text-heading);">${name}</span> <span style="color: var(--status-danger); font-weight: 900; font-size: 11px; cursor: pointer; text-transform: uppercase; background: var(--status-danger-bg); padding: 4px 10px; border-radius: 6px;" onclick="engine.removePlayerFromRegistry('wl', '${name}')">USUŃ DOSTĘP</span>`;
+                    wlContainer.appendChild(row);
+                });
+            },
+
+            dispatchSupportMessage() {
+                const userInput = document.getElementById('ui-support-text');
+                if(!userInput) return;
+
+                const messageValue = userInput.value.trim();
+                const chatContainer = document.getElementById('ui-support-chatbox');
+                
+                if (!messageValue) return;
+
+                chatContainer.innerHTML += `
+                    <div style="background-color: var(--text-heading); color: var(--text-inverse); padding: 16px 20px; border-radius: 12px; margin-bottom: 12px; font-size: 13px; font-weight: 500; border-right: 4px solid var(--status-success); margin-left: auto; max-width: 85%;">
+                        <b style="display:block; margin-bottom:5px;">Ty (${appStore.activeUsername}):</b>
+                        ${messageValue}
+                    </div>`;
+                
+                userInput.value = "";
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+
+                setTimeout(() => {
+                    chatContainer.innerHTML += `
+                        <div style="background-color: var(--bg-card); padding: 16px 20px; border-radius: 12px; margin-bottom: 12px; font-size: 13px; font-weight: 500; border-left: 4px solid var(--brand-primary); box-shadow: var(--shadow-xs); max-width: 85%;">
+                            <b style="color: var(--brand-primary); display: block; margin-bottom: 5px;">🤖 Autonomiczny Agregat Wsparcia (KokoszkaBot):</b>
+                            Wygenerowano zautomatyzowaną odpowiedź w oparciu o logarytm zapytania. Zgłoszenie zostało skatalogowane jako TICKET-#${Math.floor(Math.random() * 80000) + 10000}. Nasz ludzki technik techniczny połączy się z Tobą w tym oknie czatu zaraz po zweryfikowaniu usterki węzła. Dziękujemy za cierpliwość.
+                        </div>`;
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }, 1300);
             },
 
             pushToAuditLog(actionDescriptionEvent) {
-                const clockString = new Date().toLocaleString();
+                const timeStr = new Date().toLocaleString();
+                // Dodaj na początek tablicy (LIFO)
                 appStore.database[appStore.activeUsername].auditLogs.unshift({
-                    time: clockString,
+                    time: timeStr,
                     action: actionDescriptionEvent
                 });
                 
-                if(appStore.database[appStore.activeUsername].auditLogs.length > 50) {
+                // GC Logów: Ograniczenie wielkości tablicy zapobiega powolnemu zatykaniu i spowolnieniu LocalStorage Browsers
+                if(appStore.database[appStore.activeUsername].auditLogs.length > 70) {
                     appStore.database[appStore.activeUsername].auditLogs.pop();
                 }
                 
@@ -1754,17 +1900,18 @@
             renderAuditHistoryTable() {
                 const tableBodyDOM = document.getElementById('ui-audit-table-render');
                 if(!tableBodyDOM) return;
-                
+
                 tableBodyDOM.innerHTML = ""; 
+                
                 const cachedLogsArray = appStore.database[appStore.activeUsername].auditLogs;
                 
                 cachedLogsArray.forEach(logInstance => {
                     tableBodyDOM.innerHTML += `
                         <tr>
-                            <td style="font-family: 'Fira Code', monospace; color: var(--text-muted); font-size: 13px;">[${logInstance.time}]</td>
-                            <td style="font-weight: 600; color: var(--text-heading);">${logInstance.action}</td>
-                            <td><span style="background-color: var(--bg-input); padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 12px; text-transform: uppercase; border: 1px solid var(--border-base);">${appStore.activeUsername}</span></td>
-                            <td style="color: var(--status-online); font-weight: 900; letter-spacing: 1px;"><i style="font-style: normal;">✓</i> ZAPISANO</td>
+                            <td style="padding: 18px 20px; background-color: var(--bg-input); font-size: 13px; font-weight: 600; color: var(--text-dim); border-top: 1px solid var(--border-base); border-bottom: 1px solid var(--border-base); border-left: 1px solid var(--border-base); border-radius: 12px 0 0 12px; font-family: 'Fira Code', monospace;">[${logInstance.time}]</td>
+                            <td style="padding: 18px 20px; background-color: var(--bg-input); font-size: 13px; font-weight: 600; color: var(--text-main); border-top: 1px solid var(--border-base); border-bottom: 1px solid var(--border-base);">${logInstance.action}</td>
+                            <td style="padding: 18px 20px; background-color: var(--bg-input); font-size: 13px; font-weight: 600; border-top: 1px solid var(--border-base); border-bottom: 1px solid var(--border-base);"><span style="background-color: var(--bg-surface); padding: 5px 12px; border-radius: 8px; border: 1px solid var(--border-base); color: var(--text-muted); text-transform: uppercase;">${appStore.activeUsername}</span></td>
+                            <td style="padding: 18px 20px; background-color: var(--bg-input); font-size: 13px; font-weight: 600; border-top: 1px solid var(--border-base); border-bottom: 1px solid var(--border-base); border-right: 1px solid var(--border-base); border-radius: 0 12px 12px 0;"><span style="color: var(--status-success); font-weight: 900; letter-spacing: 1px;">✓ ZAKSIĘGOWANE</span></td>
                         </tr>
                     `;
                 });
@@ -1772,58 +1919,79 @@
         };
 
         // ----------------------------------------------------------------------
-        // MENEDŻER WIZUALNY (UI RENDERER & NOTIFICATIONS)
+        // MENEDŻER WIZUALNY (UI RENDERER & ASYNCHRONOUS NOTIFICATIONS SYSTEM)
         // ----------------------------------------------------------------------
         const ui = {
             switchModule(viewModuleTargetId, clickedNavElement) {
+                // Wyczyszczenie klas w DOM API dla zakładek menu i modułów widoku
                 document.querySelectorAll('.view-module').forEach(vNode => vNode.classList.remove('active'));
                 document.querySelectorAll('.menu-link-item').forEach(iNode => iNode.classList.remove('active'));
                 
-                document.getElementById('module-' + viewModuleTargetId).classList.add('active');
+                const targetViewNode = document.getElementById('module-' + viewModuleTargetId);
+                if (targetViewNode) targetViewNode.classList.add('active');
+                
                 clickedNavElement.classList.add('active');
                 
+                // Inteligentne oczyszczanie nazwy wyświetlanej w górnym panelu (Breadcrumbs)
                 const cleanParsedTitleText = clickedNavElement.innerText.replace(/[^\w\sąęółńćźżĄĘÓŁŃĆŹŻ\(\)\-\/\.]/gi, '').trim();
-                document.getElementById('ui-current-module-name').innerText = cleanParsedTitleText;
+                const titleDisplayNode = document.getElementById('ui-current-module-name');
+                if (titleDisplayNode) titleDisplayNode.innerText = cleanParsedTitleText;
             },
 
             pushToTerminal(messageStringRaw, severityTypeClassification) {
                 const terminalLogContainer = document.getElementById('terminal-screen-log');
+                if(!terminalLogContainer) return;
+
                 const accurateTimeStamp = new Date().toLocaleTimeString();
                 
-                const typeToCssClassMap = {
-                    'info': 'log-info',
-                    'success': 'log-success',
-                    'error': 'log-error',
-                    'warn': 'log-warn',
-                    'default': ''
+                // Implementacja wbudowanej w silnik palety kolorystycznej z predefiniowanych zmiennych środowiska
+                const typeToColorMap = {
+                    'info': '#38bdf8',
+                    'success': '#34d399',
+                    'error': '#f87171',
+                    'warn': '#fbbf24',
+                    'default': '#f8fafc'
                 };
                 
-                const finalComputedCssClass = typeToCssClassMap[severityTypeClassification] || typeToCssClassMap['default'];
+                const finalColor = typeToColorMap[severityTypeClassification] || typeToColorMap['default'];
+                
+                // Jeśli błąd -> dodajemy czerwone, podświetlane tło jak w prawdziwych terminalach
+                const bgStyle = severityTypeClassification === 'error' ? 'background-color: rgba(248,113,113,0.15); padding: 4px 10px; border-radius: 6px; font-weight: bold;' : '';
                 
                 terminalLogContainer.innerHTML += `
-                    <div style="margin-bottom: 6px;">
-                        <span class="log-time">[${accurateTimeStamp}]</span> 
-                        <span class="${finalComputedCssClass}">${messageStringRaw}</span>
+                    <div style="margin-bottom: 8px;">
+                        <span style="color: #64748b; margin-right: 15px; user-select: none;">[${accurateTimeStamp}]</span> 
+                        <span style="color: ${finalColor}; ${bgStyle}">${messageStringRaw}</span>
                     </div>
                 `;
                 
+                // Automatyczne, asynchroniczne śledzenie kursora scrollem
                 terminalLogContainer.scrollTop = terminalLogContainer.scrollHeight;
             },
 
             triggerToast(toastInformationMessageText) {
                 const systemToastNotificationNode = document.getElementById('sys-toast');
-                document.getElementById('toast-message-content').innerText = toastInformationMessageText;
+                const toastContentNode = document.getElementById('toast-message-content');
                 
-                systemToastNotificationNode.classList.add('show');
-                
-                setTimeout(() => {
-                    systemToastNotificationNode.classList.remove('show');
-                }, 4000);
+                if (systemToastNotificationNode && toastContentNode) {
+                    toastContentNode.innerText = toastInformationMessageText;
+                    
+                    // Pokazanie panelu za pomocą klasy manipulującej osiami Y transformu w CSS
+                    systemToastNotificationNode.classList.add('show');
+                    
+                    // Czas trwania animacji powiadomienia to równe 4500 milisekund pożądanej atencji
+                    setTimeout(() => {
+                        systemToastNotificationNode.classList.remove('show');
+                    }, 4500);
+                }
             }
         };
 
-        // --- START APLIKACJI ---
+        // ----------------------------------------------------------------------
+        // GŁÓWNY PUNKT WEJŚCIA DLA KOMPILATORA JAVASCRIPT W PRZEGLĄDARCE (ENTRY)
+        // ----------------------------------------------------------------------
         window.addEventListener('DOMContentLoaded', () => {
+            // Rozpoczęcie działania całej sztucznej sieci i bootloadera przeglądarki
             appStore.initializeBootstrap();
         });
 
