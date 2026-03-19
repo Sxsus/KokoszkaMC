@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KokoszkaMC v5.0 TITAN - Najlepszy panel hostingu Minecraft">
+    <title>KokoszkaMC v5.0 TITAN | Ultimate Hosting</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&family=Fira+Code:wght@500;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========================================================================================
+           SEKCJA 1: SYSTEM STYLIZACJI NEOBRUTALISM (CZĘŚĆ BAZOWA)
+           Czysta biel, ostre czarne krawędzie, jaskrawy pomarańcz.
+           ======================================================================================== */
+
+        :root {
+            /* Paleta Barw Kokoszki */
+            --brand-main: #ff8c00;
+            --brand-hover: #ff9d2e;
+            --brand-light: #fff5e6;
+            
+            /* Tła i Powierzchnie - Czysta Biel i Czerń */
+            --bg-body: #ffffff;
+            --bg-surface: #ffffff;
+            --bg-input: #ffffff;
+            --bg-terminal: #000000;
+            
+            /* Tekst */
+            --text-heading: #000000;
+            --text-main: #000000;
+            --text-muted: #444444;
+            --text-inverse: #ffffff;
+            
+            /* Statusy Systemowe */
+            --status-ok: #10b981;
+            --status-err: #ef4444;
+            --status-warn: #f59e0b;
+            --status-info: #3b82f6;
+            
+            /* Grubości Obramowań (Znak rozpoznawczy Neobrutalizmu) */
+            --border-sm: 2px solid #000000;
+            --border-md: 4px solid #000000;
+            --border-lg: 6px solid #000000;
+            --border-orange: 4px solid #ff8c00;
+            
+            /* Ostre, brutalne cienie (Brak rozmycia!) */
+            --shadow-btn: 4px 4px 0px 0px #000000;
+            --shadow-card: 8px 8px 0px 0px #000000;
+            --shadow-hover: 12px 12px 0px 0px #000000;
+            --shadow-orange: 6px 6px 0px 0px #ff8c00;
+            
+            /* Zaokrąglenia - Bardzo kanciaste lub delikatne */
+            --radius-none: 0px;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            
+            /* Przejścia */
+            --trans-fast: all 0.15s ease;
+            --trans-bounce: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        }
+
+        /* --- RESET GLOBALNY --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            background-image: radial-gradient(#e2e8f0 2px, transparent 2px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Ostre, brutalistyczne scrollbary */
+        ::-webkit-scrollbar { width: 14px; height: 14px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); border-left: var(--border-sm); }
+        ::-webkit-scrollbar-thumb { background: var(--brand-main); border: var(--border-sm); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-heading); }
+
+        /* ========================================================================================
+           MODUŁ: SYSTEM AUTORYZACJI (DOKŁADNE ODWZOROWANIE TWOJEGO RYSUNKU!)
+           ======================================================================================== */
+        
+        .auth-viewport {
+            position: fixed; inset: 0;
+            background-color: var(--bg-body);
+            background-image: linear-gradient(45deg, #f1f5f9 25%, transparent 25%, transparent 75%, #f1f5f9 75%, #f1f5f9), linear-gradient(45deg, #f1f5f9 25%, transparent 25%, transparent 75%, #f1f5f9 75%, #f1f5f9);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            z-index: 9999999;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .auth-viewport.hidden { opacity: 0; pointer-events: none; }
+        .auth-viewport.booting { transform: translateY(-100%); transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1); }
+
+        /* Główny kontener logowania */
+        .auth-container {
+            width: 100%;
+            max-width: 550px;
+            display: flex;
+            flex-direction: column;
+            animation: authDrop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes authDrop {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* --- ZAKŁADKI NA GÓRZE (JAK NA RYSUNKU) --- */
+        .auth-tabs {
+            display: flex;
+            width: 100%;
+            /* Dolna krawędź usunięta, by łączyła się z formularzem */
+        }
+
+        .auth-tab-btn {
+            flex: 1;
+            padding: 25px 10px;
+            background-color: var(--bg-surface);
+            border: var(--border-md);
+            border-bottom: none; /* Łączy się z głównym boxem */
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-heading);
+            cursor: pointer;
+            text-align: center;
+            transition: var(--trans-fast);
+        }
+
+        /* Lewa zakładka (Tworzenie konta) ma prawą ramkę usuniętą, by się nie dublowały */
+        #tab-register {
+            border-right: none;
+        }
+
+        /* AKTYWNA ZAKŁADKA - Podświetla się na pomarańczowo wg instrukcji */
+        .auth-tab-btn.active {
+            border-color: var(--brand-main);
+            color: var(--text-heading);
+            background-color: var(--brand-light);
+            z-index: 2; /* Wynosi ramkę nad inne elementy */
+            box-shadow: inset 0px 6px 0px 0px var(--brand-main);
+        }
+
+        .auth-tab-btn:not(.active):hover {
+            background-color: #f8fafc;
+        }
+
+        /* --- GŁÓWNY BOX FORMULARZA (JAK NA RYSUNKU) --- */
+        .auth-form-body {
+            background-color: var(--bg-surface);
+            border: var(--border-md);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            box-shadow: var(--shadow-card);
+        }
+
+        /* Inputy (Nazwa konta, Hasło) z grubymi ramkami */
+        .auth-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+        }
+
+        .auth-input-label {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-heading);
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-heading);
+            background-color: var(--bg-surface);
+            border: var(--border-md);
+            transition: var(--trans-fast);
+        }
+
+        .auth-input:focus {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-btn);
+            border-color: var(--brand-main);
+        }
+
+        /* Oczko do hasła */
+        .eye-toggle {
+            position: absolute;
+            right: 20px;
+            top: 48px;
+            font-size: 24px;
+            cursor: pointer;
+            user-select: none;
+            transition: var(--trans-fast);
+        }
+
+        .eye-toggle:hover {
+            transform: scale(1.2);
+        }
+
+        /* PRZYCISK GŁÓWNY NA DOLE (Stwórz konto / Zaloguj się) */
+        .auth-submit-btn {
+            width: 100%;
+            padding: 25px;
+            margin-top: 10px;
+            background-color: var(--bg-surface);
+            color: var(--text-heading);
+            border: var(--border-orange);
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: var(--trans-bounce);
+        }
+
+        .auth-submit-btn:hover {
+            background-color: var(--brand-light);
+            transform: translate(-6px, -6px);
+            box-shadow: var(--shadow-orange);
+        }
+
+        .auth-submit-btn:active {
+            transform: translate(0, 0);
+            box-shadow: 0px 0px 0px 0px var(--brand-main);
+        }
+
+        .auth-error-log {
+            color: var(--status-err);
+            font-size: 15px;
+            font-weight: 800;
+            text-align: center;
+            min-height: 22px;
+            text-transform: uppercase;
+        }
+
+        /* ========================================================================================
+           MODUŁ: SIDEBAR I TOPBAR (GŁÓWNA APLIKACJA)
+           ======================================================================================== */
+        
+        .app-sidebar {
+            width: 340px;
+            background-color: var(--bg-sidebar);
+            border-right: var(--border-md);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-card);
+        }
+
+        .sidebar-brand {
+            padding: 40px 30px;
+            border-bottom: var(--border-md);
+            background-color: var(--brand-main);
+        }
+
+        .sidebar-brand h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 34px;
+            font-weight: 900;
+            color: var(--text-heading);
+            line-height: 1;
+        }
+
+        .sidebar-brand p {
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--text-heading);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        .sidebar-nav {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .nav-category {
+            font-size: 13px;
+            font-weight: 900;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin: 30px 0 15px 10px;
+            border-bottom: var(--border-sm);
+            display: inline-block;
+            padding-bottom: 2px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            margin-bottom: 8px;
+            border: var(--border-sm);
+            border-color: transparent;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 15px;
+            color: var(--text-main);
+            transition: var(--trans-fast);
+        }
+
+        .nav-item i {
+            margin-right: 15px;
+            font-size: 22px;
+            width: 30px;
+            text-align: center;
+            font-style: normal;
+        }
+
+        .nav-item:hover {
+            border-color: var(--border-color-main);
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-btn);
+        }
+
+        .nav-item.active {
+            background-color: var(--text-heading);
+            color: var(--text-inverse);
+            border-color: var(--border-color-main);
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-btn);
+        }
+
+        .nav-item.active i { color: var(--brand-main); }
+
+        .sidebar-footer {
+            padding: 30px;
+            border-top: var(--border-md);
+        }
+
+        .btn-brutalist-logout {
+            width: 100%;
+            padding: 18px;
+            background-color: var(--status-err);
+            color: var(--text-inverse);
+            border: var(--border-md);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--trans-bounce);
+            text-transform: uppercase;
+        }
+
+        .btn-brutalist-logout:hover {
+            transform: translate(-6px, -6px);
+            box-shadow: var(--shadow-btn);
+        }
+  /* ------------------------------------------------------------------------------------------------
+           MODUŁ: GŁÓWNY OBSZAR ROBOCZY I TOPBAR
+           ------------------------------------------------------------------------------------------------ */
+        
+        .app-main-workspace {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .app-topbar {
+            height: 110px;
+            background-color: var(--bg-surface);
+            border-bottom: var(--border-md);
+            padding: 0 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            z-index: 100;
+        }
+
+        .topbar-breadcrumbs {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--text-heading);
+            text-transform: uppercase;
+        }
+
+        .topbar-breadcrumbs span {
+            color: var(--brand-main);
+            text-shadow: 2px 2px 0px #000000;
+        }
+
+        .topbar-user-area {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .plan-badge {
+            background-color: var(--brand-main);
+            color: var(--text-heading);
+            padding: 12px 24px;
+            border: var(--border-md);
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+
+        .user-profile-widget {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--bg-surface);
+            padding: 10px 30px 10px 20px;
+            border: var(--border-md);
+            box-shadow: var(--shadow-btn);
+            cursor: pointer;
+            transition: var(--trans-bounce);
+        }
+
+        .user-profile-widget:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .user-name-wrapper {
+            text-align: right;
+        }
+
+        .user-name-wrapper b {
+            display: block;
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--text-heading);
+            line-height: 1.1;
+        }
+
+        .user-name-wrapper small {
+            color: var(--status-ok);
+            font-weight: 900;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .user-avatar-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--text-heading);
+            color: var(--text-inverse);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 24px;
+            border: var(--border-sm);
+        }
+
+        /* ------------------------------------------------------------------------------------------------
+           MODUŁ: SYSTEM WIDOKÓW (ROUTING CANVAS)
+           ------------------------------------------------------------------------------------------------ */
+        
+        .app-view-canvas {
+            padding: 50px 60px;
+            overflow-y: auto;
+            flex-grow: 1;
+            scroll-behavior: smooth;
+        }
+
+        .view-module {
+            display: none;
+        }
+
+        .view-module.active {
+            display: block;
+            animation: viewFadeIn 0.4s ease-out;
+        }
+
+        @keyframes viewFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ------------------------------------------------------------------------------------------------
+           KOMPONENTY: KARTY, SIATKI I PRZYCISKI NEOBRUTALIZM
+           ------------------------------------------------------------------------------------------------ */
+        
+        .grid-col-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .b-card {
+            background-color: var(--bg-surface);
+            padding: 45px;
+            border: var(--border-md);
+            box-shadow: var(--shadow-card);
+            transition: var(--trans-bounce);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .b-card:hover {
+            transform: translate(-6px, -6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .b-card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 28px;
+            color: var(--text-heading);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-transform: uppercase;
+        }
+
+        .b-card-title i {
+            color: var(--brand-main);
+            font-style: normal;
+            font-size: 36px;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 24px 40px;
+            border: var(--border-md);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-size: 18px;
+            cursor: pointer;
+            transition: var(--trans-bounce);
+            text-transform: uppercase;
+            background-color: var(--bg-surface);
+            color: var(--text-heading);
+        }
+
+        .btn-action:hover {
+            transform: translate(-6px, -6px);
+            box-shadow: var(--shadow-card);
+        }
+        
+        .btn-action:active {
+            transform: translate(0px, 0px);
+            box-shadow: none;
+        }
+
+        .btn-primary-action { background-color: var(--brand-main); }
+        .btn-success-action { background-color: var(--status-ok); color: white; }
+        .btn-danger-action { background-color: var(--status-err); color: white; }
+
+        /* --- DASHBOARD WIDGETS --- */
+        .status-orb-container {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: var(--border-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+            background-color: var(--bg-surface);
+            transition: var(--trans-fast);
+        }
+
+        .status-orb-container.state-online {
+            background-color: var(--status-ok);
+            animation: pulseOnline 2s infinite;
+        }
+        @keyframes pulseOnline {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8); }
+            70% { box-shadow: 0 0 0 25px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .status-orb-container.state-booting {
+            background-color: var(--status-warn);
+            animation: spinBoot 2s linear infinite;
+        }
+        @keyframes spinBoot {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .metric-bar-bg {
+            height: 30px;
+            border: var(--border-md);
+            background-color: var(--bg-surface);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .metric-bar-fill {
+            height: 100%;
+            border-right: var(--border-md);
+            transition: width 0.5s ease-out;
+        }
+
+        /* --- GIGANTYCZNE SUWAKI (ZASOBY) --- */
+        .custom-range {
+            width: 100%; height: 16px; background-color: var(--text-heading);
+            border: var(--border-sm); appearance: none; outline: none; margin: 30px 0;
+        }
+
+        .custom-range::-webkit-slider-thumb {
+            appearance: none; width: 45px; height: 45px; background-color: var(--brand-main);
+            border: var(--border-md); cursor: pointer; transition: var(--trans-bounce);
+        }
+
+        .custom-range::-webkit-slider-thumb:hover {
+            transform: scale(1.2); box-shadow: var(--shadow-btn);
+        }
+
+        /* --- FTP MENEDŻER PLIKÓW (Z PRZYCISKIEM DODAWANIA) --- */
+        .ftp-workspace {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+            height: 700px;
+        }
+
+        .ftp-tree-view {
+            background-color: var(--bg-surface);
+            padding: 25px;
+            border: var(--border-md);
+            box-shadow: var(--shadow-card);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ftp-node {
+            padding: 18px 20px;
+            border: var(--border-sm);
+            border-color: transparent;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--trans-bounce);
+        }
+
+        .ftp-node:hover {
+            border-color: var(--border-color-main);
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-btn);
+        }
+
+        .ftp-node.active-node {
+            background-color: var(--text-heading);
+            color: var(--text-inverse);
+            border-color: var(--border-color-main);
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-btn);
+        }
+
+        .btn-add-file {
+            margin-top: auto;
+            padding: 20px;
+            background-color: var(--status-ok);
+            color: var(--text-inverse);
+            border: var(--border-md);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: var(--trans-bounce);
+        }
+
+        .btn-add-file:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--shadow-btn);
+        }
+
+        .ftp-editor-wrapper {
+            position: relative;
+            height: 100%;
+            border: var(--border-lg);
+            background-color: var(--bg-terminal);
+            box-shadow: var(--shadow-card);
+        }
+
+        .ftp-textarea {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-terminal);
+            color: #ffffff;
+            padding: 40px;
+            border: none;
+            resize: none;
+            font-family: 'Fira Code', monospace;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* --- TERMINAL --- */
+        .terminal-layout {
+            background-color: var(--bg-terminal);
+            padding: 40px;
+            border: var(--border-lg);
+            box-shadow: var(--shadow-card);
+        }
+
+        .terminal-output {
+            height: 500px;
+            overflow-y: auto;
+            font-family: 'Fira Code', monospace;
+            color: #ffffff;
+            font-size: 16px;
+            line-height: 1.8;
+            padding-right: 20px;
+        }
+
+        .terminal-input-area {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .cmd-input {
+            flex-grow: 1;
+            padding: 25px 30px;
+            background-color: #1e293b;
+            border: var(--border-md) solid #334155;
+            color: #ffffff;
+            font-family: 'Fira Code', monospace;
+            font-size: 18px;
+            transition: var(--trans-fast);
+        }
+
+        .cmd-input:focus { border-color: var(--brand-main); }
+
+        /* --- TOAST SYSTEM --- */
+        .toast-notification {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            background-color: var(--text-heading);
+            color: var(--text-inverse);
+            padding: 25px 40px;
+            border: var(--border-md);
+            font-weight: 800;
+            font-size: 18px;
+            transform: translateY(200%);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 99999999;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .toast-notification.show { transform: translateY(0); }
+
+        /* Switch toggle brutalistyczny */
+        .switch-container { position: relative; width: 70px; height: 40px; flex-shrink: 0; }
+        .switch-container input { opacity: 0; width: 0; height: 0; }
+        .switch-track { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--bg-surface); border: var(--border-md); transition: .3s; }
+        .switch-track:before { position: absolute; content: ""; height: 24px; width: 24px; left: 4px; bottom: 4px; background-color: var(--text-heading); transition: .3s; }
+        input:checked + .switch-track { background-color: var(--status-ok); }
+        input:checked + .switch-track:before { transform: translateX(30px); background-color: var(--bg-surface); border: var(--border-sm); }
+    </style>
+</head>
+<body>
+
+    <div id="auth-portal" class="auth-viewport">
+        <div class="auth-container">
+            
+            <div class="auth-header-wrapper">
+                <h1>KokoszkaMC</h1>
+            </div>
+
+            <div class="auth-tabs">
+                <div id="tab-register" class="auth-tab-btn" onclick="authSystem.switchTab('register')">
+                    Tworzenie konta
+                </div>
+                <div id="tab-login" class="auth-tab-btn active" onclick="authSystem.switchTab('login')">
+                    Logowanie
+                </div>
+            </div>
+
+            <div class="auth-form-body">
+                <div class="auth-input-group">
+                    <input type="text" id="auth-input-username" class="auth-input" placeholder="Nazwa konta">
+                </div>
+
+                <div class="auth-input-group">
+                    <input type="password" id="auth-input-password" class="auth-input" placeholder="hasło">
+                    <div class="eye-toggle" onclick="authSystem.togglePasswordVisibility('auth-input-password')">👁️</div>
+                </div>
+                
+                <div id="auth-error-msg" class="auth-error-log"></div>
+
+                <button id="auth-btn-submit" class="auth-submit-btn" onclick="authSystem.executeAuth()">
+                    Zaloguj się
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="app-core-interface" style="display: none; width: 100vw; height: 100vh;">
+        
+        <div class="app-sidebar">
+            <div class="sidebar-brand">
+                <h2>KOKOSZKA MC</h2>
+                <p>TITAN ENGINE v5.0</p>
+            </div>
+
+            <div class="sidebar-nav">
+                <div class="nav-category">Zarządzanie Węzłem</div>
+                <div class="nav-item active" onclick="uiEngine.routeTo('dashboard', this)"><i>📊</i> Pulpit Sterowania</div>
+                <div class="nav-item" onclick="uiEngine.routeTo('resources', this)"><i>⚡</i> Zasoby Sprzętowe</div>
+                <div class="nav-item" onclick="uiEngine.routeTo('software', this)"><i>⚙️</i> Silniki i Wersje</div>
+                <div class="nav-item" onclick="uiEngine.routeTo('properties', this)"><i>🛠️</i> Konfiguracja (.prop)</div>
+
+                <div class="nav-category">Operacje Techniczne</div>
+                <div class="nav-item" onclick="uiEngine.routeTo('terminal', this)"><i>💻</i> Konsola Systemowa</div>
+                <div class="nav-item" onclick="uiEngine.routeTo('filemanager', this)"><i>📂</i> Eksplorator Plików</div>
+                <div class="nav-item" onclick="uiEngine.routeTo('database', this)"><i>🗄️</i> Bazy MySQL</div>
+
+                <div class="nav-category">Dodatki i Ochrona</div>
+                <div class="nav-item" onclick="uiEngine.routeTo('marketplace', this)"><i>🔌</i> Rynek Pluginów</div>
+                <div class="nav-item" onclick="uiEngine.routeTo('firewall', this)"><i>🛡️</i> Ochrona Sieciowa</div>
+                <div class="nav-item" onclick="uiEngine.routeTo('auditlogs', this)"><i>📜</i> Dziennik Audytu</div>
+            </div>
+
+            <div class="sidebar-footer">
+                <button class="btn-brutalist-logout" onclick="location.reload()">WYLOGUJ SESJĘ</button>
+            </div>
+        </div>
+
+        <div class="app-main-workspace">
+            
+            <div class="app-topbar">
+                <div class="topbar-breadcrumbs">Panel / <span id="ui-breadcrumb-title">Pulpit Sterowania</span></div>
+                
+                <div class="topbar-user-area">
+                    <div class="plan-badge">ULTIMATE FREE</div>
+                    <div class="user-profile-widget">
+                        <div class="user-name-wrapper">
+                            <b id="ui-topbar-user">Gość</b>
+                            <small>Aktywny</small>
+                        </div>
+                        <div class="user-avatar-icon" id="ui-topbar-avatar">?</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-view-canvas">
+                
+                <div id="view-dashboard" class="view-module active">
+                    
+                    <div id="layout-spawner" style="display: none;">
+                        <div class="b-card" style="text-align: center; padding: 100px 50px; max-width: 900px; margin: 0 auto;">
+                            <div style="font-size: 100px; margin-bottom: 20px;">🥚</div>
+                            <h1 style="font-family: 'Montserrat', sans-serif; font-size: 48px; font-weight: 900; text-transform: uppercase;">Zainicjuj Serwer</h1>
+                            
+                            <input type="text" id="in-create-name" style="width: 100%; height: 100px; font-size: 40px; font-weight: 900; border: none; border-bottom: var(--border-lg); background: transparent; text-align: center; margin: 40px 0; font-family: 'Montserrat', sans-serif;" placeholder="np. survival-kokoszka">
+                            
+                            <p style="font-weight: 900; font-size: 32px; margin-bottom: 50px;">IP: <span id="out-create-ip" style="color: var(--brand-main);">...kokoszka.me</span></p>
+                            
+                            <button class="btn-action btn-primary-action" style="width: 100%; font-size: 24px; padding: 30px;" onclick="kernel.deployNewServer()">STWÓRZ MASZYNĘ ZA DARMO</button>
+                        </div>
+                    </div>
+
+                    <div id="layout-manage" style="display: none;">
+                        <div class="grid-col-2">
+                            <div class="b-card">
+                                <div style="display: flex; align-items: center; gap: 40px; margin-bottom: 40px;">
+                                    <div id="ui-status-orb" class="status-orb-container">🔴</div>
+                                    <div>
+                                        <h2 id="ui-status-text" style="font-size: 45px; font-weight: 900;">OFFLINE</h2>
+                                        <div id="ui-status-ip" style="background: var(--bg-input); padding: 10px 20px; border: var(--border-md); font-weight: 800; font-size: 18px;">---</div>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 40px; font-weight: 800; font-size: 18px;">Czas pracy: <b id="ui-uptime-clock" style="font-family: 'Fira Code', monospace; color: var(--brand-main);">00:00:00</b></div>
+                                <div style="display: flex; gap: 20px;">
+                                    <button id="ui-btn-power" class="btn-action btn-success-action" style="flex: 2;" onclick="kernel.togglePowerState()">START</button>
+                                    <button class="btn-action btn-danger-action" style="flex: 1;" onclick="kernel.triggerEmergencyKill()">KILL</button>
+                                </div>
+                            </div>
+
+                            <div class="b-card">
+                                <h3 class="b-card-title"><i>⚡</i> Obciążenie Systemu</h3>
+                                
+                                <div style="display: flex; justify-content: space-between; font-weight: 900; margin-bottom: 10px; margin-top: 30px; font-size: 18px;"><span>RAM</span><span id="ui-live-ram-text">0 / 4096 MB</span></div>
+                                <div class="metric-bar-bg"><div id="ui-live-ram-bar" class="metric-bar-fill" style="background: var(--brand-main);"></div></div>
+                                
+                                <div style="display: flex; justify-content: space-between; font-weight: 900; margin-top: 40px; margin-bottom: 10px; font-size: 18px;"><span>CPU</span><span id="ui-live-cpu-text">0%</span></div>
+                                <div class="metric-bar-bg"><div id="ui-live-cpu-bar" class="metric-bar-fill" style="background: var(--text-heading);"></div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="b-card">
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; gap: 30px;">
+                                <div><small style="font-weight: 900; font-size: 14px;">SILNIK</small><br><b id="ui-info-engine" style="font-size: 26px;">---</b></div>
+                                <div><small style="font-weight: 900; font-size: 14px;">WERSJA</small><br><b id="ui-info-version" style="font-size: 26px;">---</b></div>
+                                <div><small style="font-weight: 900; font-size: 14px;">GRACZE</small><br><b style="font-size: 26px;">0 / 20</b></div>
+                                <div><small style="font-weight: 900; font-size: 14px;">PORT</small><br><b style="font-size: 26px; color: var(--brand-main);">25565</b></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-resources" class="view-module">
+                    <div class="b-card">
+                        <h3 class="b-card-title"><i>🚀</i> Nielimitowany Przydział</h3>
+                        
+                        <div style="background: var(--bg-input); padding: 40px; border: var(--border-md); margin: 40px 0; transition: var(--trans-fast);" onmouseover="this.style.transform='translate(-4px,-4px)'; this.style.boxShadow='var(--shadow-btn)';" onmouseout="this.style.transform='translate(0,0)'; this.style.boxShadow='none';">
+                            <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 20px;"><span>RAM (GB)</span><b id="lbl-ram-val" style="font-size: 36px; color: var(--brand-main);">4</b></div>
+                            <input type="range" min="1" max="128" value="4" class="custom-range" id="slider-ram" oninput="kernel.syncResourceSliders()">
+                        </div>
+                        
+                        <div style="background: var(--bg-input); padding: 40px; border: var(--border-md); margin: 40px 0; transition: var(--trans-fast);" onmouseover="this.style.transform='translate(-4px,-4px)'; this.style.boxShadow='var(--shadow-btn)';" onmouseout="this.style.transform='translate(0,0)'; this.style.boxShadow='none';">
+                            <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 20px;"><span>vCPU</span><b id="lbl-cpu-val" style="font-size: 36px; color: var(--brand-main);">2</b></div>
+                            <input type="range" min="1" max="32" value="2" class="custom-range" id="slider-cpu" oninput="kernel.syncResourceSliders()">
+                        </div>
+                        
+                        <button class="btn-action btn-primary-action" style="width: 100%; font-size: 22px; padding: 30px;" onclick="uiEngine.triggerToast('Zapisano konfigurację w bazie.')">ZAPISZ KONFIGURACJĘ</button>
+                    </div>
+                </div>
+
+                <div id="view-software" class="view-module">
+                    <div class="b-card">
+                        <h3 class="b-card-title"><i>⚙️</i> Oprogramowanie</h3>
+                        <select id="sel-engine-type" style="width: 100%; height: 80px; font-size: 26px; font-weight: 900; border: var(--border-md); margin: 30px 0; padding: 0 20px; font-family: 'Montserrat', sans-serif;">
+                            <option value="Vanilla">Vanilla</option>
+                            <option selected value="PaperMC">PaperMC</option>
+                            <option value="Forge">Forge</option>
+                        </select>
+                        <select id="sel-engine-version" style="width: 100%; height: 80px; font-size: 26px; font-weight: 900; border: var(--border-md); margin-bottom: 40px; padding: 0 20px; font-family: 'Montserrat', sans-serif;">
+                            </select>
+                        <button class="btn-action btn-primary-action" style="width: 100%; font-size: 22px; padding: 30px;" onclick="kernel.processSoftwareInstallation()">ZAINSTALUJ</button>
+                    </div>
+                </div>
+                
+                <div id="view-properties" class="view-module">
+                    <div class="b-card">
+                        <h3 class="b-card-title"><i>🛠️</i> Konfiguracja (.prop)</h3>
+                        
+                        <div style="display: flex; justify-content: space-between; padding: 30px; border: var(--border-md); margin-bottom: 20px;">
+                            <b style="font-size: 20px;">Tryb Non-Premium (Cracked)</b>
+                            <div class="switch-container"><input type="checkbox" checked><span class="switch-track"></span></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 30px; border: var(--border-md); margin-bottom: 20px;">
+                            <b style="font-size: 20px;">Walka PvP</b>
+                            <div class="switch-container"><input type="checkbox" checked><span class="switch-track"></span></div>
+                        </div>
+
+                        <input type="text" style="width: 100%; height: 80px; border: var(--border-md); font-size: 24px; font-weight: 800; padding: 0 25px; margin: 30px 0;" placeholder="MOTD Serwera">
+                        <button class="btn-action btn-primary-action" style="width: 100%; font-size: 22px; padding: 30px;" onclick="uiEngine.triggerToast('Zapisano plik properties.')">ZAPISZ</button>
+                    </div>
+                </div>
+
+                <div id="view-terminal" class="view-module">
+                    <div class="terminal-layout">
+                        <div class="terminal-output" id="terminal-screen-log">
+                            <div style="margin-bottom: 10px;"><span class="log-time">[SYSTEM]</span> <span class="log-success">Terminal v5.0 TITAN gotowy.</span></div>
+                        </div>
+                        <div class="terminal-input-area">
+                            <input type="text" id="terminal-cmd-input" class="cmd-input" placeholder="Wpisz komendę (np. /op, /stop)">
+                            <button class="btn-action" style="background: var(--bg-surface); color: var(--text-heading); font-size: 20px; padding: 0 40px;" onclick="kernel.executeTerminalCommand()">WYKONAJ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-filemanager" class="view-module">
+                    <div class="b-card">
+                        <h3 class="b-card-title"><i>📂</i> Menedżer Plików</h3>
+                        <div class="ftp-workspace">
+                            <div class="ftp-tree-view" id="ftp-file-tree">
+                                <div class="ftp-node" onclick="kernel.loadFileIntoEditor('server.properties', this)"><i>📄</i> server.properties</div>
+                                <div class="ftp-node" onclick="kernel.loadFileIntoEditor('spigot.yml', this)"><i>📄</i> spigot.yml</div>
+                                <div class="ftp-node" onclick="kernel.loadFileIntoEditor('bukkit.yml', this)"><i>📄</i> bukkit.yml</div>
+                                <div class="ftp-node" onclick="kernel.loadFileIntoEditor('whitelist.json', this)"><i>📄</i> whitelist.json</div>
+                                <div class="ftp-node" onclick="kernel.loadFileIntoEditor('ops.json', this)"><i>📄</i> ops.json</div>
+                                
+                                <button class="btn-add-file" onclick="kernel.createNewFile()">+ NOWY PLIK</button>
+                            </div>
+                            
+                            <div class="ftp-editor-wrapper">
+                                <textarea id="ftp-text-area" class="ftp-textarea" spellcheck="false"># Wybierz plik z drzewa po lewej stronie...</textarea>
+                                <button class="btn-action btn-primary-action ftp-save-btn" onclick="uiEngine.triggerToast('Zapisano pomyślnie na FTP.')">ZAPISZ PLIK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-database" class="view-module"><div class="b-card"><h3 class="b-card-title">🗄️ Bazy MySQL</h3><p style="font-size: 18px; font-weight: 800;">Baza danych s1_kokoszka aktywna w tle.</p></div></div>
+                <div id="view-marketplace" class="view-module"><div class="b-card"><h3 class="b-card-title">🔌 Rynek Pluginów</h3><p style="font-size: 18px; font-weight: 800;">Wyszukiwarka w trakcie stabilizacji.</p></div></div>
+                <div id="view-firewall" class="view-module"><div class="b-card"><h3 class="b-card-title">🛡️ Ochrona Sieciowa</h3><p style="font-size: 18px; font-weight: 800;">Filtrowanie L7 włączone domyślnie przez Kokoszka-Shield.</p></div></div>
+                <div id="view-auditlogs" class="view-module"><div class="b-card"><h3 class="b-card-title">📜 Dziennik Audytu</h3><table class="system-table"><tbody id="ui-audit-table-render"></tbody></table></div></div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="sys-toast-notification" class="toast-notification">
+        <span style="font-size: 32px; font-style: normal;">🐔</span>
+        <span id="toast-message-content" style="font-size: 18px;">Powiadomienie</span>
+    </div>
+     <script>
+        /**
+         * KOKOSZKA MC - TITAN ENGINE v5.0
+         * Czysty kod Vanilla JS bez zewnętrznych bibliotek.
+         */
+
+        // --- BAZA WIEDZY I PRE-KONFIGURACJI WĘZŁA ---
+        const SYS_DATA = {
+            versions: [
+                "1.21.1", "1.21", "1.20.6", "1.20.4", "1.20.1", "1.19.4", "1.19.2", 
+                "1.18.2", "1.17.1", "1.16.5", "1.15.2", "1.12.2", "1.8.8", "1.7.10"
+            ],
+            files: {
+                "server.properties": "online-mode=false\npvp=true\nmax-players=20\nmotd=Najlepszy Serwer KokoszkaMC\nallow-flight=false\nenable-command-block=true\nview-distance=10\nserver-port=25565",
+                "spigot.yml": "settings:\n  save-user-cache-on-stop-only: false\n  bungeecord: false\n  user-cache-size: 1000",
+                "bukkit.yml": "settings:\n  allow-end: true\n  warn-on-overload: true",
+                "whitelist.json": "[]",
+                "ops.json": "[]"
+            }
+        };
+
+        // ==========================================================================
+        // SYSTEM AUTORYZACJI ZGODNY ZE SZKICEM (ZAKŁADKI NA GÓRZE)
+        // ==========================================================================
+        const authSystem = {
+            activeTab: 'login', // Domyślnie aktywna zakładka
+            database: JSON.parse(localStorage.getItem('kokoszka_titan_v5_db') || "{}"),
+            currentUser: null,
+
+            init() {
+                console.log("%c [KOKOSZKA OS] Booting Authorization Sequence v5.0... ", "background: #000; color: #ff8c00; font-weight: 900; padding: 5px;");
+                
+                // Wypełnienie wersji w panelu wyboru oprogramowania
+                const verDropdown = document.getElementById('sel-engine-version');
+                if(verDropdown) {
+                    SYS_DATA.versions.forEach(v => {
+                        let opt = document.createElement('option');
+                        opt.value = v; opt.innerText = v;
+                        verDropdown.appendChild(opt);
+                    });
+                }
+                
+                // Live preview generatora IP
+                const spawnInput = document.getElementById('in-create-name');
+                if(spawnInput) {
+                    spawnInput.addEventListener('input', (e) => {
+                        const cleanStr = e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '');
+                        document.getElementById('out-create-ip').innerText = (cleanStr || "...") + ".kokoszka.me";
+                    });
+                }
+                
+                // Wymuszenie załadowania zakładki logowania po włączeniu strony
+                this.switchTab('login');
+            },
+
+            // Ta funkcja odpowiada za przełączanie zakładek jak na Twoim rysunku
+            switchTab(targetTab) {
+                this.activeTab = targetTab;
+                
+                // Wyczyszczenie błędów
+                document.getElementById('auth-error-msg').innerText = "";
+
+                const btnLogin = document.getElementById('tab-login');
+                const btnRegister = document.getElementById('tab-register');
+                const btnSubmit = document.getElementById('auth-btn-submit');
+                
+                // Wyczyszczenie inputów przy przełączaniu
+                document.getElementById('auth-input-username').value = "";
+                document.getElementById('auth-input-password').value = "";
+
+                if (targetTab === 'login') {
+                    // Aktywacja logowania
+                    btnLogin.classList.add('active');
+                    btnRegister.classList.remove('active');
+                    btnSubmit.innerText = "Zaloguj się";
+                } else {
+                    // Aktywacja tworzenia konta
+                    btnRegister.classList.add('active');
+                    btnLogin.classList.remove('active');
+                    btnSubmit.innerText = "Stwórz konto";
+                }
+            },
+
+            togglePasswordVisibility(inputId) {
+                const targetInput = document.getElementById(inputId);
+                const eyeIcon = event.target;
+                if (targetInput.type === 'password') { 
+                    targetInput.type = 'text'; 
+                    eyeIcon.innerText = '🔒'; 
+                } else { 
+                    targetInput.type = 'password'; 
+                    eyeIcon.innerText = '👁️'; 
+                }
+            },
+
+            executeAuth() {
+                const usernameVal = document.getElementById('auth-input-username').value.trim();
+                const passwordVal = document.getElementById('auth-input-password').value.trim();
+                const errorBox = document.getElementById('auth-error-msg');
+
+                if (usernameVal.length < 3) return errorBox.innerText = "BŁĄD: NAZWA MUSI MIEĆ MIN. 3 ZNAKI.";
+                if (passwordVal.length < 4) return errorBox.innerText = "BŁĄD: HASŁO MUSI MIEĆ MIN. 4 ZNAKI.";
+
+                if (this.activeTab === 'register') {
+                    // PROCES REJESTRACJI KONT
+                    if (this.database[usernameVal]) return errorBox.innerText = "BŁĄD: KONTO O TAKIEJ NAZWIE JUŻ ISTNIEJE!";
+                    
+                    this.database[usernameVal] = { 
+                        pass: passwordVal, 
+                        srvData: null,
+                        audit: [{ t: new Date().toLocaleString(), a: "Wygenerowano profil w chmurze KokoszkaMC." }]
+                    };
+                    
+                    localStorage.setItem('kokoszka_titan_v5_db', JSON.stringify(this.database));
+                    
+                    alert("SUKCES! Konto zostało utworzone. System przełączy Cię do logowania.");
+                    this.switchTab('login');
+                    
+                } else {
+                    // PROCES LOGOWANIA I WEJŚCIE DO PANELU
+                    if (!this.database[usernameVal] || this.database[usernameVal].pass !== passwordVal) {
+                        return errorBox.innerText = "BŁĄD: NIEPRAWIDŁOWA NAZWA KONTO LUB HASŁO!";
+                    }
+                    
+                    this.currentUser = usernameVal;
+                    kernel.igniteSession();
+                }
+            }
+        };
+
+        // ==========================================================================
+        // GŁÓWNY SILNIK MASZYNY WIRTUALNEJ I LOGIKI PANELU (KERNEL)
+        // ==========================================================================
+        const kernel = {
+            serverRecord: null,
+            isNodeOnline: false,
+            isNodeBooting: false,
+            uptimeSeconds: 0,
+            
+            loopHardware: null,
+            loopClock: null,
+
+            igniteSession() {
+                // Wywołanie animacji "wjazdu" do głównego panelu
+                const authPortal = document.getElementById('auth-portal');
+                const appCore = document.getElementById('app-core-interface');
+                
+                authPortal.classList.add('booting');
+                
+                setTimeout(() => {
+                    authPortal.style.display = 'none';
+                    appCore.style.display = 'flex';
+                    
+                    document.getElementById('ui-topbar-user').innerText = authSystem.currentUser;
+                    document.getElementById('ui-topbar-avatar').innerText = authSystem.currentUser.charAt(0).toUpperCase();
+                    
+                    this.serverRecord = authSystem.database[authSystem.currentUser].srvData;
+                    
+                    this.syncDashboardTopology();
+                    this.renderAuditHistoryTable();
+                }, 700);
+            },
+
+            deployNewServer() {
+                const rawName = document.getElementById('in-create-name').value.trim();
+                const safeName = rawName.toLowerCase().replace(/[^a-z0-9-]/g, '');
+                
+                if (safeName.length < 3) return alert("OCHRONA SYSTEMU: Wymagane są minimum 3 znaki.");
+
+                this.serverRecord = {
+                    name: safeName,
+                    ip: safeName + ".kokoszka.me",
+                    ram: 4,
+                    cpu: 2,
+                    engine: "PaperMC",
+                    version: "1.20.4"
+                };
+
+                authSystem.database[authSystem.currentUser].srvData = this.serverRecord;
+                this.pushToAuditLog("Inicjalizacja węzła systemowego: " + this.serverRecord.ip);
+                localStorage.setItem('kokoszka_titan_v5_db', JSON.stringify(authSystem.database));
+                
+                this.syncDashboardTopology();
+                uiEngine.triggerToast("Gratulacje! Zbudowano darmową maszynę wirtualną.");
+            },
+
+            syncDashboardTopology() {
+                const viewSpawn = document.getElementById('layout-spawner');
+                const viewManage = document.getElementById('layout-manage');
+
+                if (!this.serverRecord) {
+                    viewSpawn.style.display = 'block';
+                    viewManage.style.display = 'none';
+                } else {
+                    viewSpawn.style.display = 'none';
+                    viewManage.style.display = 'block';
+                    
+                    document.getElementById('ui-status-ip').innerText = this.serverRecord.ip;
+                    document.getElementById('ui-info-engine').innerText = this.serverRecord.engine;
+                    document.getElementById('ui-info-version').innerText = this.serverRecord.version;
+                    
+                    document.getElementById('slider-ram').value = this.serverRecord.ram;
+                    document.getElementById('slider-cpu').value = this.serverRecord.cpu;
+                    this.syncResourceSliders();
+                }
+            },
+
+            togglePowerState() {
+                if (this.isNodeBooting) return;
+                
+                const btnPower = document.getElementById('ui-btn-power');
+                const statusOrb = document.getElementById('ui-status-orb');
+                const statusText = document.getElementById('ui-status-text');
+
+                if (!this.isNodeOnline) {
+                    // WŁĄCZANIE SERWERA
+                    this.isNodeBooting = true;
+                    btnPower.style.opacity = "0.5";
+                    
+                    statusOrb.className = "status-orb-container state-booting";
+                    statusOrb.innerText = "⏳";
+                    statusText.innerText = "STARTOWANIE...";
+                    
+                    uiEngine.printTerminalLog(`Przydzielanie ${this.serverRecord.ram}GB RAM na poziomie hypervisora...`, "info");
+
+                    setTimeout(() => {
+                        if (this.isNodeBooting || this.isNodeOnline) {
+                            this.isNodeBooting = false;
+                            this.isNodeOnline = true;
+                            
+                            btnPower.style.opacity = "1";
+                            btnPower.innerText = "ZATRZYMAJ WĘZEŁ";
+                            btnPower.className = "btn-action btn-danger-action";
+                            
+                            statusOrb.className = "status-orb-container state-online";
+                            statusOrb.innerText = "🟢";
+                            statusText.innerText = "ONLINE";
+                            
+                            uiEngine.printTerminalLog(`Sukces: Proces Javy na silniku ${this.serverRecord.engine} nasłuchuje na tcp/25565.`, "success");
+                            this.startSimulationEngines();
+                            this.pushToAuditLog("Standardowe włączenie serwera (Start)");
+                        }
+                    }, 3500);
+
+                } else {
+                    // WYŁĄCZANIE SERWERA
+                    this.isNodeOnline = false;
+                    btnPower.innerText = "URUCHOM SERWER";
+                    btnPower.className = "btn-action btn-success-action";
+                    
+                    statusOrb.className = "status-orb-container";
+                    statusOrb.innerText = "🔴";
+                    statusText.innerText = "OFFLINE";
+                    
+                    uiEngine.printTerminalLog("SIGTERM: Wymuszenie czystego zatrzymania. Zrzucanie pamięci chunków do SSD...", "info");
+                    this.stopSimulationEngines();
+                    this.pushToAuditLog("Łagodne zatrzymanie serwera (Stop)");
+                }
+            },
+
+            startSimulationEngines() {
+                this.loopHardware = setInterval(() => {
+                    if (!this.isNodeOnline) return;
+                    
+                    const maxRamMB = this.serverRecord.ram * 1024;
+                    const curRamMB = Math.floor(Math.random() * (maxRamMB * 0.50 - maxRamMB * 0.20) + maxRamMB * 0.20);
+                    const curCpuPerc = Math.floor(Math.random() * 40) + 2;
+                    
+                    document.getElementById('ui-live-ram-text').innerText = `${curRamMB} / ${maxRamMB} MB`;
+                    document.getElementById('ui-live-ram-bar').style.width = `${(curRamMB / maxRamMB) * 100}%`;
+                    
+                    document.getElementById('ui-live-cpu-text').innerText = `${curCpuPerc}%`;
+                    document.getElementById('ui-live-cpu-bar').style.width = `${curCpuPerc}%`;
+                }, 1800);
+
+                this.loopClock = setInterval(() => {
+                    this.uptimeSeconds++;
+                    let h = Math.floor(this.uptimeSeconds / 3600);
+                    let m = Math.floor((this.uptimeSeconds % 3600) / 60);
+                    let s = this.uptimeSeconds % 60;
+                    
+                    const timeF = (h<10?'0':'')+h+":"+(m<10?'0':'')+m+":"+(s<10?'0':'')+s;
+                    document.getElementById('ui-uptime-clock').innerText = timeF;
+                }, 1000);
+            },
+
+            stopSimulationEngines() {
+                clearInterval(this.loopHardware);
+                clearInterval(this.loopClock);
+                this.uptimeSeconds = 0;
+                
+                document.getElementById('ui-uptime-clock').innerText = "00:00:00";
+                document.getElementById('ui-live-ram-text').innerText = "0 / 4096 MB";
+                document.getElementById('ui-live-ram-bar').style.width = "0%";
+                document.getElementById('ui-live-cpu-text').innerText = "0%";
+                document.getElementById('ui-live-cpu-bar').style.width = "0%";
+            },
+
+            syncResourceSliders() {
+                const getRam = parseInt(document.getElementById('slider-ram').value);
+                const getCpu = parseInt(document.getElementById('slider-cpu').value);
+                
+                document.getElementById('lbl-ram-val').innerText = getRam;
+                document.getElementById('lbl-cpu-val').innerText = getCpu;
+                
+                document.getElementById('alert-ram-limit').style.display = (getRam > 16 ? 'block' : 'none');
+                document.getElementById('alert-cpu-limit').style.display = (getCpu > 4 ? 'block' : 'none');
+
+                if (this.serverRecord) {
+                    this.serverRecord.ram = getRam;
+                    this.serverRecord.cpu = getCpu;
+                    authSystem.database[authSystem.currentUser].srvData = this.serverRecord;
+                    localStorage.setItem('kokoszka_titan_v5_db', JSON.stringify(authSystem.database));
+                }
+            },
+
+            processSoftwareInstallation() {
+                if (!this.serverRecord) return;
+                const en = document.getElementById('sel-engine-type').value;
+                const ve = document.getElementById('sel-engine-version').value;
+                
+                this.serverRecord.engine = en;
+                this.serverRecord.version = ve;
+                
+                this.pushToAuditLog(`Aktualizacja paczki oprogramowania do: ${en} v${ve}`);
+                localStorage.setItem('kokoszka_titan_v5_db', JSON.stringify(authSystem.database));
+                this.syncDashboardTopology();
+                uiEngine.triggerToast(`Pomyślnie zaktualizowano system na ${en}.`);
+            },
+
+            triggerEmergencyKill() {
+                this.isNodeOnline = false;
+                this.isNodeBooting = false;
+                this.togglePowerState();
+                uiEngine.printTerminalLog("KRYTYCZNE ZDARZENIE: Aktywowano Kill-Switch. Proces natychmiast zamordowany.", "error");
+                this.pushToAuditLog("Sprzętowe zatrzymanie procesu serwera (KILL SWITCH)");
+            },
+
+            executeTerminalCommand() {
+                const termInput = document.getElementById('terminal-cmd-input');
+                const cmdText = termInput.value.trim();
+                if (!cmdText) return;
+                
+                uiEngine.printTerminalLog("> [Root Exec]: " + cmdText, "info");
+                
+                const lowerCmd = cmdText.toLowerCase();
+                if (lowerCmd.startsWith("op ")) {
+                    uiEngine.printTerminalLog("[Internal API]: Poziom autoryzacji 4. został nadany pomyślnie.", "success");
+                } else if (lowerCmd === "stop") {
+                    this.togglePowerState();
+                } else if (lowerCmd === "help" || lowerCmd === "?") {
+                    uiEngine.printTerminalLog("--- TERMINAL SYSTEMOWY v5.0 ---\nKomendy: op, deop, kill, stop, save-all", "info");
+                } else {
+                    uiEngine.printTerminalLog("Nieznana komenda systemowa.", "warn");
+                }
+                
+                termInput.value = "";
+            },
+
+            // ----------------------------------------------------------------------
+            // SYSTEM FTP - Z NAPRAWIONYM DODAWANIEM PLIKÓW!
+            // ----------------------------------------------------------------------
+            loadFileIntoEditor(fName, clickedElement) {
+                // Obsługa podświetlania w drzewku
+                document.querySelectorAll('.ftp-node').forEach(node => node.classList.remove('active-node'));
+                if (clickedElement) clickedElement.classList.add('active-node');
+
+                const editorArea = document.getElementById('ftp-text-area');
+                // Jeżeli plik istnieje w pamięci ładujemy jego treść, w przeciwnym razie pusty szablon
+                editorArea.value = SYS_DATA.files[fName] || `# Utworzono nowy plik: ${fName}\n# KokoszkaMC WebFTP\n\n`;
+                uiEngine.triggerToast(`Otwarto plik ${fName} w edytorze R/W.`);
+            },
+
+            createNewFile() {
+                // Wywołujemy natywny prompt przeglądarki do podania nazwy
+                const fileName = prompt("Podaj nazwę nowego pliku z rozszerzeniem (np. config.yml):");
+                
+                if (fileName && fileName.trim() !== "") {
+                    const cleanFileName = fileName.trim().toLowerCase();
+                    
+                    // Dodanie do struktury danych
+                    SYS_DATA.files[cleanFileName] = `# Plik utworzony ręcznie: ${cleanFileName}\n\n`;
+                    
+                    // Wizualne dodanie do drzewka
+                    const treeContainer = document.getElementById('ftp-file-tree');
+                    const newFileNode = document.createElement('div');
+                    newFileNode.className = 'ftp-node';
+                    newFileNode.innerHTML = `<i>📄</i> ${cleanFileName}`;
+                    
+                    // Ustawienie eventów
+                    newFileNode.onclick = function() { kernel.loadFileIntoEditor(cleanFileName, this); };
+                    newFileNode.onmouseover = function() { this.style.backgroundColor = "var(--bg-input)"; };
+                    newFileNode.onmouseout = function() { this.style.backgroundColor = "transparent"; };
+
+                    // Wstawiamy przed przyciskiem "+ NOWY PLIK"
+                    const addBtn = document.querySelector('.btn-add-file');
+                    treeContainer.insertBefore(newFileNode, addBtn);
+
+                    this.pushToAuditLog(`Utworzono nowy plik w głównym katalogu FTP: ${cleanFileName}`);
+                    uiEngine.triggerToast(`Plik ${cleanFileName} został pomyślnie utworzony na dysku!`);
+                }
+            },
+
+            // ----------------------------------------------------------------------
+            // SYSTEM AUDYTU (LOGI KONTROLI)
+            // ----------------------------------------------------------------------
+            pushToAuditLog(actionEventString) {
+                const timeStr = new Date().toLocaleString();
+                authSystem.database[authSystem.currentUser].audit.unshift({
+                    t: timeStr,
+                    a: actionEventString
+                });
+                
+                // Optymalizacja LocalStorage (Maksymalnie 100 wpisów)
+                if(authSystem.database[authSystem.currentUser].audit.length > 100) {
+                    authSystem.database[authSystem.currentUser].audit.pop();
+                }
+                this.renderAuditHistoryTable();
+            },
+
+            renderAuditHistoryTable() {
+                const tableBodyDOM = document.getElementById('ui-audit-table-render');
+                if(!tableBodyDOM) return;
+
+                tableBodyDOM.innerHTML = ""; 
+                const cachedLogsArray = authSystem.database[authSystem.currentUser].audit;
+                
+                cachedLogsArray.forEach(logObj => {
+                    tableBodyDOM.innerHTML += `
+                        <tr>
+                            <td>[${logObj.t}]</td>
+                            <td style="color: var(--text-heading); font-weight: 800;">${logObj.a}</td>
+                            <td><span style="background-color: var(--bg-input); padding: 5px 10px; border: var(--border-sm); border-color: var(--text-heading); font-weight: 800; font-size: 11px; text-transform: uppercase;">${authSystem.currentUser}</span></td>
+                            <td style="color: var(--status-success); font-weight: 900; letter-spacing: 1px;">ZAKSIĘGOWANE</td>
+                        </tr>
+                    `;
+                });
+            }
+        };
+
+        // ==========================================================================
+        // SILNIK RENDEROWANIA UI (ROUTING)
+        // ==========================================================================
+        const uiEngine = {
+            routeTo(viewModuleTargetId, clickedNavElement) {
+                document.querySelectorAll('.view-module').forEach(vNode => vNode.classList.remove('active'));
+                document.querySelectorAll('.menu-nav-item').forEach(iNode => iNode.classList.remove('active'));
+                
+                const targetViewNode = document.getElementById('view-' + viewModuleTargetId);
+                if (targetViewNode) targetViewNode.classList.add('active');
+                
+                clickedNavElement.classList.add('active');
+                
+                const cleanParsedTitleText = clickedNavElement.innerText.replace(/[^\w\sąęółńćźżĄĘÓŁŃĆŹŻ\(\)\-\/\.]/gi, '').trim();
+                const titleDisplayNode = document.getElementById('ui-breadcrumb-title');
+                if (titleDisplayNode) titleDisplayNode.innerText = cleanParsedTitleText;
+            },
+
+            printTerminalLog(messageStringRaw, severityType) {
+                const terminalLogContainer = document.getElementById('terminal-screen-log');
+                if(!terminalLogContainer) return;
+
+                const accurateTimeStamp = new Date().toLocaleTimeString();
+                const typeToCssColor = {
+                    'info': '#38bdf8',
+                    'success': '#34d399',
+                    'error': '#f87171',
+                    'warn': '#fbbf24',
+                    'default': '#f8fafc'
+                };
+                
+                const computedColor = typeToCssColor[severityType] || typeToCssColor['default'];
+                const bgStyle = severityType === 'error' ? 'background-color: rgba(248,113,113,0.15); padding: 4px 10px; border: 2px solid #f87171;' : '';
+                
+                terminalLogContainer.innerHTML += `
+                    <div style="margin-bottom: 8px;">
+                        <span style="color: #64748b; margin-right: 15px;">[${accurateTimeStamp}]</span> 
+                        <span style="color: ${computedColor}; font-weight: ${severityType === 'error' ? 'bold' : 'normal'}; ${bgStyle}">${messageStringRaw}</span>
+                    </div>
+                `;
+                terminalLogContainer.scrollTop = terminalLogContainer.scrollHeight;
+            },
+
+            triggerToast(toastInfoMsgText) {
+                const sysToastNode = document.getElementById('sys-toast-notification');
+                const toastContentNode = document.getElementById('toast-message-content');
+                
+                if (sysToastNode && toastContentNode) {
+                    toastContentNode.innerText = toastInfoMsgText;
+                    sysToastNode.classList.add('show');
+                    
+                    setTimeout(() => {
+                        sysToastNode.classList.remove('show');
+                    }, 4000);
+                }
+            }
+        };
+
+        // ==========================================================================
+        // GŁÓWNY PUNKT WEJŚCIA DLA APLIKACJI
+        // ==========================================================================
+        window.addEventListener('DOMContentLoaded', () => {
+            authSystem.init();
+        });
+
+    </script>
+</body>
+</html>
