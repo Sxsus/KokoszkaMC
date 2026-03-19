@@ -3,66 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KokoszkaMC v5.0 TITAN - Najlepszy panel hostingu Minecraft">
     <title>KokoszkaMC v5.0 TITAN | Ultimate Hosting</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&family=Fira+Code:wght@500;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     
     <style>
         /* ========================================================================================
-           SEKCJA 1: SYSTEM STYLIZACJI NEOBRUTALISM (CZĘŚĆ BAZOWA)
-           Czysta biel, ostre czarne krawędzie, jaskrawy pomarańcz.
+           SEKCJA 1: SYSTEM STYLIZACJI CSS (AESTHETIC NEOBRUTALISM)
+           Czysta biel, ostre czarne ramki, intensywny pomarańcz.
            ======================================================================================== */
 
         :root {
-            /* Paleta Barw Kokoszki */
-            --brand-main: #ff8c00;
-            --brand-hover: #ff9d2e;
-            --brand-light: #fff5e6;
+            /* 1. Barwy Główne - Akcenty Kokoszki */
+            --brand-primary: #ff8c00;            
+            --brand-hover: #ff9d2e;              
+            --brand-dark: #e67e00;               
+            --brand-light: #fff5e6;              
             
-            /* Tła i Powierzchnie - Czysta Biel i Czerń */
-            --bg-body: #ffffff;
-            --bg-surface: #ffffff;
-            --bg-input: #ffffff;
-            --bg-terminal: #000000;
+            /* 2. Tła i Powierzchnie - Czysta Biel i Czerń */
+            --bg-body: #ffffff;                  
+            --bg-surface: #ffffff;               
+            --bg-sidebar: #ffffff;               
+            --bg-input: #ffffff;                 
+            --bg-terminal: #000000;              
             
-            /* Tekst */
-            --text-heading: #000000;
-            --text-main: #000000;
-            --text-muted: #444444;
-            --text-inverse: #ffffff;
+            /* 3. Typografia - Czerń i Szarości */
+            --text-heading: #000000;             
+            --text-main: #000000;                
+            --text-muted: #333333;               
+            --text-dim: #666666;                 
+            --text-inverse: #ffffff;             
             
-            /* Statusy Systemowe */
-            --status-ok: #10b981;
-            --status-err: #ef4444;
-            --status-warn: #f59e0b;
+            /* 4. Kolory Funkcjonalne / Statusy */
+            --status-success: #10b981;
+            --status-danger: #ef4444;
+            --status-warning: #f59e0b;
             --status-info: #3b82f6;
+            --status-shield: #8b5cf6;            
             
-            /* Grubości Obramowań (Znak rozpoznawczy Neobrutalizmu) */
+            /* 5. System Obramowań (Neobrutalizm) */
             --border-sm: 2px solid #000000;
             --border-md: 4px solid #000000;
             --border-lg: 6px solid #000000;
-            --border-orange: 4px solid #ff8c00;
+            --border-color-main: #000000;
             
-            /* Ostre, brutalne cienie (Brak rozmycia!) */
+            /* 6. System Cieniowania (Ostre, pełne cienie) */
             --shadow-btn: 4px 4px 0px 0px #000000;
             --shadow-card: 8px 8px 0px 0px #000000;
             --shadow-hover: 12px 12px 0px 0px #000000;
             --shadow-orange: 6px 6px 0px 0px #ff8c00;
+            --shadow-green: 6px 6px 0px 0px #10b981;
+            --shadow-red: 6px 6px 0px 0px #ef4444;
             
-            /* Zaokrąglenia - Bardzo kanciaste lub delikatne */
+            /* 7. Zaokrąglenia i Geometria */
             --radius-none: 0px;
             --radius-sm: 4px;
             --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 20px;
+            --radius-circle: 50%;
             
-            /* Przejścia */
-            --trans-fast: all 0.15s ease;
-            --trans-bounce: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            /* 8. Fizyka Przejść */
+            --transition-fast: all 0.15s ease-in-out;
+            --transition-base: all 0.25s ease-in-out;
+            --transition-bounce: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            
+            /* 9. Z-Index (Warstwy) */
+            --z-normal: 1;
+            --z-topbar: 100;
+            --z-sidebar: 200;
+            --z-toast: 9999;
+            --z-auth: 99999;
         }
 
-        /* --- RESET GLOBALNY --- */
+        /* --- GLOBALNY RESET --- */
         * {
             margin: 0;
             padding: 0;
@@ -74,46 +88,65 @@
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-body);
-            background-image: radial-gradient(#e2e8f0 2px, transparent 2px);
-            background-size: 30px 30px;
+            background-image: 
+                linear-gradient(#e2e8f0 1px, transparent 1px),
+                linear-gradient(90deg, #e2e8f0 1px, transparent 1px);
+            background-size: 40px 40px;
             color: var(--text-main);
             height: 100vh;
             width: 100vw;
             display: flex;
             overflow: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Ostre, brutalistyczne scrollbary */
-        ::-webkit-scrollbar { width: 14px; height: 14px; }
-        ::-webkit-scrollbar-track { background: var(--bg-body); border-left: var(--border-sm); }
-        ::-webkit-scrollbar-thumb { background: var(--brand-main); border: var(--border-sm); }
-        ::-webkit-scrollbar-thumb:hover { background: var(--text-heading); }
+        /* --- OSTRE SCROLLBARY --- */
+        ::-webkit-scrollbar { width: 16px; height: 16px; }
+        ::-webkit-scrollbar-track { background-color: var(--bg-body); border-left: var(--border-sm); }
+        ::-webkit-scrollbar-thumb { background-color: var(--brand-primary); border: var(--border-sm); border-radius: var(--radius-none); }
+        ::-webkit-scrollbar-thumb:hover { background-color: var(--text-heading); }
 
         /* ========================================================================================
-           MODUŁ: SYSTEM AUTORYZACJI (DOKŁADNE ODWZOROWANIE TWOJEGO RYSUNKU!)
+           MODUŁ: SYSTEM AUTORYZACJI (TWARDA BLOKADA - ZDJĘCIE Z ZAKŁADKAMI)
            ======================================================================================== */
         
         .auth-viewport {
-            position: fixed; inset: 0;
+            position: fixed;
+            inset: 0;
             background-color: var(--bg-body);
-            background-image: linear-gradient(45deg, #f1f5f9 25%, transparent 25%, transparent 75%, #f1f5f9 75%, #f1f5f9), linear-gradient(45deg, #f1f5f9 25%, transparent 25%, transparent 75%, #f1f5f9 75%, #f1f5f9);
+            background-image: 
+                linear-gradient(45deg, #f8fafc 25%, transparent 25%, transparent 75%, #f8fafc 75%, #f8fafc), 
+                linear-gradient(45deg, #f8fafc 25%, transparent 25%, transparent 75%, #f8fafc 75%, #f8fafc);
             background-size: 60px 60px;
             background-position: 0 0, 30px 30px;
-            z-index: 9999999;
-            display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.3s ease;
+            z-index: var(--z-auth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.4s ease;
         }
 
-        .auth-viewport.hidden { opacity: 0; pointer-events: none; }
-        .auth-viewport.booting { transform: translateY(-100%); transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1); }
+        .auth-viewport.hidden {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+        }
 
-        /* Główny kontener logowania */
+        .auth-viewport.booting {
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
         .auth-container {
             width: 100%;
             max-width: 550px;
             display: flex;
             flex-direction: column;
-            animation: authDrop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            gap: 0; /* Formularz łączy się z zakładkami */
+            animation: authDrop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 20px;
         }
 
         @keyframes authDrop {
@@ -121,58 +154,81 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* --- ZAKŁADKI NA GÓRZE (JAK NA RYSUNKU) --- */
+        /* Nagłówek Auth */
+        .auth-header-wrapper {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-header-wrapper h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--text-heading);
+            text-transform: uppercase;
+            text-shadow: 4px 4px 0px var(--brand-primary);
+            letter-spacing: -1px;
+        }
+
+        /* --- ZAKŁADKI NA GÓRZE (ODWZOROWANIE ZDJĘCIA) --- */
         .auth-tabs {
             display: flex;
             width: 100%;
-            /* Dolna krawędź usunięta, by łączyła się z formularzem */
+            height: 70px;
         }
 
         .auth-tab-btn {
             flex: 1;
-            padding: 25px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background-color: var(--bg-surface);
             border: var(--border-md);
             border-bottom: none; /* Łączy się z głównym boxem */
             font-family: 'Poppins', sans-serif;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
             color: var(--text-heading);
             cursor: pointer;
-            text-align: center;
             transition: var(--trans-fast);
+            position: relative;
         }
 
-        /* Lewa zakładka (Tworzenie konta) ma prawą ramkę usuniętą, by się nie dublowały */
-        #tab-register {
-            border-right: none;
-        }
+        #tab-register { border-right: none; border-top-left-radius: var(--radius-md); }
+        #tab-login { border-top-right-radius: var(--radius-md); }
 
-        /* AKTYWNA ZAKŁADKA - Podświetla się na pomarańczowo wg instrukcji */
+        /* Aktywna zakładka ma białe tło i pomarańczowy pasek na górze */
         .auth-tab-btn.active {
-            border-color: var(--brand-main);
-            color: var(--text-heading);
-            background-color: var(--brand-light);
-            z-index: 2; /* Wynosi ramkę nad inne elementy */
-            box-shadow: inset 0px 6px 0px 0px var(--brand-main);
+            background-color: var(--bg-surface);
+            box-shadow: inset 0px 6px 0px 0px var(--brand-primary);
+            z-index: 2;
+        }
+
+        .auth-tab-btn:not(.active) {
+            background-color: #e2e8f0;
+            color: var(--text-dim);
+            border-bottom: var(--border-md); /* Nieaktywna jest odcięta od formularza */
         }
 
         .auth-tab-btn:not(.active):hover {
-            background-color: #f8fafc;
+            background-color: #cbd5e1;
+            color: var(--text-heading);
         }
 
-        /* --- GŁÓWNY BOX FORMULARZA (JAK NA RYSUNKU) --- */
+        /* --- GŁÓWNY BOX FORMULARZA --- */
         .auth-form-body {
             background-color: var(--bg-surface);
             border: var(--border-md);
             padding: 40px;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 25px;
             box-shadow: var(--shadow-card);
+            border-bottom-left-radius: var(--radius-md);
+            border-bottom-right-radius: var(--radius-md);
+            z-index: 1;
         }
 
-        /* Inputy (Nazwa konta, Hasło) z grubymi ramkami */
         .auth-input-group {
             display: flex;
             flex-direction: column;
@@ -181,28 +237,32 @@
         }
 
         .auth-input-label {
-            font-size: 16px;
-            font-weight: 800;
+            font-size: 14px;
+            font-weight: 900;
             color: var(--text-heading);
+            text-transform: uppercase;
         }
 
         .auth-input {
             width: 100%;
             padding: 20px;
-            font-family: 'Fira Code', monospace;
+            font-family: 'Poppins', sans-serif;
             font-size: 18px;
             font-weight: 600;
             color: var(--text-heading);
             background-color: var(--bg-surface);
             border: var(--border-md);
             transition: var(--trans-fast);
+            border-radius: var(--radius-sm);
         }
 
         .auth-input:focus {
             transform: translate(-4px, -4px);
             box-shadow: var(--shadow-btn);
-            border-color: var(--brand-main);
+            border-color: var(--brand-primary);
         }
+
+        .auth-input::placeholder { color: var(--text-dim); font-weight: 500; }
 
         /* Oczko do hasła */
         .eye-toggle {
@@ -215,39 +275,40 @@
             transition: var(--trans-fast);
         }
 
-        .eye-toggle:hover {
-            transform: scale(1.2);
-        }
+        .eye-toggle:hover { transform: scale(1.2); }
 
-        /* PRZYCISK GŁÓWNY NA DOLE (Stwórz konto / Zaloguj się) */
+        /* Przycisk Głównego Akcji na Dole */
         .auth-submit-btn {
             width: 100%;
-            padding: 25px;
-            margin-top: 10px;
+            padding: 22px;
+            margin-top: 15px;
             background-color: var(--bg-surface);
             color: var(--text-heading);
-            border: var(--border-orange);
+            border: var(--border-md);
+            border-radius: var(--radius-sm);
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
             cursor: pointer;
             transition: var(--trans-bounce);
+            text-transform: uppercase;
         }
 
         .auth-submit-btn:hover {
             background-color: var(--brand-light);
             transform: translate(-6px, -6px);
             box-shadow: var(--shadow-orange);
+            border-color: var(--brand-primary);
         }
 
         .auth-submit-btn:active {
             transform: translate(0, 0);
-            box-shadow: 0px 0px 0px 0px var(--brand-main);
+            box-shadow: 0px 0px 0px 0px var(--brand-primary);
         }
 
         .auth-error-log {
-            color: var(--status-err);
-            font-size: 15px;
+            color: var(--status-danger);
+            font-size: 14px;
             font-weight: 800;
             text-align: center;
             min-height: 22px;
@@ -255,16 +316,16 @@
         }
 
         /* ========================================================================================
-           MODUŁ: SIDEBAR I TOPBAR (GŁÓWNA APLIKACJA)
+           MODUŁ: SIDEBAR (PASEK BOCZNY)
            ======================================================================================== */
         
         .app-sidebar {
-            width: 340px;
+            width: 350px;
             background-color: var(--bg-sidebar);
             border-right: var(--border-md);
             display: flex;
             flex-direction: column;
-            z-index: 100;
+            z-index: var(--z-sidebar);
             flex-shrink: 0;
             box-shadow: var(--shadow-card);
         }
@@ -272,12 +333,12 @@
         .sidebar-brand {
             padding: 40px 30px;
             border-bottom: var(--border-md);
-            background-color: var(--brand-main);
+            background-color: var(--brand-primary);
         }
 
         .sidebar-brand h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 34px;
+            font-size: 32px;
             font-weight: 900;
             color: var(--text-heading);
             line-height: 1;
@@ -289,12 +350,12 @@
             color: var(--text-heading);
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-top: 5px;
+            margin-top: 8px;
         }
 
         .sidebar-nav {
             flex-grow: 1;
-            padding: 20px;
+            padding: 25px 20px;
             overflow-y: auto;
         }
 
@@ -303,17 +364,14 @@
             font-weight: 900;
             color: var(--text-muted);
             text-transform: uppercase;
-            margin: 30px 0 15px 10px;
-            border-bottom: var(--border-sm);
-            display: inline-block;
-            padding-bottom: 2px;
+            margin: 30px 0 15px 15px;
         }
 
         .nav-item {
             display: flex;
             align-items: center;
             padding: 16px 20px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             border: var(--border-sm);
             border-color: transparent;
             cursor: pointer;
@@ -321,6 +379,7 @@
             font-size: 15px;
             color: var(--text-main);
             transition: var(--trans-fast);
+            border-radius: var(--radius-sm);
         }
 
         .nav-item i {
@@ -335,6 +394,7 @@
             border-color: var(--border-color-main);
             transform: translate(-4px, -4px);
             box-shadow: var(--shadow-btn);
+            background-color: var(--bg-surface);
         }
 
         .nav-item.active {
@@ -345,7 +405,7 @@
             box-shadow: var(--shadow-btn);
         }
 
-        .nav-item.active i { color: var(--brand-main); }
+        .nav-item.active i { color: var(--brand-primary); }
 
         .sidebar-footer {
             padding: 30px;
@@ -354,8 +414,8 @@
 
         .btn-brutalist-logout {
             width: 100%;
-            padding: 18px;
-            background-color: var(--status-err);
+            padding: 20px;
+            background-color: var(--status-danger);
             color: var(--text-inverse);
             border: var(--border-md);
             font-family: 'Poppins', sans-serif;
@@ -364,429 +424,20 @@
             cursor: pointer;
             transition: var(--trans-bounce);
             text-transform: uppercase;
+            border-radius: var(--radius-sm);
         }
 
         .btn-brutalist-logout:hover {
-            transform: translate(-6px, -6px);
-            box-shadow: var(--shadow-btn);
-        }
-  /* ------------------------------------------------------------------------------------------------
-           MODUŁ: GŁÓWNY OBSZAR ROBOCZY I TOPBAR
-           ------------------------------------------------------------------------------------------------ */
-        
-        .app-main-workspace {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .app-topbar {
-            height: 110px;
-            background-color: var(--bg-surface);
-            border-bottom: var(--border-md);
-            padding: 0 50px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-shrink: 0;
-            z-index: 100;
-        }
-
-        .topbar-breadcrumbs {
-            font-size: 26px;
-            font-weight: 900;
-            color: var(--text-heading);
-            text-transform: uppercase;
-        }
-
-        .topbar-breadcrumbs span {
-            color: var(--brand-main);
-            text-shadow: 2px 2px 0px #000000;
-        }
-
-        .topbar-user-area {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .plan-badge {
-            background-color: var(--brand-main);
-            color: var(--text-heading);
-            padding: 12px 24px;
-            border: var(--border-md);
-            font-size: 14px;
-            font-weight: 900;
-            text-transform: uppercase;
-            box-shadow: 4px 4px 0px 0px #000000;
-        }
-
-        .user-profile-widget {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background-color: var(--bg-surface);
-            padding: 10px 30px 10px 20px;
-            border: var(--border-md);
-            box-shadow: var(--shadow-btn);
-            cursor: pointer;
-            transition: var(--trans-bounce);
-        }
-
-        .user-profile-widget:hover {
             transform: translate(-4px, -4px);
-            box-shadow: var(--shadow-card);
+            box-shadow: var(--shadow-btn);
         }
 
-        .user-name-wrapper {
-            text-align: right;
-        }
-
-        .user-name-wrapper b {
-            display: block;
-            font-size: 18px;
-            font-weight: 900;
-            color: var(--text-heading);
-            line-height: 1.1;
-        }
-
-        .user-name-wrapper small {
-            color: var(--status-ok);
-            font-weight: 900;
-            font-size: 12px;
-            text-transform: uppercase;
-        }
-
-        .user-avatar-icon {
-            width: 48px;
-            height: 48px;
-            background-color: var(--text-heading);
-            color: var(--text-inverse);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 24px;
-            border: var(--border-sm);
-        }
-
-        /* ------------------------------------------------------------------------------------------------
-           MODUŁ: SYSTEM WIDOKÓW (ROUTING CANVAS)
-           ------------------------------------------------------------------------------------------------ */
-        
-        .app-view-canvas {
-            padding: 50px 60px;
-            overflow-y: auto;
-            flex-grow: 1;
-            scroll-behavior: smooth;
-        }
-
-        .view-module {
-            display: none;
-        }
-
-        .view-module.active {
-            display: block;
-            animation: viewFadeIn 0.4s ease-out;
-        }
-
-        @keyframes viewFadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ------------------------------------------------------------------------------------------------
-           KOMPONENTY: KARTY, SIATKI I PRZYCISKI NEOBRUTALIZM
-           ------------------------------------------------------------------------------------------------ */
-        
-        .grid-col-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .b-card {
-            background-color: var(--bg-surface);
-            padding: 45px;
-            border: var(--border-md);
-            box-shadow: var(--shadow-card);
-            transition: var(--trans-bounce);
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .b-card:hover {
-            transform: translate(-6px, -6px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .b-card-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 28px;
-            color: var(--text-heading);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-transform: uppercase;
-        }
-
-        .b-card-title i {
-            color: var(--brand-main);
-            font-style: normal;
-            font-size: 36px;
-        }
-
-        .btn-action {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            padding: 24px 40px;
-            border: var(--border-md);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 900;
-            font-size: 18px;
-            cursor: pointer;
-            transition: var(--trans-bounce);
-            text-transform: uppercase;
-            background-color: var(--bg-surface);
-            color: var(--text-heading);
-        }
-
-        .btn-action:hover {
-            transform: translate(-6px, -6px);
-            box-shadow: var(--shadow-card);
-        }
-        
-        .btn-action:active {
-            transform: translate(0px, 0px);
+        .btn-brutalist-logout:active {
+            transform: translate(0, 0);
             box-shadow: none;
         }
-
-        .btn-primary-action { background-color: var(--brand-main); }
-        .btn-success-action { background-color: var(--status-ok); color: white; }
-        .btn-danger-action { background-color: var(--status-err); color: white; }
-
-        /* --- DASHBOARD WIDGETS --- */
-        .status-orb-container {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: var(--border-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 55px;
-            background-color: var(--bg-surface);
-            transition: var(--trans-fast);
-        }
-
-        .status-orb-container.state-online {
-            background-color: var(--status-ok);
-            animation: pulseOnline 2s infinite;
-        }
-        @keyframes pulseOnline {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8); }
-            70% { box-shadow: 0 0 0 25px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-
-        .status-orb-container.state-booting {
-            background-color: var(--status-warn);
-            animation: spinBoot 2s linear infinite;
-        }
-        @keyframes spinBoot {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .metric-bar-bg {
-            height: 30px;
-            border: var(--border-md);
-            background-color: var(--bg-surface);
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        .metric-bar-fill {
-            height: 100%;
-            border-right: var(--border-md);
-            transition: width 0.5s ease-out;
-        }
-
-        /* --- GIGANTYCZNE SUWAKI (ZASOBY) --- */
-        .custom-range {
-            width: 100%; height: 16px; background-color: var(--text-heading);
-            border: var(--border-sm); appearance: none; outline: none; margin: 30px 0;
-        }
-
-        .custom-range::-webkit-slider-thumb {
-            appearance: none; width: 45px; height: 45px; background-color: var(--brand-main);
-            border: var(--border-md); cursor: pointer; transition: var(--trans-bounce);
-        }
-
-        .custom-range::-webkit-slider-thumb:hover {
-            transform: scale(1.2); box-shadow: var(--shadow-btn);
-        }
-
-        /* --- FTP MENEDŻER PLIKÓW (Z PRZYCISKIEM DODAWANIA) --- */
-        .ftp-workspace {
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 40px;
-            height: 700px;
-        }
-
-        .ftp-tree-view {
-            background-color: var(--bg-surface);
-            padding: 25px;
-            border: var(--border-md);
-            box-shadow: var(--shadow-card);
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .ftp-node {
-            padding: 18px 20px;
-            border: var(--border-sm);
-            border-color: transparent;
-            cursor: pointer;
-            margin-bottom: 10px;
-            font-weight: 800;
-            font-size: 16px;
-            color: var(--text-heading);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: var(--trans-bounce);
-        }
-
-        .ftp-node:hover {
-            border-color: var(--border-color-main);
-            transform: translate(-4px, -4px);
-            box-shadow: var(--shadow-btn);
-        }
-
-        .ftp-node.active-node {
-            background-color: var(--text-heading);
-            color: var(--text-inverse);
-            border-color: var(--border-color-main);
-            transform: translate(-4px, -4px);
-            box-shadow: var(--shadow-btn);
-        }
-
-        .btn-add-file {
-            margin-top: auto;
-            padding: 20px;
-            background-color: var(--status-ok);
-            color: var(--text-inverse);
-            border: var(--border-md);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 900;
-            font-size: 16px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: var(--trans-bounce);
-        }
-
-        .btn-add-file:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: var(--shadow-btn);
-        }
-
-        .ftp-editor-wrapper {
-            position: relative;
-            height: 100%;
-            border: var(--border-lg);
-            background-color: var(--bg-terminal);
-            box-shadow: var(--shadow-card);
-        }
-
-        .ftp-textarea {
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-terminal);
-            color: #ffffff;
-            padding: 40px;
-            border: none;
-            resize: none;
-            font-family: 'Fira Code', monospace;
-            font-size: 18px;
-            line-height: 1.8;
-        }
-
-        /* --- TERMINAL --- */
-        .terminal-layout {
-            background-color: var(--bg-terminal);
-            padding: 40px;
-            border: var(--border-lg);
-            box-shadow: var(--shadow-card);
-        }
-
-        .terminal-output {
-            height: 500px;
-            overflow-y: auto;
-            font-family: 'Fira Code', monospace;
-            color: #ffffff;
-            font-size: 16px;
-            line-height: 1.8;
-            padding-right: 20px;
-        }
-
-        .terminal-input-area {
-            display: flex;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .cmd-input {
-            flex-grow: 1;
-            padding: 25px 30px;
-            background-color: #1e293b;
-            border: var(--border-md) solid #334155;
-            color: #ffffff;
-            font-family: 'Fira Code', monospace;
-            font-size: 18px;
-            transition: var(--trans-fast);
-        }
-
-        .cmd-input:focus { border-color: var(--brand-main); }
-
-        /* --- TOAST SYSTEM --- */
-        .toast-notification {
-            position: fixed;
-            bottom: 50px;
-            right: 50px;
-            background-color: var(--text-heading);
-            color: var(--text-inverse);
-            padding: 25px 40px;
-            border: var(--border-md);
-            font-weight: 800;
-            font-size: 18px;
-            transform: translateY(200%);
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 99999999;
-            box-shadow: var(--shadow-card);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .toast-notification.show { transform: translateY(0); }
-
-        /* Switch toggle brutalistyczny */
-        .switch-container { position: relative; width: 70px; height: 40px; flex-shrink: 0; }
-        .switch-container input { opacity: 0; width: 0; height: 0; }
-        .switch-track { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--bg-surface); border: var(--border-md); transition: .3s; }
-        .switch-track:before { position: absolute; content: ""; height: 24px; width: 24px; left: 4px; bottom: 4px; background-color: var(--text-heading); transition: .3s; }
-        input:checked + .switch-track { background-color: var(--status-ok); }
-        input:checked + .switch-track:before { transform: translateX(30px); background-color: var(--bg-surface); border: var(--border-sm); }
+        
+        /* Dalsza część CSS w Części 2... */
     </style>
 </head>
 <body>
@@ -799,21 +450,23 @@
             </div>
 
             <div class="auth-tabs">
-                <div id="tab-register" class="auth-tab-btn" onclick="authSystem.switchTab('register')">
+                <button id="tab-register" class="auth-tab-btn" onclick="authSystem.switchTab('register')">
                     Tworzenie konta
-                </div>
-                <div id="tab-login" class="auth-tab-btn active" onclick="authSystem.switchTab('login')">
+                </button>
+                <button id="tab-login" class="auth-tab-btn active" onclick="authSystem.switchTab('login')">
                     Logowanie
-                </div>
+                </button>
             </div>
 
             <div class="auth-form-body">
                 <div class="auth-input-group">
-                    <input type="text" id="auth-input-username" class="auth-input" placeholder="Nazwa konta">
+                    <label class="auth-input-label" id="auth-label-user">Nazwa konta</label>
+                    <input type="text" id="auth-input-username" class="auth-input" placeholder="Wpisz nazwę">
                 </div>
 
                 <div class="auth-input-group">
-                    <input type="password" id="auth-input-password" class="auth-input" placeholder="hasło">
+                    <label class="auth-input-label" id="auth-label-pass">Hasło</label>
+                    <input type="password" id="auth-input-password" class="auth-input" placeholder="Wpisz hasło">
                     <div class="eye-toggle" onclick="authSystem.togglePasswordVisibility('auth-input-password')">👁️</div>
                 </div>
                 
@@ -836,7 +489,7 @@
             </div>
 
             <div class="sidebar-nav">
-                <div class="nav-category">Zarządzanie Węzłem</div>
+                <div class="nav-category">Zarządzanie Maszyną</div>
                 <div class="nav-item active" onclick="uiEngine.routeTo('dashboard', this)"><i>📊</i> Pulpit Sterowania</div>
                 <div class="nav-item" onclick="uiEngine.routeTo('resources', this)"><i>⚡</i> Zasoby Sprzętowe</div>
                 <div class="nav-item" onclick="uiEngine.routeTo('software', this)"><i>⚙️</i> Silniki i Wersje</div>
@@ -846,6 +499,7 @@
                 <div class="nav-item" onclick="uiEngine.routeTo('terminal', this)"><i>💻</i> Konsola Systemowa</div>
                 <div class="nav-item" onclick="uiEngine.routeTo('filemanager', this)"><i>📂</i> Eksplorator Plików</div>
                 <div class="nav-item" onclick="uiEngine.routeTo('database', this)"><i>🗄️</i> Bazy MySQL</div>
+                <div class="nav-item" onclick="uiEngine.routeTo('cronjobs', this)"><i>⏱️</i> Harmonogramy Cron</div>
 
                 <div class="nav-category">Dodatki i Ochrona</div>
                 <div class="nav-item" onclick="uiEngine.routeTo('marketplace', this)"><i>🔌</i> Rynek Pluginów</div>
@@ -857,6 +511,259 @@
                 <button class="btn-brutalist-logout" onclick="location.reload()">WYLOGUJ SESJĘ</button>
             </div>
         </div>
+        <style>
+            /* ------------------------------------------------------------------------------------------------
+               MODUŁ: GŁÓWNA RAMA APLIKACJI I TOPBAR
+               ------------------------------------------------------------------------------------------------ */
+            .app-main-workspace {
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .app-topbar {
+                height: 110px;
+                background-color: var(--bg-surface);
+                border-bottom: var(--border-md);
+                padding: 0 50px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-shrink: 0;
+                z-index: var(--z-topbar);
+                box-shadow: 0px 4px 0px 0px rgba(0,0,0,0.05);
+            }
+
+            .topbar-breadcrumbs {
+                font-family: 'Montserrat', sans-serif;
+                font-size: 26px;
+                font-weight: 900;
+                color: var(--text-heading);
+                text-transform: uppercase;
+                letter-spacing: -1px;
+            }
+
+            .topbar-breadcrumbs span {
+                color: var(--brand-main);
+                text-shadow: 2px 2px 0px #000000;
+            }
+
+            .topbar-user-area {
+                display: flex;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .plan-badge {
+                background-color: var(--brand-main);
+                color: var(--text-heading);
+                padding: 12px 24px;
+                border: var(--border-sm);
+                font-size: 14px;
+                font-weight: 900;
+                text-transform: uppercase;
+                box-shadow: var(--shadow-btn);
+            }
+
+            .user-profile-widget {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                background-color: var(--bg-surface);
+                padding: 10px 30px 10px 20px;
+                border: var(--border-sm);
+                box-shadow: var(--shadow-btn);
+                cursor: pointer;
+                transition: var(--trans-fast);
+            }
+
+            .user-profile-widget:hover {
+                transform: translate(-4px, -4px);
+                box-shadow: var(--shadow-card);
+                background-color: var(--brand-light);
+            }
+
+            .user-name-wrapper { text-align: right; }
+            .user-name-wrapper b { display: block; font-size: 18px; font-weight: 900; color: var(--text-heading); line-height: 1.1; }
+            .user-name-wrapper small { color: var(--status-ok); font-weight: 900; font-size: 12px; text-transform: uppercase; }
+
+            .user-avatar-icon {
+                width: 48px;
+                height: 48px;
+                background-color: var(--text-heading);
+                color: var(--text-inverse);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 900;
+                font-size: 24px;
+                border: var(--border-sm);
+            }
+
+            /* ------------------------------------------------------------------------------------------------
+               MODUŁ: SYSTEM WIDOKÓW (ROUTING CANVAS)
+               ------------------------------------------------------------------------------------------------ */
+            .app-view-canvas {
+                padding: 50px 60px;
+                overflow-y: auto;
+                flex-grow: 1;
+                scroll-behavior: smooth;
+            }
+
+            .view-module { display: none; }
+            .view-module.active { display: block; animation: viewFadeIn 0.4s ease-out; }
+
+            @keyframes viewFadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            /* ------------------------------------------------------------------------------------------------
+               KOMPONENTY: KARTY, SIATKI I PRZYCISKI NEOBRUTALIZM
+               ------------------------------------------------------------------------------------------------ */
+            .grid-col-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap: 40px; margin-bottom: 40px; }
+            
+            .b-card {
+                background-color: var(--bg-surface);
+                padding: 45px;
+                border: var(--border-md);
+                box-shadow: var(--shadow-card);
+                transition: var(--trans-fast);
+                margin-bottom: 40px;
+                position: relative;
+            }
+
+            .b-card:hover {
+                transform: translate(-4px, -4px);
+                box-shadow: var(--shadow-hover);
+            }
+
+            .b-card-title {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 900;
+                font-size: 28px;
+                color: var(--text-heading);
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                text-transform: uppercase;
+            }
+
+            .b-card-title i { color: var(--brand-main); font-style: normal; font-size: 36px; }
+            .b-card-desc { color: var(--text-muted); font-size: 15px; font-weight: 600; margin-bottom: 35px; line-height: 1.6; }
+
+            .btn-action {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+                padding: 24px 40px;
+                border: var(--border-md);
+                font-family: 'Poppins', sans-serif;
+                font-weight: 900;
+                font-size: 18px;
+                cursor: pointer;
+                transition: var(--trans-fast);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                background-color: var(--bg-surface);
+                color: var(--text-heading);
+            }
+
+            .btn-action:hover { transform: translate(-6px, -6px); box-shadow: var(--shadow-card); }
+            .btn-action:active { transform: translate(0px, 0px); box-shadow: none; }
+
+            .btn-primary-action { background-color: var(--brand-main); }
+            .btn-success-action { background-color: var(--status-ok); color: white; }
+            .btn-danger-action { background-color: var(--status-err); color: white; }
+
+            /* --- WIDGETY STATUSU (ORB, PASKI ZASOBÓW) --- */
+            .status-orb-container {
+                width: 140px;
+                height: 140px;
+                border-radius: var(--radius-circle);
+                border: var(--border-lg);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 55px;
+                background-color: var(--bg-surface);
+                transition: var(--trans-fast);
+            }
+
+            .status-orb-container.state-online { background-color: var(--status-ok); animation: pulseOnline 2s infinite; }
+            @keyframes pulseOnline {
+                0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8); }
+                70% { box-shadow: 0 0 0 25px rgba(16, 185, 129, 0); }
+                100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+            }
+
+            .status-orb-container.state-booting { background-color: var(--status-warn); animation: spinBoot 2s linear infinite; }
+            @keyframes spinBoot { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+            .metric-bar-bg {
+                height: 30px;
+                border: var(--border-md);
+                background-color: var(--bg-surface);
+                margin-bottom: 25px;
+                position: relative;
+            }
+
+            .metric-bar-fill { height: 100%; border-right: var(--border-md); transition: width 0.5s ease-out; }
+
+            /* --- GIGANTYCZNE SUWAKI (ZASOBY) --- */
+            .custom-range {
+                width: 100%; height: 16px; background-color: var(--text-heading);
+                border: var(--border-sm); appearance: none; outline: none; margin: 30px 0;
+            }
+
+            .custom-range::-webkit-slider-thumb {
+                appearance: none; width: 45px; height: 45px; background-color: var(--brand-main);
+                border: var(--border-md); cursor: pointer; transition: var(--trans-fast);
+            }
+
+            .custom-range::-webkit-slider-thumb:hover { transform: scale(1.2); box-shadow: var(--shadow-btn); }
+
+            /* --- FTP MENEDŻER PLIKÓW --- */
+            .ftp-workspace { display: grid; grid-template-columns: 320px 1fr; gap: 40px; height: 700px; }
+            .ftp-tree-view { background-color: var(--bg-surface); padding: 25px; border: var(--border-md); box-shadow: var(--shadow-card); overflow-y: auto; display: flex; flex-direction: column; }
+            .ftp-node { padding: 18px 20px; border: var(--border-sm); border-color: transparent; cursor: pointer; margin-bottom: 10px; font-weight: 800; font-size: 16px; color: var(--text-heading); display: flex; align-items: center; gap: 15px; transition: var(--trans-fast); }
+            .ftp-node:hover { border-color: var(--border-color-main); transform: translate(-4px, -4px); box-shadow: var(--shadow-btn); }
+            .ftp-node.active-node { background-color: var(--text-heading); color: var(--text-inverse); border-color: var(--border-color-main); transform: translate(-4px, -4px); box-shadow: var(--shadow-btn); }
+            
+            .btn-add-file { margin-top: auto; padding: 20px; background-color: var(--status-ok); color: var(--text-inverse); border: var(--border-md); font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 16px; cursor: pointer; text-transform: uppercase; transition: var(--trans-fast); }
+            .btn-add-file:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow-btn); }
+
+            .ftp-editor-wrapper { position: relative; height: 100%; border: var(--border-lg); background-color: var(--bg-terminal); box-shadow: var(--shadow-card); }
+            .ftp-textarea { width: 100%; height: 100%; background-color: var(--bg-terminal); color: #ffffff; padding: 40px; border: none; resize: none; font-family: 'Fira Code', monospace; font-size: 18px; line-height: 1.8; }
+
+            /* --- TERMINAL --- */
+            .terminal-layout { background-color: var(--bg-terminal); padding: 40px; border: var(--border-lg); box-shadow: var(--shadow-card); }
+            .terminal-output { height: 500px; overflow-y: auto; font-family: 'Fira Code', monospace; color: #ffffff; font-size: 16px; line-height: 1.8; padding-right: 20px; }
+            .terminal-input-area { display: flex; gap: 20px; margin-top: 30px; }
+            .cmd-input { flex-grow: 1; padding: 25px 30px; background-color: #1e293b; border: var(--border-md) solid #334155; color: #ffffff; font-family: 'Fira Code', monospace; font-size: 18px; transition: var(--trans-fast); }
+            .cmd-input:focus { border-color: var(--brand-main); }
+
+            /* --- TOAST SYSTEM --- */
+            .toast-notification {
+                position: fixed; bottom: 50px; right: 50px; background-color: var(--text-heading); color: var(--text-inverse);
+                padding: 25px 40px; border: var(--border-md); font-weight: 800; font-size: 18px;
+                transform: translateY(200%); transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                z-index: 99999999; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 20px;
+            }
+            .toast-notification.show { transform: translateY(0); }
+
+            /* Switch toggle brutalistyczny */
+            .switch-container { position: relative; width: 70px; height: 40px; flex-shrink: 0; }
+            .switch-container input { opacity: 0; width: 0; height: 0; }
+            .switch-track { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--bg-surface); border: var(--border-md); transition: .3s; }
+            .switch-track:before { position: absolute; content: ""; height: 24px; width: 24px; left: 4px; bottom: 4px; background-color: var(--text-heading); transition: .3s; }
+            input:checked + .switch-track { background-color: var(--status-ok); }
+            input:checked + .switch-track:before { transform: translateX(30px); background-color: var(--bg-surface); border: var(--border-sm); }
+        </style>
 
         <div class="app-main-workspace">
             
@@ -868,7 +775,7 @@
                     <div class="user-profile-widget">
                         <div class="user-name-wrapper">
                             <b id="ui-topbar-user">Gość</b>
-                            <small>Aktywny</small>
+                            <small>Aktywna Sesja</small>
                         </div>
                         <div class="user-avatar-icon" id="ui-topbar-avatar">?</div>
                     </div>
@@ -880,52 +787,80 @@
                 <div id="view-dashboard" class="view-module active">
                     
                     <div id="layout-spawner" style="display: none;">
-                        <div class="b-card" style="text-align: center; padding: 100px 50px; max-width: 900px; margin: 0 auto;">
-                            <div style="font-size: 100px; margin-bottom: 20px;">🥚</div>
-                            <h1 style="font-family: 'Montserrat', sans-serif; font-size: 48px; font-weight: 900; text-transform: uppercase;">Zainicjuj Serwer</h1>
+                        <div class="b-card" style="text-align: center; padding: 80px 40px; max-width: 800px; margin: 0 auto;">
+                            <div style="font-size: 80px; margin-bottom: 20px; line-height: 1;">🥚</div>
+                            <h1 style="font-family: 'Montserrat', sans-serif; font-size: 38px; font-weight: 900; margin-bottom: 15px; text-transform: uppercase;">Zainicjuj Węzeł Systemowy</h1>
+                            <p style="color: var(--text-muted); font-size: 15px; font-weight: 600; margin-bottom: 40px;">Podaj unikalną nazwę serwera. System automatycznie wygeneruje i podepnie subdomenę IPv4 dla Twoich graczy.</p>
                             
-                            <input type="text" id="in-create-name" style="width: 100%; height: 100px; font-size: 40px; font-weight: 900; border: none; border-bottom: var(--border-lg); background: transparent; text-align: center; margin: 40px 0; font-family: 'Montserrat', sans-serif;" placeholder="np. survival-kokoszka">
+                            <input type="text" id="in-create-name" style="width: 100%; height: 90px; background-color: var(--bg-surface); border: var(--border-md); padding: 0 25px; font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 600; text-align: center; margin-bottom: 30px; transition: var(--trans-fast);" placeholder="np. survival-kokoszka">
                             
-                            <p style="font-weight: 900; font-size: 32px; margin-bottom: 50px;">IP: <span id="out-create-ip" style="color: var(--brand-main);">...kokoszka.me</span></p>
+                            <div style="background-color: var(--bg-input); border: var(--border-sm); padding: 20px; margin-bottom: 40px; box-shadow: 4px 4px 0px 0px #000000;">
+                                <span style="font-weight: 900; font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;">Wygenerowany Adres IP:</span><br>
+                                <span id="out-create-ip" style="font-family: 'Fira Code', monospace; font-size: 26px; font-weight: 800; color: var(--brand-main); display: block; margin-top: 5px;">...kokoszka.me</span>
+                            </div>
                             
-                            <button class="btn-action btn-primary-action" style="width: 100%; font-size: 24px; padding: 30px;" onclick="kernel.deployNewServer()">STWÓRZ MASZYNĘ ZA DARMO</button>
+                            <button class="btn-action btn-primary-action" style="width: 100%; font-size: 20px; padding: 25px;" onclick="kernel.deployNewServer()">STWÓRZ SERWER ZA DARMO</button>
                         </div>
                     </div>
 
                     <div id="layout-manage" style="display: none;">
                         <div class="grid-col-2">
+                            
                             <div class="b-card">
-                                <div style="display: flex; align-items: center; gap: 40px; margin-bottom: 40px;">
+                                <div style="display: flex; align-items: center; gap: 35px; margin-bottom: 35px;">
                                     <div id="ui-status-orb" class="status-orb-container">🔴</div>
                                     <div>
-                                        <h2 id="ui-status-text" style="font-size: 45px; font-weight: 900;">OFFLINE</h2>
-                                        <div id="ui-status-ip" style="background: var(--bg-input); padding: 10px 20px; border: var(--border-md); font-weight: 800; font-size: 18px;">---</div>
+                                        <h2 id="ui-status-text" style="font-family: 'Montserrat', sans-serif; font-size: 38px; font-weight: 900; line-height: 1; margin-bottom: 10px;">OFFLINE</h2>
+                                        <div id="ui-status-ip" style="display: inline-block; background-color: var(--bg-input); padding: 8px 16px; border: var(--border-sm); font-family: 'Fira Code', monospace; font-size: 14px; font-weight: 700;">---</div>
                                     </div>
                                 </div>
-                                <div style="margin-bottom: 40px; font-weight: 800; font-size: 18px;">Czas pracy: <b id="ui-uptime-clock" style="font-family: 'Fira Code', monospace; color: var(--brand-main);">00:00:00</b></div>
-                                <div style="display: flex; gap: 20px;">
-                                    <button id="ui-btn-power" class="btn-action btn-success-action" style="flex: 2;" onclick="kernel.togglePowerState()">START</button>
+                                
+                                <div style="background-color: var(--bg-input); padding: 18px 25px; border: var(--border-sm); display: inline-flex; align-items: center; gap: 15px; font-weight: 800; font-size: 14px; margin-bottom: 35px;">
+                                    <span>Aktywny czas pracy węzła:</span> <b id="ui-uptime-clock" style="font-family: 'Fira Code', monospace; font-size: 18px; color: var(--brand-main);">00:00:00</b>
+                                </div>
+                                
+                                <div style="display: flex; gap: 15px;">
+                                    <button id="ui-btn-power" class="btn-action btn-success-action" style="flex: 2;" onclick="kernel.togglePowerState()">URUCHOM SERWER</button>
                                     <button class="btn-action btn-danger-action" style="flex: 1;" onclick="kernel.triggerEmergencyKill()">KILL</button>
                                 </div>
                             </div>
 
                             <div class="b-card">
                                 <h3 class="b-card-title"><i>⚡</i> Obciążenie Systemu</h3>
+                                <p class="b-card-desc" style="margin-bottom: 20px;">Odczyty z warstwy hypervisora (Czas Rzeczywisty).</p>
                                 
-                                <div style="display: flex; justify-content: space-between; font-weight: 900; margin-bottom: 10px; margin-top: 30px; font-size: 18px;"><span>RAM</span><span id="ui-live-ram-text">0 / 4096 MB</span></div>
-                                <div class="metric-bar-bg"><div id="ui-live-ram-bar" class="metric-bar-fill" style="background: var(--brand-main);"></div></div>
+                                <div style="margin-bottom: 25px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--text-muted);">Pamięć Operacyjna (RAM)</span>
+                                        <span class="metric-value" id="ui-live-ram-text" style="font-family: 'Fira Code', monospace; font-size: 15px; font-weight: 700;">0 / 4096 MB</span>
+                                    </div>
+                                    <div class="metric-bar-bg">
+                                        <div id="ui-live-ram-bar" class="metric-bar-fill fill-ram" style="background-color: var(--brand-main);"></div>
+                                    </div>
+                                </div>
                                 
-                                <div style="display: flex; justify-content: space-between; font-weight: 900; margin-top: 40px; margin-bottom: 10px; font-size: 18px;"><span>CPU</span><span id="ui-live-cpu-text">0%</span></div>
-                                <div class="metric-bar-bg"><div id="ui-live-cpu-bar" class="metric-bar-fill" style="background: var(--text-heading);"></div></div>
+                                <div style="margin-bottom: 25px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
+                                        <span style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--text-muted);">Użycie Procesora (CPU)</span>
+                                        <span class="metric-value" id="ui-live-cpu-text" style="font-family: 'Fira Code', monospace; font-size: 15px; font-weight: 700;">0%</span>
+                                    </div>
+                                    <div class="metric-bar-bg">
+                                        <div id="ui-live-cpu-bar" class="metric-bar-fill fill-cpu" style="background-color: var(--text-heading);"></div>
+                                    </div>
+                                </div>
+
+                                <div style="text-align: center; border-top: var(--border-sm) dashed var(--border-color-light); padding-top: 20px; margin-top: 30px;">
+                                    <small style="font-weight: 900; color: var(--text-dim); text-transform: uppercase; font-size: 11px;">Węzeł Obliczeniowy: <b style="color: var(--text-heading);">KOKOSZKA-WAW-01</b></small>
+                                </div>
                             </div>
                         </div>
-                        
-                        <div class="b-card">
-                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; gap: 30px;">
-                                <div><small style="font-weight: 900; font-size: 14px;">SILNIK</small><br><b id="ui-info-engine" style="font-size: 26px;">---</b></div>
-                                <div><small style="font-weight: 900; font-size: 14px;">WERSJA</small><br><b id="ui-info-version" style="font-size: 26px;">---</b></div>
-                                <div><small style="font-weight: 900; font-size: 14px;">GRACZE</small><br><b style="font-size: 26px;">0 / 20</b></div>
-                                <div><small style="font-weight: 900; font-size: 14px;">PORT</small><br><b style="font-size: 26px; color: var(--brand-main);">25565</b></div>
+
+                        <div class="b-card" style="padding: 30px;">
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center;">
+                                <div><small style="font-weight: 900; color: var(--text-dim); text-transform: uppercase; font-size: 11px;">SILNIK GRY</small><br><b id="ui-info-engine" style="font-size: 20px; color: var(--text-heading);">---</b></div>
+                                <div><small style="font-weight: 900; color: var(--text-dim); text-transform: uppercase; font-size: 11px;">WERSJA MC</small><br><b id="ui-info-version" style="font-size: 20px; color: var(--text-heading);">---</b></div>
+                                <div><small style="font-weight: 900; color: var(--text-dim); text-transform: uppercase; font-size: 11px;">GRACZE ONLINE</small><br><b style="font-size: 20px; color: var(--text-heading);">0 / 20</b></div>
+                                <div><small style="font-weight: 900; color: var(--text-dim); text-transform: uppercase; font-size: 11px;">PORT TCP</small><br><b style="font-size: 20px; font-family: 'Fira Code', monospace; color: var(--brand-main);">25565</b></div>
                             </div>
                         </div>
                     </div>
@@ -933,69 +868,116 @@
 
                 <div id="view-resources" class="view-module">
                     <div class="b-card">
-                        <h3 class="b-card-title"><i>🚀</i> Nielimitowany Przydział</h3>
+                        <h3 class="b-card-title"><i>🚀</i> Nielimitowany Przydział Mocy</h3>
+                        <p class="b-card-desc">Jako jedyny hosting oferujemy nielimitowane zasoby. Pamiętaj jednak, że maszyna działa na Twoim sprzęcie. Ustawienie zbyt wysokich parametrów spowoduje zawieszenie karty przeglądarki!</p>
                         
-                        <div style="background: var(--bg-input); padding: 40px; border: var(--border-md); margin: 40px 0; transition: var(--trans-fast);" onmouseover="this.style.transform='translate(-4px,-4px)'; this.style.boxShadow='var(--shadow-btn)';" onmouseout="this.style.transform='translate(0,0)'; this.style.boxShadow='none';">
-                            <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 20px;"><span>RAM (GB)</span><b id="lbl-ram-val" style="font-size: 36px; color: var(--brand-main);">4</b></div>
+                        <div style="background-color: var(--bg-input); padding: 40px; border: var(--border-md); border-radius: var(--radius-lg); margin-bottom: 30px; transition: var(--trans-fast);" onmouseover="this.style.transform='translate(-4px, -4px)'; this.style.boxShadow='var(--shadow-sm)';" onmouseout="this.style.transform='translate(0, 0)'; this.style.boxShadow='none';">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <span style="font-size: 14px; font-weight: 900; color: var(--text-muted); text-transform: uppercase;">Przydzielona Pamięć RAM (GB)</span>
+                                <b id="lbl-ram-val" style="font-family: 'Montserrat', sans-serif; font-size: 38px; font-weight: 900; color: var(--text-heading);">4</b>
+                            </div>
                             <input type="range" min="1" max="128" value="4" class="custom-range" id="slider-ram" oninput="kernel.syncResourceSliders()">
+                            <div id="alert-ram-limit" style="display: none; background-color: var(--status-danger-bg); color: var(--text-heading); padding: 20px; border: var(--border-sm) solid var(--status-danger); border-radius: var(--radius-md); font-size: 13px; font-weight: 700; margin-top: 20px;">
+                                <b>KRYTYCZNE OSTRZEŻENIE SYSTEMOWE:</b> Wykryto alokację ponad 16GB RAM. Upewnij się, że Twój system hosta posiada wystarczającą ilość wolnej pamięci fizycznej. Ryzyko awarii Out-Of-Memory (OOM)!
+                            </div>
                         </div>
-                        
-                        <div style="background: var(--bg-input); padding: 40px; border: var(--border-md); margin: 40px 0; transition: var(--trans-fast);" onmouseover="this.style.transform='translate(-4px,-4px)'; this.style.boxShadow='var(--shadow-btn)';" onmouseout="this.style.transform='translate(0,0)'; this.style.boxShadow='none';">
-                            <div style="display: flex; justify-content: space-between; font-weight: 900; font-size: 20px;"><span>vCPU</span><b id="lbl-cpu-val" style="font-size: 36px; color: var(--brand-main);">2</b></div>
+
+                        <div style="background-color: var(--bg-input); padding: 40px; border: var(--border-md); border-radius: var(--radius-lg); margin-bottom: 30px; transition: var(--trans-fast);" onmouseover="this.style.transform='translate(-4px, -4px)'; this.style.boxShadow='var(--shadow-sm)';" onmouseout="this.style.transform='translate(0, 0)'; this.style.boxShadow='none';">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <span style="font-size: 14px; font-weight: 900; color: var(--text-muted); text-transform: uppercase;">Rdzenie Procesora (vCPU)</span>
+                                <b id="lbl-cpu-val" style="font-family: 'Montserrat', sans-serif; font-size: 38px; font-weight: 900; color: var(--text-heading);">2</b>
+                            </div>
                             <input type="range" min="1" max="32" value="2" class="custom-range" id="slider-cpu" oninput="kernel.syncResourceSliders()">
+                            <div id="alert-cpu-limit" style="display: none; background-color: var(--status-warning-bg); color: var(--text-heading); padding: 20px; border: var(--border-sm) solid var(--status-warning); border-radius: var(--radius-md); font-size: 13px; font-weight: 700; margin-top: 20px;">
+                                <b>OSTRZEŻENIE O WYDAJNOŚCI:</b> Silnik Java w grze Minecraft zazwyczaj wykorzystuje max. 4 rdzenie do obsługi głównego wątku (Main Tick Loop). Wyższa liczba nie zwiększy FPS.
+                            </div>
                         </div>
-                        
-                        <button class="btn-action btn-primary-action" style="width: 100%; font-size: 22px; padding: 30px;" onclick="uiEngine.triggerToast('Zapisano konfigurację w bazie.')">ZAPISZ KONFIGURACJĘ</button>
+
+                        <button class="btn-action btn-primary-action" style="width: 100%; font-size: 18px; padding: 25px;" onclick="uiEngine.triggerToast('Parametry fizyczne węzła zostały zaktualizowane w bazie. Wykonaj restart serwera.')">ZAPISZ I ZASTOSUJ KONFIGURACJĘ SPRZĘTOWĄ</button>
                     </div>
                 </div>
 
                 <div id="view-software" class="view-module">
                     <div class="b-card">
-                        <h3 class="b-card-title"><i>⚙️</i> Oprogramowanie</h3>
-                        <select id="sel-engine-type" style="width: 100%; height: 80px; font-size: 26px; font-weight: 900; border: var(--border-md); margin: 30px 0; padding: 0 20px; font-family: 'Montserrat', sans-serif;">
-                            <option value="Vanilla">Vanilla</option>
-                            <option selected value="PaperMC">PaperMC</option>
-                            <option value="Forge">Forge</option>
-                        </select>
-                        <select id="sel-engine-version" style="width: 100%; height: 80px; font-size: 26px; font-weight: 900; border: var(--border-md); margin-bottom: 40px; padding: 0 20px; font-family: 'Montserrat', sans-serif;">
-                            </select>
-                        <button class="btn-action btn-primary-action" style="width: 100%; font-size: 22px; padding: 30px;" onclick="kernel.processSoftwareInstallation()">ZAINSTALUJ</button>
-                    </div>
-                </div>
-                
-                <div id="view-properties" class="view-module">
-                    <div class="b-card">
-                        <h3 class="b-card-title"><i>🛠️</i> Konfiguracja (.prop)</h3>
+                        <h3 class="b-card-title"><i>⚙️</i> Wybór Oprogramowania</h3>
+                        <p class="b-card-desc">Zmień silnik serwera w dowolnym momencie. Zmiana wymusi pobranie nowych bibliotek systemowych .jar z chmury.</p>
                         
-                        <div style="display: flex; justify-content: space-between; padding: 30px; border: var(--border-md); margin-bottom: 20px;">
-                            <b style="font-size: 20px;">Tryb Non-Premium (Cracked)</b>
-                            <div class="switch-container"><input type="checkbox" checked><span class="switch-track"></span></div>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding: 30px; border: var(--border-md); margin-bottom: 20px;">
-                            <b style="font-size: 20px;">Walka PvP</b>
-                            <div class="switch-container"><input type="checkbox" checked><span class="switch-track"></span></div>
+                        <div style="margin-bottom: 35px; margin-top: 30px;">
+                            <label style="display: block; font-size: 14px; font-weight: 800; text-transform: uppercase; color: var(--text-heading); margin-bottom: 10px;">Rodzina Silnika (Architektura):</label>
+                            <select id="sel-engine-type" style="width: 100%; background-color: transparent; border: none; border-bottom: var(--border-md); padding: 20px 10px; font-size: 28px; font-weight: 900; color: var(--text-heading); font-family: 'Montserrat', sans-serif;">
+                                <option value="Vanilla">Vanilla Minecraft (Czysty oryginał)</option>
+                                <option selected value="PaperMC">PaperMC (Wysoka Wydajność + Pluginy)</option>
+                                <option value="Spigot">Spigot (Standardowa zgodność z pluginami)</option>
+                                <option value="Forge">Forge (Środowisko Modyfikacji Java)</option>
+                                <option value="Fabric">Fabric (Lekkie mody nowej generacji)</option>
+                                <option value="Purpur">Purpur (Eksperymentalna wydajność)</option>
+                            </select>
                         </div>
 
-                        <input type="text" style="width: 100%; height: 80px; border: var(--border-md); font-size: 24px; font-weight: 800; padding: 0 25px; margin: 30px 0;" placeholder="MOTD Serwera">
-                        <button class="btn-action btn-primary-action" style="width: 100%; font-size: 22px; padding: 30px;" onclick="uiEngine.triggerToast('Zapisano plik properties.')">ZAPISZ</button>
+                        <div style="margin-bottom: 50px;">
+                            <label style="display: block; font-size: 14px; font-weight: 800; text-transform: uppercase; color: var(--text-heading); margin-bottom: 10px;">Wersja Klienta Gry:</label>
+                            <select id="sel-engine-version" style="width: 100%; background-color: transparent; border: none; border-bottom: var(--border-md); padding: 20px 10px; font-size: 28px; font-weight: 900; color: var(--text-heading); font-family: 'Montserrat', sans-serif;">
+                                </select>
+                        </div>
+
+                        <button class="btn-action btn-primary-action" style="width: 100%; padding: 25px;" onclick="kernel.processSoftwareInstallation()">ZAINSTALUJ I PRZEGENERUJ SYSTEM PLIKÓW</button>
+                    </div>
+                </div>
+
+                <div id="view-properties" class="view-module">
+                    <div class="b-card">
+                        <h3 class="b-card-title"><i>🛠️</i> Konfiguracja Głównej Mechaniki</h3>
+                        <p class="b-card-desc">Zarządzaj krytycznymi ustawieniami z pliku server.properties bez konieczności jego ręcznej edycji.</p>
+
+                        <div class="settings-row" style="display: flex; justify-content: space-between; align-items: center; padding: 30px; background-color: var(--bg-input); border: var(--border-md); border-radius: var(--radius-lg); margin-bottom: 20px; transition: var(--trans-fast);" onmouseover="this.style.backgroundColor='var(--bg-surface)'; this.style.transform='translate(-4px, -4px)'; this.style.boxShadow='var(--shadow-sm)';" onmouseout="this.style.backgroundColor='var(--bg-input)'; this.style.transform='translate(0, 0)'; this.style.boxShadow='none';">
+                            <div class="settings-info">
+                                <h4 style="font-size: 16px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px;">Tryb Non-Premium (Cracked / Offline-Mode)</h4>
+                                <p style="font-size: 13px; font-weight: 600; color: var(--text-muted);">Wyłącza autoryzację sesji przez serwery Mojang. Wymagane dla graczy bez zakupionej gry.</p>
+                            </div>
+                            <div class="switch-container">
+                                <input type="checkbox" id="prop-nonpremium" checked>
+                                <span class="switch-track"></span>
+                            </div>
+                        </div>
+
+                        <div class="settings-row" style="display: flex; justify-content: space-between; align-items: center; padding: 30px; background-color: var(--bg-input); border: var(--border-md); border-radius: var(--radius-lg); margin-bottom: 20px; transition: var(--trans-fast);" onmouseover="this.style.backgroundColor='var(--bg-surface)'; this.style.transform='translate(-4px, -4px)'; this.style.boxShadow='var(--shadow-sm)';" onmouseout="this.style.backgroundColor='var(--bg-input)'; this.style.transform='translate(0, 0)'; this.style.boxShadow='none';">
+                            <div class="settings-info">
+                                <h4 style="font-size: 16px; font-weight: 800; color: var(--text-heading); margin-bottom: 6px;">Walka PvP (Player vs Player)</h4>
+                                <p style="font-size: 13px; font-weight: 600; color: var(--text-muted);">Umożliwia graczom zadawanie sobie obrażeń za pomocą broni i narzędzi.</p>
+                            </div>
+                            <div class="switch-container">
+                                <input type="checkbox" id="prop-pvp" checked>
+                                <span class="switch-track"></span>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 50px; margin-bottom: 30px;">
+                            <label style="display: block; font-size: 14px; font-weight: 800; text-transform: uppercase; color: var(--text-heading); margin-bottom: 10px;">Wiadomość Powitalna na Liście (MOTD):</label>
+                            <input type="text" id="prop-motd" style="width: 100%; background-color: transparent; border: none; border-bottom: var(--border-md); padding: 25px 15px; font-size: 28px; font-weight: 900; color: var(--text-heading); font-family: 'Montserrat', sans-serif;" placeholder="Witaj na potężnym serwerze KokoszkaMC!">
+                        </div>
+
+                        <button class="btn-action btn-primary-action" style="width: 100%;" onclick="uiEngine.triggerToast('Konfiguracja server.properties została wdrożona na partycję zapisu.')">ZAPISZ PLIK SERVER.PROPERTIES</button>
                     </div>
                 </div>
 
                 <div id="view-terminal" class="view-module">
                     <div class="terminal-layout">
                         <div class="terminal-output" id="terminal-screen-log">
-                            <div style="margin-bottom: 10px;"><span class="log-time">[SYSTEM]</span> <span class="log-success">Terminal v5.0 TITAN gotowy.</span></div>
+                            <div style="margin-bottom: 8px;"><span class="log-time">[SYSTEM]</span> <span class="log-info">Zestawiono bezpieczne połączenie WebSocket (WSS) z węzłem.</span></div>
+                            <div style="margin-bottom: 8px;"><span class="log-time">[SYSTEM]</span> <span class="log-success">KokoszkaOS Terminal v5.0 TITAN gotowy do przyjmowania komend systemowych.</span></div>
                         </div>
                         <div class="terminal-input-area">
-                            <input type="text" id="terminal-cmd-input" class="cmd-input" placeholder="Wpisz komendę (np. /op, /stop)">
-                            <button class="btn-action" style="background: var(--bg-surface); color: var(--text-heading); font-size: 20px; padding: 0 40px;" onclick="kernel.executeTerminalCommand()">WYKONAJ</button>
+                            <input type="text" id="terminal-cmd-input" class="cmd-input" placeholder="Wpisz komendę administracyjną (np. /op TwójNick, /save-all)">
+                            <button class="btn-action btn-primary-action" style="padding: 18px 40px; color: white; border-color: #334155;" onclick="kernel.executeTerminalCommand()">WYKONAJ</button>
                         </div>
                     </div>
                 </div>
 
                 <div id="view-filemanager" class="view-module">
                     <div class="b-card">
-                        <h3 class="b-card-title"><i>📂</i> Menedżer Plików</h3>
+                        <h3 class="b-card-title"><i>📂</i> Zdalny Eksplorator Plików</h3>
+                        <p class="b-card-desc" style="margin-bottom: 40px;">Modyfikuj pliki konfiguracyjne bezpośrednio z poziomu przeglądarki. Użyj przycisku poniżej drzewka, aby utworzyć nowy plik.</p>
+                        
                         <div class="ftp-workspace">
                             <div class="ftp-tree-view" id="ftp-file-tree">
                                 <div class="ftp-node" onclick="kernel.loadFileIntoEditor('server.properties', this)"><i>📄</i> server.properties</div>
@@ -1003,69 +985,95 @@
                                 <div class="ftp-node" onclick="kernel.loadFileIntoEditor('bukkit.yml', this)"><i>📄</i> bukkit.yml</div>
                                 <div class="ftp-node" onclick="kernel.loadFileIntoEditor('whitelist.json', this)"><i>📄</i> whitelist.json</div>
                                 <div class="ftp-node" onclick="kernel.loadFileIntoEditor('ops.json', this)"><i>📄</i> ops.json</div>
+                                <div class="ftp-node" style="color: var(--text-dim); cursor: not-allowed; opacity: 0.6;"><i>📁</i> world (Katalog)</div>
+                                <div class="ftp-node" style="color: var(--text-dim); cursor: not-allowed; opacity: 0.6;"><i>📁</i> plugins (Katalog)</div>
                                 
                                 <button class="btn-add-file" onclick="kernel.createNewFile()">+ NOWY PLIK</button>
                             </div>
-                            
                             <div class="ftp-editor-wrapper">
-                                <textarea id="ftp-text-area" class="ftp-textarea" spellcheck="false"># Wybierz plik z drzewa po lewej stronie...</textarea>
-                                <button class="btn-action btn-primary-action ftp-save-btn" onclick="uiEngine.triggerToast('Zapisano pomyślnie na FTP.')">ZAPISZ PLIK</button>
+                                <textarea id="ftp-text-area" class="ftp-textarea" spellcheck="false"># Wybierz plik tekstowy z drzewa po lewej stronie, aby otworzyć edytor KokoszkaCode v5.0...</textarea>
+                                <button class="btn-action btn-primary-action ftp-save-btn" onclick="uiEngine.triggerToast('Zapisano zmiany w wybranym pliku na zdalnym serwerze FTP.')">ZAPISZ ZMIANY W PLIKU</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="view-database" class="view-module"><div class="b-card"><h3 class="b-card-title">🗄️ Bazy MySQL</h3><p style="font-size: 18px; font-weight: 800;">Baza danych s1_kokoszka aktywna w tle.</p></div></div>
-                <div id="view-marketplace" class="view-module"><div class="b-card"><h3 class="b-card-title">🔌 Rynek Pluginów</h3><p style="font-size: 18px; font-weight: 800;">Wyszukiwarka w trakcie stabilizacji.</p></div></div>
-                <div id="view-firewall" class="view-module"><div class="b-card"><h3 class="b-card-title">🛡️ Ochrona Sieciowa</h3><p style="font-size: 18px; font-weight: 800;">Filtrowanie L7 włączone domyślnie przez Kokoszka-Shield.</p></div></div>
-                <div id="view-auditlogs" class="view-module"><div class="b-card"><h3 class="b-card-title">📜 Dziennik Audytu</h3><table class="system-table"><tbody id="ui-audit-table-render"></tbody></table></div></div>
+                <div id="view-database" class="view-module">
+                    <div class="b-card">
+                        <h3 class="b-card-title"><i>🗄️</i> Bazy Danych (MySQL / MariaDB)</h3>
+                        <p class="b-card-desc">Twórz w pełni zarządzane bazy danych dla zaawansowanych pluginów (LuckPerms, CoreProtect, AuthMe).</p>
+                        
+                        <div class="grid-col-2" style="margin-bottom: 0;" id="mysql-grid">
+                            
+                            <div class="db-create-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center; border: var(--border-md) dashed var(--border-color-main); border-radius: var(--radius-lg); padding: 40px; text-align: center; cursor: pointer; transition: var(--trans-fast); background-color: var(--bg-surface); min-height: 250px;" onmouseover="this.style.backgroundColor='var(--bg-input)'; this.style.transform='translate(-4px, -4px)'; this.style.boxShadow='var(--shadow-sm)';" onmouseout="this.style.backgroundColor='var(--bg-surface)'; this.style.transform='translate(0,0)'; this.style.boxShadow='none';">
+                                <span style="font-size: 60px; color: var(--border-color-main); margin-bottom: 15px; font-weight: 300;">+</span>
+                                <b style="font-size: 16px; color: var(--text-heading); text-transform: uppercase; font-weight: 900;">UTWÓRZ NOWĄ BAZĘ DANYCH</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-cronjobs" class="view-module"><div class="b-card"><h3 class="b-card-title"><i>⏱️</i> Harmonogramy (Cron)</h3><p class="b-card-desc">Moduł w trakcie prac konserwacyjnych. Dostępny wkrótce.</p></div></div>
+                <div id="view-marketplace" class="view-module"><div class="b-card"><h3 class="b-card-title"><i>🔌</i> Rynek Pluginów</h3><p class="b-card-desc">Baza 45,000 pluginów jest aktualnie indeksowana. Odwiedź oficjalną stronę SpigotMC w międzyczasie.</p></div></div>
+                <div id="view-firewall" class="view-module"><div class="b-card"><h3 class="b-card-title"><i>🛡️</i> Ochrona Sieciowa</h3><p class="b-card-desc">Tarcza L7 jest zawsze aktywna w tle. Interfejs konfiguracji reguł BGP jest obecnie wyłączony.</p></div></div>
+                <div id="view-auditlogs" class="view-module"><div class="b-card"><h3 class="b-card-title"><i>📜</i> Dziennik Audytu</h3><table style="width: 100%; border-collapse: separate; border-spacing: 0 10px;"><tbody id="ui-audit-table-render"></tbody></table></div></div>
 
             </div>
         </div>
     </div>
 
     <div id="sys-toast-notification" class="toast-notification">
-        <span style="font-size: 32px; font-style: normal;">🐔</span>
-        <span id="toast-message-content" style="font-size: 18px;">Powiadomienie</span>
+        <span style="font-size: 24px; font-style: normal;">🐔</span>
+        <span id="toast-message-content">Powiadomienie testowe systemu operacyjnego.</span>
     </div>
-     <script>
+    <script>
         /**
          * KOKOSZKA MC - TITAN ENGINE v5.0
-         * Czysty kod Vanilla JS bez zewnętrznych bibliotek.
+         * Czysty kod Vanilla JS. Zoptymalizowany pod architekturę SPA.
          */
 
-        // --- BAZA WIEDZY I PRE-KONFIGURACJI WĘZŁA ---
+        // ==========================================================================
+        // 1. BAZA WIEDZY I PRE-KONFIGURACJI WĘZŁA
+        // ==========================================================================
         const SYS_DATA = {
+            // WSZYSTKIE WERSJE ZGODNIE Z TWOIM ŻYCZENIEM
             versions: [
-                "1.21.1", "1.21", "1.20.6", "1.20.4", "1.20.1", "1.19.4", "1.19.2", 
-                "1.18.2", "1.17.1", "1.16.5", "1.15.2", "1.12.2", "1.8.8", "1.7.10"
+                "1.21.11", "1.21.10", "1.21.9", "1.21.8", "1.21.7", "1.21.6", "1.21.5", 
+                "1.21.4", "1.21.3", "1.21.2", "1.21.1", "1.21", "1.20.6", "1.20.4", 
+                "1.20.1", "1.19.4", "1.19.2", "1.18.2", "1.17.1", "1.16.5", "1.15.2", 
+                "1.12.2", "1.8.8", "1.7.10"
             ],
             files: {
-                "server.properties": "online-mode=false\npvp=true\nmax-players=20\nmotd=Najlepszy Serwer KokoszkaMC\nallow-flight=false\nenable-command-block=true\nview-distance=10\nserver-port=25565",
+                "server.properties": "online-mode=false\npvp=true\ngamemode=survival\ndifficulty=normal\nmax-players=20\nmotd=Najlepszy Serwer KokoszkaMC\nallow-flight=false\nenable-command-block=true\nview-distance=10\nsimulation-distance=8\nspawn-protection=16\nlevel-name=world\nserver-port=25565",
                 "spigot.yml": "settings:\n  save-user-cache-on-stop-only: false\n  bungeecord: false\n  user-cache-size: 1000",
                 "bukkit.yml": "settings:\n  allow-end: true\n  warn-on-overload: true",
                 "whitelist.json": "[]",
-                "ops.json": "[]"
+                "ops.json": "[\n  {\n    \"uuid\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"Wlasciciel\",\n    \"level\": 4\n  }\n]"
             }
         };
 
         // ==========================================================================
-        // SYSTEM AUTORYZACJI ZGODNY ZE SZKICEM (ZAKŁADKI NA GÓRZE)
+        // 2. SYSTEM AUTORYZACJI (LOGIKA ZAKŁADEK I LOCALSTORAGE)
         // ==========================================================================
         const authSystem = {
-            activeTab: 'login', // Domyślnie aktywna zakładka
+            activeTab: 'login', // Domyślnie aktywna zakładka logowania
             database: JSON.parse(localStorage.getItem('kokoszka_titan_v5_db') || "{}"),
             currentUser: null,
 
             init() {
                 console.log("%c [KOKOSZKA OS] Booting Authorization Sequence v5.0... ", "background: #000; color: #ff8c00; font-weight: 900; padding: 5px;");
                 
-                // Wypełnienie wersji w panelu wyboru oprogramowania
+                // Wypełnienie wersji w panelu z domyślnie wybranym 1.21.4
                 const verDropdown = document.getElementById('sel-engine-version');
                 if(verDropdown) {
                     SYS_DATA.versions.forEach(v => {
                         let opt = document.createElement('option');
-                        opt.value = v; opt.innerText = v;
+                        opt.value = v; 
+                        opt.innerText = v;
+                        // Jeśli to wersja 1.21.4, zaznacz ją jako domyślną!
+                        if (v === "1.21.4") {
+                            opt.selected = true;
+                        }
                         verDropdown.appendChild(opt);
                     });
                 }
@@ -1079,17 +1087,21 @@
                     });
                 }
                 
+                // Nasłuchiwanie na przycisk MySQL
+                const dbCreateBtn = document.querySelector('.db-create-box');
+                if (dbCreateBtn) {
+                    dbCreateBtn.addEventListener('click', () => kernel.createDatabase());
+                }
+
                 // Wymuszenie załadowania zakładki logowania po włączeniu strony
                 this.switchTab('login');
             },
 
-            // Ta funkcja odpowiada za przełączanie zakładek jak na Twoim rysunku
+            // Funkcja odpowiadająca za przełączanie zakładek jak na Twoim rysunku
             switchTab(targetTab) {
                 this.activeTab = targetTab;
                 
-                // Wyczyszczenie błędów
                 document.getElementById('auth-error-msg').innerText = "";
-
                 const btnLogin = document.getElementById('tab-login');
                 const btnRegister = document.getElementById('tab-register');
                 const btnSubmit = document.getElementById('auth-btn-submit');
@@ -1099,12 +1111,10 @@
                 document.getElementById('auth-input-password').value = "";
 
                 if (targetTab === 'login') {
-                    // Aktywacja logowania
                     btnLogin.classList.add('active');
                     btnRegister.classList.remove('active');
                     btnSubmit.innerText = "Zaloguj się";
                 } else {
-                    // Aktywacja tworzenia konta
                     btnRegister.classList.add('active');
                     btnLogin.classList.remove('active');
                     btnSubmit.innerText = "Stwórz konto";
@@ -1159,19 +1169,19 @@
         };
 
         // ==========================================================================
-        // GŁÓWNY SILNIK MASZYNY WIRTUALNEJ I LOGIKI PANELU (KERNEL)
+        // 3. GŁÓWNY SILNIK MASZYNY WIRTUALNEJ I LOGIKI PANELU (KERNEL)
         // ==========================================================================
         const kernel = {
             serverRecord: null,
             isNodeOnline: false,
             isNodeBooting: false,
             uptimeSeconds: 0,
+            dbCreated: false,
             
             loopHardware: null,
             loopClock: null,
 
             igniteSession() {
-                // Wywołanie animacji "wjazdu" do głównego panelu
                 const authPortal = document.getElementById('auth-portal');
                 const appCore = document.getElementById('app-core-interface');
                 
@@ -1203,7 +1213,7 @@
                     ram: 4,
                     cpu: 2,
                     engine: "PaperMC",
-                    version: "1.20.4"
+                    version: "1.21.4" // Domyślnie przypisujemy 1.21.4 nowemu serwerowi
                 };
 
                 authSystem.database[authSystem.currentUser].srvData = this.serverRecord;
@@ -1211,7 +1221,7 @@
                 localStorage.setItem('kokoszka_titan_v5_db', JSON.stringify(authSystem.database));
                 
                 this.syncDashboardTopology();
-                uiEngine.triggerToast("Gratulacje! Zbudowano darmową maszynę wirtualną.");
+                uiEngine.triggerToast("Gratulacje! Zbudowano darmową maszynę wirtualną na wersji 1.21.4.");
             },
 
             syncDashboardTopology() {
@@ -1355,7 +1365,7 @@
                 this.pushToAuditLog(`Aktualizacja paczki oprogramowania do: ${en} v${ve}`);
                 localStorage.setItem('kokoszka_titan_v5_db', JSON.stringify(authSystem.database));
                 this.syncDashboardTopology();
-                uiEngine.triggerToast(`Pomyślnie zaktualizowano system na ${en}.`);
+                uiEngine.triggerToast(`Pomyślnie zaktualizowano system na ${en} ${ve}.`);
             },
 
             triggerEmergencyKill() {
@@ -1380,6 +1390,8 @@
                     this.togglePowerState();
                 } else if (lowerCmd === "help" || lowerCmd === "?") {
                     uiEngine.printTerminalLog("--- TERMINAL SYSTEMOWY v5.0 ---\nKomendy: op, deop, kill, stop, save-all", "info");
+                } else if (lowerCmd === "ping") {
+                    uiEngine.printTerminalLog("Ping węzła: " + (Math.floor(Math.random() * 10) + 1) + "ms.", "success");
                 } else {
                     uiEngine.printTerminalLog("Nieznana komenda systemowa.", "warn");
                 }
@@ -1387,53 +1399,89 @@
                 termInput.value = "";
             },
 
-            // ----------------------------------------------------------------------
-            // SYSTEM FTP - Z NAPRAWIONYM DODAWANIEM PLIKÓW!
-            // ----------------------------------------------------------------------
+            // ==========================================================================
+            // 4. NAPRAWIONY SYSTEM FTP - DODAWANIE PLIKÓW
+            // ==========================================================================
             loadFileIntoEditor(fName, clickedElement) {
-                // Obsługa podświetlania w drzewku
                 document.querySelectorAll('.ftp-node').forEach(node => node.classList.remove('active-node'));
                 if (clickedElement) clickedElement.classList.add('active-node');
 
                 const editorArea = document.getElementById('ftp-text-area');
-                // Jeżeli plik istnieje w pamięci ładujemy jego treść, w przeciwnym razie pusty szablon
-                editorArea.value = SYS_DATA.files[fName] || `# Utworzono nowy plik: ${fName}\n# KokoszkaMC WebFTP\n\n`;
+                editorArea.value = SYS_DATA.files[fName] || `# System WebFTP Kokoszka\n# Plik: ${fName}\n\n`;
                 uiEngine.triggerToast(`Otwarto plik ${fName} w edytorze R/W.`);
             },
 
             createNewFile() {
-                // Wywołujemy natywny prompt przeglądarki do podania nazwy
-                const fileName = prompt("Podaj nazwę nowego pliku z rozszerzeniem (np. config.yml):");
+                // To jest logika, która pozwala tworzyć nowe pliki!
+                const fileName = prompt("Podaj nazwę nowego pliku (wraz z rozszerzeniem, np. plugin_config.yml):");
                 
                 if (fileName && fileName.trim() !== "") {
-                    const cleanFileName = fileName.trim().toLowerCase();
+                    const cleanName = fileName.trim().toLowerCase();
                     
-                    // Dodanie do struktury danych
-                    SYS_DATA.files[cleanFileName] = `# Plik utworzony ręcznie: ${cleanFileName}\n\n`;
+                    // Dodanie do wirtualnej struktury
+                    SYS_DATA.files[cleanName] = `# Nowo utworzony plik: ${cleanName}\n# Utworzono przez: ${authSystem.currentUser}\n\n`;
                     
                     // Wizualne dodanie do drzewka
-                    const treeContainer = document.getElementById('ftp-file-tree');
-                    const newFileNode = document.createElement('div');
-                    newFileNode.className = 'ftp-node';
-                    newFileNode.innerHTML = `<i>📄</i> ${cleanFileName}`;
+                    const tree = document.getElementById('ftp-file-tree');
+                    const btn = document.querySelector('.btn-add-file');
                     
-                    // Ustawienie eventów
-                    newFileNode.onclick = function() { kernel.loadFileIntoEditor(cleanFileName, this); };
-                    newFileNode.onmouseover = function() { this.style.backgroundColor = "var(--bg-input)"; };
-                    newFileNode.onmouseout = function() { this.style.backgroundColor = "transparent"; };
-
-                    // Wstawiamy przed przyciskiem "+ NOWY PLIK"
-                    const addBtn = document.querySelector('.btn-add-file');
-                    treeContainer.insertBefore(newFileNode, addBtn);
-
-                    this.pushToAuditLog(`Utworzono nowy plik w głównym katalogu FTP: ${cleanFileName}`);
-                    uiEngine.triggerToast(`Plik ${cleanFileName} został pomyślnie utworzony na dysku!`);
+                    const newNode = document.createElement('div');
+                    newNode.className = 'ftp-node';
+                    newNode.innerHTML = `<i>📄</i> ${cleanName}`;
+                    
+                    // Nadanie eventów dla nowego pliku
+                    newNode.onclick = function() { kernel.loadFileIntoEditor(cleanName, this); };
+                    
+                    // Wstawiamy przed przyciskiem "Dodaj plik"
+                    tree.insertBefore(newNode, btn);
+                    
+                    this.pushToAuditLog(`Utworzono nowy plik w głównym katalogu: ${cleanName}`);
+                    uiEngine.triggerToast(`Plik ${cleanName} został pomyślnie utworzony na partycji!`);
                 }
             },
 
-            // ----------------------------------------------------------------------
-            // SYSTEM AUDYTU (LOGI KONTROLI)
-            // ----------------------------------------------------------------------
+            // ==========================================================================
+            // 5. GENERATOR BAZ DANYCH (MYSQL)
+            // ==========================================================================
+            createDatabase() {
+                if (this.dbCreated) {
+                    uiEngine.triggerToast("Osiągnięto limit: W planie darmowym przysługuje tylko 1 darmowa baza.");
+                    return;
+                }
+
+                // Generowanie hasła i losowej nazwy bazy
+                const genPass = Math.random().toString(36).slice(-8) + "X!";
+                const dbName = "s1_" + authSystem.currentUser.substring(0, 4) + "_db";
+                
+                uiEngine.triggerToast("Inicjowanie serwera MariaDB. Proszę czekać...");
+
+                setTimeout(() => {
+                    const grid = document.getElementById('mysql-grid');
+                    const htmlCard = `
+                        <div class="b-card" style="border-color: var(--status-success); animation: viewFadeIn 0.5s ease;">
+                            <h4 style="font-size: 24px; font-weight: 900; margin-bottom: 5px;">${dbName}</h4>
+                            <p style="margin-bottom: 20px; font-weight: 800;">Status: <span style="color: var(--status-success);">AKTYWNA</span></p>
+                            <div style="background-color: var(--bg-surface); padding: 20px; border: var(--border-sm); font-family: monospace; font-size: 14px; font-weight: 600; line-height: 1.6;">
+                                Host: mysql.kokoszka.me<br>
+                                Port: 3306<br>
+                                User: u99_admin<br>
+                                Pass: ${genPass}
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Wstawienie nowej bazy do widoku
+                    grid.insertAdjacentHTML('afterbegin', htmlCard);
+                    this.dbCreated = true;
+                    
+                    this.pushToAuditLog(`Wygenerowano nową bazę danych MySQL: ${dbName}`);
+                    uiEngine.triggerToast("Sukces! Baza danych została utworzona i przypisana do węzła.");
+                }, 2000);
+            },
+
+            // ==========================================================================
+            // 6. SYSTEM AUDYTU (LOGI KONTROLI)
+            // ==========================================================================
             pushToAuditLog(actionEventString) {
                 const timeStr = new Date().toLocaleString();
                 authSystem.database[authSystem.currentUser].audit.unshift({
@@ -1441,8 +1489,8 @@
                     a: actionEventString
                 });
                 
-                // Optymalizacja LocalStorage (Maksymalnie 100 wpisów)
-                if(authSystem.database[authSystem.currentUser].audit.length > 100) {
+                // Optymalizacja pamięci (zostawia max 50 wpisów)
+                if(authSystem.database[authSystem.currentUser].audit.length > 50) {
                     authSystem.database[authSystem.currentUser].audit.pop();
                 }
                 this.renderAuditHistoryTable();
@@ -1458,10 +1506,10 @@
                 cachedLogsArray.forEach(logObj => {
                     tableBodyDOM.innerHTML += `
                         <tr>
-                            <td>[${logObj.t}]</td>
-                            <td style="color: var(--text-heading); font-weight: 800;">${logObj.a}</td>
-                            <td><span style="background-color: var(--bg-input); padding: 5px 10px; border: var(--border-sm); border-color: var(--text-heading); font-weight: 800; font-size: 11px; text-transform: uppercase;">${authSystem.currentUser}</span></td>
-                            <td style="color: var(--status-success); font-weight: 900; letter-spacing: 1px;">ZAKSIĘGOWANE</td>
+                            <td style="padding: 15px; border-bottom: var(--border-sm); font-family: monospace;">[${logObj.t}]</td>
+                            <td style="padding: 15px; border-bottom: var(--border-sm); font-weight: 800;">${logObj.a}</td>
+                            <td style="padding: 15px; border-bottom: var(--border-sm);"><span style="background: var(--bg-surface); padding: 5px 10px; border: var(--border-sm); font-weight: 900; font-size: 11px;">${authSystem.currentUser}</span></td>
+                            <td style="padding: 15px; border-bottom: var(--border-sm); color: var(--status-success); font-weight: 900;">ZAKSIĘGOWANE</td>
                         </tr>
                     `;
                 });
@@ -1469,12 +1517,12 @@
         };
 
         // ==========================================================================
-        // SILNIK RENDEROWANIA UI (ROUTING)
+        // 7. SILNIK RENDEROWANIA UI (ROUTING I TOAST)
         // ==========================================================================
         const uiEngine = {
             routeTo(viewModuleTargetId, clickedNavElement) {
                 document.querySelectorAll('.view-module').forEach(vNode => vNode.classList.remove('active'));
-                document.querySelectorAll('.menu-nav-item').forEach(iNode => iNode.classList.remove('active'));
+                document.querySelectorAll('.nav-item').forEach(iNode => iNode.classList.remove('active'));
                 
                 const targetViewNode = document.getElementById('view-' + viewModuleTargetId);
                 if (targetViewNode) targetViewNode.classList.add('active');
@@ -1496,7 +1544,7 @@
                     'success': '#34d399',
                     'error': '#f87171',
                     'warn': '#fbbf24',
-                    'default': '#f8fafc'
+                    'default': '#ffffff'
                 };
                 
                 const computedColor = typeToCssColor[severityType] || typeToCssColor['default'];
