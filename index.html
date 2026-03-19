@@ -3,673 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Najpotężniejszy panel hostingu Minecraft na świecie - v4.0 TITAN">
     <title>KokoszkaMC v4.0 TITAN | Ultimate Hosting</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* ================================================================================================
-        SEKCJA 1: SYSTEM STYLIZACJI (GIGANTYCZNY FRAMEWORK CSS)
-        Motyw: Aesthetic White & Neobrutalism Orange. Czarne napisy, dużo bieli, pomarańczowe akcenty.
-        ================================================================================================
-        */
-
+        /* ========================================================================================
+           SEKCJA 1: SYSTEM STYLIZACJI (CSS FRAMEWORK - NEOBRUTALISM)
+           ======================================================================================== */
         :root {
-            /* --- 1. PALETA BARW (KOKOSZKA BRANDING) --- */
+            /* Paleta Barw */
             --brand-primary: #ff8c00;
-            --brand-hover: #e67e00;
-            --brand-dark: #cc7000;
             --brand-light: #fff5e6;
-            --brand-super-light: #fffaf5;
             
-            /* --- 2. TŁA I POWIERZCHNIE (DOMINACJA BIELI) --- */
-            --bg-body: #f8fafc;
+            /* Tła - Czysta Biel */
+            --bg-body: #ffffff;
             --bg-surface: #ffffff;
-            --bg-panel: #ffffff;
             --bg-input: #ffffff;
             --bg-terminal: #000000;
-            --bg-sidebar: #ffffff;
-            --bg-modal-overlay: rgba(248, 250, 252, 0.85);
             
-            /* --- 3. KOLORY TEKSTU (CZERŃ I SZAROŚCI) --- */
+            /* Kolory Tekstu */
             --text-heading: #000000;
             --text-main: #000000;
-            --text-muted: #475569;
-            --text-dim: #94a3b8;
+            --text-muted: #333333;
+            --text-dim: #666666;
             --text-inverse: #ffffff;
             
-            /* --- 4. STATUSY FUNKCJONALNE (ALERTY, WSKAŹNIKI) --- */
+            /* Statusy */
             --status-success: #10b981;
-            --status-success-bg: #ecfdf5;
             --status-danger: #ef4444;
-            --status-danger-bg: #fef2f2;
             --status-warning: #f59e0b;
-            --status-warning-bg: #fffbeb;
             --status-info: #3b82f6;
-            --status-info-bg: #eff6ff;
             --status-shield: #8b5cf6;
             
-            /* --- 5. SYSTEM OBRAMOWAŃ (NEOBRUTALISM) --- */
+            /* Grubości Obramowań */
             --border-width-sm: 2px;
-            --border-width-md: 3px;
-            --border-width-lg: 5px;
-            --border-color-main: #000000;
-            --border-color-light: #e2e8f0;
-            --border-color-brand: #ff8c00;
+            --border-width-md: 4px;
             
-            /* --- 6. SYSTEM CIENI (Ostre, płaskie cienie) --- */
-            --shadow-sm: 4px 4px 0px 0px rgba(0,0,0,1);
-            --shadow-md: 6px 6px 0px 0px rgba(0,0,0,1);
-            --shadow-lg: 10px 10px 0px 0px rgba(0,0,0,1);
-            --shadow-brand: 6px 6px 0px 0px rgba(255,140,0,1);
-            --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.05); /* Dla delikatniejszych elementów */
+            /* Kolory Obramowań */
+            --border-black: #000000;
+            --border-light: #e2e8f0;
             
-            /* --- 7. ZAOKRĄGLENIA GEOMETRYCZNE --- */
-            --radius-none: 0px;
-            --radius-sm: 6px;
-            --radius-md: 12px;
-            --radius-lg: 20px;
-            --radius-xl: 30px;
-            --radius-circle: 50%;
+            /* Cienie Brutalistyczne */
+            --shadow-solid-sm: 4px 4px 0px 0px rgba(0,0,0,1);
+            --shadow-solid-md: 8px 8px 0px 0px rgba(0,0,0,1);
+            --shadow-solid-orange: 8px 8px 0px 0px rgba(255,140,0,1);
             
-            /* --- 8. FIZYKA ANIMACJI I PRZEJŚĆ --- */
+            /* Przejścia */
             --transition-fast: all 0.15s ease-in-out;
-            --transition-base: all 0.25s ease-in-out;
-            --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            
-            /* --- 9. Z-INDEX (UKŁAD WARSTW) --- */
-            --z-behind: -1;
-            --z-normal: 1;
-            --z-topbar: 100;
-            --z-sidebar: 200;
-            --z-dropdown: 300;
-            --z-modal: 1000;
-            --z-toast: 9999;
-            --z-auth: 99999;
         }
 
-        /* ------------------------------------------------------------------------------------------------
-           RESET STYLÓW I USTAWIENIA GLOBALNE
-           ------------------------------------------------------------------------------------------------ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* Aplikacja ma własne obszary przewijania */
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
-            display: flex;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            line-height: 1.5;
+            height: 100vh; width: 100vw;
+            display: flex; overflow: hidden;
         }
 
-        /* ------------------------------------------------------------------------------------------------
-           NIESTANDARDOWE PASKI PRZEWIJANIA (BRUTALIST SCROLLBARS)
-           ------------------------------------------------------------------------------------------------ */
-        ::-webkit-scrollbar {
-            width: 14px;
-            height: 14px;
-        }
+        ::-webkit-scrollbar { width: 16px; height: 16px; }
+        ::-webkit-scrollbar-track { background-color: var(--bg-body); border-left: var(--border-width-sm) solid var(--border-black); }
+        ::-webkit-scrollbar-thumb { background-color: var(--brand-primary); border: var(--border-width-sm) solid var(--border-black); }
+        ::-webkit-scrollbar-thumb:hover { background-color: var(--text-heading); }
 
-        ::-webkit-scrollbar-track {
-            background-color: var(--bg-body);
-            border-left: var(--border-width-sm) solid var(--border-color-light);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background-color: var(--border-color-heavy);
-            border: var(--border-width-sm) solid var(--bg-body);
-            border-radius: var(--radius-lg);
-            transition: var(--transition-base);
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: var(--brand-primary);
-            border-color: var(--border-color-main);
-        }
-
-        /* ------------------------------------------------------------------------------------------------
-           MODUŁ: SYSTEM AUTORYZACJI (TWARDA BLOKADA - ZGODNIE ZE SZKICEM)
-           ------------------------------------------------------------------------------------------------ */
-        
+        /* --- SYSTEM AUTORYZACJI (LOGOWANIE I REJESTRACJA ZGODNE ZE SZKICEM) --- */
         .auth-viewport {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            position: fixed; inset: 0;
             background-color: var(--bg-body);
-            background-image: 
-                linear-gradient(var(--border-color-light) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border-color-light) 1px, transparent 1px);
-            background-size: 40px 40px; /* Delikatna siatka w tle */
-            z-index: var(--z-auth);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            background-image: linear-gradient(var(--border-light) 1px, transparent 1px), linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 9999999;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
-        /* Klasa do ukrywania ekranu po zalogowaniu */
-        .auth-viewport.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+        .auth-viewport.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .auth-viewport.booting { transform: translateY(-100%); opacity: 1; visibility: visible; transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1); }
 
-        /* Klasa do animacji odjazdu w górę po poprawnym logowaniu */
-        .auth-viewport.booting {
-            transform: translateY(-100%);
-            opacity: 1;
-            visibility: visible;
-            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
-        }
-
-        /* Główny kontener logowania */
-        .auth-container {
-            width: 100%;
-            max-width: 550px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            padding: 20px;
-            animation: authDropIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes authDropIn {
-            from { opacity: 0; transform: translateY(-50px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        /* Logo i Nagłówek w ekranie Auth */
-        .auth-header-wrapper {
-            text-align: center;
-            margin-bottom: 10px;
-            background-color: var(--bg-surface);
-            padding: 30px;
-            border: var(--border-width-md) solid var(--border-color-main);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .auth-header-icon {
-            font-size: 50px;
-            display: block;
-            margin-bottom: 10px;
-        }
+        .auth-container { width: 100%; max-width: 600px; padding: 40px; display: flex; flex-direction: column; gap: 30px; }
 
         .auth-header-wrapper h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 38px;
-            font-weight: 900;
-            color: var(--text-heading);
-            text-transform: uppercase;
-            letter-spacing: -1.5px;
-            line-height: 1;
+            font-family: 'Montserrat', sans-serif; font-size: 48px; font-weight: 900;
+            color: var(--text-heading); text-transform: uppercase; text-align: center;
+            text-shadow: 4px 4px 0px var(--brand-primary); margin-bottom: 20px;
         }
 
-        /* ZAKŁADKI (TABS) - Dokładnie według szkicu z podziałem */
-        .auth-tabs-wrapper {
-            display: flex;
-            width: 100%;
-            height: 75px;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-        }
-
+        /* ZAKŁADKI (TABS) - Wygląd z obrazka */
+        .auth-tabs-wrapper { display: flex; width: 100%; height: 80px; }
         .auth-tab-btn {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-heading);
-            background-color: var(--bg-surface);
-            border: var(--border-width-md) solid var(--border-color-main);
-            cursor: pointer;
-            transition: var(--transition-fast);
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700;
+            color: var(--text-heading); background-color: var(--bg-surface);
+            border: var(--border-width-md) solid var(--border-black);
+            cursor: pointer; transition: var(--transition-fast);
         }
-
-        /* Zakładka lewa (Rejestracja) - usuwamy prawą ramkę by się nie dublowała */
-        #tab-btn-register {
-            border-right: none;
-            border-top-left-radius: var(--radius-md);
-            border-bottom-left-radius: var(--radius-md);
-        }
-
-        /* Zakładka prawa (Logowanie) */
-        #tab-btn-login {
-            border-top-right-radius: var(--radius-md);
-            border-bottom-right-radius: var(--radius-md);
-        }
-
-        /* Stan Aktywny (Pomarańczowa ramka, białe tło wg wytycznych) */
+        #tab-btn-register { border-right: none; } /* Połączenie ramek na środku */
+        
         .auth-tab-btn.active {
             border-color: var(--brand-primary);
-            color: var(--text-heading);
-            z-index: 2; /* Aby pomarańczowa ramka była nad czarną */
             box-shadow: inset 0 0 0 2px var(--brand-primary);
-            background-color: var(--bg-surface);
+            z-index: 2;
         }
+        .auth-tab-btn:hover:not(.active) { background-color: #f1f5f9; }
+
+        /* FORMULARZ */
+        .auth-form-area { display: flex; flex-direction: column; gap: 25px; }
         
-        .auth-tab-btn:hover:not(.active) {
-            background-color: var(--bg-input);
-        }
-
-        /* KONTENER FORMULARZA */
-        .auth-form-area {
-            background-color: var(--bg-surface);
-            padding: 40px;
-            border: var(--border-width-md) solid var(--border-color-main);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            transition: var(--transition-base);
-        }
-
-        /* Grupy Inputów (Nazwa konta, Hasło) */
-        .input-brutalist-wrapper {
-            position: relative;
-            width: 100%;
-        }
-
-        .input-brutalist-label {
-            display: block;
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            margin-left: 5px;
-        }
-
+        .input-brutalist-wrapper { position: relative; width: 100%; }
+        .input-brutalist-label { font-size: 14px; font-weight: 800; margin-bottom: 5px; display: block; }
         .input-brutalist {
-            width: 100%;
-            height: 65px;
-            background-color: var(--bg-surface);
-            border: var(--border-width-md) solid var(--border-color-main);
-            border-radius: var(--radius-md);
-            padding: 0 20px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-heading);
-            transition: var(--transition-fast);
+            width: 100%; height: 70px; background-color: var(--bg-surface);
+            border: var(--border-width-md) solid var(--border-black);
+            padding: 0 25px; font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600;
+            color: var(--text-heading); transition: var(--transition-fast);
         }
+        .input-brutalist:focus { box-shadow: var(--shadow-solid-sm); transform: translate(-4px, -4px); }
 
-        .input-brutalist::placeholder {
-            color: var(--text-dim);
-            font-weight: 500;
-        }
-
-        .input-brutalist:focus {
-            border-color: var(--brand-primary);
-            box-shadow: 4px 4px 0px 0px var(--brand-primary);
-            transform: translate(-2px, -2px);
-        }
-
-        /* Oczko do podglądu hasła w Inputach */
-        .eye-icon-btn {
-            position: absolute;
-            right: 20px;
-            top: 40px; /* Zależne od labela, wyśrodkowane w inpucie */
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 20px;
-            color: var(--text-muted);
-            transition: var(--transition-fast);
-            user-select: none;
-        }
-
-        .eye-icon-btn:hover {
-            color: var(--brand-primary);
-            transform: scale(1.1);
-        }
-
-        /* PRZYCISK GŁÓWNY FORMULARZA (SUBMIT) */
         .btn-brutalist-submit {
-            width: 100%;
-            height: 75px;
-            background-color: var(--bg-surface);
+            width: 100%; height: 85px; background-color: var(--bg-surface);
             border: var(--border-width-md) solid var(--brand-primary);
-            border-radius: var(--radius-md);
-            color: var(--text-heading);
-            font-family: 'Poppins', sans-serif;
-            font-size: 20px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: var(--transition-fast);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--text-heading); font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 800;
+            cursor: pointer; transition: var(--transition-fast); margin-top: 15px;
         }
+        .btn-brutalist-submit:hover { box-shadow: var(--shadow-solid-orange); transform: translate(-6px, -6px); background-color: var(--brand-light); }
+        .btn-brutalist-submit:active { box-shadow: none; transform: translate(0px, 0px); }
 
-        .btn-brutalist-submit:hover {
-            box-shadow: var(--shadow-brand);
-            transform: translate(-4px, -4px);
-            background-color: var(--brand-light);
-        }
+        .auth-error-display { color: var(--status-danger); font-size: 16px; font-weight: 800; text-align: center; min-height: 24px; }
 
-        .btn-brutalist-submit:active {
-            box-shadow: 0px 0px 0px 0px rgba(255,140,0,1);
-            transform: translate(0px, 0px);
-        }
+        /* --- SIDEBAR --- */
+        .app-sidebar { width: 350px; background-color: var(--bg-sidebar); border-right: var(--border-width-md) solid var(--border-black); display: flex; flex-direction: column; z-index: 1000; box-shadow: var(--shadow-solid-md); }
+        .sidebar-brand-box { padding: 40px 30px; border-bottom: var(--border-width-md) solid var(--border-black); background-color: var(--brand-primary); color: var(--text-heading); }
+        .sidebar-brand-box h2 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 32px; line-height: 1; }
+        .menu-category-label { font-size: 13px; font-weight: 900; color: var(--text-muted); margin: 30px 0 15px 15px; }
+        .menu-nav-item { display: flex; align-items: center; padding: 15px 20px; margin-bottom: 10px; border: var(--border-width-sm) solid transparent; cursor: pointer; font-weight: 700; font-size: 15px; transition: var(--transition-fast); }
+        .menu-nav-item i { margin-right: 20px; font-size: 22px; width: 30px; text-align: center; font-style: normal; }
+        .menu-nav-item:hover { border-color: var(--border-black); transform: translate(-4px, -4px); box-shadow: 4px 4px 0px 0px var(--border-black); }
+        .menu-nav-item.active { background-color: var(--text-heading); color: var(--text-inverse); border-color: var(--border-black); box-shadow: var(--shadow-solid-sm); transform: translate(-4px, -4px); }
+        .menu-nav-item.active i { color: var(--brand-primary); }
+        .sidebar-footer-box { padding: 30px; border-top: var(--border-width-md) solid var(--border-black); }
+        .btn-logout { width: 100%; padding: 20px; background-color: var(--status-danger); color: var(--text-inverse); border: var(--border-width-md) solid var(--border-black); font-weight: 900; font-size: 16px; cursor: pointer; transition: var(--transition-fast); }
+        .btn-logout:hover { box-shadow: var(--shadow-solid-sm); transform: translate(-4px, -4px); }
 
-        /* Miejsce na komunikaty o błędach w logowaniu */
-        .auth-error-display {
-            color: var(--status-danger);
-            font-size: 14px;
-            font-weight: 800;
-            text-align: center;
-            min-height: 20px;
-            margin-top: -10px;
-            text-transform: uppercase;
-        }
+        /* --- MAIN WORKSPACE --- */
+        .app-main-workspace { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; background-color: var(--bg-body); background-image: radial-gradient(var(--border-light) 2px, transparent 2px); background-size: 30px 30px; }
+        .app-topbar { height: 100px; border-bottom: var(--border-width-md) solid var(--border-black); padding: 0 50px; display: flex; align-items: center; justify-content: space-between; background-color: var(--bg-surface); }
+        .topbar-breadcrumbs { font-size: 22px; font-weight: 900; text-transform: uppercase; }
+        .topbar-breadcrumbs span { color: var(--brand-primary); }
+        .user-profile-widget { display: flex; align-items: center; gap: 15px; border: var(--border-width-sm) solid var(--border-black); padding: 8px 25px; box-shadow: 4px 4px 0px 0px var(--border-black); cursor: pointer; transition: var(--transition-fast); background-color: var(--bg-surface); }
+        .user-profile-widget:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px 0px var(--border-black); }
+        .user-name-wrapper { text-align: right; }
+        .user-name-wrapper b { display: block; font-size: 16px; font-weight: 900; }
+        .user-avatar-icon { width: 40px; height: 40px; background-color: var(--text-heading); color: var(--text-inverse); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; border: 2px solid var(--text-heading); }
 
-        /* ------------------------------------------------------------------------------------------------
-           MODUŁ: SIDEBAR (PASEK BOCZNY - ENTERPRISE AESTHETIC)
-           ------------------------------------------------------------------------------------------------ */
-        
-        .app-sidebar {
-            width: 320px;
-            background-color: var(--bg-sidebar);
-            border-right: var(--border-width-md) solid var(--border-color-main);
-            display: flex;
-            flex-direction: column;
-            z-index: var(--z-sidebar);
-            flex-shrink: 0;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition-base);
-        }
+        /* --- VIEW CANVAS & CARDS --- */
+        .app-view-canvas { padding: 50px 60px; overflow-y: auto; flex-grow: 1; }
+        .view-module { display: none; }
+        .view-module.active { display: block; animation: viewDropIn 0.4s ease; }
+        @keyframes viewDropIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        .sidebar-brand-box {
-            padding: 40px 30px;
-            border-bottom: var(--border-width-md) solid var(--border-color-main);
-            background-color: var(--bg-surface);
-        }
+        .grid-col-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .b-card { background-color: var(--bg-surface); padding: 45px; border: var(--border-width-md) solid var(--border-black); box-shadow: var(--shadow-solid-md); transition: var(--transition-fast); margin-bottom: 40px; }
+        .b-card:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow-solid-lg); }
+        .b-card-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 24px; margin-bottom: 15px; text-transform: uppercase; display: flex; align-items: center; gap: 15px; }
+        .b-card-title i { color: var(--brand-primary); font-style: normal; font-size: 32px; }
 
-        .sidebar-brand-box h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 30px;
-            color: var(--text-heading);
-            letter-spacing: -1.5px;
-            line-height: 1;
-        }
+        /* --- BUTTONS --- */
+        .btn-action { padding: 20px 35px; border: var(--border-width-md) solid var(--border-black); font-weight: 900; font-size: 16px; cursor: pointer; transition: var(--transition-fast); text-transform: uppercase; background-color: var(--bg-surface); }
+        .btn-action:hover { transform: translate(-6px, -6px); box-shadow: var(--shadow-solid-md); }
+        .btn-primary-action { background-color: var(--brand-primary); }
+        .btn-success-action { background-color: var(--status-success); color: white; }
+        .btn-danger-action { background-color: var(--status-danger); color: white; }
 
-        .sidebar-brand-box p {
-            font-size: 10px;
-            font-weight: 800;
-            color: var(--brand-primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 8px;
-        }
+        /* --- DASHBOARD WIDGETS --- */
+        .status-orb-container { width: 120px; height: 120px; border-radius: 50%; border: var(--border-width-lg) solid var(--border-black); display: flex; align-items: center; justify-content: center; font-size: 45px; transition: 0.3s; }
+        .status-orb-container.state-online { background-color: var(--status-success); }
+        .status-orb-container.state-booting { background-color: var(--status-warning); }
 
-        .sidebar-menu-scroll {
-            flex-grow: 1;
-            padding: 25px 15px;
-            overflow-y: auto;
-        }
+        .metric-bar-bg { height: 24px; border: var(--border-width-sm) solid var(--border-black); overflow: hidden; margin-bottom: 20px; }
+        .metric-bar-fill { height: 100%; transition: width 0.5s; border-right: var(--border-width-sm) solid var(--border-black); }
 
-        .menu-category-label {
-            font-size: 11px;
-            font-weight: 900;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            margin: 25px 0 10px 15px;
-            letter-spacing: 1px;
-        }
-
-        .menu-nav-item {
-            display: flex;
-            align-items: center;
-            padding: 15px 20px;
-            margin-bottom: 8px;
-            border-radius: var(--radius-md);
-            border: var(--border-width-sm) solid transparent;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 14px;
-            color: var(--text-main);
-            transition: var(--transition-fast);
-            text-decoration: none;
-        }
-
-        .menu-nav-item i {
-            margin-right: 15px;
-            font-size: 20px;
-            width: 25px;
-            text-align: center;
-            font-style: normal;
-        }
-
-        /* Hover w menu bocznym */
-        .menu-nav-item:hover {
-            border-color: var(--border-color-main);
-            background-color: var(--bg-input);
-            transform: translate(-2px, -2px);
-            box-shadow: 2px 2px 0px 0px var(--border-color-main);
-        }
-
-        /* Aktywny element menu */
-        .menu-nav-item.active {
-            background-color: var(--text-heading);
-            color: var(--text-inverse);
-            border-color: var(--border-color-main);
-            box-shadow: 4px 4px 0px 0px var(--brand-primary);
-            transform: translate(-4px, -4px);
-        }
-
-        .menu-nav-item.active i {
-            color: var(--brand-primary);
-        }
-
-        .sidebar-footer-box {
-            padding: 25px;
-            border-top: var(--border-width-md) solid var(--border-color-main);
-            background-color: var(--bg-surface);
-        }
-
-        /* Przycisk wylogowania w sidebarze */
-        .btn-logout {
-            width: 100%;
-            padding: 16px;
-            background-color: var(--bg-surface);
-            color: var(--status-danger);
-            border: var(--border-width-md) solid var(--border-color-main);
-            border-radius: var(--radius-md);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 900;
-            font-size: 14px;
-            cursor: pointer;
-            transition: var(--transition-fast);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-logout:hover {
-            background-color: var(--status-danger);
-            color: var(--text-inverse);
-            box-shadow: 4px 4px 0px 0px var(--border-color-main);
-            transform: translate(-4px, -4px);
-        }
-
-        .btn-logout:active {
-            box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
-            transform: translate(0px, 0px);
-        }
-
-        /* ------------------------------------------------------------------------------------------------
-           MODUŁ: GŁÓWNA RAMA APLIKACJI I TOPBAR
-           ------------------------------------------------------------------------------------------------ */
-        
-        .app-main-workspace {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            background-color: var(--bg-body);
-            position: relative;
-        }
-
-        .app-topbar {
-            height: 100px;
-            background-color: var(--bg-surface);
-            border-bottom: var(--border-width-md) solid var(--border-color-main);
-            padding: 0 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-shrink: 0;
-            z-index: var(--z-topbar);
-        }
-
-        .topbar-breadcrumbs {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--text-heading);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .topbar-breadcrumbs span {
-            color: var(--brand-primary);
-            font-weight: 900;
-            text-transform: uppercase;
-        }
-
-        .topbar-user-area {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .plan-badge {
-            background-color: var(--bg-surface);
-            color: var(--text-heading);
-            padding: 8px 16px;
-            border: var(--border-width-sm) solid var(--border-color-main);
-            border-radius: var(--radius-md);
-            font-size: 11px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 2px 2px 0px 0px var(--brand-primary);
-        }
-
-        .user-profile-widget {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background-color: var(--bg-surface);
-            padding: 8px 20px 8px 15px;
-            border: var(--border-width-sm) solid var(--border-color-main);
-            border-radius: var(--radius-lg);
-            box-shadow: 4px 4px 0px 0px var(--border-color-main);
-            transition: var(--transition-fast);
-            cursor: pointer;
-        }
-
-        .user-profile-widget:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px 0px var(--border-color-main);
-        }
-
-        .user-name-wrapper {
-            text-align: right;
-        }
-
-        .user-name-wrapper b {
-            display: block;
-            font-size: 14px;
-            font-weight: 800;
-            color: var(--text-heading);
-            line-height: 1.1;
-        }
-
-        .user-name-wrapper small {
-            color: var(--status-success);
-            font-weight: 900;
-            font-size: 10px;
-            text-transform: uppercase;
-        }
-
-        .user-avatar-icon {
-            width: 36px;
-            height: 36px;
-            background-color: var(--text-heading);
-            color: var(--text-inverse);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 18px;
-            border: 2px solid var(--text-heading);
-            border-radius: var(--radius-circle);
-        }
-
-        /* ------------------------------------------------------------------------------------------------
-           MODUŁ: SYSTEM WIDOKÓW (ROUTING CANVAS)
-           ------------------------------------------------------------------------------------------------ */
-        
-        .app-view-canvas {
-            padding: 40px 50px;
-            overflow-y: auto;
-            flex-grow: 1;
-            scroll-behavior: smooth;
-            position: relative;
-        }
-
-        /* Ukrywanie nieaktywnych widoków */
-        .view-module {
-            display: none;
-        }
-
-        /* Aktywacja widoku z animacją */
-        .view-module.active {
-            display: block;
-            animation: viewFadeIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        @keyframes viewFadeIn {
-            from { opacity: 0; transform: translateY(25px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Reszta CSS (Karty, Dashboard, Suwaki) znajdzie się w Części 2, 
-           aby zmieścić się w limicie znaków i dobić do 2000 linii. */
-
+        /* --- TOAST --- */
+        .toast-notification { position: fixed; bottom: 40px; right: 40px; background-color: var(--text-heading); color: var(--text-inverse); padding: 20px 30px; font-weight: 800; font-size: 15px; transform: translateY(200%); transition: 0.5s; z-index: 9999; border: 4px solid var(--brand-primary); box-shadow: var(--shadow-solid-sm); display: flex; align-items: center; gap: 15px; }
+        .toast-notification.show { transform: translateY(0); }
     </style>
 </head>
 <body>
@@ -682,31 +199,24 @@
             </div>
 
             <div class="auth-tabs-wrapper">
-                <button id="tab-btn-register" class="auth-tab-btn" onclick="authSystem.switchTab('register')">
-                    Tworzenie konta
-                </button>
-                <button id="tab-btn-login" class="auth-tab-btn active" onclick="authSystem.switchTab('login')">
-                    Logowanie
-                </button>
+                <button id="tab-btn-register" class="auth-tab-btn" onclick="authSystem.switchTab('register')">Tworzenie konta</button>
+                <button id="tab-btn-login" class="auth-tab-btn active" onclick="authSystem.switchTab('login')">Logowanie</button>
             </div>
 
             <div class="auth-form-area">
                 <div class="input-brutalist-wrapper">
-                    <label class="input-label" id="auth-label-user">Nazwa konta</label>
-                    <input type="text" id="auth-input-username" class="input-brutalist" placeholder="Wpisz nick z gry">
+                    <label class="input-brutalist-label" id="auth-label-user">Nazwa konta</label>
+                    <input type="text" id="auth-input-username" class="input-brutalist" placeholder="Wpisz nazwę">
                 </div>
 
                 <div class="input-brutalist-wrapper">
-                    <label class="input-label" id="auth-label-pass">Hasło</label>
+                    <label class="input-brutalist-label" id="auth-label-pass">Hasło</label>
                     <input type="password" id="auth-input-password" class="input-brutalist" placeholder="Wpisz hasło">
-                    <div class="eye-icon-btn" onclick="authSystem.togglePasswordVisibility('auth-input-password', this)">👁️</div>
                 </div>
                 
                 <div id="auth-error-msg" class="auth-error-display"></div>
 
-                <button id="auth-btn-submit" class="btn-brutalist-submit" onclick="authSystem.executeAuth()">
-                    Zaloguj się
-                </button>
+                <button id="auth-btn-submit" class="btn-brutalist-submit" onclick="authSystem.executeAuth()">Zaloguj się</button>
             </div>
 
         </div>
@@ -731,11 +241,9 @@
                 <div class="menu-nav-item" onclick="uiEngine.routeTo('terminal', this)"><i>💻</i> Konsola Systemowa</div>
                 <div class="menu-nav-item" onclick="uiEngine.routeTo('filemanager', this)"><i>📂</i> Eksplorator Plików</div>
                 <div class="menu-nav-item" onclick="uiEngine.routeTo('database', this)"><i>🗄️</i> Bazy MySQL</div>
-                <div class="menu-nav-item" onclick="uiEngine.routeTo('cronjobs', this)"><i>⏱️</i> Harmonogramy Cron</div>
 
                 <div class="menu-category-label">Dodatki i Ochrona</div>
                 <div class="menu-nav-item" onclick="uiEngine.routeTo('marketplace', this)"><i>🔌</i> Rynek Pluginów</div>
-                <div class="menu-nav-item" onclick="uiEngine.routeTo('firewall', this)"><i>🛡️</i> Ochrona Sieciowa</div>
                 <div class="menu-nav-item" onclick="uiEngine.routeTo('auditlogs', this)"><i>📜</i> Dziennik Audytu</div>
             </div>
 
@@ -748,9 +256,7 @@
             
             <div class="app-topbar">
                 <div class="topbar-breadcrumbs">Panel / <span id="ui-breadcrumb-title">Pulpit Sterowania</span></div>
-                
                 <div class="topbar-user-area">
-                    <div class="plan-badge">ULTIMATE FREE</div>
                     <div class="user-profile-widget">
                         <div class="user-name-wrapper">
                             <b id="ui-topbar-user">Gość</b>
@@ -762,1295 +268,302 @@
             </div>
 
             <div class="app-view-canvas">
-                <style>
-                /* --- SYSTEM SIATEK (GRIDS) --- */
-                .grid-responsive-2 {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-                    gap: 35px;
-                    margin-bottom: 40px;
-                }
-
-                .grid-responsive-3 {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                    gap: 30px;
-                    margin-bottom: 40px;
-                }
-
-                .grid-responsive-4 {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                    gap: 20px;
-                    margin-bottom: 30px;
-                }
-
-                /* --- SYSTEM KART NEOBRUTALISM --- */
-                .widget-card {
-                    background-color: var(--bg-surface);
-                    border-radius: var(--radius-large);
-                    padding: 45px;
-                    border: var(--border-width-md) solid var(--border-color-main);
-                    box-shadow: var(--shadow-sm);
-                    transition: var(--transition-fast);
-                    position: relative;
-                }
-
-                .widget-card:hover {
-                    transform: translate(-4px, -4px);
-                    box-shadow: var(--shadow-md);
-                }
-
-                .card-title {
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 24px;
-                    font-weight: 900;
-                    color: var(--text-heading);
-                    margin-bottom: 12px;
-                    display: flex;
-                    align-items: center;
-                    gap: 15px;
-                    text-transform: uppercase;
-                }
-
-                .card-title i {
-                    color: var(--brand-primary);
-                    font-size: 28px;
-                    font-style: normal;
-                }
-
-                .card-description {
-                    font-size: 14px;
-                    font-weight: 600;
-                    color: var(--text-muted);
-                    margin-bottom: 30px;
-                    line-height: 1.6;
-                }
-
-                /* --- PRZYCISKI AKCJI W PANELU --- */
-                .btn-action {
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 12px;
-                    padding: 20px 35px;
-                    border: var(--border-width-md) solid var(--border-color-main);
-                    border-radius: var(--radius-md);
-                    font-family: 'Poppins', sans-serif;
-                    font-size: 15px;
-                    font-weight: 800;
-                    cursor: pointer;
-                    transition: var(--transition-fast);
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                }
-
-                .btn-action:hover {
-                    transform: translate(-4px, -4px);
-                    box-shadow: var(--shadow-sm);
-                }
-
-                .btn-action:active {
-                    transform: translate(0px, 0px);
-                    box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
-                }
-
-                .btn-primary-action { background-color: var(--brand-primary); color: var(--text-heading); }
-                .btn-success-action { background-color: var(--status-success); color: var(--text-inverse); }
-                .btn-danger-action { background-color: var(--status-danger); color: var(--text-inverse); }
-
-                /* --- WSKAŹNIK STATUSU (ORB) --- */
-                .dashboard-status-wrapper {
-                    display: flex;
-                    align-items: center;
-                    gap: 35px;
-                    margin-bottom: 35px;
-                }
-
-                .status-orb-container {
-                    width: 120px;
-                    height: 120px;
-                    border-radius: var(--radius-circle);
-                    border: var(--border-width-lg) solid var(--border-color-main);
-                    background-color: var(--bg-body);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 45px;
-                    transition: var(--transition-base);
-                }
-
-                .status-orb-container.state-online {
-                    background-color: var(--status-success);
-                    color: var(--text-inverse);
-                    animation: pulseOnline 2s infinite;
-                }
-
-                @keyframes pulseOnline {
-                    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
-                    70% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
-                    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-                }
-
-                .status-orb-container.state-booting {
-                    background-color: var(--status-warning);
-                    color: var(--text-heading);
-                    animation: spinBoot 2s linear infinite;
-                }
-
-                @keyframes spinBoot {
-                    from { transform: rotate(0deg); }
-                    to { transform: rotate(360deg); }
-                }
-
-                .status-text-container h2 {
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 38px;
-                    font-weight: 900;
-                    line-height: 1;
-                    margin-bottom: 10px;
-                }
-
-                .status-ip-badge {
-                    display: inline-block;
-                    background-color: var(--bg-input);
-                    padding: 8px 16px;
-                    border: var(--border-width-sm) solid var(--border-color-main);
-                    border-radius: var(--radius-sm);
-                    font-family: 'Fira Code', monospace;
-                    font-size: 14px;
-                    font-weight: 700;
-                    color: var(--text-heading);
-                }
-
-                .uptime-display {
-                    background-color: var(--bg-input);
-                    padding: 18px 25px;
-                    border: var(--border-width-sm) solid var(--border-color-main);
-                    border-radius: var(--radius-md);
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 15px;
-                    font-weight: 800;
-                    font-size: 14px;
-                    margin-bottom: 35px;
-                }
-
-                .uptime-display b {
-                    font-family: 'Fira Code', monospace;
-                    font-size: 18px;
-                    color: var(--brand-primary);
-                }
-
-                /* --- PASKI ZASOBÓW (METRICS) --- */
-                .metric-container {
-                    margin-bottom: 25px;
-                }
-
-                .metric-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: flex-end;
-                    margin-bottom: 10px;
-                }
-
-                .metric-title {
-                    font-size: 12px;
-                    font-weight: 800;
-                    text-transform: uppercase;
-                    color: var(--text-muted);
-                }
-
-                .metric-value {
-                    font-family: 'Fira Code', monospace;
-                    font-size: 15px;
-                    font-weight: 700;
-                    color: var(--text-heading);
-                }
-
-                .metric-bar-bg {
-                    height: 24px;
-                    background-color: var(--bg-input);
-                    border: var(--border-width-md) solid var(--border-color-main);
-                    border-radius: var(--radius-sm);
-                    overflow: hidden;
-                }
-
-                .metric-bar-fill {
-                    height: 100%;
-                    background-color: var(--text-heading);
-                    width: 0%;
-                    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
-                }
-
-                .fill-ram { background-color: var(--brand-primary); }
-                .fill-cpu { background-color: var(--text-heading); }
-
-                /* --- GIGANTYCZNE SUWAKI (ZASOBY FREE) --- */
-                .resource-slider-card {
-                    background-color: var(--bg-input);
-                    padding: 40px;
-                    border: var(--border-width-md) solid var(--border-color-main);
-                    border-radius: var(--radius-lg);
-                    margin-bottom: 30px;
-                    transition: var(--transition-fast);
-                }
-
-                .resource-slider-card:hover {
-                    background-color: var(--bg-surface);
-                    transform: translate(-4px, -4px);
-                    box-shadow: var(--shadow-sm);
-                }
-
-                .resource-slider-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-bottom: 20px;
-                }
-
-                .resource-slider-header span {
-                    font-size: 14px;
-                    font-weight: 900;
-                    color: var(--text-muted);
-                }
-
-                .resource-slider-header b {
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 38px;
-                    font-weight: 900;
-                    color: var(--text-heading);
-                }
-
-                .custom-range {
-                    width: 100%;
-                    height: 12px;
-                    background-color: var(--border-color-heavy);
-                    border-radius: var(--radius-sm);
-                    appearance: none;
-                    outline: none;
-                    margin: 25px 0;
-                }
-
-                .custom-range::-webkit-slider-thumb {
-                    appearance: none;
-                    width: 36px;
-                    height: 36px;
-                    background-color: var(--brand-primary);
-                    border: var(--border-width-md) solid var(--border-color-main);
-                    border-radius: var(--radius-circle);
-                    cursor: pointer;
-                    transition: var(--transition-fast);
-                }
-
-                .custom-range::-webkit-slider-thumb:hover {
-                    transform: scale(1.2);
-                    background-color: var(--brand-hover);
-                }
-
-                .system-alert {
-                    display: none;
-                    background-color: var(--status-warning-bg);
-                    color: var(--text-heading);
-                    padding: 20px;
-                    border: var(--border-width-sm) solid var(--status-warning);
-                    border-radius: var(--radius-md);
-                    font-size: 13px;
-                    font-weight: 700;
-                    margin-top: 20px;
-                    animation: shakeAlert 0.4s ease;
-                }
-
-                @keyframes shakeAlert {
-                    0%, 100% { transform: translateX(0); }
-                    25% { transform: translateX(-8px); }
-                    75% { transform: translateX(8px); }
-                }
-
-                /* --- PRZEŁĄCZNIKI (TOGGLES) --- */
-                .settings-row {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: 30px;
-                    background-color: var(--bg-input);
-                    border: var(--border-width-md) solid var(--border-color-main);
-                    border-radius: var(--radius-lg);
-                    margin-bottom: 20px;
-                    transition: var(--transition-fast);
-                }
-
-                .settings-row:hover {
-                    background-color: var(--bg-surface);
-                    transform: translate(-4px, -4px);
-                    box-shadow: var(--shadow-sm);
-                }
-
-                .settings-info h4 {
-                    font-size: 16px;
-                    font-weight: 800;
-                    color: var(--text-heading);
-                    margin-bottom: 6px;
-                }
-
-                .settings-info p {
-                    font-size: 13px;
-                    font-weight: 600;
-                    color: var(--text-muted);
-                }
-
-                .switch-container {
-                    position: relative;
-                    width: 64px;
-                    height: 36px;
-                    flex-shrink: 0;
-                }
-
-                .switch-container input { opacity: 0; width: 0; height: 0; }
-
-                .switch-track {
-                    position: absolute;
-                    cursor: pointer;
-                    top: 0; left: 0; right: 0; bottom: 0;
-                    background-color: var(--border-color-heavy);
-                    border: var(--border-width-sm) solid var(--border-color-main);
-                    border-radius: 40px;
-                    transition: .3s;
-                }
-
-                .switch-track:before {
-                    position: absolute;
-                    content: "";
-                    height: 24px;
-                    width: 24px;
-                    left: 4px;
-                    bottom: 4px;
-                    background-color: var(--bg-surface);
-                    border: var(--border-width-sm) solid var(--border-color-main);
-                    border-radius: 50%;
-                    transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                }
-
-                input:checked + .switch-track { background-color: var(--status-success); }
-                input:checked + .switch-track:before { transform: translateX(28px); }
-
-                /* --- KONSOLA SYSTEMOWA --- */
-                .terminal-layout {
-                    background-color: var(--bg-terminal);
-                    border-radius: var(--radius-lg);
-                    padding: 30px;
-                    border: var(--border-width-lg) solid var(--border-color-main);
-                }
-
-                .terminal-output {
-                    height: 480px;
-                    overflow-y: auto;
-                    font-family: 'Fira Code', monospace;
-                    color: #f8fafc;
-                    font-size: 14px;
-                    line-height: 1.8;
-                    padding-right: 15px;
-                }
-
-                .terminal-output b { color: var(--brand-primary); }
-                .log-time { color: #64748b; margin-right: 15px; }
-                .log-info { color: #38bdf8; }
-                .log-success { color: #34d399; font-weight: 700; }
-                .log-warn { color: #fbbf24; }
-                .log-error { color: #f87171; background-color: rgba(248,113,113,0.15); padding: 2px 8px; }
-
-                .terminal-input-area {
-                    display: flex;
-                    gap: 15px;
-                    margin-top: 30px;
-                }
-
-                .cmd-input {
-                    flex-grow: 1;
-                    padding: 20px 30px;
-                    background-color: #1e293b;
-                    border: var(--border-width-md) solid #334155;
-                    border-radius: var(--radius-md);
-                    color: #ffffff;
-                    font-family: 'Fira Code', monospace;
-                    font-size: 15px;
-                }
-
-                .cmd-input:focus { border-color: var(--brand-primary); }
-
-                /* --- MENEDŻER PLIKÓW FTP --- */
-                .ftp-workspace {
-                    display: grid;
-                    grid-template-columns: 300px 1fr;
-                    gap: 30px;
-                    height: 650px;
-                }
-
-                .ftp-tree-view {
-                    background-color: var(--bg-input);
-                    border-radius: var(--radius-md);
-                    padding: 20px;
-                    border: var(--border-width-md) solid var(--border-color-main);
-                    overflow-y: auto;
-                }
-
-                .ftp-node {
-                    padding: 15px 20px;
-                    border-radius: var(--radius-sm);
-                    cursor: pointer;
-                    margin-bottom: 8px;
-                    font-weight: 700;
-                    font-size: 14px;
-                    color: var(--text-main);
-                    display: flex;
-                    align-items: center;
-                    gap: 15px;
-                    border: var(--border-width-sm) solid transparent;
-                    transition: var(--transition-fast);
-                }
-
-                .ftp-node:hover {
-                    border-color: var(--border-color-main);
-                    transform: translate(-2px, -2px);
-                    box-shadow: 2px 2px 0px 0px var(--border-color-main);
-                }
-
-                .ftp-node.active-node {
-                    background-color: var(--text-heading);
-                    color: var(--text-inverse);
-                    border-color: var(--border-color-main);
-                }
-
-                .ftp-editor-wrapper {
-                    position: relative;
-                    height: 100%;
-                    border-radius: var(--radius-md);
-                    overflow: hidden;
-                    border: var(--border-width-lg) solid var(--bg-terminal);
-                }
-
-                .ftp-textarea {
-                    width: 100%;
-                    height: 100%;
-                    background-color: var(--bg-terminal);
-                    color: #f8fafc;
-                    padding: 30px;
-                    border: none;
-                    resize: none;
-                    font-family: 'Fira Code', monospace;
-                    font-size: 15px;
-                    line-height: 1.7;
-                }
-
-                /* --- EKRAN KREATORA SERWERA (SPAWN) --- */
-                .spawn-screen {
-                    text-align: center;
-                    padding: 100px 0;
-                    animation: authDropIn 0.6s ease;
-                }
-
-                .spawn-input-field {
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 45px;
-                    font-weight: 900;
-                    border: none;
-                    border-bottom: var(--border-width-lg) solid var(--border-color-main);
-                    background-color: transparent;
-                    text-align: center;
-                    color: var(--text-heading);
-                    width: 100%;
-                    max-width: 700px;
-                    padding: 20px;
-                    margin: 50px auto;
-                    display: block;
-                    transition: var(--transition-fast);
-                }
-
-                .spawn-input-field:focus { border-bottom-color: var(--brand-primary); }
-
-                /* --- TABELE I RÓŻNE --- */
-                .huge-input {
-                    width: 100%;
-                    background-color: transparent;
-                    border: none;
-                    border-bottom: var(--border-width-md) solid var(--border-color-main);
-                    padding: 25px 15px;
-                    font-size: 32px;
-                    font-weight: 900;
-                    color: var(--text-heading);
-                    font-family: 'Montserrat', sans-serif;
-                    margin-bottom: 40px;
-                }
-
-                .system-table {
-                    width: 100%;
-                    border-collapse: separate;
-                    border-spacing: 0 10px;
-                }
-
-                .system-table th {
-                    text-align: left;
-                    padding: 15px 20px;
-                    color: var(--text-muted);
-                    font-weight: 800;
-                    font-size: 12px;
-                    text-transform: uppercase;
-                }
-
-                .system-table td {
-                    padding: 20px 25px;
-                    background-color: var(--bg-input);
-                    font-size: 14px;
-                    font-weight: 600;
-                    color: var(--text-main);
-                    border-top: var(--border-width-sm) solid var(--border-color-main);
-                    border-bottom: var(--border-width-sm) solid var(--border-color-main);
-                }
-
-                .system-table tr td:first-child {
-                    border-left: var(--border-width-sm) solid var(--border-color-main);
-                    border-radius: var(--radius-md) 0 0 var(--radius-md);
-                    font-family: 'Fira Code', monospace;
-                }
-
-                .system-table tr td:last-child {
-                    border-right: var(--border-width-sm) solid var(--border-color-main);
-                    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-                }
-            </style>
-
-            <div class="app-view-canvas">
                 
-                <div id="module-dashboard" class="view-module active">
+                <div id="view-dashboard" class="view-module active">
                     
-                    <div id="layout-spawn-server" style="display: none;">
-                        <div class="spawn-screen">
-                            <div style="font-size: 90px; margin-bottom: 20px;">🥚</div>
-                            <h1 style="font-family: 'Montserrat', sans-serif; font-size: 46px; font-weight: 900; color: var(--text-heading);">Stwórz swój świat!</h1>
-                            <p style="font-size: 16px; font-weight: 600; color: var(--text-muted); margin-top: 15px;">Wpisz unikalną nazwę serwera. Adres IP zostanie przypisany automatycznie.</p>
-                            
-                            <input type="text" id="in-create-name" class="spawn-input-field" placeholder="np. survival-ekipy">
-                            
-                            <div style="margin-bottom: 50px;">
-                                <span style="font-size: 14px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px;">Przydzielony Adres IP:</span><br>
-                                <span id="out-create-ip" style="font-family: 'Fira Code', monospace; font-size: 32px; font-weight: 900; color: var(--brand-primary); display: inline-block; margin-top: 10px;">...kokoszka.me</span>
-                            </div>
-                            
-                            <button class="btn-action btn-primary-action" style="padding: 25px 80px; font-size: 20px;" onclick="engine.deployNewServer()">URUCHOM SERWER ZA DARMO</button>
+                    <div id="layout-spawner" style="display: none;">
+                        <div class="b-card" style="text-align: center; padding: 80px 40px; max-width: 800px; margin: 0 auto;">
+                            <div style="font-size: 80px; margin-bottom: 20px;">🥚</div>
+                            <h1 style="font-family: 'Montserrat', sans-serif; font-size: 38px; font-weight: 900; text-transform: uppercase;">Zainicjuj Serwer</h1>
+                            <input type="text" id="in-create-name" class="input-brutalist" style="height: 90px; text-align: center; margin: 30px 0;" placeholder="np. survival-kokoszka">
+                            <p style="font-weight: 900; font-size: 24px; margin-bottom: 40px;">IP: <span id="out-create-ip" style="color: var(--brand-primary);">...kokoszka.me</span></p>
+                            <button class="btn-action btn-primary-action" style="width: 100%; font-size: 20px;" onclick="kernel.deployNewServer()">STWÓRZ MASZYNĘ ZA DARMO</button>
                         </div>
                     </div>
 
-                    <div id="layout-manage-server" style="display: none;">
-                        <div class="grid-responsive-2">
-                            
-                            <div class="widget-card">
-                                <div class="dashboard-status-wrapper">
+                    <div id="layout-manage" style="display: none;">
+                        <div class="grid-col-2">
+                            <div class="b-card">
+                                <div style="display: flex; align-items: center; gap: 30px; margin-bottom: 30px;">
                                     <div id="ui-status-orb" class="status-orb-container">🔴</div>
-                                    <div class="status-text-container">
-                                        <h2 id="ui-status-text">OFFLINE</h2>
-                                        <div class="status-ip-badge" id="ui-status-ip">---</div>
+                                    <div>
+                                        <h2 id="ui-status-text" style="font-size: 38px; font-weight: 900;">OFFLINE</h2>
+                                        <div id="ui-status-ip" style="background: var(--bg-input); padding: 5px 15px; border: 2px solid black; font-weight: 700;">---</div>
                                     </div>
                                 </div>
-                                
-                                <div class="uptime-display">
-                                    <span>Aktywny czas pracy węzła:</span> <b id="ui-uptime-clock">00:00:00</b>
-                                </div>
-                                
-                                <div style="display: flex; gap: 20px;">
-                                    <button id="ui-btn-power" class="btn-action btn-success-action" style="flex: 2.5;" onclick="engine.togglePowerState()">START MASZYNY</button>
-                                    <button class="btn-action btn-danger-action" style="flex: 1;" onclick="engine.triggerEmergencyKill()">KILL</button>
+                                <div style="margin-bottom: 30px; font-weight: 700;">Czas pracy: <b id="ui-uptime-clock">00:00:00</b></div>
+                                <div style="display: flex; gap: 15px;">
+                                    <button id="ui-btn-power" class="btn-action btn-success-action" style="flex: 2;" onclick="kernel.togglePowerState()">START</button>
+                                    <button class="btn-action btn-danger-action" style="flex: 1;" onclick="kernel.triggerEmergencyKill()">KILL</button>
                                 </div>
                             </div>
 
-                            <div class="widget-card">
-                                <div class="card-title"><i>⚡</i> Zużycie Zasobów</div>
-                                <p class="card-description">Dane z hypervisora odświeżane co 2 sekundy.</p>
+                            <div class="b-card">
+                                <h3 class="b-card-title"><i>⚡</i> Obciążenie Systemu</h3>
+                                <div style="display: flex; justify-content: space-between; font-weight: 800; margin-bottom: 5px;"><span>RAM</span><span id="ui-live-ram-text">0 / 4096 MB</span></div>
+                                <div class="metric-bar-bg"><div id="ui-live-ram-bar" class="metric-bar-fill" style="background: var(--brand-primary);"></div></div>
                                 
-                                <div class="metric-container">
-                                    <div class="metric-header">
-                                        <span class="metric-title">Pamięć Operacyjna (RAM)</span>
-                                        <span class="metric-value" id="ui-live-ram-text">0 / 4096 MB</span>
-                                    </div>
-                                    <div class="metric-bar-bg">
-                                        <div id="ui-live-ram-bar" class="metric-bar-fill fill-ram"></div>
-                                    </div>
-                                </div>
-                                
-                                <div class="metric-container">
-                                    <div class="metric-header">
-                                        <span class="metric-title">Obciążenie Procesora (CPU)</span>
-                                        <span class="metric-value" id="ui-live-cpu-text">0%</span>
-                                    </div>
-                                    <div class="metric-bar-bg">
-                                        <div id="ui-live-cpu-bar" class="metric-bar-fill fill-cpu"></div>
-                                    </div>
-                                </div>
-
-                                <div style="text-align: center; border-top: var(--border-width-sm) dashed var(--border-color-main); padding-top: 20px; margin-top: 30px;">
-                                    <small style="font-weight: 900; font-size: 11px; text-transform: uppercase; color: var(--text-dim);">Lokalizacja: <b style="color: var(--text-heading);">PL-WAR-01</b></small>
-                                </div>
+                                <div style="display: flex; justify-content: space-between; font-weight: 800; margin-top: 20px; margin-bottom: 5px;"><span>CPU</span><span id="ui-live-cpu-text">0%</span></div>
+                                <div class="metric-bar-bg"><div id="ui-live-cpu-bar" class="metric-bar-fill" style="background: black;"></div></div>
                             </div>
                         </div>
-
-                        <div class="widget-card" style="padding: 35px;">
-                            <div class="grid-responsive-4" style="margin: 0; text-align: center;">
-                                <div><small style="font-size: 11px; font-weight: 800; color: var(--text-muted);">SILNIK GRY</small><br><b id="ui-info-engine" style="font-size: 22px; color: var(--text-heading);">---</b></div>
-                                <div><small style="font-size: 11px; font-weight: 800; color: var(--text-muted);">WERSJA MC</small><br><b id="ui-info-version" style="font-size: 22px; color: var(--text-heading);">---</b></div>
-                                <div><small style="font-size: 11px; font-weight: 800; color: var(--text-muted);">GRACZE ONLINE</small><br><b style="font-size: 22px; color: var(--text-heading);">0 / 20</b></div>
-                                <div><small style="font-size: 11px; font-weight: 800; color: var(--text-muted);">PORT TCP</small><br><b style="font-size: 22px; color: var(--status-info); font-family: 'Fira Code', monospace;">25565</b></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="module-resources" class="view-module">
-                    <div class="widget-card">
-                        <div class="card-title"><i>🚀</i> Nielimitowany Przydział Mocy</div>
-                        <p class="card-description" style="font-size: 16px;">W KokoszkaMC zasoby są darmowe. Maszyna wirtualna używa jednak fizycznych zasobów Twojej przeglądarki, więc przydzielaj je mądrze!</p>
                         
-                        <div class="resource-slider-card">
-                            <div class="resource-slider-header">
-                                <span>Przydzielona Pamięć RAM (GB)</span>
-                                <b id="lbl-ram-val">4</b>
-                            </div>
-                            <input type="range" min="1" max="128" value="4" class="custom-range" id="slider-ram" oninput="engine.syncResourceSliders()">
-                            <div id="alert-ram-limit" class="system-alert">
-                                <b>KRYTYCZNE OSTRZEŻENIE SYSTEMOWE:</b> Wykryto alokację ponad 16GB RAM. Przeglądarka może ulec awarii (Out-Of-Memory), jeśli Twój fizyczny sprzęt nie posiada tyle wolnej pamięci.
-                            </div>
-                        </div>
-
-                        <div class="resource-slider-card">
-                            <div class="resource-slider-header">
-                                <span>Rdzenie Procesora (vCPU)</span>
-                                <b id="lbl-cpu-val">2</b>
-                            </div>
-                            <input type="range" min="1" max="32" value="2" class="custom-range" id="slider-cpu" oninput="engine.syncResourceSliders()">
-                            <div id="alert-cpu-limit" class="system-alert">
-                                <b>OSTRZEŻENIE O WYDAJNOŚCI:</b> Silnik Java dla Minecrafta wykorzystuje max. 4 rdzenie do głównego wątku. Wyższa wartość sztucznie obciąży scheduler Windowsa/Linuxa.
-                            </div>
-                        </div>
-
-                        <button class="btn-action btn-primary-action" style="width: 100%; padding: 25px; font-size: 18px;" onclick="ui.triggerToast('Zapisano nowe parametry fizyczne węzła. Uruchom ponownie serwer.')">ZAPISZ KONFIGURACJĘ SPRZĘTOWĄ</button>
-                    </div>
-                </div>
-
-                <div id="module-software" class="view-module">
-                    <div class="widget-card">
-                        <div class="card-title"><i>⚙️</i> Wybór Oprogramowania</div>
-                        <p class="card-description">Zmień silnik serwera w dowolnym momencie. System pobierze nowe biblioteki Java .jar z chmury.</p>
-                        
-                        <div style="margin-bottom: 40px; margin-top: 30px;">
-                            <label class="input-label" style="margin-left: 0; color: var(--text-heading);">Rodzina Silnika:</label>
-                            <select id="sel-engine-type" class="huge-input">
-                                <option value="Vanilla">Vanilla Minecraft (Klasyczny bez modów)</option>
-                                <option selected value="PaperMC">PaperMC (Wysoka Wydajność + Pluginy)</option>
-                                <option value="Spigot">Spigot (Starszy standard pod pluginy)</option>
-                                <option value="Forge">Forge (Modyfikacje Java/Modpacki)</option>
-                                <option value="Fabric">Fabric (Lekkie mody nowej generacji)</option>
-                            </select>
-                        </div>
-
-                        <div style="margin-bottom: 50px;">
-                            <label class="input-label" style="margin-left: 0; color: var(--text-heading);">Wersja Klienta Gry:</label>
-                            <select id="sel-engine-version" class="huge-input">
-                                </select>
-                        </div>
-
-                        <button class="btn-action btn-primary-action" style="width: 100%; padding: 25px; font-size: 18px;" onclick="engine.processSoftwareInstallation()">ZAINSTALUJ NOWY SILNIK I ZRESTARTUJ WĘZEŁ</button>
-                    </div>
-                </div>
-
-                <div id="module-properties" class="view-module">
-                    <div class="widget-card">
-                        <div class="card-title"><i>🛠️</i> Ustawienia Mechaniki Gry</div>
-                        <p class="card-description">Edytuj najważniejsze wartości z pliku server.properties poprzez bezpieczne przełączniki UI.</p>
-
-                        <div class="settings-row">
-                            <div class="settings-info">
-                                <h4>Tryb Non-Premium (Cracked / Offline-Mode)</h4>
-                                <p>Wyłącza weryfikację kont z serwerami Mojang. Wymagane dla graczy bez zakupionej gry.</p>
-                            </div>
-                            <div class="switch-container">
-                                <input type="checkbox" id="prop-nonpremium" checked>
-                                <span class="switch-track"></span>
-                            </div>
-                        </div>
-
-                        <div class="settings-row">
-                            <div class="settings-info">
-                                <h4>Walka PvP (Player vs Player)</h4>
-                                <p>Umożliwia graczom zadawanie sobie obrażeń za pomocą broni i czarów na mapie.</p>
-                            </div>
-                            <div class="switch-container">
-                                <input type="checkbox" id="prop-pvp" checked>
-                                <span class="switch-track"></span>
-                            </div>
-                        </div>
-
-                        <div class="settings-row">
-                            <div class="settings-info">
-                                <h4>Biała Lista (Whitelist)</h4>
-                                <p>Zablokuj serwer dla nieznajomych. Tylko gracze wpisani na listę będą mogli dołączyć.</p>
-                            </div>
-                            <div class="switch-container">
-                                <input type="checkbox" id="prop-whitelist">
-                                <span class="switch-track"></span>
-                            </div>
-                        </div>
-
-                        <div style="margin-top: 50px;">
-                            <label class="input-label" style="margin-left: 0; color: var(--text-heading);">Wiadomość Powitalna na Liście Serwerów (MOTD):</label>
-                            <input type="text" id="prop-motd" class="huge-input" style="font-size: 26px;" placeholder="Witaj na potężnym serwerze KokoszkaMC!">
-                        </div>
-
-                        <button class="btn-action btn-primary-action" style="width: 100%; margin-top: 20px;" onclick="ui.triggerToast('Zapisano! Plik server.properties został asynchronicznie nadpisany na dysku SSD.')">ZAPISZ KONFIGURACJĘ BAZOWĄ</button>
-                    </div>
-                </div>
-
-                <div id="module-terminal" class="view-module">
-                    <div class="terminal-layout">
-                        <div class="terminal-output" id="terminal-screen-log">
-                            <div class="log-info"><span class="log-time">[SYSTEM]</span> Zestawiono szyfrowane połączenie WSS z węzłem docelowym na architekturze Linux.</div>
-                            <div class="log-success"><span class="log-time">[SYSTEM]</span> Terminal Operacyjny KokoszkaOS v4.0 TITAN uruchomiony pomyślnie.</div>
-                        </div>
-                        <div class="terminal-input-area">
-                            <input type="text" id="terminal-cmd-input" class="cmd-input" placeholder="Wpisz komendę administracyjną (np. /op TwójNick, /save-all, /stop, /weather clear)">
-                            <button class="btn-action btn-outline" style="border-color: #334155; color: white; width: 220px;" onclick="engine.executeTerminalCommand()">WYKONAJ</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="module-ftp" class="view-module">
-                    <div class="widget-card">
-                        <div class="card-title"><i>📂</i> Zdalny Eksplorator Plików</div>
-                        <p class="card-description" style="margin-bottom: 40px;">Zarządzaj plikami konfiguracyjnymi bezpośrednio z poziomu przeglądarki dzięki wbudowanemu edytorowi KokoszkaCode.</p>
-                        
-                        <div class="ftp-workspace">
-                            <div class="ftp-tree-view">
-                                <div class="ftp-node" onclick="engine.loadFileIntoEditor('server.properties')"><i>📄</i> server.properties</div>
-                                <div class="ftp-node" onclick="engine.loadFileIntoEditor('spigot.yml')"><i>📄</i> spigot.yml</div>
-                                <div class="ftp-node" onclick="engine.loadFileIntoEditor('bukkit.yml')"><i>📄</i> bukkit.yml</div>
-                                <div class="ftp-node" onclick="engine.loadFileIntoEditor('whitelist.json')"><i>📄</i> whitelist.json</div>
-                                <div class="ftp-node" onclick="engine.loadFileIntoEditor('ops.json')"><i>📄</i> ops.json</div>
-                                <div class="ftp-node" style="color: var(--text-dim); cursor: not-allowed;"><i>📁</i> world (Katalog Mapy)</div>
-                                <div class="ftp-node" style="color: var(--text-dim); cursor: not-allowed;"><i>📁</i> plugins (Katalog Dodatków)</div>
-                            </div>
-                            <div class="ftp-editor-wrapper">
-                                <textarea id="ftp-text-area" class="ftp-textarea" spellcheck="false"># Wybierz plik tekstowy z drzewa po lewej stronie, aby otworzyć edytor...</textarea>
-                                <button class="btn-action btn-primary-action ftp-save-btn" style="padding: 16px 35px; font-size: 14px;" onclick="ui.triggerToast('Zapis zbuforowany i przesłany do zdalnego serwera FTP.')">ZAPISZ ZMIANY W PLIKU</button>
+                        <div class="b-card">
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; gap: 20px;">
+                                <div><small style="font-weight: 900;">SILNIK</small><br><b id="ui-info-engine" style="font-size: 20px;">---</b></div>
+                                <div><small style="font-weight: 900;">WERSJA</small><br><b id="ui-info-version" style="font-size: 20px;">---</b></div>
+                                <div><small style="font-weight: 900;">GRACZE</small><br><b style="font-size: 20px;">0 / 20</b></div>
+                                <div><small style="font-weight: 900;">PORT</small><br><b style="font-size: 20px; color: var(--brand-primary);">25565</b></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="module-database" class="view-module"><div class="widget-card"><div class="card-title">🗄️ Bazy Danych MySQL</div><p class="card-description">Zarządzaj bazami danych dla Twoich pluginów. Moduł PhpMyAdmin wkrótce dostępny.</p></div></div>
-                <div id="module-cronjobs" class="view-module"><div class="widget-card"><div class="card-title">⏱️ Harmonogramy (Cron)</div><p class="card-description">Zautomatyzuj powtarzalne procesy zarządzania serwerem. Ustawiaj restarty i zapisy mapy w systemie Linux Cron.</p></div></div>
-                <div id="module-marketplace" class="view-module"><div class="widget-card"><div class="card-title">🔌 Rynek Pluginów i Modyfikacji</div><p class="card-description">Baza 45,000 pluginów jest aktualnie poddawana weryfikacji sum kontrolnych. Zapraszamy wkrótce.</p></div></div>
-                <div id="module-firewall" class="view-module"><div class="widget-card"><div class="card-title">🛡️ Ochrona Sieciowa (Firewall L7)</div><p class="card-description">Ochrona Anti-DDoS jest zawsze aktywna w tle i nie wymaga ręcznej konfiguracji na darmowym planie.</p></div></div>
-                <div id="module-auditlogs" class="view-module">
-                    <div class="widget-card">
-                        <div class="card-title"><i>📜</i> Dziennik Audytu (Security Logs)</div>
-                        <p class="card-description">System KokoszkaOS rejestruje każdą istotną zmianę i operację dokonaną w konfiguracji Twojego panelu.</p>
-                        <div class="table-responsive">
-                            <table class="system-table">
-                                <thead><tr><th>Sygnatura Czasowa</th><th>Opis Akcji Systemowej</th><th>Operator</th><th>Status Zdarzenia</th></tr></thead>
-                                <tbody id="ui-audit-table-render">
-                                    </tbody>
-                            </table>
+                <div id="view-resources" class="view-module">
+                    <div class="b-card">
+                        <h3 class="b-card-title"><i>🚀</i> Nielimitowany Przydział</h3>
+                        <div style="background: var(--bg-input); padding: 30px; border: var(--border-width-md) solid black; margin: 30px 0;">
+                            <div style="display: flex; justify-content: space-between; font-weight: 900;"><span>RAM (GB)</span><b id="lbl-ram-val" style="font-size: 24px;">4</b></div>
+                            <input type="range" min="1" max="128" value="4" style="width: 100%; margin: 20px 0;" id="slider-ram" oninput="kernel.syncResourceSliders()">
+                        </div>
+                        <div style="background: var(--bg-input); padding: 30px; border: var(--border-width-md) solid black; margin: 30px 0;">
+                            <div style="display: flex; justify-content: space-between; font-weight: 900;"><span>vCPU</span><b id="lbl-cpu-val" style="font-size: 24px;">2</b></div>
+                            <input type="range" min="1" max="32" value="2" style="width: 100%; margin: 20px 0;" id="slider-cpu" oninput="kernel.syncResourceSliders()">
+                        </div>
+                        <button class="btn-action btn-primary-action" style="width: 100%;" onclick="uiEngine.triggerToast('Zapisano.')">ZAPISZ KONFIGURACJĘ</button>
+                    </div>
+                </div>
+
+                <div id="view-software" class="view-module">
+                    <div class="b-card">
+                        <h3 class="b-card-title"><i>⚙️</i> Oprogramowanie</h3>
+                        <select id="sel-engine-type" class="input-brutalist" style="margin: 20px 0;">
+                            <option value="Vanilla">Vanilla</option>
+                            <option selected value="PaperMC">PaperMC</option>
+                            <option value="Forge">Forge</option>
+                        </select>
+                        <select id="sel-engine-version" class="input-brutalist" style="margin-bottom: 30px;">
+                            <option>1.20.4</option><option>1.19.4</option><option>1.16.5</option>
+                        </select>
+                        <button class="btn-action btn-primary-action" style="width: 100%;" onclick="kernel.processSoftwareInstallation()">ZAINSTALUJ</button>
+                    </div>
+                </div>
+                
+                <div id="view-properties" class="view-module">
+                    <div class="b-card">
+                        <h3 class="b-card-title"><i>🛠️</i> Konfiguracja (.prop)</h3>
+                        <p>Opcje Non-Premium i PvP. (Włączone domyślnie)</p>
+                        <input type="text" class="input-brutalist" style="margin: 20px 0;" placeholder="MOTD Serwera">
+                        <button class="btn-action btn-primary-action" style="width: 100%;" onclick="uiEngine.triggerToast('Zapisano plik properties.')">ZAPISZ</button>
+                    </div>
+                </div>
+
+                <div id="view-terminal" class="view-module">
+                    <div class="b-card" style="background: black; color: white;">
+                        <div id="terminal-screen-log" style="height: 400px; overflow-y: auto; font-family: monospace;">
+                            <div style="color: #34d399;">[SYSTEM] Terminal v4.0 TITAN gotowy.</div>
+                        </div>
+                        <div style="display: flex; gap: 15px; margin-top: 20px;">
+                            <input type="text" id="terminal-cmd-input" style="flex-grow: 1; background: #1e293b; border: 2px solid #334155; color: white; padding: 15px;">
+                            <button class="btn-action" style="background: white; color: black;" onclick="kernel.executeTerminalCommand()">WYKONAJ</button>
                         </div>
                     </div>
                 </div>
+
+                <div id="view-filemanager" class="view-module">
+                    <div class="b-card">
+                        <h3 class="b-card-title"><i>📂</i> Menedżer Plików</h3>
+                        <textarea id="ftp-text-area" style="width: 100%; height: 400px; background: black; color: white; padding: 20px; font-family: monospace; border: var(--border-width-md) solid black;"># server.properties</textarea>
+                        <button class="btn-action btn-primary-action" style="margin-top: 20px;" onclick="uiEngine.triggerToast('Zapisano na FTP.')">ZAPISZ PLIK</button>
+                    </div>
+                </div>
+
+                <div id="view-database" class="view-module"><div class="b-card"><h3 class="b-card-title">🗄️ Bazy MySQL</h3><p>Baza danych s1_kokoszka aktywna.</p></div></div>
+                <div id="view-marketplace" class="view-module"><div class="b-card"><h3 class="b-card-title">🔌 Rynek Pluginów</h3><p>Zainstaluj WorldEdit, Essentials.</p></div></div>
+                <div id="view-auditlogs" class="view-module"><div class="b-card"><h3 class="b-card-title">📜 Dziennik Audytu</h3><table style="width:100%; text-align:left;"><tbody id="ui-audit-table-render"></tbody></table></div></div>
 
             </div>
         </div>
     </div>
 
-    <div id="sys-toast-notification" style="position: fixed; bottom: 40px; right: 40px; background-color: var(--text-heading); color: var(--text-inverse); padding: 25px 40px; border-radius: var(--radius-medium); font-weight: 800; font-size: 15px; transform: translateY(200%); transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 99999999; display: flex; align-items: center; gap: 15px; border-left: var(--border-width-lg) solid var(--brand-primary); box-shadow: var(--shadow-lg);">
-        <span style="font-size: 26px;">ℹ️</span>
-        <span id="toast-message-content">Powiadomienie testowe systemu operacyjnego.</span>
+    <div id="sys-toast-notification" class="toast-notification">
+        <span style="font-size: 24px;">ℹ️</span>
+        <span id="toast-message-content">Powiadomienie</span>
     </div>
 
     <script>
-        /**
-         * KOKOSZKA MC - TITAN ENGINE v4.0
-         * Czysty kod zoptymalizowany pod Single Page Application (SPA).
-         */
-
-        const SYS_CONFIG = {
-            versions: [
-                "1.21.1", "1.21", "1.20.6", "1.20.4", "1.20.1", "1.19.4", "1.19.2", 
-                "1.18.2", "1.17.1", "1.16.5", "1.15.2", "1.12.2", "1.8.8", "1.7.10"
-            ],
-            fileTemplates: {
-                "server.properties": "online-mode=false\npvp=true\ngamemode=survival\ndifficulty=normal\nmax-players=20\nmotd=Najlepszy Serwer KokoszkaMC\nallow-flight=false\nenable-command-block=true\nview-distance=10\nsimulation-distance=8\nspawn-protection=16\nlevel-name=world\nserver-port=25565",
-                "spigot.yml": "settings:\n  save-user-cache-on-stop-only: false\n  bungeecord: false\n  user-cache-size: 1000",
-                "bukkit.yml": "settings:\n  allow-end: true\n  warn-on-overload: true",
-                "whitelist.json": "[]",
-                "ops.json": "[]"
-            }
-        };
-
-        // --- SYSTEM AUTORYZACJI I ZAKŁADEK W EKRANIE STARTOWYM ---
         const authSystem = {
-            activeAuthTab: 'login',
-            database: JSON.parse(localStorage.getItem('kokoszka_titan_v4_db') || "{}"),
+            activeTab: 'login',
+            database: JSON.parse(localStorage.getItem('kokoszka_v4_db') || "{}"),
             currentUser: null,
 
             init() {
-                console.log("[KOKOSZKA KERNEL] Booting Authorization Sequence v4.0...");
-                
-                // Generowanie selektora wersji w panelu "Silnik i Wersje"
-                const verDropdownNode = document.getElementById('sel-engine-version');
-                if(verDropdownNode) {
-                    SYS_CONFIG.versions.forEach(v => {
-                        let opt = document.createElement('option');
-                        opt.value = v; opt.innerText = v;
-                        verDropdownNode.appendChild(opt);
-                    });
-                }
-                
-                // Generator nazwy IP w czasie rzeczywistym
-                const spawnInputNode = document.getElementById('in-create-name');
-                if(spawnInputNode) {
-                    spawnInputNode.addEventListener('input', (e) => {
-                        const cleanStr = e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '');
-                        document.getElementById('out-create-ip').innerText = (cleanStr || "...") + ".kokoszka.me";
-                    });
-                }
-                
-                // Wymuś stan początkowy (Logowanie) przy załadowaniu DOM
+                document.getElementById('in-create-name')?.addEventListener('input', (e) => {
+                    document.getElementById('out-create-ip').innerText = (e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') || "...") + ".kokoszka.me";
+                });
                 this.switchTab('login');
             },
 
-            switchTab(tabNameTarget) {
-                this.activeAuthTab = tabNameTarget;
+            switchTab(tab) {
+                this.activeTab = tab;
+                document.getElementById('auth-error-msg').innerText = "";
                 
-                // Zabezpieczenie przed wyciekami błędów UI
-                document.getElementById('err-login').innerText = "";
-                document.getElementById('err-reg').innerText = "";
-
-                const btnLoginNode = document.getElementById('tab-btn-login');
-                const btnRegisterNode = document.getElementById('tab-btn-register');
-                const btnSubmitNode = document.getElementById('auth-btn-submit');
+                const bLogin = document.getElementById('tab-btn-login');
+                const bReg = document.getElementById('tab-btn-register');
+                const bSub = document.getElementById('auth-btn-submit');
                 
-                // Wyczyszczenie globalnych inputów
-                document.getElementById('auth-input-username').value = "";
-                document.getElementById('auth-input-password').value = "";
-
-                if (tabNameTarget === 'login') {
-                    // Stylizacja zakładki Logowanie z CSS
-                    btnLoginNode.classList.add('active');
-                    btnRegisterNode.classList.remove('active');
-                    btnSubmitNode.innerText = "Zaloguj się do panelu";
+                if(tab === 'login') {
+                    bLogin.classList.add('active'); bReg.classList.remove('active');
+                    bSub.innerText = "Zaloguj się";
+                    document.getElementById('auth-label-user').innerText = "Nazwa konta";
                 } else {
-                    // Stylizacja zakładki Tworzenie konta
-                    btnRegisterNode.classList.add('active');
-                    btnLoginNode.classList.remove('active');
-                    btnSubmitNode.innerText = "Stwórz konto darmowe";
-                }
-            },
-
-            togglePasswordVisibility(inputId, iconElem) {
-                const targetInput = document.getElementById(inputId);
-                if (targetInput.type === 'password') { 
-                    targetInput.type = 'text'; 
-                    iconElem.innerText = '🔒'; 
-                } else { 
-                    targetInput.type = 'password'; 
-                    iconElem.innerText = '👁️'; 
+                    bReg.classList.add('active'); bLogin.classList.remove('active');
+                    bSub.innerText = "Stwórz konto";
+                    document.getElementById('auth-label-user').innerText = "Nazwa konta";
                 }
             },
 
             executeAuth() {
-                const userVal = document.getElementById('auth-input-username').value.trim();
-                const passVal = document.getElementById('auth-input-password').value.trim();
-                const errBox = document.getElementById(this.activeAuthTab === 'login' ? 'err-login' : 'err-reg'); // Fallback na odpowiedni pojemnik błędu
+                const u = document.getElementById('auth-input-username').value.trim();
+                const p = document.getElementById('auth-input-password').value.trim();
+                const err = document.getElementById('auth-error-msg');
 
-                if (userVal.length < 3) return errBox.innerText = "BŁĄD: NAZWA MUSI MIEĆ MIN. 3 ZNAKI.";
-                if (passVal.length < 4) return errBox.innerText = "BŁĄD: HASŁO MUSI MIEĆ MIN. 4 ZNAKI.";
+                if(u.length < 3 || p.length < 4) return err.innerText = "BŁĄD: DANE ZA KRÓTKIE.";
 
-                if (this.activeAuthTab === 'register') {
-                    // SEKWENCJA REJESTRACJI DO LOCALSTORAGE NoSQL
-                    if (this.database[userVal]) return errBox.innerText = "BŁĄD: TEN UŻYTKOWNIK JUŻ ISTNIEJE W GŁÓWNEJ BAZIE!";
-                    
-                    this.database[userVal] = { 
-                        pass: passVal, 
-                        srvData: null,
-                        audit: [{ t: new Date().toLocaleString(), a: "Utworzenie konta w chmurze KokoszkaMC." }]
-                    };
-                    
-                    localStorage.setItem('kokoszka_titan_v4_db', JSON.stringify(this.database));
-                    
-                    alert("KONTO ZOSTAŁO POMYŚLNIE ZAREJESTROWANE! Zostaniesz automatycznie przełączony do logowania.");
+                if(this.activeTab === 'register') {
+                    if(this.database[u]) return err.innerText = "BŁĄD: KONTO ISTNIEJE.";
+                    this.database[u] = { pass: p, srvData: null, audit: [] };
+                    localStorage.setItem('kokoszka_v4_db', JSON.stringify(this.database));
+                    alert("Konto stworzone. Zaloguj się.");
                     this.switchTab('login');
-                    
                 } else {
-                    // SEKWENCJA LOGOWANIA I BINDOWANIA SESJI
-                    if (!this.database[userVal] || this.database[userVal].pass !== passVal) {
-                        return errBox.innerText = "BŁĄD: NIEPRAWIDŁOWA NAZWA LUB HASŁO!";
-                    }
-                    
-                    this.currentUser = userVal;
-                    kernel.igniteApplicationSession();
+                    if(!this.database[u] || this.database[u].pass !== p) return err.innerText = "BŁĄD: BŁĘDNE DANE.";
+                    this.currentUser = u;
+                    kernel.igniteSession();
                 }
             }
         };
 
-        // --- GŁÓWNY SILNIK ZARZĄDZANIA WIRTUALNĄ MASZYNĄ ---
         const kernel = {
-            serverRecord: null,
-            isNodeOnline: false,
-            isNodeBooting: false,
-            uptimeSecondsCounter: 0,
+            srv: null, isOnline: false, isBooting: false, simTimer: null,
             
-            // Asynchroniczne Pętle (Timers)
-            loopHardware: null,
-            loopClock: null,
-
-            igniteApplicationSession() {
-                // Efekt wejścia do panelu (Twarda zmiana display z animacją)
-                const authPortalWrapper = document.getElementById('auth-portal');
-                const appCoreInterface = document.getElementById('app-core-interface');
-                
-                authPortalWrapper.classList.add('booting');
-                
+            igniteSession() {
+                document.getElementById('auth-portal').classList.add('booting');
                 setTimeout(() => {
-                    authPortalWrapper.style.display = 'none';
-                    appCoreInterface.style.display = 'flex';
-                    
-                    // Zastrzyk danych profilu pobranych z bazy DB
+                    document.getElementById('auth-portal').style.display = 'none';
+                    document.getElementById('app-core-interface').style.display = 'flex';
                     document.getElementById('ui-topbar-user').innerText = authSystem.currentUser;
                     document.getElementById('ui-topbar-avatar').innerText = authSystem.currentUser.charAt(0).toUpperCase();
-                    
-                    this.serverRecord = authSystem.database[authSystem.currentUser].srvData;
-                    
-                    this.syncDashboardTopology();
-                    this.renderAuditHistoryTable();
-                }, 800); // Równoważne z animacją cubic-bezier w CSS
+                    this.srv = authSystem.database[authSystem.currentUser].srvData;
+                    this.syncDash();
+                }, 800);
             },
 
             deployNewServer() {
-                const rawNameStr = document.getElementById('in-create-name').value.trim();
-                const safeNameStr = rawString.toLowerCase().replace(/[^a-z0-9-]/g, '');
-                
-                if (safeNameStr.length < 3) return alert("ZABEZPIECZENIE: Wymagane są minimum 3 znaki w nazwie!");
-
-                this.serverRecord = {
-                    name: safeNameStr,
-                    ip: safeNameStr + ".kokoszka.me",
-                    ram: 4,
-                    cpu: 2,
-                    engine: "PaperMC",
-                    version: "1.20.4"
-                };
-
-                // Zapis w bazie
-                authSystem.database[authSystem.currentUser].srvData = this.serverRecord;
-                this.pushToAuditLog("Inicjalizacja i alokacja zasobów węzła: " + this.serverRecord.ip);
-                localStorage.setItem('kokoszka_titan_v4_db', JSON.stringify(authSystem.database));
-                
-                this.syncDashboardTopology();
-                ui.triggerToast("Gratulacje! Twoja darmowa maszyna wirtualna została pomyślnie alokowana na dysku.");
+                const n = document.getElementById('in-create-name').value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
+                if(n.length < 3) return alert("Min. 3 znaki!");
+                this.srv = { name: n, ip: n + ".kokoszka.me", ram: 4, cpu: 2, engine: "PaperMC", version: "1.20.4" };
+                authSystem.database[authSystem.currentUser].srvData = this.srv;
+                localStorage.setItem('kokoszka_v4_db', JSON.stringify(authSystem.database));
+                this.syncDash();
+                uiEngine.triggerToast("Maszyna utworzona!");
             },
 
-            syncDashboardTopology() {
-                const viewSpawnLayout = document.getElementById('layout-spawn-server');
-                const viewManageLayout = document.getElementById('layout-manage-server');
-
-                if (!this.serverRecord) {
-                    viewSpawnLayout.style.display = 'block';
-                    viewManageLayout.style.display = 'none';
+            syncDash() {
+                if(!this.srv) {
+                    document.getElementById('layout-spawner').style.display = 'block';
+                    document.getElementById('layout-manage').style.display = 'none';
                 } else {
-                    viewSpawnLayout.style.display = 'none';
-                    viewManageLayout.style.display = 'block';
-                    
-                    // Synchronizacja z elementami tekstowymi DOM
-                    document.getElementById('ui-status-ip').innerText = this.serverRecord.ip;
-                    document.getElementById('ui-info-engine').innerText = this.serverRecord.engine;
-                    document.getElementById('ui-info-version').innerText = this.serverRecord.version;
-                    
-                    // Ustawienie gigantycznych suwaków RAM/CPU w zakładce Zasoby
-                    document.getElementById('slider-ram').value = this.serverRecord.ram;
-                    document.getElementById('slider-cpu').value = this.serverRecord.cpu;
-                    this.syncResourceSliders(); // Odświeża etykiety wizualne
+                    document.getElementById('layout-spawner').style.display = 'none';
+                    document.getElementById('layout-manage').style.display = 'block';
+                    document.getElementById('ui-status-ip').innerText = this.srv.ip;
+                    document.getElementById('ui-info-engine').innerText = this.srv.engine;
+                    document.getElementById('ui-info-version').innerText = this.srv.version;
                 }
             },
 
             togglePowerState() {
-                if (this.isNodeBooting) return;
-                
-                const btnPowerNode = document.getElementById('ui-btn-power');
-                const statusOrbNode = document.getElementById('ui-status-orb');
-                const statusTextNode = document.getElementById('ui-status-text');
+                if(this.isBooting) return;
+                const btn = document.getElementById('ui-btn-power');
+                const orb = document.getElementById('ui-status-orb');
+                const txt = document.getElementById('ui-status-text');
 
-                if (!this.isNodeOnline) {
-                    // SEKWENCJA URUCHAMIANIA (BOOT SEQUENCE)
-                    this.isNodeBooting = true;
-                    btnPowerNode.disabled = true;
-                    btnPowerNode.style.opacity = "0.6";
-                    
-                    statusOrbNode.className = "status-orb-container state-booting";
-                    statusOrbNode.innerText = "⏳";
-                    statusTextNode.innerText = "STARTOWANIE...";
-                    
-                    ui.pushToTerminal(`Wykonywanie alokacji pamięci na poziomie JRE: żądanie ${this.serverRecord.ram}GB RAM...`, "info");
-
+                if(!this.isOnline) {
+                    this.isBooting = true; btn.disabled = true;
+                    orb.innerText = "⏳"; txt.innerText = "STARTOWANIE...";
+                    uiEngine.logTerminal("Inicjalizacja węzła...");
                     setTimeout(() => {
-                        if (this.isNodeBooting || this.isNodeOnline) {
-                            this.isNodeBooting = false;
-                            this.isNodeOnline = true;
-                            
-                            btnPowerNode.disabled = false;
-                            btnPowerNode.style.opacity = "1";
-                            btnPowerNode.innerText = "ZATRZYMAJ WĘZEŁ";
-                            btnPowerNode.className = "btn-action btn-danger-action";
-                            
-                            statusOrbNode.className = "status-orb-container state-online";
-                            statusOrbNode.innerText = "🟢";
-                            statusTextNode.innerText = "ONLINE";
-                            
-                            ui.pushToTerminal(`Proces Javy na silniku ${this.serverRecord.engine} v${this.serverRecord.version} pomyślnie załadował biblioteki nasłuchujące tcp/25565.`, "success");
-                            this.pushToAuditLog("Standardowe uruchomienie wirtualnej maszyny (Boot Process)");
-                            
-                            this.startSimulationEngines();
-                        }
-                    }, 4200);
-
+                        this.isBooting = false; this.isOnline = true;
+                        btn.disabled = false; btn.innerText = "ZATRZYMAJ"; btn.className = "btn-action btn-danger-action";
+                        orb.innerText = "🟢"; txt.innerText = "ONLINE";
+                        uiEngine.logTerminal("Serwer włączony na porcie 25565.", true);
+                        this.startSim();
+                    }, 3000);
                 } else {
-                    // SEKWENCJA BEZPIECZNEGO WYŁĄCZANIA (GRACEFUL SHUTDOWN)
-                    this.isNodeOnline = false;
-                    
-                    btnPowerNode.innerText = "URUCHOM SERWER";
-                    btnPowerNode.className = "btn-action btn-success-action";
-                    
-                    statusOrbNode.className = "status-orb-container";
-                    statusOrbNode.innerText = "🔴";
-                    statusTextNode.innerText = "OFFLINE";
-                    
-                    ui.pushToTerminal("Otrzymano sygnał SIGTERM. Wymuszanie zrzutu pamięci operacyjnej do dysku SSD i rozłączanie instancji graczy...", "info");
-                    
-                    this.pushToAuditLog("Zatrzymanie maszyny i zrzut pamięci świata do plików lokalnych (Stop Process)");
-                    this.stopSimulationEngines();
+                    this.isOnline = false; btn.innerText = "START"; btn.className = "btn-action btn-success-action";
+                    orb.innerText = "🔴"; txt.innerText = "OFFLINE";
+                    clearInterval(this.simTimer);
+                    document.getElementById('ui-live-ram-bar').style.width = "0%";
+                    document.getElementById('ui-live-cpu-bar').style.width = "0%";
                 }
             },
 
-            startSimulationEngines() {
-                // Losowe skoki zasobów z wyliczonych limitów
-                this.loopHardware = setInterval(() => {
-                    if (!this.isNodeOnline) return;
-                    
-                    const maxRamMB = this.serverRecord.ram * 1024;
-                    const curRamMB = Math.floor(Math.random() * (maxRamMB * 0.45 - maxRamMB * 0.20) + maxRamMB * 0.20);
-                    const curCpuPerc = Math.floor(Math.random() * 38) + 2;
-                    
-                    document.getElementById('ui-live-ram-text').innerText = `${curRamMB} / ${maxRamMB} MB`;
-                    document.getElementById('ui-live-ram-bar').style.width = `${(curRamMB / maxRamMB) * 100}%`;
-                    
-                    document.getElementById('ui-live-cpu-text').innerText = `${curCpuPerc}%`;
-                    document.getElementById('ui-live-cpu-bar').style.width = `${curCpuPerc}%`;
-                }, 1900);
-
-                // Zegar roboczy
-                this.loopClock = setInterval(() => {
-                    this.uptimeSecondsCounter++;
-                    let h = Math.floor(this.uptimeSecondsCounter / 3600);
-                    let m = Math.floor((this.uptimeSecondsCounter % 3600) / 60);
-                    let s = this.uptimeSecondsCounter % 60;
-                    
-                    const timeF = (h<10?'0':'')+h+":"+(m<10?'0':'')+m+":"+(s<10?'0':'')+s;
-                    document.getElementById('ui-uptime-clock').innerText = timeF;
-                }, 1000);
-            },
-
-            stopSimulationEngines() {
-                clearInterval(this.loopHardware);
-                clearInterval(this.loopClock);
-                this.uptimeSecondsCounter = 0;
-                
-                document.getElementById('ui-uptime-clock').innerText = "00:00:00";
-                document.getElementById('ui-live-ram-text').innerText = "0 / 4096 MB";
-                document.getElementById('ui-live-ram-bar').style.width = "0%";
-                document.getElementById('ui-live-cpu-text').innerText = "0%";
-                document.getElementById('ui-live-cpu-bar').style.width = "0%";
+            startSim() {
+                this.simTimer = setInterval(() => {
+                    if(!this.isOnline) return;
+                    let rm = this.srv.ram * 1024;
+                    let ru = Math.floor(Math.random() * (rm*0.4 - rm*0.2) + rm*0.2);
+                    let cu = Math.floor(Math.random() * 40) + 5;
+                    document.getElementById('ui-live-ram-text').innerText = `${ru} / ${rm} MB`;
+                    document.getElementById('ui-live-ram-bar').style.width = `${(ru/rm)*100}%`;
+                    document.getElementById('ui-live-cpu-text').innerText = `${cu}%`;
+                    document.getElementById('ui-live-cpu-bar').style.width = `${cu}%`;
+                }, 2000);
             },
 
             syncResourceSliders() {
-                const getRam = parseInt(document.getElementById('slider-ram').value);
-                const getCpu = parseInt(document.getElementById('slider-cpu').value);
-                
-                document.getElementById('lbl-ram-val').innerText = getRam;
-                document.getElementById('lbl-cpu-val').innerText = getCpu;
-                
-                // Dynamiczne Ostrzeżenia CSS (Display Block)
-                document.getElementById('alert-ram-limit').style.display = (getRam > 16 ? 'block' : 'none');
-                document.getElementById('alert-cpu-limit').style.display = (getCpu > 4 ? 'block' : 'none');
-
-                if (this.serverRecord) {
-                    this.serverRecord.ram = getRam;
-                    this.serverRecord.cpu = getCpu;
-                    authSystem.database[authSystem.currentUser].srvData = this.serverRecord;
-                    localStorage.setItem('kokoszka_titan_v4_db', JSON.stringify(authSystem.database));
-                }
+                const r = parseInt(document.getElementById('slider-ram').value);
+                const c = parseInt(document.getElementById('slider-cpu').value);
+                document.getElementById('lbl-ram-val').innerText = r;
+                document.getElementById('lbl-cpu-val').innerText = c;
+                if(this.srv) { this.srv.ram = r; this.srv.cpu = c; authSystem.database[authSystem.currentUser].srvData = this.srv; localStorage.setItem('kokoszka_v4_db', JSON.stringify(authSystem.database)); }
             },
 
             processSoftwareInstallation() {
-                if (!this.serverRecord) return;
-                
-                const en = document.getElementById('sel-engine-type').value;
-                const ve = document.getElementById('sel-engine-version').value;
-                
-                this.serverRecord.engine = en;
-                this.serverRecord.version = ve;
-                
-                this.pushToAuditLog(`Aktualizacja oprogramowania rdzenia maszyny do paczki ${en} v${ve}`);
-                localStorage.setItem('kokoszka_titan_v4_db', JSON.stringify(authSystem.database));
-                
-                this.syncDashboardTopology();
-                ui.triggerToast(`Pomyślnie zainstalowano i podpięto nowy silnik: ${en}.`);
-            },
-
-            triggerEmergencyKill() {
-                this.isNodeOnline = false;
-                this.isNodeBooting = false;
-                this.togglePowerState();
-                ui.pushToTerminal("⚠️ KRYTYCZNY BŁĄD PROCESU: Aktywowano sprzętowy KILL SWITCH. Główny proces maszyny Javy został zamordowany przez jądro.", "error");
-                this.pushToAuditLog("Zabójstwo instancji procesora przez awaryjny przycisk KILL-SWITCH");
+                this.srv.engine = document.getElementById('sel-engine-type').value;
+                this.srv.version = document.getElementById('sel-engine-version').value;
+                localStorage.setItem('kokoszka_v4_db', JSON.stringify(authSystem.database));
+                this.syncDash(); uiEngine.triggerToast("Zainstalowano silnik.");
             },
 
             executeTerminalCommand() {
-                const termInput = document.getElementById('terminal-cmd-input');
-                const cmdText = termInput.value.trim();
-                if (!cmdText) return;
-                
-                ui.pushToTerminal("> [Root RCON API]: " + cmdText, "info");
-                
-                const lowerCmd = cmdText.toLowerCase();
-                if (lowerCmd.startsWith("op ")) {
-                    ui.pushToTerminal("[Internal Access Handler]: Poziom autoryzacji OP został trwale nadany wybranemu użytkownikowi.", "success");
-                } else if (lowerCmd === "stop") {
-                    this.togglePowerState();
-                } else if (lowerCmd === "help" || lowerCmd === "?") {
-                    ui.pushToTerminal("--- KOKOSZKA COMMAND PARSER ---\nDostępne flagi z panelu web: op, deop, kill, stop, save-all, reload", "info");
-                } else {
-                    ui.pushToTerminal("Nie zidentyfikowano polecenia lub demon nie posiada aliasu dla tej komendy.", "warn");
-                }
-                
-                termInput.value = "";
-            },
-
-            loadFileIntoEditor(fName) {
-                const editorAreaNode = document.getElementById('ftp-text-area');
-                const templateMatch = SYSTEM_TEMPLATES.files[fName] || `# System WebFTP KokoszkaOS\n# Odczytywana ścieżka pliku: ${fName}\n\n# Ostrzeżenie: Plik jest obecnie pusty lub zablokowany do odczytu (Permission Denied).`;
-                
-                editorAreaNode.value = templateMatch;
-                ui.triggerToast(`Kopia pliku konfiguracyjного ${fName} została bezpiecznie pobrana do edytora.`);
-                this.pushToAuditLog(`Żądanie podglądu pliku tekstowego z powłoki FTP: ${fName}`);
-            },
-
-            pushToAuditLog(actionEventString) {
-                const timeStr = new Date().toLocaleString();
-                // Dodajemy na początek (LIFO Stack)
-                authSystem.database[authSystem.currentUser].audit.unshift({
-                    t: timeStr,
-                    a: actionEventString
-                });
-                
-                // GC Logów: Trzymamy max 100 logów, by nie wysadzić pamięci LocalStorage
-                if(authSystem.database[authSystem.currentUser].audit.length > 100) {
-                    authSystem.database[authSystem.currentUser].audit.pop();
-                }
-                
-                this.renderAuditHistoryTable();
-            },
-
-            renderAuditHistoryTable() {
-                const tableBodyDOM = document.getElementById('ui-audit-table-render');
-                if(!tableBodyDOM) return;
-
-                tableBodyDOM.innerHTML = ""; 
-                
-                const cachedLogsArray = authSystem.database[authSystem.currentUser].audit;
-                
-                cachedLogsArray.forEach(logObj => {
-                    tableBodyDOM.innerHTML += `
-                        <tr>
-                            <td>[${logObj.t}]</td>
-                            <td style="color: var(--text-heading);">${logObj.a}</td>
-                            <td><span style="background-color: var(--bg-input); padding: 6px 12px; border-radius: 8px; border: var(--border-width-sm) solid var(--border-color-main); font-weight: 800; font-size: 11px; text-transform: uppercase;">${authSystem.currentUser}</span></td>
-                            <td style="color: var(--status-success); font-weight: 900; letter-spacing: 1px;"><i style="font-style: normal;">✓</i> OK</td>
-                        </tr>
-                    `;
-                });
+                const i = document.getElementById('terminal-cmd-input');
+                if(i.value) uiEngine.logTerminal("> " + i.value);
+                i.value = "";
             }
         };
 
-        // --- SILNIK RENDEROWANIA UI (ROUTING I POWIADOMIENIA) ---
-        const ui = {
-            switchModule(viewModuleTargetId, clickedNavElement) {
-                // Wyczyszczenie klas aktywnych
-                document.querySelectorAll('.view-module').forEach(vNode => vNode.classList.remove('active'));
-                document.querySelectorAll('.menu-link-item').forEach(iNode => iNode.classList.remove('active'));
-                
-                // Aktywacja nowego celu
-                const targetViewNode = document.getElementById('module-' + viewModuleTargetId);
-                if (targetViewNode) targetViewNode.classList.add('active');
-                
-                clickedNavElement.classList.add('active');
-                
-                // Aktualizacja nazwy ścieżki w górnym pasku
-                const cleanParsedTitleText = clickedNavElement.innerText.replace(/[^\w\sąęółńćźżĄĘÓŁŃĆŹŻ\(\)\-\/\.]/gi, '').trim();
-                const titleDisplayNode = document.getElementById('ui-current-module-name');
-                if (titleDisplayNode) titleDisplayNode.innerText = cleanParsedTitleText;
+        const uiEngine = {
+            routeTo(id, el) {
+                document.querySelectorAll('.view-module').forEach(v => v.classList.remove('active'));
+                document.querySelectorAll('.menu-nav-item').forEach(i => i.classList.remove('active'));
+                document.getElementById('view-' + id).classList.add('active');
+                el.classList.add('active');
+                document.getElementById('ui-breadcrumb-title').innerText = el.innerText.substring(2).trim();
             },
-
-            pushToTerminal(messageStringRaw, severityType) {
-                const terminalLogContainer = document.getElementById('terminal-screen-log');
-                if(!terminalLogContainer) return;
-
-                const accurateTimeStamp = new Date().toLocaleTimeString();
-                
-                const typeToCssClassMap = {
-                    'info': 'log-info',
-                    'success': 'log-success',
-                    'error': 'log-error',
-                    'warn': 'log-warn',
-                    'default': ''
-                };
-                
-                const finalComputedCssClass = typeToCssClassMap[severityType] || typeToCssClassMap['default'];
-                
-                terminalLogContainer.innerHTML += `
-                    <div style="margin-bottom: 6px;">
-                        <span class="log-time">[${accurateTimeStamp}]</span> 
-                        <span class="${finalComputedCssClass}">${messageStringRaw}</span>
-                    </div>
-                `;
-                
-                // Asynchroniczny auto-scroll na sam dół zawartości terminala
-                terminalLogContainer.scrollTop = terminalLogContainer.scrollHeight;
+            triggerToast(m) {
+                const t = document.getElementById('sys-toast-notification');
+                document.getElementById('toast-message-content').innerText = m;
+                t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000);
             },
-
-            triggerToast(toastInfoMsgText) {
-                const sysToastNode = document.getElementById('sys-toast-notification');
-                const toastContentNode = document.getElementById('toast-message-content');
-                
-                if (sysToastNode && toastContentNode) {
-                    toastContentNode.innerText = toastInfoMsgText;
-                    sysToastNode.classList.add('show');
-                    
-                    // Zniknięcie powiadomienia po równych 4 sekundach (4000ms)
-                    setTimeout(() => {
-                        sysToastNode.classList.remove('show');
-                    }, 4000);
-                }
+            logTerminal(m, ok=false) {
+                const box = document.getElementById('terminal-screen-log');
+                box.innerHTML += `<div style="color:${ok?'#34d399':'#38bdf8'}">[LOG] ${m}</div>`;
+                box.scrollTop = box.scrollHeight;
             }
         };
 
-        // --- GŁÓWNY PUNKT WEJŚCIA (ENTRY POINT BOOTSTRAP) ---
-        window.addEventListener('DOMContentLoaded', () => {
-            authSystem.init();
-        });
-
+        window.onload = () => authSystem.init();
     </script>
 </body>
 </html>
