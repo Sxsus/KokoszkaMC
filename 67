@@ -1,0 +1,16 @@
+// --- BAZA WIEDZY I PRE-KONFIGURACJI WĘZŁA ---
+        const SYS_DATA = {
+            versions: [
+                "1.21.11", "1.21.10", "1.21.9", "1.21.8", "1.21.7", "1.21.6", "1.21.5", 
+                "1.21.4", "1.21.3", "1.21.2", "1.21.1", "1.21", "1.20.6", "1.20.4", 
+                "1.20.1", "1.19.4", "1.19.2", "1.18.2", "1.17.1", "1.16.5", "1.15.2", 
+                "1.12.2", "1.8.8", "1.7.10"
+            ],
+            files: {
+                "server.properties": "online-mode=false\npvp=true\nmax-players=20\nmotd=Najlepszy Serwer KokoszkaMC\nallow-flight=false\nenable-command-block=true\nview-distance=10\nserver-port=25565",
+                "spigot.yml": "settings:\n  save-user-cache-on-stop-only: false\n  bungeecord: false\n  user-cache-size: 1000",
+                "bukkit.yml": "settings:\n  allow-end: true\n  warn-on-overload: true",
+                "whitelist.json": "[]",
+                "ops.json": "[]"
+            }
+        };
